@@ -17,7 +17,6 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.item.IDyeableArmorItem;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -25,8 +24,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-@OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(modid = MoBlocks.MODID, bus=Bus.MOD)
+@EventBusSubscriber(modid = MoBlocks.MODID, value = Dist.CLIENT, bus=Bus.MOD)
 public class ClientRegistration {
 	@SubscribeEvent
 	public static void init(FMLClientSetupEvent event) {
