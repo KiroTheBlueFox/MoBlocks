@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:oak_double_drawer",
+    "moblocks:spruce_double_drawer",
+    "moblocks:birch_double_drawer",
+    "moblocks:jungle_double_drawer",
+    "moblocks:acacia_double_drawer",
+    "moblocks:dark_oak_double_drawer",
+    "moblocks:nether_brick_double_drawer",
+    "moblocks:crimson_double_drawer",
+    "moblocks:warped_double_drawer"
+  ]
+}

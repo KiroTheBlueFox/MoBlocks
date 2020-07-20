@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LPL",
+    "P P",
+    "LPL"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:warped_stem"
+    },
+    "P": {
+      "item": "minecraft:warped_planks"
+    }
+  },
+  "result": {
+    "item": "moblocks:warped_crate",
+    "count": 1
+  }
+}

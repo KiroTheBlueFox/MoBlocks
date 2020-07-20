@@ -1,0 +1,73 @@
+{
+    "multipart": [
+        { "when": { "south": "false", "east": "false", "north": "false", "west": "false" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/single", "uvlock": true }
+        },
+        
+        { "when": { "south": "true", "east": "true", "south_east": "true" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/full_corner", "y": 270, "uvlock": true }
+        },
+        { "when": { "south": "false", "east": "false", "north": "true", "west": "true" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/outer_corner", "y": 90, "uvlock": true }
+        },
+		
+        { "when": { "north": "true", "east": "true", "north_east": "true" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/full_corner", "y": 180, "uvlock": true }
+        },
+        { "when": { "north": "false", "east": "false", "south": "true", "west": "true" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/outer_corner", "uvlock": true }
+        },
+		
+        { "when": { "south": "true", "west": "true", "south_west": "true" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/full_corner", "uvlock": true }
+        },
+        { "when": { "south": "false", "west": "false", "north": "true", "east": "true" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/outer_corner", "y": 180, "uvlock": true }
+        },
+		
+        { "when": { "north": "true", "west": "true", "north_west": "true" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/full_corner", "y": 90, "uvlock": true }
+        },
+        { "when": { "north": "false", "west": "false", "east": "true", "south": "true" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/outer_corner", "y": 270, "uvlock": true }
+        },
+        
+        { "when": { "north": "false", "west": "false", "east": "false", "south": "true" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/one_side", "y": 90, "uvlock": true }
+        },
+        { "when": { "north": "false", "west": "false", "east": "true", "south": "false" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/one_side", "uvlock": true }
+        },
+        { "when": { "north": "false", "west": "true", "east": "false", "south": "false" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/one_side", "y": 180, "uvlock": true }
+        },
+        { "when": { "north": "true", "west": "false", "east": "false", "south": "false" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/one_side", "y": 270, "uvlock": true }
+        },
+        { "when": { "north": "true", "south": "true", "east": "false" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/side", "y": 270, "uvlock": true }
+        },
+        { "when": { "north": "true", "south": "true", "west": "false" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/side", "y": 90, "uvlock": true }
+        },
+        { "when": { "east": "true", "west": "true", "south": "false" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/side", "uvlock": true }
+        },
+        { "when": { "east": "true", "west": "true", "north": "false" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/side", "y": 180, "uvlock": true }
+        },
+		
+        { "when": { "south_east": "false", "south": "true", "east": "true" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/inner_corner", "y": 270, "uvlock": true }
+        },
+        { "when": { "north_east": "false", "north": "true", "east": "true" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/inner_corner", "y": 180, "uvlock": true }
+        },
+        { "when": { "south_west": "false", "south": "true", "west": "true" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/inner_corner", "uvlock": true }
+        },
+        { "when": { "north_west": "false", "north": "true", "west": "true" },
+            "apply": { "model": "moblocks:block/furnitures/carpets/light_gray/inner_corner", "y": 90, "uvlock": true }
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#L#",
+    "###",
+    "S S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "#": {
+      "item": "minecraft:warped_planks"
+    },
+    "L": {
+      "item": "minecraft:warped_stem"
+    }
+  },
+  "result": {
+    "item": "moblocks:warped_simple_drawer",
+    "count": 2
+  }
+}

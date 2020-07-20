@@ -1,0 +1,6 @@
+{   
+    "parent": "moblocks:block/decoration/colorable_slab/slab",
+    "textures": {
+        "texture": "moblocks:block/colorable_planks"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/triangle_ramps/dot_triangle_ramp",
+    "textures": {
+        "texture": "block/oak_planks"
+    }
+}

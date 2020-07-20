@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#D#"
+  ],
+  "key": {
+    "D": {
+      "item": "moblocks:acacia_simple_drawer"
+    },
+    "#": {
+      "item": "minecraft:acacia_planks"
+    }
+  },
+  "result": {
+    "item": "moblocks:acacia_double_drawer",
+    "count": 1
+  }
+}

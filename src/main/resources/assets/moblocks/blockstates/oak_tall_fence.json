@@ -1,0 +1,43 @@
+{
+    "multipart": [
+        {   
+            "apply" : { "model": "moblocks:block/tall_fences/oak/pole_middle", "uvlock": true }
+        },
+        {   
+            "apply" : { "model": "moblocks:block/tall_fences/oak/pole_nw", "uvlock": true }
+        },
+        {   
+            "apply" : { "model": "moblocks:block/tall_fences/oak/pole_nw", "uvlock": true, "y": 90 }
+        },
+        {   
+            "apply" : { "model": "moblocks:block/tall_fences/oak/pole_nw", "uvlock": true, "y": 180 }
+        },
+        {   
+            "apply" : { "model": "moblocks:block/tall_fences/oak/pole_nw", "uvlock": true, "y": 270 }
+        },
+        {   "when" : { "north": "false"},
+            "apply" : { "model": "moblocks:block/tall_fences/oak/pole_north", "uvlock": true }
+        },
+        {   "when" : { "east": "false"},
+            "apply" : { "model": "moblocks:block/tall_fences/oak/pole_north", "uvlock": true, "y": 90 }
+        },
+        {   "when" : { "south": "false"},
+            "apply" : { "model": "moblocks:block/tall_fences/oak/pole_north", "uvlock": true, "y": 180 }
+        },
+        {   "when" : { "west": "false"},
+            "apply" : { "model": "moblocks:block/tall_fences/oak/pole_north", "uvlock": true, "y": 270 }
+        },
+        {   "when" : { "north": "true"},
+            "apply" : { "model": "moblocks:block/tall_fences/oak/connection_north", "uvlock": true }
+        },
+        {   "when" : { "east": "true"},
+            "apply" : { "model": "moblocks:block/tall_fences/oak/connection_north", "uvlock": true, "y": 90 }
+        },
+        {   "when" : { "south": "true"},
+            "apply" : { "model": "moblocks:block/tall_fences/oak/connection_north", "uvlock": true, "y": 180 }
+        },
+        {   "when" : { "west": "true" },
+            "apply" : { "model": "moblocks:block/tall_fences/oak/connection_north", "uvlock": true, "y": 270 }
+        }
+    ]
+}

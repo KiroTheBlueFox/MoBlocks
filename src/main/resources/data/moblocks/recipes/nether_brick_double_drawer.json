@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#D#"
+  ],
+  "key": {
+    "D": {
+      "item": "moblocks:nether_brick_simple_drawer"
+    },
+    "#": {
+      "item": "minecraft:red_nether_bricks"
+    }
+  },
+  "result": {
+    "item": "moblocks:nether_brick_double_drawer",
+    "count": 1
+  }
+}

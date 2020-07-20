@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#G#",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:purple_terracotta"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "moblocks:purple_terracotta_coffee_table",
+    "count": 2
+  }
+}

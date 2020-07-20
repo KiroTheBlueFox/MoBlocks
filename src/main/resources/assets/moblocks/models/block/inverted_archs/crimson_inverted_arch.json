@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/inverted_archs/inverted_arch",
+    "textures": {
+        "texture": "block/crimson_planks"
+    }
+}

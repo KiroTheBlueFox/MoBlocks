@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:cyan_wool"
+  },
+  "result": "moblocks:cyan_carpet",
+  "count": 16
+}

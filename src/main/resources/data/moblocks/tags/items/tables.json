@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:oak_table",
+    "moblocks:spruce_table",
+    "moblocks:birch_table",
+    "moblocks:jungle_table",
+    "moblocks:acacia_table",
+    "moblocks:dark_oak_table",
+    "moblocks:nether_brick_table",
+    "moblocks:crimson_table",
+    "moblocks:warped_table",
+    "moblocks:colorable_table"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/lamps/small/parents/lamp_off",
+	"textures": {
+		"base": "block/crimson_stem"
+	}
+}

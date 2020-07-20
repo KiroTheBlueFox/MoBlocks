@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "moblocks:colorable_planks"
+    }
+  },
+  "result": {
+    "item": "moblocks:colorable_plank_stairs",
+    "count": 4
+  }
+}

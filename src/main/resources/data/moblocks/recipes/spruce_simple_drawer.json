@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#L#",
+    "###",
+    "S S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "#": {
+      "item": "minecraft:spruce_planks"
+    },
+    "L": {
+      "item": "minecraft:spruce_log"
+    }
+  },
+  "result": {
+    "item": "moblocks:spruce_simple_drawer",
+    "count": 2
+  }
+}

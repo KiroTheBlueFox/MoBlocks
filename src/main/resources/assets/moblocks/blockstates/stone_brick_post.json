@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "moblocks:block/posts/stone_brick_post" }
+    }
+}

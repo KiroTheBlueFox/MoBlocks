@@ -1,0 +1,8 @@
+{
+    "parent": "moblocks:block/pillars/big_pillar_bottom_all_sides",
+    "textures": {
+        "bottom": "block/blackstone_top",
+		"top": "block/blackstone_top",
+        "texture": "block/blackstone"
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:pink_wool"
+  },
+  "result": "moblocks:pink_pyramid_shade",
+  "count": 4
+}

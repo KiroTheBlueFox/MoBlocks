@@ -1,0 +1,7 @@
+{
+	"parent": "moblocks:block/furnitures/drawers/double/parents/item",
+	"textures": {
+		"container": "block/spruce_planks",
+        "feet": "block/spruce_log"
+	}
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/triangle_ramps/long_end_triangle_ramp",
+    "textures": {
+        "texture": "block/prismarine"
+    }
+}

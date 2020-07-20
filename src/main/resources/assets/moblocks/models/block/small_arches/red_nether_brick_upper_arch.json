@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/small_arches/upper_arch",
+    "textures": {
+        "texture": "block/red_nether_bricks"
+    }
+}

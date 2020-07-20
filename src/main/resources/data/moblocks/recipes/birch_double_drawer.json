@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#D#"
+  ],
+  "key": {
+    "D": {
+      "item": "moblocks:birch_simple_drawer"
+    },
+    "#": {
+      "item": "minecraft:birch_planks"
+    }
+  },
+  "result": {
+    "item": "moblocks:birch_double_drawer",
+    "count": 1
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:cyan_wool"
+  },
+  "result": "moblocks:cyan_tube_cuboid_shade",
+  "count": 4
+}

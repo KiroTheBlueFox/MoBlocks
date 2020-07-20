@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:orange_wool"
+  },
+  "result": "moblocks:orange_pyramid_shade",
+  "count": 4
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/chairs/parents/chair67_5",
+	"textures": {
+		"texture": "minecraft:block/birch_planks"
+	}
+}

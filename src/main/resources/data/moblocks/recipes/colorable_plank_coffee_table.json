@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#G#",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "moblocks:colorable_planks"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "moblocks:colorable_plank_coffee_table",
+    "count": 2
+  }
+}

@@ -1,0 +1,7 @@
+{
+	"parent": "moblocks:block/furnitures/drawers/double/parents/container",
+	"textures": {
+		"container": "block/acacia_planks",
+        "feet": "block/acacia_log"
+	}
+}

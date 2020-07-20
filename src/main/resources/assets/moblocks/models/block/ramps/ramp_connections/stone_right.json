@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/ramps/ramp_connections/right",
+    "textures": {
+        "texture": "block/stone"
+    }
+}

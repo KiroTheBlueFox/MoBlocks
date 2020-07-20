@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/tall_fence_gates/parents/open_right",
+	"textures": {
+		"texture": "block/jungle_planks"
+	}
+}

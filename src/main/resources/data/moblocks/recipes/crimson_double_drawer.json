@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#D#"
+  ],
+  "key": {
+    "D": {
+      "item": "moblocks:crimson_simple_drawer"
+    },
+    "#": {
+      "item": "minecraft:crimson_planks"
+    }
+  },
+  "result": {
+    "item": "moblocks:crimson_double_drawer",
+    "count": 1
+  }
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/tall_fence_gates/parents/closed",
+	"textures": {
+		"texture": "block/acacia_planks"
+	}
+}

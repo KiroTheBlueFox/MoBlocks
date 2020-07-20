@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:dark_prismarine"
+  },
+  "result": "moblocks:dark_prismarine_lower_small_inverted_arch",
+  "count": 2
+}

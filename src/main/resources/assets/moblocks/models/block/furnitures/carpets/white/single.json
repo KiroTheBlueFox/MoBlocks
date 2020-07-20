@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/carpets/parents/single",
+	"textures": {
+		"texture": "block/white_wool"
+	}
+}

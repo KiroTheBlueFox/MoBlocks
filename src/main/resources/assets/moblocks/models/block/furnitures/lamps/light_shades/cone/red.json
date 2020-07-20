@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/lamps/light_shades/cone/shade",
+	"textures": {
+		"texture": "block/red_wool"
+	}
+}

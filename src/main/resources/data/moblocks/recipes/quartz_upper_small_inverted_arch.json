@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:quartz"
+  },
+  "result": "moblocks:quartz_upper_small_inverted_arch",
+  "count": 1
+}

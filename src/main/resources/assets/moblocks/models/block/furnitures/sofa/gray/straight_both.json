@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/sofa/parents/straight_both",
+	"textures": {
+		"texture": "block/gray_wool"
+	}
+}

@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:white_carpet",
+    "moblocks:orange_carpet",
+    "moblocks:magenta_carpet",
+    "moblocks:light_blue_carpet",
+    "moblocks:yellow_carpet",
+    "moblocks:lime_carpet",
+    "moblocks:pink_carpet",
+    "moblocks:gray_carpet",
+    "moblocks:light_gray_carpet",
+    "moblocks:cyan_carpet",
+    "moblocks:purple_carpet",
+    "moblocks:blue_carpet",
+    "moblocks:brown_carpet",
+    "moblocks:green_carpet",
+    "moblocks:red_carpet",
+    "moblocks:black_carpet",
+    "moblocks:colorable_round_carpet"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:gray_wool"
+  },
+  "result": "moblocks:gray_cylinder_shade",
+  "count": 4
+}

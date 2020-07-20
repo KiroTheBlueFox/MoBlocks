@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/sofa/parents/straight_right_armrest",
+	"textures": {
+		"texture": "block/pink_wool"
+	}
+}

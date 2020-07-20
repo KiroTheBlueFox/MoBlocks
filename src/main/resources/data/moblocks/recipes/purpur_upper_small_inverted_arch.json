@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:purpur_block"
+  },
+  "result": "moblocks:purpur_upper_small_inverted_arch",
+  "count": 1
+}

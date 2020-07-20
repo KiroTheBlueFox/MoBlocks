@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:polished_diorite"
+  },
+  "result": "moblocks:polished_diorite_upper_small_inverted_arch",
+  "count": 1
+}

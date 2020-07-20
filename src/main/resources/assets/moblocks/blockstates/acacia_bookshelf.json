@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=east":  { "model": "moblocks:block/furnitures/bookshelves/acacia", "y": 270, "uvlock": true },
+        "facing=west":  { "model": "moblocks:block/furnitures/bookshelves/acacia", "y": 90, "uvlock": true },
+        "facing=south": { "model": "moblocks:block/furnitures/bookshelves/acacia", "uvlock": true },
+        "facing=north": { "model": "moblocks:block/furnitures/bookshelves/acacia", "y": 180, "uvlock": true }
+    }
+}

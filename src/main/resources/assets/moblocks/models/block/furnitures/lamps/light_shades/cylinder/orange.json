@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/lamps/light_shades/cylinder/shade",
+	"textures": {
+		"texture": "block/orange_wool"
+	}
+}

@@ -1,0 +1,6 @@
+{   
+    "parent": "moblocks:block/decoration/colorable_vertical_slab/vertical_slab",
+    "textures": {
+        "texture": "moblocks:block/colorable_stone_bricks"
+    }
+}

@@ -1,0 +1,7 @@
+{
+	"parent": "moblocks:block/furnitures/drawers/double/parents/item",
+	"textures": {
+		"container": "block/warped_planks",
+        "feet": "block/warped_stem"
+	}
+}

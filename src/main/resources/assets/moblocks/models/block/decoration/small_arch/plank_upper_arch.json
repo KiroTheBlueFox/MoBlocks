@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/decoration/small_arch/upper_arch",
+	"textures": {
+		"texture": "moblocks:block/colorable_planks"
+	}
+}

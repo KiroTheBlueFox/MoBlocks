@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:polished_blackstone_bricks"
+  },
+  "result": "moblocks:polished_blackstone_brick_upper_small_arch",
+  "count": 2
+}

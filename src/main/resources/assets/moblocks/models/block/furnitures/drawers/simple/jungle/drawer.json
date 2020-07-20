@@ -1,0 +1,7 @@
+{
+	"parent": "moblocks:block/furnitures/drawers/simple/parents/drawer",
+	"textures": {
+		"container": "block/jungle_planks",
+        "feet": "block/jungle_log"
+	}
+}

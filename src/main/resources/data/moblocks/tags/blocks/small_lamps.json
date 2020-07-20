@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:oak_small_lamp",
+    "moblocks:spruce_small_lamp",
+    "moblocks:acacia_small_lamp",
+    "moblocks:jungle_small_lamp",
+    "moblocks:dark_oak_small_lamp",
+    "moblocks:birch_small_lamp",
+    "moblocks:nether_brick_small_lamp",
+    "moblocks:crimson_small_lamp",
+    "moblocks:warped_small_lamp"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:oak_tall_fence",
+    "moblocks:spruce_tall_fence",
+    "moblocks:birch_tall_fence",
+    "moblocks:jungle_tall_fence",
+    "moblocks:acacia_tall_fence",
+    "moblocks:dark_oak_tall_fence",
+    "moblocks:nether_brick_tall_fence",
+    "moblocks:crimson_tall_fence",
+    "moblocks:warped_tall_fence"
+  ]
+}

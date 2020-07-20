@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/inverted_archs/inverted_arch",
+    "textures": {
+        "texture": "block/quartz_block_bottom"
+    }
+}

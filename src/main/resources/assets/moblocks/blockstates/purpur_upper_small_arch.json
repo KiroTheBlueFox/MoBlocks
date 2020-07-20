@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "moblocks:block/small_arches/purpur_upper_arch"},
+        "facing=south": { "model": "moblocks:block/small_arches/purpur_upper_arch"},
+        "facing=west":  { "model": "moblocks:block/small_arches/purpur_upper_arch", "y": 90, "uvlock": true},
+        "facing=east":  { "model": "moblocks:block/small_arches/purpur_upper_arch", "y": 90, "uvlock": true}
+    }
+}

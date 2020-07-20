@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LPL",
+    "C C",
+    "LPL"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:red_nether_bricks"
+    },
+    "P": {
+      "item": "minecraft:nether_bricks"
+    },
+    "C": {
+      "item": "minecraft:chest"
+    }
+  },
+  "result": {
+    "item": "moblocks:nether_brick_crate",
+    "count": 1
+  }
+}

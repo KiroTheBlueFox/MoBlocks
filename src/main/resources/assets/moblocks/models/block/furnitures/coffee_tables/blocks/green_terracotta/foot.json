@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/coffee_tables/parents/foot",
+	"textures": {
+		"texture": "block/green_terracotta"
+	}
+}

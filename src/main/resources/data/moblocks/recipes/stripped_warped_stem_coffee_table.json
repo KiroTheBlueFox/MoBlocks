@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#G#",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stripped_warped_stem"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "moblocks:stripped_warped_stem_coffee_table",
+    "count": 2
+  }
+}

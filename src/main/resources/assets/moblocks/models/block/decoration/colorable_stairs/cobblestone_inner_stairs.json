@@ -1,0 +1,6 @@
+{   
+    "parent": "moblocks:block/decoration/colorable_stairs/inner_stairs",
+    "textures": {
+        "texture": "moblocks:block/colorable_cobblestone"
+    }
+}

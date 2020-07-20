@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:prismarine"
+  },
+  "result": "moblocks:prismarine_lower_small_arch",
+  "count": 1
+}

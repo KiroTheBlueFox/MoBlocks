@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:sandstone"
+  },
+  "result": "moblocks:sandstone_vertical_stairs",
+  "count": 1
+}

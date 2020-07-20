@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:colorable_stone_stairs",
+    "moblocks:colorable_stone_brick_stairs",
+    "moblocks:colorable_cobblestone_stairs",
+    "moblocks:colorable_plank_stairs",
+    "moblocks:colorable_brick_stairs"
+  ]
+}

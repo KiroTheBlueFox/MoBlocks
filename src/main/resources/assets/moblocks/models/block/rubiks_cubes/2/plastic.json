@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "moblocks:block/rubiks_cube_2_plastic",
+		"1": "moblocks:block/rubiks_cube_2_plastic_inner",
+		"particle": "moblocks:block/rubiks_cube_2_plastic"
+	},
+	"elements": [
+		{
+			"from": [4.5, 8, 4.5],
+			"to": [8, 11.5, 8],
+			"faces": {
+				"north": {"uv": [3.5, 0, 0, 3.5], "texture": "#0"},
+				"east": {"uv": [0, 0, 3.5, 3.5], "texture": "#1"},
+				"south": {"uv": [0, 0, 3.5, 3.5], "texture": "#1"},
+				"west": {"uv": [0, 0, 3.5, 3.5], "texture": "#0"},
+				"up": {"uv": [0, 0, 3.5, 3.5], "texture": "#0"},
+				"down": {"uv": [0, 0, 3.5, 3.5], "texture": "#1"}
+			}
+		}
+	]
+}

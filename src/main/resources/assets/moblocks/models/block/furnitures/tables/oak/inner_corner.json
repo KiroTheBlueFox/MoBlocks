@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/tables/parents/inner_corner",
+	"textures": {
+		"texture": "minecraft:block/oak_planks"
+	}
+}

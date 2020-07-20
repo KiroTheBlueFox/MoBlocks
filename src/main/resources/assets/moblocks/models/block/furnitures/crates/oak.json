@@ -1,0 +1,7 @@
+{
+	"parent": "moblocks:block/furnitures/crates/crate",
+	"textures": {
+		"planks": "block/oak_planks",
+		"log": "block/oak_log"
+	}
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/triangle_ramps/end_triangle_ramp",
+    "textures": {
+        "texture": "block/mossy_cobblestone"
+    }
+}

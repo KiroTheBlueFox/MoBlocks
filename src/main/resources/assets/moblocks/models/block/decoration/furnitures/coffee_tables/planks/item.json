@@ -1,0 +1,7 @@
+{
+    "parent": "moblocks:block/decoration/furnitures/coffee_tables/parents/item",
+    "textures": {
+        "texture": "moblocks:block/colorable_planks",
+        "glass": "moblocks:block/glass"
+    }
+}

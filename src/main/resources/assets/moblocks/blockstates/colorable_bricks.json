@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "moblocks:block/decoration/colorable_bricks" }
+    }
+}

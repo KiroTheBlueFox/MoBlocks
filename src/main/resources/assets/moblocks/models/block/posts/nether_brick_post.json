@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/posts/post",
+    "textures": {
+        "texture": "block/nether_bricks"
+    }
+}

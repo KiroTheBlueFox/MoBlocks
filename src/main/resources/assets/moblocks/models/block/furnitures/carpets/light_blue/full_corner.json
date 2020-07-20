@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/carpets/parents/full_corner",
+	"textures": {
+		"texture": "block/light_blue_wool"
+	}
+}

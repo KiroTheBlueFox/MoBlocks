@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=north,open=false":  { "model": "moblocks:block/tall_fence_gates/acacia/closed", "uvlock": true },
+        "facing=north,hinge=left,open=true":  { "model": "moblocks:block/tall_fence_gates/acacia/open_left", "uvlock": true },
+        "facing=north,hinge=right,open=true":  { "model": "moblocks:block/tall_fence_gates/acacia/open_right", "uvlock": true },
+        "facing=south,open=false":  { "model": "moblocks:block/tall_fence_gates/acacia/closed", "y": 180, "uvlock": true },
+        "facing=south,hinge=left,open=true":  { "model": "moblocks:block/tall_fence_gates/acacia/open_left", "y": 180, "uvlock": true },
+        "facing=south,hinge=right,open=true":  { "model": "moblocks:block/tall_fence_gates/acacia/open_right", "y": 180, "uvlock": true },
+        "facing=east,open=false":  { "model": "moblocks:block/tall_fence_gates/acacia/closed", "y": 90, "uvlock": true },
+        "facing=east,hinge=left,open=true":  { "model": "moblocks:block/tall_fence_gates/acacia/open_left", "y": 90, "uvlock": true },
+        "facing=east,hinge=right,open=true":  { "model": "moblocks:block/tall_fence_gates/acacia/open_right", "y": 90, "uvlock": true },
+        "facing=west,open=false":  { "model": "moblocks:block/tall_fence_gates/acacia/closed", "y": 270, "uvlock": true },
+        "facing=west,hinge=left,open=true":  { "model": "moblocks:block/tall_fence_gates/acacia/open_left", "y": 270, "uvlock": true },
+        "facing=west,hinge=right,open=true":  { "model": "moblocks:block/tall_fence_gates/acacia/open_right", "y": 270, "uvlock": true }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "moblocks:block/vertical_slabs/vertical_slab_all_sides_rotated",
+    "textures": {
+        "texture": "block/smooth_stone_slab_side",
+        "top": "block/smooth_stone",
+        "bottom": "block/smooth_stone"
+    }
+}

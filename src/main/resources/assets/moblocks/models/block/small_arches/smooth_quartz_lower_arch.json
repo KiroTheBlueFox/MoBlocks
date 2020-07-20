@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/small_arches/lower_arch",
+    "textures": {
+        "texture": "block/quartz_block_bottom"
+    }
+}

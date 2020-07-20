@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:mossy_stone_bricks"
+  },
+  "result": "moblocks:mossy_stone_brick_lower_small_arch",
+  "count": 1
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LPL",
+    "P P",
+    "LPL"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:crimson_stem"
+    },
+    "P": {
+      "item": "minecraft:crimson_planks"
+    }
+  },
+  "result": {
+    "item": "moblocks:crimson_crate",
+    "count": 1
+  }
+}

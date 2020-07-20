@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:magenta_wool"
+  },
+  "result": "moblocks:magenta_tube_cuboid_shade",
+  "count": 4
+}

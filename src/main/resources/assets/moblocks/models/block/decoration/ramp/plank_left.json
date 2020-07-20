@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/decoration/ramp/left",
+	"textures": {
+		"texture": "moblocks:block/colorable_planks"
+	}
+}

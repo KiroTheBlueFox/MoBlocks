@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:spruce_planks"
+  },
+  "result": "moblocks:spruce_lower_small_arch",
+  "count": 1
+}

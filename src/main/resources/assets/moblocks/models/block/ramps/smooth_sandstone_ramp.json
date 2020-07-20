@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/ramps/ramp",
+    "textures": {
+        "texture": "block/sandstone_top"
+    }
+}

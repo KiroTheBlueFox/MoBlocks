@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/lamps/light_shades/square_cone/shade",
+	"textures": {
+		"texture": "block/gray_wool"
+	}
+}

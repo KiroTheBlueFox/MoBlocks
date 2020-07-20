@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:green_wool"
+  },
+  "result": "moblocks:green_carpet",
+  "count": 16
+}

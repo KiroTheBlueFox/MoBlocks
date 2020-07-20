@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/carpets/parents/inner_corner",
+	"textures": {
+		"texture": "block/orange_wool"
+	}
+}

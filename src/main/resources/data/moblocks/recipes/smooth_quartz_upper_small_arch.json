@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:smooth_quartz"
+  },
+  "result": "moblocks:smooth_quartz_upper_small_arch",
+  "count": 2
+}

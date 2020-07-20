@@ -1,0 +1,58 @@
+{
+    "multipart": [
+        { "when": { "half" : "bottom" },
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_dot_triangle_ramp", "uvlock": true }
+        },
+        { "when": { "half" : "top" },
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_dot_triangle_ramp", "x": 180, "uvlock": true }
+        },
+        { "when": { "OR": [{ "north": "true", "half" : "bottom" },{ "north": "long", "half" : "bottom" }]},
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_end_triangle_ramp", "uvlock": true }
+        },
+        { "when": { "OR": [{ "east": "true", "half" : "bottom" },{ "east": "long", "half" : "bottom" }]},
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_end_triangle_ramp", "y": 90, "uvlock": true }
+        },
+        { "when": { "OR": [{ "south": "true", "half" : "bottom" },{ "south": "long", "half" : "bottom" }]},
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_end_triangle_ramp", "y": 180, "uvlock": true }
+        },
+        { "when": { "OR": [{ "west": "true", "half" : "bottom" },{ "west": "long", "half" : "bottom" }]},
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_end_triangle_ramp", "y": 270, "uvlock": true }
+        },
+        { "when": { "OR": [{ "north": "true", "half" : "top" },{ "north": "long", "half" : "top" }]},
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_end_triangle_ramp", "x": 180, "y": 180, "uvlock": true }
+        },
+        { "when": { "OR": [{ "east": "true", "half" : "top" },{ "east": "long", "half" : "top" }]},
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_end_triangle_ramp", "x": 180, "y": 270, "uvlock": true }
+        },
+        { "when": { "OR": [{ "south": "true", "half" : "top" },{ "south": "long", "half" : "top" }]},
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_end_triangle_ramp", "x": 180, "uvlock": true }
+        },
+        { "when": { "OR": [{ "west": "true", "half" : "top" },{ "west": "long", "half" : "top" }]},
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_end_triangle_ramp", "x": 180, "y": 90, "uvlock": true }
+        },
+        { "when": { "north": "long", "half" : "bottom" },
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_long_end_triangle_ramp", "uvlock": true }
+        },
+        { "when": { "east": "long", "half" : "bottom" },
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_long_end_triangle_ramp", "y": 90, "uvlock": true }
+        },
+        { "when": { "south": "long", "half" : "bottom" },
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_long_end_triangle_ramp", "y": 180, "uvlock": true }
+        },
+        { "when": { "west": "long", "half" : "bottom" },
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_long_end_triangle_ramp", "y": 270, "uvlock": true }
+        },
+        { "when": { "north": "long", "half" : "top" },
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_long_end_triangle_ramp", "x": 180, "y": 180, "uvlock": true }
+        },
+        { "when": { "east": "long", "half" : "top" },
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_long_end_triangle_ramp", "x": 180, "y": 270, "uvlock": true }
+        },
+        { "when": { "south": "long", "half" : "top" },
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_long_end_triangle_ramp", "x": 180, "uvlock": true }
+        },
+        { "when": { "west": "long", "half" : "top" },
+            "apply": { "model": "moblocks:block/triangle_ramps/dark_oak_long_end_triangle_ramp", "x": 180, "y": 90, "uvlock": true }
+        }
+    ]
+}

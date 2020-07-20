@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/tables/parents/item",
+	"textures": {
+		"texture": "minecraft:block/jungle_planks"
+	}
+}

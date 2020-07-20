@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/decoration/inverted_arch/inverted_arch_inner_corner",
+	"textures": {
+		"texture": "moblocks:block/colorable_bricks"
+	}
+}

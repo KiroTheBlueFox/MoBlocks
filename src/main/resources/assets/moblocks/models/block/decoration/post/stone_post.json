@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/decoration/post/post",
+	"textures": {
+		"texture": "moblocks:block/colorable_stone"
+	}
+}

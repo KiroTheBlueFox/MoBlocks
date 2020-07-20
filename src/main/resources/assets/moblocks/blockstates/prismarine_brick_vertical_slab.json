@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "type=single,facing=north": { "model": "moblocks:block/vertical_slabs/prismarine_brick_vertical_slab"},
+        "type=single,facing=south": { "model": "moblocks:block/vertical_slabs/prismarine_brick_vertical_slab", "y": 180, "uvlock": true},
+        "type=single,facing=west":  { "model": "moblocks:block/vertical_slabs/prismarine_brick_vertical_slab", "y": 270, "uvlock": true},
+        "type=single,facing=east":  { "model": "moblocks:block/vertical_slabs/prismarine_brick_vertical_slab", "y": 90, "uvlock": true},
+        "type=double":  { "model": "block/prismarine_bricks"}
+    }
+}

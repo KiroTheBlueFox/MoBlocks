@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/ramps/ramp_inner_corner",
+    "textures": {
+        "texture": "block/granite"
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "multipart": [
+        { "when": { "OR": [{ "south": "true" },{ "east": "true" }]},
+            "apply": { "model": "moblocks:block/furnitures/tables/birch/full_corner", "uvlock": true }
+        },
+        { "when": { "south": "false", "east": "false" },
+            "apply": { "model": "moblocks:block/furnitures/tables/birch/outer_corner", "uvlock": true }
+        },
+		
+        { "when": { "OR": [{ "north": "true" },{ "east": "true" }]},
+            "apply": { "model": "moblocks:block/furnitures/tables/birch/full_corner", "y": 270, "uvlock": true }
+        },
+        { "when": { "north": "false", "east": "false" },
+            "apply": { "model": "moblocks:block/furnitures/tables/birch/outer_corner", "y": 270, "uvlock": true }
+        },
+		
+        { "when": { "OR": [{ "south": "true" },{ "west": "true" }]},
+            "apply": { "model": "moblocks:block/furnitures/tables/birch/full_corner", "y": 90, "uvlock": true }
+        },
+        { "when": { "south": "false", "west": "false" },
+            "apply": { "model": "moblocks:block/furnitures/tables/birch/outer_corner", "y": 90, "uvlock": true }
+        },
+		
+        { "when": { "OR": [{ "north": "true" },{ "west": "true" }]},
+            "apply": { "model": "moblocks:block/furnitures/tables/birch/full_corner", "y": 180, "uvlock": true }
+        },
+        { "when": { "north": "false", "west": "false" },
+            "apply": { "model": "moblocks:block/furnitures/tables/birch/outer_corner", "y": 180, "uvlock": true }
+        },
+		
+        { "when": { "south_east": "false", "south": "true", "east": "true" },
+            "apply": { "model": "moblocks:block/furnitures/tables/birch/inner_corner", "uvlock": true }
+        },
+        { "when": { "north_east": "false", "north": "true", "east": "true" },
+            "apply": { "model": "moblocks:block/furnitures/tables/birch/inner_corner", "y": 270, "uvlock": true }
+        },
+        { "when": { "south_west": "false", "south": "true", "west": "true" },
+            "apply": { "model": "moblocks:block/furnitures/tables/birch/inner_corner", "y": 90, "uvlock": true }
+        },
+        { "when": { "north_west": "false", "north": "true", "west": "true" },
+            "apply": { "model": "moblocks:block/furnitures/tables/birch/inner_corner", "y": 180, "uvlock": true }
+        }
+    ]
+}

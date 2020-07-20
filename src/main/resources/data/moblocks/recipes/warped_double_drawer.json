@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#D#"
+  ],
+  "key": {
+    "D": {
+      "item": "moblocks:warped_simple_drawer"
+    },
+    "#": {
+      "item": "minecraft:warped_planks"
+    }
+  },
+  "result": {
+    "item": "moblocks:warped_double_drawer",
+    "count": 1
+  }
+}

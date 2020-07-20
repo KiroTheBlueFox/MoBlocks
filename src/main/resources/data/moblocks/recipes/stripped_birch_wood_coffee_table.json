@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#G#",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stripped_birch_wood"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "moblocks:stripped_birch_wood_coffee_table",
+    "count": 2
+  }
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/decoration/arch/arch_inner_corner",
+	"textures": {
+		"texture": "moblocks:block/colorable_stone"
+	}
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/ramps/ramp_outer_corner",
+    "textures": {
+        "texture": "block/mossy_cobblestone"
+    }
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/tall_fence_gates/parents/open_left",
+	"textures": {
+		"texture": "block/nether_bricks"
+	}
+}

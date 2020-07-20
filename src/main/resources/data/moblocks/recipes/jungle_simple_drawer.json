@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#L#",
+    "###",
+    "S S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "#": {
+      "item": "minecraft:jungle_planks"
+    },
+    "L": {
+      "item": "minecraft:jungle_log"
+    }
+  },
+  "result": {
+    "item": "moblocks:jungle_simple_drawer",
+    "count": 2
+  }
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/lamps/light_shades/cube/shade",
+	"textures": {
+		"texture": "block/purple_wool"
+	}
+}

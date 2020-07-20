@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:oak_chair",
+    "moblocks:spruce_chair",
+    "moblocks:birch_chair",
+    "moblocks:jungle_chair",
+    "moblocks:acacia_chair",
+    "moblocks:dark_oak_chair",
+    "moblocks:nether_brick_chair",
+    "moblocks:crimson_chair",
+    "moblocks:warped_chair",
+    "moblocks:colorable_chair"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_name",
+              "source": "block_entity"
+            },
+            {
+              "function": "minecraft:copy_nbt",
+              "source": "block_entity",
+              "ops": [
+                {
+                  "source": "color",
+                  "target": "BlockEntityTag.color",
+                  "op": "replace"
+                }
+              ]
+            },
+            {
+              "function": "minecraft:set_contents",
+              "entries": [
+                {
+                  "type": "minecraft:dynamic",
+                  "name": "minecraft:contents"
+                }
+              ]
+            },
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "moblocks:colorable_stone_slab",
+                  "properties": {
+                    "type": "double"
+                  }
+                }
+              ],
+              "count": 2
+            },
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "moblocks:colorable_stone_slab"
+        }
+      ]
+    }
+  ]
+}

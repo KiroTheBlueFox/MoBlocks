@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:oak_crate",
+    "moblocks:spruce_crate",
+    "moblocks:birch_crate",
+    "moblocks:jungle_crate",
+    "moblocks:acacia_crate",
+    "moblocks:dark_oak_crate",
+    "moblocks:nether_brick_crate",
+    "moblocks:crimson_crate",
+    "moblocks:warped_crate"
+  ]
+}

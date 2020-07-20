@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/inverted_archs/inverted_arch_outer_corner",
+    "textures": {
+        "texture": "block/polished_diorite"
+    }
+}

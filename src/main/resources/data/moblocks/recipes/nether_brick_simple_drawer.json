@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#B#",
+    "###",
+    "S S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "#": {
+      "item": "minecraft:red_nether_bricks"
+    },
+    "B": {
+      "item": "minecraft:nether_bricks"
+    }
+  },
+  "result": {
+    "item": "moblocks:nether_brick_simple_drawer",
+    "count": 2
+  }
+}

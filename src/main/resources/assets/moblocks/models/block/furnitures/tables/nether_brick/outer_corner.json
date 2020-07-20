@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/tables/parents/outer_corner",
+	"textures": {
+		"texture": "minecraft:block/nether_bricks"
+	}
+}

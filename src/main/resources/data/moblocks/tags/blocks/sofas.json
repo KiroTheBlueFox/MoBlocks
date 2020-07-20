@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:white_sofa",
+    "moblocks:orange_sofa",
+    "moblocks:magenta_sofa",
+    "moblocks:light_blue_sofa",
+    "moblocks:yellow_sofa",
+    "moblocks:lime_sofa",
+    "moblocks:pink_sofa",
+    "moblocks:gray_sofa",
+    "moblocks:light_gray_sofa",
+    "moblocks:cyan_sofa",
+    "moblocks:purple_sofa",
+    "moblocks:blue_sofa",
+    "moblocks:brown_sofa",
+    "moblocks:green_sofa",
+    "moblocks:red_sofa",
+    "moblocks:black_sofa",
+    "moblocks:colorable_sofa"
+  ]
+}

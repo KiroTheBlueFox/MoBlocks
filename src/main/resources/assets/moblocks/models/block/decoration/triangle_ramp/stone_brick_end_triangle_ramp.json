@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/decoration/triangle_ramp/end_triangle_ramp",
+	"textures": {
+		"texture": "moblocks:block/colorable_stone_bricks"
+	}
+}

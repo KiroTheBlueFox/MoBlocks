@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/pillars/small_pillar_bottom",
+    "textures": {
+        "texture": "block/granite"
+    }
+}

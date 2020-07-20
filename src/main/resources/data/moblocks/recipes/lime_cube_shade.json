@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:lime_wool"
+  },
+  "result": "moblocks:lime_cube_shade",
+  "count": 4
+}

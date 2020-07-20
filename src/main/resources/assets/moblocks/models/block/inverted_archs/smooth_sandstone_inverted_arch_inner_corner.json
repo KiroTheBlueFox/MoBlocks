@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/inverted_archs/inverted_arch_inner_corner",
+    "textures": {
+        "texture": "block/sandstone_top"
+    }
+}

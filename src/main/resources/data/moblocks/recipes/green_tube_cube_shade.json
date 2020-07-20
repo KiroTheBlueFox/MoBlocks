@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:green_wool"
+  },
+  "result": "moblocks:green_tube_cube_shade",
+  "count": 4
+}

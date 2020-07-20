@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/archs/arch_outer_corner",
+    "textures": {
+        "texture": "block/nether_bricks"
+    }
+}

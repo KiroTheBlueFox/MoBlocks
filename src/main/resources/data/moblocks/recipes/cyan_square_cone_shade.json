@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:cyan_wool"
+  },
+  "result": "moblocks:cyan_square_cone_shade",
+  "count": 4
+}

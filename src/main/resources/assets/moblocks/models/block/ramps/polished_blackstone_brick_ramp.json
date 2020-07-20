@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/ramps/ramp",
+    "textures": {
+        "texture": "block/polished_blackstone_bricks"
+    }
+}

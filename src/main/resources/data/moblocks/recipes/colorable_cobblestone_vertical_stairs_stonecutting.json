@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "moblocks:colorable_cobblestone"
+  },
+  "result": "moblocks:colorable_cobblestone_vertical_stairs",
+  "count": 1
+}

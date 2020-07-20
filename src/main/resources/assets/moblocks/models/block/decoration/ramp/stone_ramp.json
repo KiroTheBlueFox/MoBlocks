@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/decoration/ramp/ramp",
+	"textures": {
+		"texture": "moblocks:block/colorable_stone"
+	}
+}

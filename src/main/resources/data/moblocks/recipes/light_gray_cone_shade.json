@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:light_gray_wool"
+  },
+  "result": "moblocks:light_gray_cone_shade",
+  "count": 4
+}

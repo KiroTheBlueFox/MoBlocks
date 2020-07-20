@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:prismarine_bricks"
+  },
+  "result": "moblocks:prismarine_brick_upper_small_arch",
+  "count": 2
+}

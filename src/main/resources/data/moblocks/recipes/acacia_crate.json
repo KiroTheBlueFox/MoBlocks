@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LPL",
+    "P P",
+    "LPL"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:acacia_log"
+    },
+    "P": {
+      "item": "minecraft:acacia_planks"
+    }
+  },
+  "result": {
+    "item": "moblocks:acacia_crate",
+    "count": 1
+  }
+}

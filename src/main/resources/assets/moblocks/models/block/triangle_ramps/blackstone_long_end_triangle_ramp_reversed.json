@@ -1,0 +1,8 @@
+{
+    "parent": "moblocks:block/triangle_ramps/long_end_triangle_ramp_all_sides",
+    "textures": {
+        "top": "block/blackstone_top",
+		"bottom": "block/blackstone_top",
+        "texture": "block/blackstone"
+    }
+}

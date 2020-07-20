@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/coffee_tables/parents/corner_left",
+	"textures": {
+		"texture": "block/jungle_planks"
+	}
+}

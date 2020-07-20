@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/pillars/big_pillar_middle",
+    "textures": {
+        "texture": "block/polished_blackstone"
+    }
+}

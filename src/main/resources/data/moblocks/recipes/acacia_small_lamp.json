@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P",
+    "R",
+    "S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:acacia_log"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "P": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "result": {
+    "item": "moblocks:acacia_small_lamp",
+    "count": 4
+  }
+}

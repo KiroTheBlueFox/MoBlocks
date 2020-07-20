@@ -1,0 +1,92 @@
+{
+    "multipart": [
+		{   "apply": { "model": "moblocks:block/furnitures/coffee_tables/parents/glass_center" }},
+        {   "when": { "north": "true" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/parents/glass_side", "uvlock": true }
+        },
+        {   "when": { "east": "true" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/parents/glass_side", "y": 90, "uvlock": true }
+        },
+        {   "when": { "south": "true" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/parents/glass_side", "y": 180, "uvlock": true }
+        },
+        {   "when": { "west": "true" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/parents/glass_side", "y": 270, "uvlock": true }
+        },
+        {   "when": { "north": "false" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/side", "uvlock": true }
+        },
+        {   "when": { "east": "false" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/side", "y": 90, "uvlock": true }
+        },
+        {   "when": { "south": "false" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/side", "y": 180, "uvlock": true }
+        },
+        {   "when": { "west": "false" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/side", "y": 270, "uvlock": true }
+        },
+        {   "when": { "west": "false" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/side", "y": 270, "uvlock": true }
+        },
+        { "when": { "OR": [{"south_east": "false", "south": "true", "east": "true" }, {"south": "false", "east": "false"}]},
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/foot", "y": 180, "uvlock": true }
+        },
+        { "when": { "OR": [{"north_east": "false", "north": "true", "east": "true" }, {"north": "false", "east": "false"}]},
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/foot", "y": 90, "uvlock": true }
+        },
+        { "when": { "OR": [{"south_west": "false", "south": "true", "west": "true" }, {"south": "false", "west": "false"}]},
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/foot", "y": 270, "uvlock": true }
+        },
+        { "when": { "OR": [{"north_west": "false", "north": "true", "west": "true" }, {"north": "false", "west": "false"}]},
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/foot", "uvlock": true }
+        },
+		{ "when": { "south_east": "true", "south": "true", "east": "true" },
+			"apply": { "model": "moblocks:block/furnitures/coffee_tables/parents/glass_corner", "y": 180, "uvlock": true }
+		},
+		{ "when": { "north_east": "true", "north": "true", "east": "true" },
+			"apply": { "model": "moblocks:block/furnitures/coffee_tables/parents/glass_corner", "y": 90, "uvlock": true }
+		},
+		{ "when": { "south_west": "true", "south": "true", "west": "true" },
+			"apply": { "model": "moblocks:block/furnitures/coffee_tables/parents/glass_corner", "y": 270, "uvlock": true }
+		},
+		{ "when": { "north_west": "true", "north": "true", "west": "true" },
+			"apply": { "model": "moblocks:block/furnitures/coffee_tables/parents/glass_corner", "uvlock": true }
+		},
+        { "when": { "south": "true", "east": "false" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/corner_left", "y": 180, "uvlock": true }
+        },
+        { "when": { "north": "true", "east": "false" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/corner_right", "y": 90, "uvlock": true }
+        },
+        { "when": { "south": "true", "west": "false" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/corner_right", "y": 270, "uvlock": true }
+        },
+        { "when": { "north": "true", "west": "false" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/corner_left", "uvlock": true }
+        },
+        { "when": { "east": "true", "south": "false" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/corner_right", "y": 180, "uvlock": true }
+        },
+        { "when": { "east": "true", "north": "false" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/corner_left", "y": 90, "uvlock": true }
+        },
+        { "when": { "west": "true", "south": "false" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/corner_left", "y": 270, "uvlock": true }
+        },
+        { "when": { "west": "true", "north": "false" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/corner_right", "uvlock": true }
+        },
+        { "when": { "south_east": "false", "south": "true", "east": "true" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/corner", "y": 180, "uvlock": true }
+        },
+        { "when": { "north_east": "false", "north": "true", "east": "true" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/corner", "y": 90, "uvlock": true }
+        },
+        { "when": { "south_west": "false", "south": "true", "west": "true" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/corner", "y": 270, "uvlock": true }
+        },
+        { "when": { "north_west": "false", "north": "true", "west": "true" },
+            "apply": { "model": "moblocks:block/furnitures/coffee_tables/blocks/dark_oak/corner", "uvlock": true }
+        }
+    ]
+}

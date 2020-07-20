@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/bookshelves/bookshelf",
+	"textures": {
+		"texture": "block/crimson_planks"
+	}
+}

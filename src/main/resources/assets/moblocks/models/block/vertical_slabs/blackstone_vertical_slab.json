@@ -1,0 +1,8 @@
+{
+    "parent": "moblocks:block/vertical_slabs/vertical_slab_all_sides",
+    "textures": {
+        "texture": "block/blackstone",
+        "top": "block/blackstone_top",
+        "bottom": "block/blackstone_top"
+    }
+}

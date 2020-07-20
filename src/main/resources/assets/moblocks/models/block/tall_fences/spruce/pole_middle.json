@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/tall_fences/parent/pole_middle",
+	"textures": {
+		"texture": "block/spruce_planks"
+	}
+}

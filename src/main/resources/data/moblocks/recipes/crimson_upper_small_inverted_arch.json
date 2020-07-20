@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:crimson_planks"
+  },
+  "result": "moblocks:crimson_upper_small_inverted_arch",
+  "count": 1
+}

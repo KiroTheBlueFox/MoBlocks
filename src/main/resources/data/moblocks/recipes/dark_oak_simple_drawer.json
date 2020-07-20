@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#L#",
+    "###",
+    "S S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "#": {
+      "item": "minecraft:dark_oak_planks"
+    },
+    "L": {
+      "item": "minecraft:dark_oak_log"
+    }
+  },
+  "result": {
+    "item": "moblocks:dark_oak_simple_drawer",
+    "count": 2
+  }
+}

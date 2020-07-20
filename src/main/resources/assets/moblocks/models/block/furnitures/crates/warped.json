@@ -1,0 +1,7 @@
+{
+	"parent": "moblocks:block/furnitures/crates/crate",
+	"textures": {
+		"planks": "block/warped_planks",
+		"log": "block/warped_stem"
+	}
+}

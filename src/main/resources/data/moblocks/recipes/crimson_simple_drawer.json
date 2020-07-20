@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#L#",
+    "###",
+    "S S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "#": {
+      "item": "minecraft:crimson_planks"
+    },
+    "L": {
+      "item": "minecraft:crimson_stem"
+    }
+  },
+  "result": {
+    "item": "moblocks:crimson_simple_drawer",
+    "count": 2
+  }
+}

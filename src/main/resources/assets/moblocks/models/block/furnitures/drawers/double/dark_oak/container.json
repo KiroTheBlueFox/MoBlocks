@@ -1,0 +1,7 @@
+{
+	"parent": "moblocks:block/furnitures/drawers/double/parents/container",
+	"textures": {
+		"container": "block/dark_oak_planks",
+        "feet": "block/dark_oak_log"
+	}
+}

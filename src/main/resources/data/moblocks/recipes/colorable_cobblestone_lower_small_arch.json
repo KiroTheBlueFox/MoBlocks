@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "moblocks:colorable_planks"
+  },
+  "result": "moblocks:colorable_cobblestone_lower_small_arch",
+  "count": 1
+}

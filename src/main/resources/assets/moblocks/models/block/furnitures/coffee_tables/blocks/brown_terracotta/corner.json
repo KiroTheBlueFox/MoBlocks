@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/coffee_tables/parents/corner",
+	"textures": {
+		"texture": "block/brown_terracotta"
+	}
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:pink_wool"
+  },
+  "result": "moblocks:pink_tube_losange_shade",
+  "count": 4
+}

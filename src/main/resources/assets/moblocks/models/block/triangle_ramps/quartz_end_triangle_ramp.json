@@ -1,0 +1,8 @@
+{
+    "parent": "moblocks:block/triangle_ramps/end_triangle_ramp_all_sides",
+    "textures": {
+        "bottom": "block/quartz_block_top",
+		"top": "block/quartz_block_top",
+        "texture": "block/quartz_block_side"
+    }
+}

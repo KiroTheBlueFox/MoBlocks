@@ -1,0 +1,24 @@
+{
+    "variants": {
+        "connected_up=true,connected_down=false,size=small": { "model": "moblocks:block/pillars/red_sandstone_small_pillar_bottom"},
+        "connected_up=true,connected_down=true,size=small": { "model": "moblocks:block/pillars/red_sandstone_small_pillar_middle"},
+        "connected_up=false,connected_down=true,size=small": { "model": "moblocks:block/pillars/red_sandstone_small_pillar_top"},
+        "connected_up=true,connected_down=false,facing=north,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_bottom", "y": 180, "uvlock": true },
+        "connected_up=true,connected_down=false,facing=east,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_bottom", "y": 270, "uvlock": true },
+        "connected_up=true,connected_down=false,facing=west,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_bottom", "y": 90, "uvlock": true },
+        "connected_up=true,connected_down=false,facing=south,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_bottom"},
+        "connected_up=true,connected_down=true,facing=north,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_middle", "y": 180, "uvlock": true },
+        "connected_up=true,connected_down=true,facing=east,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_middle", "y": 270, "uvlock": true },
+        "connected_up=true,connected_down=true,facing=west,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_middle", "y": 90, "uvlock": true },
+        "connected_up=true,connected_down=true,facing=south,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_middle"},
+        "connected_up=false,connected_down=true,facing=north,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_top", "y": 180, "uvlock": true },
+        "connected_up=false,connected_down=true,facing=east,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_top", "y": 270, "uvlock": true },
+        "connected_up=false,connected_down=true,facing=west,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_top", "y": 90, "uvlock": true },
+        "connected_up=false,connected_down=true,facing=south,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_top"},
+        "connected_up=false,connected_down=false,size=small": { "model": "moblocks:block/pillars/red_sandstone_small_pillar_middle"},
+        "connected_up=false,connected_down=false,facing=north,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_middle", "y": 180, "uvlock": true },
+        "connected_up=false,connected_down=false,facing=east,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_middle", "y": 270, "uvlock": true },
+        "connected_up=false,connected_down=false,facing=west,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_middle", "y": 90, "uvlock": true },
+        "connected_up=false,connected_down=false,facing=south,size=big": { "model": "moblocks:block/pillars/red_sandstone_big_pillar_middle"}
+    }
+}

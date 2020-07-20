@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:black_wool"
+  },
+  "result": "moblocks:black_cube_shade",
+  "count": 4
+}

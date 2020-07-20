@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "lit=false": { "model": "moblocks:block/furnitures/lamps/small/dark_oak/lamp_off" },
+        "lit=true": { "model": "moblocks:block/furnitures/lamps/small/dark_oak/lamp_on" }
+    }
+}

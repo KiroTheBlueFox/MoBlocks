@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/decoration/colorable_block",
+    "textures": {
+        "texture": "block/white_wool"
+    }
+}

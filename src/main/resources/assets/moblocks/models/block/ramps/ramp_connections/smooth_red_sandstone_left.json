@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/ramps/ramp_connections/left",
+    "textures": {
+        "texture": "block/red_sandstone_top"
+    }
+}

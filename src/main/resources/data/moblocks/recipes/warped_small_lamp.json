@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P",
+    "R",
+    "S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:warped_stem"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "P": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "result": {
+    "item": "moblocks:warped_small_lamp",
+    "count": 4
+  }
+}

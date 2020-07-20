@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S",
+    "O",
+    "P"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "O": {
+      "item": "minecraft:slime_ball"
+    },
+    "P": {
+      "item": "minecraft:heavy_weighted_pressure_plate"
+    }
+  },
+  "result": {
+    "item": "moblocks:candle",
+    "count": 2
+  }
+}

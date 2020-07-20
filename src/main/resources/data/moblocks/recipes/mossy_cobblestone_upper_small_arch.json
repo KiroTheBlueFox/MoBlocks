@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:mossy_cobblestone"
+  },
+  "result": "moblocks:mossy_cobblestone_upper_small_arch",
+  "count": 2
+}

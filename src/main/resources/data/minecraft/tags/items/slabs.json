@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:colorable_stone_slab",
+    "moblocks:colorable_stone_brick_slab",
+    "moblocks:colorable_cobblestone_slab",
+    "moblocks:colorable_plank_slab",
+    "moblocks:colorable_brick_slab"
+  ]
+}

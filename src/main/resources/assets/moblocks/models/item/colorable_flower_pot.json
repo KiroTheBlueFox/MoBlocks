@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "moblocks:item/colorable_flower_pot"
+    }
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/lamps/light_shades/pyramid/shade",
+	"textures": {
+		"texture": "block/white_wool"
+	}
+}

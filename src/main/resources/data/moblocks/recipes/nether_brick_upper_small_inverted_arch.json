@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:nether_bricks"
+  },
+  "result": "moblocks:nether_brick_upper_small_inverted_arch",
+  "count": 1
+}

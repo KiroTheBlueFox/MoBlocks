@@ -1,0 +1,7 @@
+{
+	"parent": "moblocks:block/furnitures/drawers/simple/parents/item",
+	"textures": {
+		"container": "block/birch_planks",
+        "feet": "block/birch_log"
+	}
+}

@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "facing=down": { "model": "moblocks:block/decoration/candles/candle" },
+        "facing=north": { "model": "moblocks:block/decoration/candles/candle_wall", "y": 180 },
+        "facing=east": { "model": "moblocks:block/decoration/candles/candle_wall", "y": 270 },
+        "facing=south": { "model": "moblocks:block/decoration/candles/candle_wall" },
+        "facing=west": { "model": "moblocks:block/decoration/candles/candle_wall", "y": 90 }
+    }
+}

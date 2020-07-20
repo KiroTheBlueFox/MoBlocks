@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#L#",
+    "###",
+    "S S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "#": {
+      "item": "minecraft:acacia_planks"
+    },
+    "L": {
+      "item": "minecraft:acacia_log"
+    }
+  },
+  "result": {
+    "item": "moblocks:acacia_simple_drawer",
+    "count": 2
+  }
+}

@@ -1,0 +1,7 @@
+{
+	"parent": "moblocks:block/furnitures/drawers/simple/parents/item",
+	"textures": {
+		"container": "block/red_nether_bricks",
+        "feet": "block/nether_bricks"
+	}
+}

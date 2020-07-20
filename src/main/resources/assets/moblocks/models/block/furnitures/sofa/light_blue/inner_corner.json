@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/sofa/parents/inner_corner",
+	"textures": {
+		"texture": "block/light_blue_wool"
+	}
+}

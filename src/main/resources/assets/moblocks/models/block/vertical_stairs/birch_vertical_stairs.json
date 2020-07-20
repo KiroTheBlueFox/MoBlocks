@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/vertical_stairs/vertical_stairs",
+    "textures": {
+        "texture": "block/birch_planks"
+    }
+}

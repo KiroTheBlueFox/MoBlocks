@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/sofa/parents/straight_left_armrest",
+	"textures": {
+		"texture": "block/white_wool"
+	}
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/pillars/small_pillar_top",
+    "textures": {
+        "texture": "block/oak_planks"
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:sandstone"
+  },
+  "result": "moblocks:sandstone_lower_small_arch",
+  "count": 1
+}

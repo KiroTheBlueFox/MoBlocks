@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/archs/arch_inner_corner",
+    "textures": {
+        "texture": "block/cobblestone"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/pillars/big_pillar_top",
+    "textures": {
+        "texture": "block/end_stone_bricks"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/posts/post",
+    "textures": {
+        "texture": "block/red_sandstone_top"
+    }
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/shelves/shelf",
+	"textures": {
+		"texture": "block/spruce_planks"
+	}
+}

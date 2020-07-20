@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "moblocks:block/vertical_stairs/sandstone_vertical_stairs", "y": 90, "uvlock": true},
+        "facing=south": { "model": "moblocks:block/vertical_stairs/sandstone_vertical_stairs", "y": 270, "uvlock": true},
+        "facing=west":  { "model": "moblocks:block/vertical_stairs/sandstone_vertical_stairs"},
+        "facing=east":  { "model": "moblocks:block/vertical_stairs/sandstone_vertical_stairs", "y": 180, "uvlock": true}
+    }
+}

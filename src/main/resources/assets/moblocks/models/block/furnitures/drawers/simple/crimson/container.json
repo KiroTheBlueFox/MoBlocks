@@ -1,0 +1,7 @@
+{
+	"parent": "moblocks:block/furnitures/drawers/simple/parents/container",
+	"textures": {
+		"container": "block/crimson_planks",
+        "feet": "block/crimson_stem"
+	}
+}

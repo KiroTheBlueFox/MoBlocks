@@ -1,0 +1,16 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "moblocks:block/rubiks_cube_2_sticker",
+		"particle": "moblocks:block/rubiks_cube_2_sticker"
+	},
+	"elements": [
+		{
+			"from": [4.5, 8, 4.5],
+			"to": [4.5, 11.5, 8],
+			"faces": {
+				"west": {"uv": [0, 0, 3.5, 3.5], "texture": "#0"}
+			}
+		}
+	]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:nether_brick_slab"
+    }
+  },
+  "result": {
+    "item": "moblocks:nether_brick_shelf",
+    "count": 4
+  }
+}

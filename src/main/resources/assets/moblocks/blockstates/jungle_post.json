@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "moblocks:block/posts/jungle_post" }
+    }
+}

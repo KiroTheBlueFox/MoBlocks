@@ -1,0 +1,8 @@
+{
+    "parent": "moblocks:block/pillars/small_pillar_bottom_all_sides",
+    "textures": {
+        "texture": "block/red_sandstone",
+        "top": "block/red_sandstone_top",
+        "bottom": "block/red_sandstone_bottom"
+    }
+}

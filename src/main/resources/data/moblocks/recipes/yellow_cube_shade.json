@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:yellow_wool"
+  },
+  "result": "moblocks:yellow_cube_shade",
+  "count": 4
+}

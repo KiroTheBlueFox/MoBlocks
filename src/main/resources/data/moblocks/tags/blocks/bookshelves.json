@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:oak_bookshelf",
+    "moblocks:spruce_bookshelf",
+    "moblocks:birch_bookshelf",
+    "moblocks:jungle_bookshelf",
+    "moblocks:acacia_bookshelf",
+    "moblocks:dark_oak_bookshelf",
+    "moblocks:nether_brick_bookshelf",
+    "moblocks:crimson_bookshelf",
+    "moblocks:warped_bookshelf"
+  ]
+}

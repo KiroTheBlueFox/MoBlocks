@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "moblocks:block/decoration/colorable_slab/plank_slab" },
+        "type=top": { "model": "moblocks:block/decoration/colorable_slab/plank_slab_top" },
+        "type=double": { "model": "moblocks:block/decoration/colorable_planks" }
+    }
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/decoration/pillar/big_pillar_top",
+	"textures": {
+		"texture": "moblocks:block/colorable_stone"
+	}
+}

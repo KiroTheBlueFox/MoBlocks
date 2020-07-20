@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/archs/arch",
+    "textures": {
+        "texture": "block/spruce_planks"
+    }
+}

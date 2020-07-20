@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:oak_shelf",
+    "moblocks:spruce_shelf",
+    "moblocks:birch_shelf",
+    "moblocks:jungle_shelf",
+    "moblocks:acacia_shelf",
+    "moblocks:dark_oak_shelf",
+    "moblocks:nether_brick_shelf",
+    "moblocks:crimson_shelf",
+    "moblocks:warped_shelf"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/carpets/parents/one_side",
+	"textures": {
+		"texture": "block/pink_wool"
+	}
+}

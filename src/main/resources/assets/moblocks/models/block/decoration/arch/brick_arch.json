@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/decoration/arch/arch",
+	"textures": {
+		"texture": "moblocks:block/colorable_bricks"
+	}
+}

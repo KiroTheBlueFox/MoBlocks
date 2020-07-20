@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "moblocks:block_colorer"
+    },
+    {
+      "tag": "moblocks:glass_pane"
+    }
+  ],
+  "result": {
+    "item": "moblocks:colorable_glass_pane"
+  }
+}

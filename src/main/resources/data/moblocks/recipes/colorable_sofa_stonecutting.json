@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "moblocks:colorable_wool"
+  },
+  "result": "moblocks:colorable_sofa",
+  "count": 1
+}

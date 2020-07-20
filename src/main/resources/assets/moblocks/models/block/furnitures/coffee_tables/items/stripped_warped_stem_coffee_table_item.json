@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/coffee_tables/parents/item",
+	"textures": {
+		"texture": "block/stripped_warped_stem"
+	}
+}

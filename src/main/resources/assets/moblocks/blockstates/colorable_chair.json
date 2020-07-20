@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "rotation=0": { "model": "moblocks:block/decoration/furnitures/chairs/chair0" },
+        "rotation=1": { "model": "moblocks:block/decoration/furnitures/chairs/chair22_5" },
+        "rotation=2": { "model": "moblocks:block/decoration/furnitures/chairs/chair45" },
+        "rotation=3": { "model": "moblocks:block/decoration/furnitures/chairs/chair67_5" },
+        "rotation=4": { "model": "moblocks:block/decoration/furnitures/chairs/chair0", "y": 90 },
+        "rotation=5": { "model": "moblocks:block/decoration/furnitures/chairs/chair22_5", "y": 90 },
+        "rotation=6": { "model": "moblocks:block/decoration/furnitures/chairs/chair45", "y": 90 },
+        "rotation=7": { "model": "moblocks:block/decoration/furnitures/chairs/chair67_5", "y": 90 },
+        "rotation=8": { "model": "moblocks:block/decoration/furnitures/chairs/chair0", "y": 180 },
+        "rotation=9": { "model": "moblocks:block/decoration/furnitures/chairs/chair22_5", "y": 180 },
+        "rotation=10": { "model": "moblocks:block/decoration/furnitures/chairs/chair45", "y": 180 },
+        "rotation=11": { "model": "moblocks:block/decoration/furnitures/chairs/chair67_5", "y": 180 },
+        "rotation=12": { "model": "moblocks:block/decoration/furnitures/chairs/chair0", "y": 270 },
+        "rotation=13": { "model": "moblocks:block/decoration/furnitures/chairs/chair22_5", "y": 270 },
+        "rotation=14": { "model": "moblocks:block/decoration/furnitures/chairs/chair45", "y": 270 },
+        "rotation=15": { "model": "moblocks:block/decoration/furnitures/chairs/chair67_5", "y": 270 }
+    }
+}

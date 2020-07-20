@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/vertical_slabs/vertical_slab",
+    "textures": {
+        "texture": "block/nether_bricks"
+    }
+}

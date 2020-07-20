@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/chairs/parents/chair22_5",
+	"textures": {
+		"texture": "minecraft:block/jungle_planks"
+	}
+}

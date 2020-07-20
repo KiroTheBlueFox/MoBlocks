@@ -1,0 +1,6 @@
+{
+    "parent": "moblocks:block/pillars/big_pillar_bottom",
+    "textures": {
+        "texture": "block/cobblestone"
+    }
+}

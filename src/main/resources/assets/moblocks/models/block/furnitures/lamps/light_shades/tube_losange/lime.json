@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/lamps/light_shades/tube_losange/shade",
+	"textures": {
+		"texture": "block/lime_wool"
+	}
+}
