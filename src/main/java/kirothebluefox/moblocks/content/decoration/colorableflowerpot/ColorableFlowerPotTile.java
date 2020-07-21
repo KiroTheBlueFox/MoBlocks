@@ -37,6 +37,13 @@ public class ColorableFlowerPotTile extends TileEntity {
 	    compound.put(ITEM_KEY, inventory);
 	    return super.write(compound);
 	}
+	
+	@Override
+	public void handleUpdateTag(BlockState blockstate, CompoundNBT tag) {
+		super.read(blockstate, tag);
+		setColor(tag.getInt(COLOR_KEY));
+		if (!tag.getCompound(ITEM_KEY).isEmpty()) this.item = ItemStack.read(tag.getCompound(ITEM_KEY));
+	}
 
 	@Override
 	public CompoundNBT getUpdateTag() {

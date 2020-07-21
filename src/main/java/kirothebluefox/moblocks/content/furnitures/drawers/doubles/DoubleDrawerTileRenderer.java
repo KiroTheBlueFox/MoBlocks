@@ -118,7 +118,7 @@ public class DoubleDrawerTileRenderer extends TileEntityRenderer<DoubleDrawerTil
 			break;
         }
         matrixStackIn.translate(0, 0, -offset);
-		blockDispatcher.getBlockModelRenderer().renderModel(
+		blockDispatcher.getBlockModelRenderer().renderModelSmooth(
 				world,
 				model,
 				blockstate,
@@ -154,7 +154,7 @@ public class DoubleDrawerTileRenderer extends TileEntityRenderer<DoubleDrawerTil
         }
         matrixStackIn.translate(0, 0, -offset*2);
 
-		blockDispatcher.getBlockModelRenderer().renderModel(
+		blockDispatcher.getBlockModelRenderer().renderModelSmooth(
 				world,
 				model2,
 				blockstate,

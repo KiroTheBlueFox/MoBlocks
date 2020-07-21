@@ -99,7 +99,7 @@ public class SimpleDrawerTileRenderer extends TileEntityRenderer<SimpleDrawerTil
         }
         matrixStackIn.translate(0, 0, -offset);
         
-		blockDispatcher.getBlockModelRenderer().renderModel(
+		blockDispatcher.getBlockModelRenderer().renderModelSmooth(
 				world,
 				model,
 				blockstate,

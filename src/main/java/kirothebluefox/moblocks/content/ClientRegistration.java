@@ -6,8 +6,15 @@ import java.util.List;
 import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableBlock;
 import kirothebluefox.moblocks.content.decoration.colorableflowerpot.ColorableFlowerPot;
+import kirothebluefox.moblocks.content.decoration.colorableflowerpot.ColorableFlowerPotTileRenderer;
+import kirothebluefox.moblocks.content.furnitures.bookshelves.BookshelfTileRenderer;
+import kirothebluefox.moblocks.content.furnitures.crates.CrateTileRenderer;
 import kirothebluefox.moblocks.content.furnitures.drawers.doubles.DoubleDrawerContainerScreen;
+import kirothebluefox.moblocks.content.furnitures.drawers.doubles.DoubleDrawerTileRenderer;
 import kirothebluefox.moblocks.content.furnitures.drawers.simples.SimpleDrawerContainerScreen;
+import kirothebluefox.moblocks.content.furnitures.drawers.simples.SimpleDrawerTileRenderer;
+import kirothebluefox.moblocks.content.furnitures.lamps.SmallLampTileRenderer;
+import kirothebluefox.moblocks.content.furnitures.shelves.ShelfTileRenderer;
 import kirothebluefox.moblocks.utils.InvisibleEntityRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -29,6 +36,14 @@ public class ClientRegistration {
 	@SubscribeEvent
 	public static void init(FMLClientSetupEvent event) {
 		EntityRendererManager entityRendererManager = Minecraft.getInstance().getRenderManager();
+		
+		ColorableFlowerPotTileRenderer.register();
+		BookshelfTileRenderer.register();
+		CrateTileRenderer.register();
+		SimpleDrawerTileRenderer.register();
+		DoubleDrawerTileRenderer.register();
+		SmallLampTileRenderer.register();
+		ShelfTileRenderer.register();
 		
 		List<Block> cutoutBlocks = new ArrayList<Block>();
 		cutoutBlocks.add(ModBlocks.OAK_COFFEE_TABLE);

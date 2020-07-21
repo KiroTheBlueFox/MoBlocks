@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = 'v0.7.1b'
+version = 'v0.7.1c'
 group = 'kirothebluefox.moblocks' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'moblocks'
 
@@ -118,7 +118,7 @@ jar {
         attributes([
             "Specification-Title": "moblocks",
             "Specification-Vendor": "kirothebluefox",
-            "Specification-Version": "v0.7.1b", // We are version 1 of ourselves
+            "Specification-Version": "v0.7.1c", // We are version 1 of ourselves
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
             "Implementation-Vendor" :"kirothebluefox",

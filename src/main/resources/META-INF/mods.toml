@@ -14,7 +14,7 @@ issueTrackerURL="https://github.com/KiroTheBlueFox/MoBlocks/issues" #optional
 # The modid of the mod
 modId="moblocks" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-version="v0.7.1b" #mandatory
+version="v0.7.1c" #mandatory
  # A display name for the mod
 displayName="Mo'Blocks" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>

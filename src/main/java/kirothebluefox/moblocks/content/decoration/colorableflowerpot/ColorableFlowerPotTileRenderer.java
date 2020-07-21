@@ -43,7 +43,7 @@ public class ColorableFlowerPotTileRenderer extends TileEntityRenderer<Colorable
 				net.minecraftforge.client.ForgeHooksClient.setRenderLayer(renderType);
 				BlockRendererDispatcher blockDispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
 				World world = tileEntityIn.getWorld();
-				blockDispatcher.getBlockModelRenderer().renderModel(
+				blockDispatcher.getBlockModelRenderer().renderModelSmooth(
 						world,
 						blockDispatcher.getModelForState(blockstate),
 						blockstate,
