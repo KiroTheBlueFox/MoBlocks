@@ -45,7 +45,7 @@ public class TallFence extends FourWayBlock {
  
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (!worldIn.isRemote) {
-			return LeadItem.func_226641_a_(player, worldIn, pos);
+			return LeadItem.bindPlayerMobs(player, worldIn, pos);
 		} else {
 			ItemStack itemstack = player.getHeldItem(handIn);
 			return (itemstack.getItem() == Items.LEAD || itemstack.isEmpty()) ? ActionResultType.SUCCESS : ActionResultType.FAIL;

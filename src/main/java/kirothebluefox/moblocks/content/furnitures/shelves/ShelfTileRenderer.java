@@ -36,93 +36,105 @@ public class ShelfTileRenderer extends TileEntityRenderer<ShelfTile> {
 		Direction direction = tileEntityIn.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING);
 		if (itemstack1 != ItemStack.EMPTY) {
 			matrixStackIn.push();
-            matrixStackIn.translate(0.5, 0.35, 0.5);
-            matrixStackIn.scale(0.2f, 0.2f, 0.2f);
+            matrixStackIn.translate(-0.125, 0.35, 0.5);
             switch (direction) {
             case NORTH:
-            	break;
-            case SOUTH:
+                matrixStackIn.translate(0.63333333, 0, -0.63333333);
                 matrixStackIn.rotate(Vector3f.YP.rotationDegrees(180F));
             	break;
+            case SOUTH:
+                matrixStackIn.translate(0.63333333, 0, 0.63333333);
+            	break;
             case EAST:
-                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(270F));
+                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(90F));
+                matrixStackIn.translate(0, 0, 1.25);
             	break;
             case WEST:
-                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(90F));
+                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(270F));
             	break;
 			default:
 				break;
             }
-            matrixStackIn.translate(-1.75, 0, -1.25);
+            matrixStackIn.scale(0.2f, 0.2f, 0.2f);
+            matrixStackIn.translate(1.75, 0, -1.25);
 	        Minecraft.getInstance().getItemRenderer().renderItem(itemstack1, ItemCameraTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn);
 	        matrixStackIn.pop();
 		}
 		if (itemstack2 != ItemStack.EMPTY) {
 			matrixStackIn.push();
-            matrixStackIn.translate(0.5, 0.35, 0.5);
-            matrixStackIn.scale(0.2f, 0.2f, 0.2f);
+            matrixStackIn.translate(-0.125, 0.35, 0.5);
             switch (direction) {
             case NORTH:
-            	break;
-            case SOUTH:
+                matrixStackIn.translate(0.63333333, 0, -0.63333333);
                 matrixStackIn.rotate(Vector3f.YP.rotationDegrees(180F));
             	break;
+            case SOUTH:
+                matrixStackIn.translate(0.63333333, 0, 0.63333333);
+            	break;
             case EAST:
-                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(270F));
+                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(90F));
+                matrixStackIn.translate(0, 0, 1);
             	break;
             case WEST:
-                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(90F));
+                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(270F));
             	break;
 			default:
 				break;
             }
-            matrixStackIn.translate(-0.575, 0, -1.25);
+            matrixStackIn.scale(0.2f, 0.2f, 0.2f);
+            matrixStackIn.translate(0.575, 0, -1.25);
 	        Minecraft.getInstance().getItemRenderer().renderItem(itemstack2, ItemCameraTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn);
 	        matrixStackIn.pop();
 		}
 		if (itemstack3 != ItemStack.EMPTY) {
 			matrixStackIn.push();
-            matrixStackIn.translate(0.5, 0.35, 0.5);
-            matrixStackIn.scale(0.2f, 0.2f, 0.2f);
+            matrixStackIn.translate(-0.125, 0.35, 0.5);
             switch (direction) {
             case NORTH:
-            	break;
-            case SOUTH:
+                matrixStackIn.translate(0.63333333, 0, -0.63333333);
                 matrixStackIn.rotate(Vector3f.YP.rotationDegrees(180F));
             	break;
+            case SOUTH:
+                matrixStackIn.translate(0.63333333, 0, 0.63333333);
+            	break;
             case EAST:
-                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(270F));
+                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(90F));
+                matrixStackIn.translate(0, 0, 1);
             	break;
             case WEST:
-                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(90F));
+                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(270F));
             	break;
 			default:
 				break;
             }
-            matrixStackIn.translate(0.575, 0, -1.25);
+            matrixStackIn.scale(0.2f, 0.2f, 0.2f);
+            matrixStackIn.translate(-0.575, 0, -1.25);
 	        Minecraft.getInstance().getItemRenderer().renderItem(itemstack3, ItemCameraTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn);
 	        matrixStackIn.pop();
 		}
 		if (itemstack4 != ItemStack.EMPTY) {
 			matrixStackIn.push();
-            matrixStackIn.translate(0.5, 0.35, 0.5);
-            matrixStackIn.scale(0.2f, 0.2f, 0.2f);
+            matrixStackIn.translate(-0.125, 0.35, 0.5);
             switch (direction) {
             case NORTH:
-            	break;
-            case SOUTH:
+                matrixStackIn.translate(0.63333333, 0, -0.63333333);
                 matrixStackIn.rotate(Vector3f.YP.rotationDegrees(180F));
             	break;
+            case SOUTH:
+                matrixStackIn.translate(0.63333333, 0, 0.63333333);
+            	break;
             case EAST:
-                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(270F));
+                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(90F));
+                matrixStackIn.translate(0, 0, 1);
             	break;
             case WEST:
-                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(90F));
+                matrixStackIn.rotate(Vector3f.YP.rotationDegrees(270F));
             	break;
 			default:
 				break;
             }
-            matrixStackIn.translate(1.75, 0, -1.25);
+            matrixStackIn.scale(0.2f, 0.2f, 0.2f);
+            matrixStackIn.translate(-1.75, 0, -1.25);
 	        Minecraft.getInstance().getItemRenderer().renderItem(itemstack4, ItemCameraTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn);
 	        matrixStackIn.pop();
 		}
@@ -155,7 +167,7 @@ public class ShelfTileRenderer extends TileEntityRenderer<ShelfTile> {
 	                GL11.glNormal3f(0.0F, 0.0F, -1.0F);
 	                ITextProperties itextproperties = ITextProperties.func_240652_a_(Integer.toString(tileEntityIn.getItem(i).getCount()));
                 	if (itextproperties != null) {
-                		fontrenderer.func_238416_a_(itextproperties, 0, 0, 0xffffff, false, matrixStackIn.getLast().getMatrix(), bufferIn, false, 0, combinedLightIn);
+                		fontrenderer.renderString(itextproperties.getString(), 0, 0, 0xffffff, false, matrixStackIn.getLast().getMatrix(), bufferIn, false, 0, combinedLightIn);
                 	}
 			        matrixStackIn.pop();
 				}

@@ -17,13 +17,13 @@ public class SeatSofa extends Entity {
 		setPosition(pos.getX() + 0.5d, pos.getY() + 0.2d, pos.getZ() + 0.5d);
 	}
 	
-	public SeatSofa(EntityType<SeatSofa> entityTypeIn, World worldIn) {
+	public SeatSofa(EntityType<SeatSofa> type, World worldIn) {
 		super(ModEntities.SEAT_SOFA, worldIn);
 	}
 
 	public void tick() {
 		super.tick();
-		BlockPos pos = func_233580_cy_();
+		BlockPos pos = getPosition();
 		if (!(getEntityWorld().getBlockState(pos).getBlock() instanceof Sofa)) {
 			remove();
 		} else {

@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "moblocks:item/custom_color_picker",
+        "layer1": "moblocks:item/custom_light_color_picker_overlay"
+    }
+}

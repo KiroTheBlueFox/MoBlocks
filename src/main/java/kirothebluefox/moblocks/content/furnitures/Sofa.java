@@ -353,32 +353,35 @@ public class Sofa extends Block implements IWaterLoggable {
 	
 	@Override
 	public void addInformation(ItemStack stack, IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.sit_on").func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.sofa.toggle_armrests").func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.BLUE)));
+		tooltip.add(new TranslationTextComponent("tooltips.moblocks.sit_on").setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
+		tooltip.add(new TranslationTextComponent("tooltips.moblocks.sofa.toggle_armrests").setStyle(Style.EMPTY.setFormatting(TextFormatting.BLUE)));
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 	
 	@Override
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if (player.isSneaking()) {
-			worldIn.setBlockState(pos, state.with(ARMREST, !state.get(ARMREST)));
-		} else {
-			if (player.getRidingEntity() != null) {
-				return ActionResultType.SUCCESS;
+		if (!worldIn.isRemote()) {
+			if (player.isSneaking()) {
+				worldIn.setBlockState(pos, state.with(ARMREST, !state.get(ARMREST)));
+			} else {
+				if (player.getRidingEntity() != null) {
+					return ActionResultType.SUCCESS;
+				}
+				
+				Vector3d vec = new Vector3d(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+				double maxDist = 2.0d;
+				if ((vec.x - player.getPosX()) * (vec.x - player.getPosX()) +
+						(vec.y - player.getPosY()) * (vec.y - player.getPosY()) +
+						(vec.z - player.getPosZ()) * (vec.z - player.getPosZ()) > maxDist * maxDist) {
+					player.sendStatusMessage(new TranslationTextComponent("status_messages.moblocks.seats.too_far", new TranslationTextComponent("status_messages.moblocks.seats.sofa")), true);
+					return ActionResultType.SUCCESS;
+				}
+				
+				SeatSofa seat = new SeatSofa(worldIn, pos);
+				worldIn.addEntity(seat);
+				player.startRiding(seat);
 			}
-			
-			Vector3d vec = new Vector3d(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-			double maxDist = 2.0d;
-			if ((vec.x - player.getPosX()) * (vec.x - player.getPosX()) +
-					(vec.y - player.getPosY()) * (vec.y - player.getPosY()) +
-					(vec.z - player.getPosZ()) * (vec.z - player.getPosZ()) > maxDist * maxDist) {
-				player.sendStatusMessage(new TranslationTextComponent("status_messages.moblocks.seats.too_far", new TranslationTextComponent("status_messages.moblocks.seats.sofa")), true);
-				return ActionResultType.SUCCESS;
-			}
-			
-			SeatSofa seat = new SeatSofa(worldIn, pos);
-			worldIn.addEntity(seat);
-			player.startRiding(seat);
+			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.SUCCESS;
 	}

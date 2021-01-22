@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "minecraft:magenta_wool"
-  },
-  "result": "moblocks:magenta_tube_losange_shade",
-  "count": 4
-}

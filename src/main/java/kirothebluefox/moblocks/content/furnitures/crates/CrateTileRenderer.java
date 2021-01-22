@@ -179,7 +179,7 @@ public class CrateTileRenderer extends TileEntityRenderer<CrateTile> {
 	                FontRenderer fontrenderer = this.renderDispatcher.getFontRenderer();
 	                ITextProperties itextproperties = ITextProperties.func_240652_a_(Integer.toString(itemstack.getCount()));
                 	if (itextproperties != null) {
-                		fontrenderer.func_238416_a_(itextproperties, 0, 0, 0xffffff, false, matrixStackIn.getLast().getMatrix(), bufferIn, false, 0, combinedLightIn);
+                		fontrenderer.renderString(itextproperties.getString(), 0f, 0f, 0xffffff, false, matrixStackIn.getLast().getMatrix(), bufferIn, false, 0, combinedLightIn);
                 	}
 					matrixStackIn.pop();
 	            }

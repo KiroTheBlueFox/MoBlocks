@@ -3,12 +3,14 @@ package kirothebluefox.moblocks.content.decoration.colorableflowerpot;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import kirothebluefox.moblocks.content.ModTileEntities;
+import kirothebluefox.moblocks.utils.NoRandomBlockModelRenderer;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -43,7 +45,8 @@ public class ColorableFlowerPotTileRenderer extends TileEntityRenderer<Colorable
 				net.minecraftforge.client.ForgeHooksClient.setRenderLayer(renderType);
 				BlockRendererDispatcher blockDispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
 				World world = tileEntityIn.getWorld();
-				blockDispatcher.getBlockModelRenderer().renderModelSmooth(
+				NoRandomBlockModelRenderer renderer = new NoRandomBlockModelRenderer(BlockColors.init());
+				renderer.renderModel(
 						world,
 						blockDispatcher.getModelForState(blockstate),
 						blockstate,

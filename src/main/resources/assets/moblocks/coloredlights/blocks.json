@@ -1,0 +1,169 @@
+{
+  "enabled": true,
+  "lights": [
+    {
+      "name": "minecraft:redstone_torch",
+      "r": 255,
+      "g": 0,
+      "b": 0,
+      "radius": 7,
+      "state": {
+        "property": "lit",
+        "value": "true"
+      }
+    },
+    {
+      "name": "minecraft:redstone_block",
+      "r": 255,
+      "g": 0,
+      "b": 0,
+      "radius": 7,
+      "state": {}
+    },
+    {
+      "name": "minecraft:sea_lantern",
+      "r": 202,
+      "g": 226,
+      "b": 220,
+      "radius": 13,
+      "state": {}
+    },
+    {
+      "name": "minecraft:beacon",
+      "r": 202,
+      "g": 226,
+      "b": 220,
+      "radius": 15,
+      "state": {}
+    },
+    {
+      "name": "minecraft:end_rod",
+      "r": 191,
+      "g": 191,
+      "b": 191,
+      "radius": 15,
+      "state": {}
+    },
+    {
+      "name": "minecraft:soul_torch",
+      "r": 0,
+      "g": 127,
+      "b": 255,
+      "radius": 10,
+      "state": {}
+    },
+    {
+      "name": "minecraft:soul_fire",
+      "r": 0,
+      "g": 127,
+      "b": 255,
+      "radius": 10,
+      "state": {}
+    },
+    {
+      "name": "minecraft:soul_lantern",
+      "r": 0,
+      "g": 127,
+      "b": 255,
+      "radius": 10,
+      "state": {}
+    },
+    {
+      "name": "minecraft:fire",
+      "r": 255,
+      "g": 63,
+      "b": 0,
+      "radius": 15,
+      "state": {}
+    },
+    {
+      "name": "minecraft:campfire",
+      "r": 255,
+      "g": 191,
+      "b": 63,
+      "radius": 15,
+      "state": {}
+    },
+    {
+      "name": "minecraft:lava",
+      "r": 255,
+      "g": 63,
+      "b": 0,
+      "radius": 15,
+      "state": {}
+    },
+    {
+      "name": "minecraft:magma_block",
+      "r": 255,
+      "g": 63,
+      "b": 0,
+      "radius": 3,
+      "state": {}
+    },
+    {
+      "name": "minecraft:torch",
+      "r": 255,
+      "g": 191,
+      "b": 127,
+      "radius": 14,
+      "state": {}
+    },
+    {
+      "name": "minecraft:lantern",
+      "r": 255,
+      "g": 191,
+      "b": 127,
+      "radius": 15,
+      "state": {}
+    },
+    {
+      "name": "minecraft:jack_o_lantern",
+      "r": 255,
+      "g": 127,
+      "b": 63,
+      "radius": 15,
+      "state": {}
+    },
+    {
+      "name": "minecraft:shroomlight",
+      "r": 255,
+      "g": 127,
+      "b": 63,
+      "radius": 15,
+      "state": {}
+    },
+    {
+      "name": "minecraft:redstone_lamp",
+      "r": 255,
+      "g": 191,
+      "b": 127,
+      "radius": 15,
+      "state": {
+        "property": "lit",
+        "value": "true"
+      }
+    },
+    {
+      "name": "minecraft:glowstone",
+      "r": 255,
+      "g": 191,
+      "b": 127,
+      "radius": 15,
+      "state": {
+        "property": "lit",
+        "value": "true"
+      }
+    },
+    {
+      "name": "minecraft:soul_campfire",
+      "r": 0,
+      "g": 127,
+      "b": 255,
+      "radius": 10,
+      "state": {
+        "property": "lit",
+        "value": "true"
+      }
+    }
+  ]
+}

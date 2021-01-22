@@ -9,16 +9,13 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
@@ -29,15 +26,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StringUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -92,7 +86,7 @@ public class Bookshelf extends Block implements IWaterLoggable {
 	
 	@Override
 	public void addInformation(ItemStack stack, IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shelves.place_item").func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
+		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shelves.place_item").setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -108,7 +102,6 @@ public class Bookshelf extends Block implements IWaterLoggable {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		Direction direction = state.get(FACING);
@@ -198,36 +191,6 @@ public class Bookshelf extends Block implements IWaterLoggable {
 			if (!player.isSneaking()) {
 				ItemStack itemstack = player.getHeldItem(handIn);
 				shelftileentity.addItem(itemstack, layer, slot, player, handIn);
-			} else {
-				ItemStack itemstack = shelftileentity.getItem(layer, slot);
-				if (!itemstack.isEmpty() && worldIn.isRemote()) {
-					player.sendStatusMessage(new TranslationTextComponent(itemstack.getTranslationKey()).func_240703_c_(Style.EMPTY.setFormatting(itemstack.getRarity().color)), false);
-					if (itemstack.hasDisplayName() || itemstack.getItem() == Items.WRITTEN_BOOK) {
-						player.sendStatusMessage(new TranslationTextComponent("messages.moblocks.bookshelves.written_book_name").func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GREEN)), false);
-						player.sendStatusMessage(new StringTextComponent("  ").func_230529_a_(itemstack.getDisplayName()).func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GRAY).setItalic(true)), false);
-					} else if (itemstack.isEnchanted() || itemstack.getItem() == Items.ENCHANTED_BOOK) {
-						player.sendStatusMessage(new TranslationTextComponent("messages.moblocks.bookshelves.enchanted_book_enchantments").func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GREEN)), false);
-						ListNBT enchantmentList = EnchantedBookItem.getEnchantments(itemstack);
-						for(int i = 0; i < enchantmentList.size(); ++i) {
-							CompoundNBT compoundnbt = enchantmentList.getCompound(i);
-							Registry.ENCHANTMENT.getValue(ResourceLocation.tryCreate(compoundnbt.getString("id"))).ifPresent((enchant) -> {
-								player.sendStatusMessage(new StringTextComponent("  ").func_230529_a_(enchant.getDisplayName(compoundnbt.getInt("lvl"))), false);
-							});
-						}
-					}
-					if (itemstack.getItem() == Items.WRITTEN_BOOK) {
-						if (itemstack.hasTag()) {
-					         CompoundNBT compoundnbt = itemstack.getTag();
-					         String s = compoundnbt.getString("author");
-					         if (!StringUtils.isNullOrEmpty(s)) {
-					        	 player.sendStatusMessage(new TranslationTextComponent("messages.moblocks.bookshelves.written_book_author").func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GREEN)), false);
-					        	 player.sendStatusMessage(new StringTextComponent("  "+s).func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GRAY).setItalic(true)), false);
-					         }
-				        	 player.sendStatusMessage(new TranslationTextComponent("messages.moblocks.bookshelves.written_book_generation").func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GREEN)), false);
-					         player.sendStatusMessage(new StringTextComponent("  ").func_230529_a_(new TranslationTextComponent("book.generation." + compoundnbt.getInt("generation")).func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GRAY).setItalic(true))), false);
-						}
-					}
-				}
 			}
 		} else {
 			return ActionResultType.FAIL;
@@ -272,5 +235,95 @@ public class Bookshelf extends Block implements IWaterLoggable {
 		default:
 			return false;
 		}
+	}
+
+	public ItemStack getItemAtHit(ClientWorld worldIn, BlockState state, Vector3d hit, BlockPos pos) {
+		Direction direction = state.get(FACING);
+		int slot;
+		double x = hit.getX()-pos.getX(), y = hit.getY()-pos.getY(), z = hit.getZ()-pos.getZ();
+		switch (direction) {
+		case NORTH:
+			if (x > 0.0625 && x <= 0.1875)
+				slot = 6;
+			else if (x >= 0.1875 && x <= 0.3125)
+				slot = 5;
+			else if (x > 0.3125 && x <= 0.4375)
+				slot = 4;
+			else if (x > 0.4375 && x <= 0.5625)
+				slot = 3;
+			else if (x > 0.5625 && x <= 0.6875)
+				slot = 2;
+			else if (x > 0.6875 && x <= 0.8125)
+				slot = 1;
+			else if (x > 0.8125 && x <= 0.9375)
+				slot = 0;
+			else
+				slot = -1;
+			break;
+		case SOUTH:
+			if (x > 0.0625 && x <= 0.1875)
+				slot = 0;
+			else if (x >= 0.1875 && x <= 0.3125)
+				slot = 1;
+			else if (x > 0.3125 && x <= 0.4375)
+				slot = 2;
+			else if (x > 0.4375 && x <= 0.5625)
+				slot = 3;
+			else if (x > 0.5625 && x <= 0.6875)
+				slot = 4;
+			else if (x > 0.6875 && x <= 0.8125)
+				slot = 5;
+			else if (x > 0.8125 && x <= 0.9375)
+				slot = 6;
+			else
+				slot = -1;
+			break;
+		case EAST:
+			if (z > 0.0625 && z <= 0.1875)
+				slot = 0;
+			else if (z >= 0.1875 && z <= 0.3125)
+				slot = 1;
+			else if (z > 0.3125 && z <= 0.4375)
+				slot = 2;
+			else if (z > 0.4375 && z <= 0.5625)
+				slot = 3;
+			else if (z > 0.5625 && z <= 0.6875)
+				slot = 4;
+			else if (z > 0.6875 && z <= 0.8125)
+				slot = 5;
+			else if (z > 0.8125 && z <= 0.9375)
+				slot = 6;
+			else
+				slot = -1;
+			break;
+		case WEST:
+			if (z > 0.0625 && z <= 0.1875)
+				slot = 6;
+			else if (z >= 0.1875 && z <= 0.3125)
+				slot = 5;
+			else if (z > 0.3125 && z <= 0.4375)
+				slot = 4;
+			else if (z > 0.4375 && z <= 0.5625)
+				slot = 3;
+			else if (z > 0.5625 && z <= 0.6875)
+				slot = 2;
+			else if (z > 0.6875 && z <= 0.8125)
+				slot = 1;
+			else if (z > 0.8125 && z <= 0.9375)
+				slot = 0;
+			else
+				slot = -1;
+			break;
+		default:
+			slot = -1;
+			break;
+		}
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+		if (tileentity instanceof BookshelfTile && slot > -1 && slot < 14) {
+			int layer = (y > 0.5 ? 0 : 1);
+			BookshelfTile shelftileentity = (BookshelfTile)tileentity;
+			return shelftileentity.getItem(layer, slot);
+		}
+		return ItemStack.EMPTY;
 	}
 }

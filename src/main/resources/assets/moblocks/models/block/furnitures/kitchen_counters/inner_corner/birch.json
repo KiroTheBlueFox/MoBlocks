@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/kitchen_counters/inner_corner/inner_corner",
+	"textures": {
+		"planks": "block/birch_planks"
+	}
+}

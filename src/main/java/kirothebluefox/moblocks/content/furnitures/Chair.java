@@ -55,34 +55,35 @@ public class Chair extends Block implements IWaterLoggable {
 	
 	@Override
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if (player.getRidingEntity() != null) {
-			return ActionResultType.FAIL;
-		}
-		
-		Vector3d vec = new Vector3d(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-		double maxDist = 2.0d;
-		if ((vec.x - player.getPosX()) * (vec.x - player.getPosX()) +
-				(vec.y - player.getPosY()) * (vec.y - player.getPosY()) +
-				(vec.z - player.getPosZ()) * (vec.z - player.getPosZ()) > maxDist * maxDist) {
-			player.sendStatusMessage(new TranslationTextComponent("status_messages.moblocks.seats.too_far", new TranslationTextComponent("status_messages.moblocks.seats.chair")), true);
+		if (!worldIn.isRemote()) {
+			if (player.getRidingEntity() != null) {
+				return ActionResultType.SUCCESS;
+			}
+			
+			if (player.isSneaking()) {
+				return ActionResultType.SUCCESS;
+			}
+			
+			Vector3d vec = new Vector3d(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+			double maxDist = 2.0d;
+			if ((vec.x - player.getPosX()) * (vec.x - player.getPosX()) +
+					(vec.y - player.getPosY()) * (vec.y - player.getPosY()) +
+					(vec.z - player.getPosZ()) * (vec.z - player.getPosZ()) > maxDist * maxDist) {
+				player.sendStatusMessage(new TranslationTextComponent("status_messages.moblocks.seats.too_far", new TranslationTextComponent("status_messages.moblocks.seats.chair")), true);
+				return ActionResultType.SUCCESS;
+			}
+			
+			SeatChair seat = new SeatChair(worldIn, pos);
+			worldIn.addEntity(seat);
+			player.startRiding(seat);
 			return ActionResultType.SUCCESS;
 		}
-		
-		if (player.isSneaking()) {
-			return ActionResultType.SUCCESS;
-		}
-		
-//		List<SeatChair> seats = worldIn.getEntitiesWithinAABB(SeatChair.class, new AxisAlignedBB(pos, pos.add(1, 1, 1)));
-		SeatChair seat = new SeatChair(worldIn, pos);
-		worldIn.addEntity(seat);
-		player.startRiding(seat);
-		
 		return ActionResultType.SUCCESS;
 	}
 	
 	@Override
 	public void addInformation(ItemStack stack, IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.sit_on").func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
+		tooltip.add(new TranslationTextComponent("tooltips.moblocks.sit_on").setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 	

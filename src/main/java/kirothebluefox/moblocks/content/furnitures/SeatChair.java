@@ -17,13 +17,13 @@ public class SeatChair extends Entity {
 		setPosition(pos.getX() + 0.5d, pos.getY() + 0.4d, pos.getZ() + 0.5d);
 	}
 	
-	public SeatChair(EntityType<SeatChair> entityTypeIn, World worldIn) {
+	public SeatChair(EntityType<SeatChair> type, World worldIn) {
 		super(ModEntities.SEAT_CHAIR, worldIn);
 	}
 
 	public void tick() {
 		super.tick();
-		BlockPos pos = func_233580_cy_();
+		BlockPos pos = getPosition();
 		if (!(getEntityWorld().getBlockState(pos).getBlock() instanceof Chair)) {
 			remove();
 		} else {

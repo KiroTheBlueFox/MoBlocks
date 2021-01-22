@@ -6,6 +6,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 
 public class ColorableBlockTile extends TileEntity {
 	public static final String COLOR_KEY = "color";
@@ -13,6 +14,10 @@ public class ColorableBlockTile extends TileEntity {
     
 	public ColorableBlockTile() {
 		super(ModTileEntities.COLORABLE_BLOCK);
+	}
+	
+	public ColorableBlockTile(TileEntityType<? extends ColorableBlockTile> colorableBlock) {
+		super(colorableBlock);
 	}
 	
 	@Override
@@ -52,7 +57,7 @@ public class ColorableBlockTile extends TileEntity {
         handleUpdateTag(getBlockState(), packet.getNbtCompound());
     }
 
-	private void notifyBlock() {
+	protected void notifyBlock() {
 		this.markDirty();
 		this.getWorld().notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);
 	}

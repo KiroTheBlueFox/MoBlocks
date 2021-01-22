@@ -2,6 +2,7 @@ package kirothebluefox.moblocks.content.customproperties;
 
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
+import net.minecraft.state.IntegerProperty;
 
 public class CustomBlockStateProperties {
 	public static final EnumProperty<VerticalSlabType> VERTICAL_SLAB_TYPE = EnumProperty.create("type", VerticalSlabType.class);
@@ -25,4 +26,6 @@ public class CustomBlockStateProperties {
 	public static final BooleanProperty SOUTH_EAST = BooleanProperty.create("south_east");
 	public static final BooleanProperty ARMREST = BooleanProperty.create("armrest");
 	public static final BooleanProperty WALL = BooleanProperty.create("wall");
+	public static final BooleanProperty CONTAINS_BLOCK = BooleanProperty.create("contains_block");
+	public static final IntegerProperty LIGHT = IntegerProperty.create("light", 0, 2);
 }

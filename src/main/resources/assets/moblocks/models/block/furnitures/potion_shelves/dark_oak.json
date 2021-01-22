@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/potion_shelves/potion_shelf",
+	"textures": {
+		"texture": "block/dark_oak_planks"
+	}
+}

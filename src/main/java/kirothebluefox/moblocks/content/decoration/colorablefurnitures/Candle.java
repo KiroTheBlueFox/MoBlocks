@@ -5,15 +5,20 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import kirothebluefox.moblocks.content.customproperties.IColorableBlock;
-import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableBlockTile;
+import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableLightBlockTile;
 import kirothebluefox.moblocks.content.decoration.customcolorpicker.IDyeableColorPicker;
+import kirothebluefox.moblocks.content.decoration.customcolorpicker.IDyeableLightColorPicker;
+import net.hypherionmc.hypcore.api.ColoredLightManager;
+import net.hypherionmc.hypcore.api.Light;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -31,6 +36,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.ModList;
+
 
 public class Candle extends Block implements IColorableBlock {
 	public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST, Direction.DOWN);
@@ -42,8 +49,19 @@ public class Candle extends Block implements IColorableBlock {
 	public static final VoxelShape WEST = Block.makeCuboidShape(0,2,6,10,13,10);
 	
 	public Candle() {
-		super(Block.Properties.from(Blocks.TORCH));
+		super(Block.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance());
+		if (ModList.get().isLoaded("hypcore")) {
+			ColoredLightManager.registerProvider(this, this::produceColoredLight);
+		}
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.DOWN));
+	}
+	
+	@Override
+	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+		if (ModList.get().isLoaded("hypcore")) {
+			return 0;
+		}
+		return 7;
 	}
 	
 	@Override
@@ -97,24 +115,19 @@ public class Candle extends Block implements IColorableBlock {
 		return true;
 	}
 	
-	@Override
-	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-		return 8;
-	}
-	
 	@Nullable
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return new ColorableBlockTile();
+		return new ColorableLightBlockTile();
 	}
-
+	
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		double d0 = (double)pos.getX() + 0.5D;
 		double d1 = (double)pos.getY() + 0.75D;
 		double d2 = (double)pos.getZ() + 0.5D;
 		worldIn.addParticle(ParticleTypes.SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
-		worldIn.addParticle(ParticleTypes.FLAME, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+		worldIn.addParticle((IParticleData) ParticleTypes.FLAME, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 	}
 	
 	@Override
@@ -127,9 +140,19 @@ public class Candle extends Block implements IColorableBlock {
 			if (item instanceof IDyeableColorPicker) {
 				IDyeableColorPicker colorpicker = (IDyeableColorPicker)item;
 				TileEntity tileentity = worldIn.getTileEntity(pos);
-				if (tileentity instanceof ColorableBlockTile) {
-					ColorableBlockTile candleTile = (ColorableBlockTile)tileentity;
+				if (tileentity instanceof ColorableLightBlockTile) {
+					ColorableLightBlockTile candleTile = (ColorableLightBlockTile)tileentity;
 					candleTile.setColor(colorpicker.getColor(itemstack));
+					return ActionResultType.SUCCESS;
+				} else {
+					return ActionResultType.FAIL;
+				}
+			} else if (item instanceof IDyeableLightColorPicker) {
+				IDyeableLightColorPicker colorpicker = (IDyeableLightColorPicker)item;
+				TileEntity tileentity = worldIn.getTileEntity(pos);
+				if (tileentity instanceof ColorableLightBlockTile) {
+					ColorableLightBlockTile candleTile = (ColorableLightBlockTile)tileentity;
+					candleTile.setLightColor(colorpicker.getColor(itemstack));
 					return ActionResultType.SUCCESS;
 				} else {
 					return ActionResultType.FAIL;
@@ -142,10 +165,24 @@ public class Candle extends Block implements IColorableBlock {
 
 	public static int getColor(BlockState blockState, IBlockDisplayReader blockReader, BlockPos pos) {
 		TileEntity tileEntity = blockReader.getTileEntity(pos);
-		if (tileEntity instanceof ColorableBlockTile) {
-			ColorableBlockTile candleTile = (ColorableBlockTile) tileEntity;
+		if (tileEntity instanceof ColorableLightBlockTile) {
+			ColorableLightBlockTile candleTile = (ColorableLightBlockTile) tileEntity;
 			return candleTile.getColor();
 		}
 		return 0xFFFFFF;
+	}
+
+	public static int getLightColor(IBlockDisplayReader blockReader, BlockPos pos) {
+		TileEntity tileEntity = blockReader.getTileEntity(pos);
+		if (tileEntity instanceof ColorableLightBlockTile) {
+			ColorableLightBlockTile candleTile = (ColorableLightBlockTile) tileEntity;
+			return candleTile.getLightColor();
+		}
+		return 0xFFFFFF;
+	}
+	
+	public Light produceColoredLight(BlockPos pos, BlockState state) {
+		int color = getLightColor(Minecraft.getInstance().world, pos);
+		return Light.builder().pos(pos).color(color, false).radius(7).build();
 	}
 }

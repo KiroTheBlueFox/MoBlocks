@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:oak_potion_shelf",
+    "moblocks:spruce_potion_shelf",
+    "moblocks:birch_potion_shelf",
+    "moblocks:jungle_potion_shelf",
+    "moblocks:acacia_potion_shelf",
+    "moblocks:dark_oak_potion_shelf",
+    "moblocks:nether_brick_potion_shelf",
+    "moblocks:crimson_potion_shelf",
+    "moblocks:warped_potion_shelf"
+  ]
+}

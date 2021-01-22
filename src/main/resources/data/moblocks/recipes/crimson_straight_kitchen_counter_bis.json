@@ -1,0 +1,12 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "moblocks:crimson_inner_corner_kitchen_counter"
+    }
+  ],
+  "result": {
+    "item": "moblocks:crimson_straight_kitchen_counter",
+    "count": 1
+  }
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/kitchen_counters/straight/straight",
+	"textures": {
+		"planks": "block/acacia_planks"
+	}
+}

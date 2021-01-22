@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G",
+    "L",
+    "M"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:white_stained_glass"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    },
+    "M": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "item": "moblocks:lava_lamp",
+    "count": 5
+  }
+}

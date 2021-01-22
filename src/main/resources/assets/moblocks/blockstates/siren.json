@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=up":  { "model": "moblocks:block/decoration/siren/siren", "uvlock": true },
+        "facing=down":  { "model": "moblocks:block/decoration/siren/siren", "x":180, "uvlock": true },
+        "facing=north":  { "model": "moblocks:block/decoration/siren/siren", "x":90, "uvlock": true },
+        "facing=south":  { "model": "moblocks:block/decoration/siren/siren", "x":90, "y":180, "uvlock": true },
+        "facing=east":  { "model": "moblocks:block/decoration/siren/siren", "x":90, "y":90, "uvlock": true },
+        "facing=west":  { "model": "moblocks:block/decoration/siren/siren", "x":90, "y":270, "uvlock": true }
+    }
+}

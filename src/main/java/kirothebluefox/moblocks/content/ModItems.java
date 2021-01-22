@@ -6,16 +6,6 @@ import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder(MoBlocks.MODID)
 public class ModItems {
-	/* Clay Balls */
-    public static final Item BLACK_CLAY_BALL = null;
-    public static final Item WHITE_CLAY_BALL = null;
-    public static final Item RED_CLAY_BALL = null;
-    public static final Item BROWN_CLAY_BALL = null;
-    public static final Item GRAY_CLAY_BALL = null;
-    public static final Item GRAVELISH_CLAY_BALL = null;
-    public static final Item BLUE_CLAY_BALL = null;
-    public static final Item GREEN_CLAY_BALL = null;
-    
     /* Lamp Shades */
     /* Square Cone */
     public static final Item WHITE_SQUARE_CONE_SHADE = null;
@@ -108,22 +98,22 @@ public class ModItems {
     public static final Item BLACK_TUBE_CUBE_SHADE = null;
     
     /* Tube Losange */
-    public static final Item WHITE_TUBE_LOSANGE_SHADE = null;
-    public static final Item ORANGE_TUBE_LOSANGE_SHADE = null;
-    public static final Item MAGENTA_TUBE_LOSANGE_SHADE = null;
-    public static final Item LIGHT_BLUE_TUBE_LOSANGE_SHADE = null;
-    public static final Item YELLOW_TUBE_LOSANGE_SHADE = null;
-    public static final Item LIME_TUBE_LOSANGE_SHADE = null;
-    public static final Item PINK_TUBE_LOSANGE_SHADE = null;
-    public static final Item GRAY_TUBE_LOSANGE_SHADE = null;
-    public static final Item LIGHT_GRAY_TUBE_LOSANGE_SHADE = null;
-    public static final Item CYAN_TUBE_LOSANGE_SHADE = null;
-    public static final Item PURPLE_TUBE_LOSANGE_SHADE = null;
-    public static final Item BLUE_TUBE_LOSANGE_SHADE = null;
-    public static final Item BROWN_TUBE_LOSANGE_SHADE = null;
-    public static final Item GREEN_TUBE_LOSANGE_SHADE = null;
-    public static final Item RED_TUBE_LOSANGE_SHADE = null;
-    public static final Item BLACK_TUBE_LOSANGE_SHADE = null;
+    public static final Item WHITE_TUBE_LOZENGE_SHADE = null;
+    public static final Item ORANGE_TUBE_LOZENGE_SHADE = null;
+    public static final Item MAGENTA_TUBE_LOZENGE_SHADE = null;
+    public static final Item LIGHT_BLUE_TUBE_LOZENGE_SHADE = null;
+    public static final Item YELLOW_TUBE_LOZENGE_SHADE = null;
+    public static final Item LIME_TUBE_LOZENGE_SHADE = null;
+    public static final Item PINK_TUBE_LOZENGE_SHADE = null;
+    public static final Item GRAY_TUBE_LOZENGE_SHADE = null;
+    public static final Item LIGHT_GRAY_TUBE_LOZENGE_SHADE = null;
+    public static final Item CYAN_TUBE_LOZENGE_SHADE = null;
+    public static final Item PURPLE_TUBE_LOZENGE_SHADE = null;
+    public static final Item BLUE_TUBE_LOZENGE_SHADE = null;
+    public static final Item BROWN_TUBE_LOZENGE_SHADE = null;
+    public static final Item GREEN_TUBE_LOZENGE_SHADE = null;
+    public static final Item RED_TUBE_LOZENGE_SHADE = null;
+    public static final Item BLACK_TUBE_LOZENGE_SHADE = null;
     
     /* Pyramid */
     public static final Item WHITE_PYRAMID_SHADE = null;
@@ -181,5 +171,6 @@ public class ModItems {
     
     /* Others */
     public static final Item CUSTOM_COLOR_PICKER = null;
+    public static final Item CUSTOM_LIGHT_COLOR_PICKER = null;
 	public static final Item BLOCK_COLORER = null;
 }

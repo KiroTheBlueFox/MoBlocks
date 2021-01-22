@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GR",
+    "BO",
+    "SL"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:red_dye"
+    },
+    "O": {
+      "item": "minecraft:orange_dye"
+    },
+    "L": {
+      "item": "minecraft:green_dye"
+    },
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "B": {
+      "item": "minecraft:black_concrete"
+    },
+    "S": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "moblocks:signal_tower_light",
+    "count": 3
+  }
+}

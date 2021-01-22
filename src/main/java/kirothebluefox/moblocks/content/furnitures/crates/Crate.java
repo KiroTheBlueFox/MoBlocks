@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
@@ -24,7 +25,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -160,12 +161,6 @@ public class Crate extends Block implements IWaterLoggable {
 				if (!player.isSneaking()) {
 					ItemStack itemstack = player.getHeldItem(handIn);
 					cratetileentity.addItem(itemstack, slot, player, handIn);
-				} else {
-					ItemStack item = cratetileentity.getItem(slot);
-	            	if (!item.isEmpty())
-	            		player.sendStatusMessage(new TranslationTextComponent("status_messages.moblocks.containers.quantity", new TranslationTextComponent(item.getTranslationKey()).deepCopy(), item.getCount()), true);
-	            	else
-	            		cratetileentity.nextLayer();
 				}
 			} else { 
 				if (player.isSneaking()) {
@@ -237,5 +232,125 @@ public class Crate extends Block implements IWaterLoggable {
 		default:
 			return false;
 		}
+	}
+
+	public ItemStack getItemAtHit(ClientWorld worldIn, BlockState state, Vector3d hit, BlockPos pos) {
+		Direction direction = state.get(FACING);
+		int slot;
+		double x = hit.getX() - pos.getX();
+		double z = hit.getZ() - pos.getZ();
+		switch (direction) {
+		case NORTH:
+			if (x >= 0.125 && x < 0.3125) {
+				slot = 0;
+			} else if (x >= 0.3125 && x < 0.5) {
+				slot = 1;
+			} else if (x >= 0.5 && x < 0.6875) {
+				slot = 2;
+			} else if (x >= 0.6875 && x <= 0.875) {
+				slot = 3;
+			} else {
+				slot = -1;
+			}
+			if (slot >= 0 && slot < 16) {
+				if (z >= 0.125 && z < 0.3125) {
+				} else if (z >= 0.3125 && z < 0.5) {
+					slot += 4;
+				} else if (z >= 0.5 && z < 0.6875) {
+					slot += 8;
+				} else if (z >= 0.6875 && z <= 0.875) {
+					slot += 12;
+				} else {
+					slot = -1;
+				}
+			}
+			break;
+		case SOUTH:
+			if (x >= 0.125 && x < 0.3125) {
+				slot = 3;
+			} else if (x >= 0.3125 && x < 0.5) {
+				slot = 2;
+			} else if (x >= 0.5 && x < 0.6875) {
+				slot = 1;
+			} else if (x >= 0.6875 && x <= 0.875) {
+				slot = 0;
+			} else {
+				slot = -1;
+			}
+			if (slot >= 0 && slot < 16) {
+				if (z >= 0.125 && z < 0.3125) {
+					slot += 12;
+				} else if (z >= 0.3125 && z < 0.5) {
+					slot += 8;
+				} else if (z >= 0.5 && z < 0.6875) {
+					slot += 4;
+				} else if (z >= 0.6875 && z <= 0.875) {
+				} else {
+					slot = -1;
+				}
+			}
+			break;
+		case EAST:
+			if (z >= 0.125 && z < 0.3125) {
+				slot = 0;
+			} else if (z >= 0.3125 && z < 0.5) {
+				slot = 1;
+			} else if (z >= 0.5 && z < 0.6875) {
+				slot = 2;
+			} else if (z >= 0.6875 && z <= 0.875) {
+				slot = 3;
+			} else {
+				slot = -1;
+			}
+			if (slot >= 0 && slot < 16) {
+				if (x >= 0.125 && x < 0.3125) {
+				} else if (x >= 0.3125 && x < 0.5) {
+					slot += 4;
+				} else if (x >= 0.5 && x < 0.6875) {
+					slot += 8;
+				} else if (x >= 0.6875 && x <= 0.875) {
+					slot += 12;
+				} else {
+					slot = -1;
+				}
+			}
+			break;
+		case WEST:
+			if (z >= 0.125 && z < 0.3125) {
+				slot = 3;
+			} else if (z >= 0.3125 && z < 0.5) {
+				slot = 2;
+			} else if (z >= 0.5 && z < 0.6875) {
+				slot = 1;
+			} else if (z >= 0.6875 && z <= 0.875) {
+				slot = 0;
+			} else {
+				slot = -1;
+			}
+			if (slot >= 0 && slot < 16) {
+				if (x >= 0.125 && x < 0.3125) {
+					slot += 12;
+				} else if (x >= 0.3125 && x < 0.5) {
+					slot += 8;
+				} else if (x >= 0.5 && x < 0.6875) {
+					slot += 4;
+				} else if (x >= 0.6875 && x <= 0.875) {
+				} else {
+					slot = -1;
+				}
+			}
+			break;
+		default:
+			slot = 0;
+			break;
+		}
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+		if (tileentity instanceof CrateTile) {
+			CrateTile cratetileentity = (CrateTile)tileentity;
+			if (slot >= 0 && slot < 16) {
+				return cratetileentity.getItem(slot);
+			}
+		}
+		return ItemStack.EMPTY;
 	}
 }

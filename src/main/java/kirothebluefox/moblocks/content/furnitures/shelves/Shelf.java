@@ -9,6 +9,7 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
@@ -29,6 +30,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
@@ -84,8 +86,8 @@ public class Shelf extends Block implements IWaterLoggable {
 	
 	@Override
 	public void addInformation(ItemStack stack, IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shelves.place_item").func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shelves.info_item").func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
+		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shelves.place_item").setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
+		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shelves.info_item").setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 	
@@ -124,15 +126,11 @@ public class Shelf extends Block implements IWaterLoggable {
 			break;
 		}
 		TileEntity tileentity = worldIn.getTileEntity(pos);
-		if (tileentity instanceof ShelfTile) {
+		if (tileentity instanceof ShelfTile && slot >= 0 && slot <= 3) {
 			ShelfTile shelftileentity = (ShelfTile)tileentity;
 			if (!player.isSneaking()) {
 				ItemStack itemstack = player.getHeldItem(handIn);
             	shelftileentity.addItem(itemstack, slot, player, handIn);
-			} else {
-            	ItemStack item = shelftileentity.getItem(slot);
-            	if (!item.isEmpty())
-            		player.sendStatusMessage(new TranslationTextComponent("status_messages.moblocks.containers.quantity", new TranslationTextComponent(item.getTranslationKey()).deepCopy(), item.getCount()), true);
 			}
 		}
 		return ActionResultType.SUCCESS;
@@ -175,5 +173,33 @@ public class Shelf extends Block implements IWaterLoggable {
 		default:
 			return false;
 		}
+	}
+
+	public ItemStack getItemAtHit(ClientWorld worldIn, BlockState state, Vector3d hit, BlockPos pos) {
+		Direction direction = state.get(FACING);
+		int slot;
+		switch (direction) {
+		case NORTH:
+			slot = (int) ((hit.getX()-pos.getX())*4);
+			break;
+		case SOUTH:
+			slot = (int) (4-(hit.getX()-pos.getX())*4);
+			break;
+		case EAST:
+			slot = (int) ((hit.getZ()-pos.getZ())*4);
+			break;
+		case WEST:
+			slot = (int) (4-(hit.getZ()-pos.getZ())*4);
+			break;
+		default:
+			slot = 0;
+			break;
+		}
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+		if (tileentity instanceof ShelfTile && slot >= 0 && slot <= 3) {
+			ShelfTile shelftileentity = (ShelfTile)tileentity;
+			return shelftileentity.getItem(slot);
+		}
+		return ItemStack.EMPTY;
 	}
 }

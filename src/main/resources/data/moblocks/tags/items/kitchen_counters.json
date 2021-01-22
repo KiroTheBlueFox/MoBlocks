@@ -1,0 +1,32 @@
+{
+  "replace": false,
+  "values": [
+    "moblocks:oak_straight_kitchen_counter",
+    "moblocks:spruce_straight_kitchen_counter",
+    "moblocks:birch_straight_kitchen_counter",
+    "moblocks:jungle_straight_kitchen_counter",
+    "moblocks:acacia_straight_kitchen_counter",
+    "moblocks:dark_oak_straight_kitchen_counter",
+    "moblocks:crimson_straight_kitchen_counter",
+    "moblocks:warped_straight_kitchen_counter",
+    "moblocks:colorable_straight_kitchen_counter",
+    "moblocks:oak_inner_corner_kitchen_counter",
+    "moblocks:spruce_inner_corner_kitchen_counter",
+    "moblocks:birch_inner_corner_kitchen_counter",
+    "moblocks:jungle_inner_corner_kitchen_counter",
+    "moblocks:acacia_inner_corner_kitchen_counter",
+    "moblocks:dark_oak_inner_corner_kitchen_counter",
+    "moblocks:crimson_inner_corner_kitchen_counter",
+    "moblocks:warped_inner_corner_kitchen_counter",
+    "moblocks:colorable_inner_corner_kitchen_counter",
+    "moblocks:oak_outer_corner_kitchen_counter",
+    "moblocks:spruce_outer_corner_kitchen_counter",
+    "moblocks:birch_outer_corner_kitchen_counter",
+    "moblocks:jungle_outer_corner_kitchen_counter",
+    "moblocks:acacia_outer_corner_kitchen_counter",
+    "moblocks:dark_oak_outer_corner_kitchen_counter",
+    "moblocks:crimson_outer_corner_kitchen_counter",
+    "moblocks:warped_outer_corner_kitchen_counter",
+    "moblocks:colorable_outer_corner_kitchen_counter"
+  ]
+}

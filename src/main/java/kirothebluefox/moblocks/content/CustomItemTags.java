@@ -1,39 +1,39 @@
 package kirothebluefox.moblocks.content;
 
-import java.util.Set;
+import java.util.List;
 
 import net.minecraft.item.Item;
 import net.minecraft.tags.ITag;
-import net.minecraft.tags.TagCollection;
+import net.minecraft.tags.ITagCollection;
+import net.minecraft.tags.ITagCollectionSupplier;
 import net.minecraft.tags.TagRegistry;
+import net.minecraft.tags.TagRegistryManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class CustomItemTags {
-	private static final TagRegistry<Item> collection = new TagRegistry<>();
+	   protected static final TagRegistry<Item> collection = TagRegistryManager.create(new ResourceLocation("item"), ITagCollectionSupplier::getItemTags);
 	
 	public static final ITag.INamedTag<Item> LAMP_SHADES = makeWrapperTag("lamp_shades");
 	public static final ITag.INamedTag<Item> BOOK_ITEMS = makeWrapperTag("book_items");
-	
-	public static ITag.INamedTag<Item> makeWrapperTag(String p_199901_0_) {
-		return collection.func_232937_a_(p_199901_0_);
-	}
+	public static final ITag.INamedTag<Item> POTION_ITEMS = makeWrapperTag("potion_items");
 
-	public static void setCollection(TagCollection<Item> collectionIn) {
-		collection.func_232935_a_(collectionIn);
-	}
+	   public static ITag.INamedTag<Item> makeWrapperTag(String id) {
+	      return collection.createTag(id);
+	   }
 
-	@OnlyIn(Dist.CLIENT)
-	public static void func_232915_a_() {
-		collection.func_232932_a_();
-	}
+	   public static net.minecraftforge.common.Tags.IOptionalNamedTag<Item> createOptional(ResourceLocation name) {
+	       return createOptional(name, null);
+	   }
 
-	public static TagCollection<Item> getCollection() {
-		return collection.func_232939_b_();
-   	}
+	   public static net.minecraftforge.common.Tags.IOptionalNamedTag<Item> createOptional(ResourceLocation name, @javax.annotation.Nullable java.util.Set<java.util.function.Supplier<Item>> defaults) {
+	      return collection.createOptional(name, defaults);
+	   }
 
-	public static Set<ResourceLocation> func_232917_b_(TagCollection<Item> p_232917_0_) {
-		return collection.func_232940_b_(p_232917_0_);
-	}
+	   public static ITagCollection<Item> getCollection() {
+	      return collection.getCollection();
+	   }
+
+	   public static List<? extends ITag.INamedTag<Item>> getAllTags() {
+	      return collection.getTags();
+	   }
 }

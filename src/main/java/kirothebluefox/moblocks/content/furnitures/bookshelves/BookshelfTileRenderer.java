@@ -50,7 +50,7 @@ public class BookshelfTileRenderer extends TileEntityRenderer<BookshelfTile> {
 				ItemStack itemstack = tileEntityIn.getItem(layer, stackIndex);
 				matrixStackIn.push();
 				if (!itemstack.isEmpty()) {
-					matrixStackIn.translate(0, (layer == 0 ? 0.25 : -0.25)+((1-tileEntityIn.getSizes()[layer][stackIndex])/4), 0);
+					matrixStackIn.translate(0, (layer == 0 ? 0.25 : -0.25), 0);
 			        switch (direction) {
 			        case NORTH:
 			        	matrixStackIn.rotate(Vector3f.YP.rotationDegrees(180F));
@@ -70,7 +70,7 @@ public class BookshelfTileRenderer extends TileEntityRenderer<BookshelfTile> {
 					default:
 						break;
 			        }
-			        matrixStackIn.scale((float) bookWidth, (float) tileEntityIn.getSizes()[layer][stackIndex], 1F);
+			        matrixStackIn.scale((float) bookWidth, 1F, 1F);
 		            matrixStackIn.translate((1-bookWidth)/2, 0, 0);
 		            
 		            BlockState blockstate = tileEntityIn.getBlockState();
@@ -102,7 +102,7 @@ public class BookshelfTileRenderer extends TileEntityRenderer<BookshelfTile> {
 				ItemStack itemstack = tileEntityIn.getItem(layer, stackIndex);
 				matrixStackIn.push();
 				if (!itemstack.isEmpty()) {
-					matrixStackIn.translate(0, (layer == 0 ? 0.25 : -0.25)+((1-tileEntityIn.getSizes()[layer][stackIndex])/4), 0);
+					matrixStackIn.translate(0, (layer == 0 ? 0.25 : -0.25), 0);
 			        switch (direction) {
 			        case NORTH:
 			        	matrixStackIn.rotate(Vector3f.YP.rotationDegrees(180F));
@@ -122,7 +122,7 @@ public class BookshelfTileRenderer extends TileEntityRenderer<BookshelfTile> {
 					default:
 						break;
 			        }
-			        matrixStackIn.scale((float) bookWidth, (float) tileEntityIn.getSizes()[layer][stackIndex], 1F);
+			        matrixStackIn.scale((float) bookWidth, 1F, 1F);
 		            matrixStackIn.translate((1-bookWidth)/2, 0, 0);
 		            
 					BlockState blockstate = tileEntityIn.getBlockState();

@@ -20,17 +20,17 @@ public class DoubleDrawerContainerScreen extends ContainerScreen<DoubleDrawerCon
 	public void render(MatrixStack matrixStackIn, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(matrixStackIn);
 		super.render(matrixStackIn, mouseX, mouseY, partialTicks);
-		this.func_230459_a_(matrixStackIn, mouseX, mouseY);
+		this.renderHoveredTooltip(matrixStackIn, mouseX, mouseY);
 	}
 
 	@Override
-	protected void func_230451_b_(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
-		this.font.func_238422_b_(p_230451_1_, this.title, (float)this.field_238742_p_, (float)this.field_238743_q_, 4210752);
-		this.font.func_238422_b_(p_230451_1_, this.playerInventory.getDisplayName(), (float)this.field_238744_r_, 104.0F, 4210752);
+	protected void drawGuiContainerForegroundLayer(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
+		this.font.drawString(p_230451_1_, this.title.getString(), (float)this.titleX, (float)this.titleY, 4210752);
+		this.font.drawString(p_230451_1_, this.playerInventory.getDisplayName().getString(), (float)this.playerInventoryTitleX, 104.0F, 4210752);
 	}
 
 	@Override
-	protected void func_230450_a_(MatrixStack matrixStackIn, float partialTicks, int mouseX, int mouseY) {
+	protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStackIn, float partialTicks, int mouseX, int mouseY) {
 		this.getMinecraft().getTextureManager().bindTexture(GUI);
 		int relX = (this.width - this.xSize)/2;
 		int relY = (this.height - this.ySize)/2;

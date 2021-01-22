@@ -37,9 +37,9 @@ public class ShadeItem extends Item {
 	
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shades.color", new TranslationTextComponent("item.moblocks.shades.colors."+this.color.getName()).func_240703_c_(Style.EMPTY.setColor(this.color.getColor()))).func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shades.shape", new TranslationTextComponent("item.moblocks.shades.shapes."+this.shape)).func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shades.place").func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
+		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shades.color", new TranslationTextComponent("item.moblocks.shades.colors."+this.color.getName()).setStyle(Style.EMPTY.setColor(this.color.getColor()))).setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
+		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shades.shape", new TranslationTextComponent("item.moblocks.shades.shapes."+this.shape)).setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
+		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shades.place").setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 	
@@ -83,7 +83,7 @@ public class ShadeItem extends Item {
 		}
 		
 		public net.minecraft.util.text.Color getColor() {
-			return net.minecraft.util.text.Color.func_240743_a_(this.color);
+			return net.minecraft.util.text.Color.fromInt(this.color);
 		}
 		
 		public int getColorValue() {

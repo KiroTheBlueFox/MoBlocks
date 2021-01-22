@@ -8,6 +8,7 @@ import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableBlockT
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableGlass;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableGlassPane;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableInvertedArch;
+import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableLightBlockTile;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableLowerSmallArch;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableLowerSmallInvertedArch;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorablePillar;
@@ -20,6 +21,7 @@ import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableUpperS
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableUpperSmallInvertedArch;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableVerticalSlab;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableVerticalStairs;
+import kirothebluefox.moblocks.content.decoration.colorableblock.InkBlock;
 import kirothebluefox.moblocks.content.decoration.colorableflowerpot.ColorableFlowerPot;
 import kirothebluefox.moblocks.content.decoration.colorableflowerpot.ColorableFlowerPotTile;
 import kirothebluefox.moblocks.content.decoration.colorablefurnitures.Candle;
@@ -30,6 +32,20 @@ import kirothebluefox.moblocks.content.decoration.colorablefurnitures.ColorableR
 import kirothebluefox.moblocks.content.decoration.colorablefurnitures.ColorableSofa;
 import kirothebluefox.moblocks.content.decoration.colorablefurnitures.ColorableTable;
 import kirothebluefox.moblocks.content.decoration.customcolorpicker.CustomColorPicker;
+import kirothebluefox.moblocks.content.decoration.customcolorpicker.CustomLightColorPicker;
+import kirothebluefox.moblocks.content.decoration.lighting.eyeballlamp.EyeballLamp;
+import kirothebluefox.moblocks.content.decoration.lighting.eyeballlamp.EyeballLampTile;
+import kirothebluefox.moblocks.content.decoration.lighting.lavalamp.LavaLamp;
+import kirothebluefox.moblocks.content.decoration.lighting.lavalamp.LavaLampTile;
+import kirothebluefox.moblocks.content.decoration.lighting.neonblock.GlowingNeonBlock;
+import kirothebluefox.moblocks.content.decoration.lighting.neonblock.NeonBlock;
+import kirothebluefox.moblocks.content.decoration.lighting.neonblock.NeonBlockTile;
+import kirothebluefox.moblocks.content.decoration.lighting.rainbowblock.RainbowBlock;
+import kirothebluefox.moblocks.content.decoration.lighting.rainbowblock.RainbowBlockTile;
+import kirothebluefox.moblocks.content.decoration.lighting.signaltowerlight.SignalTowerLight;
+import kirothebluefox.moblocks.content.decoration.lighting.signaltowerlight.SignalTowerLightTile;
+import kirothebluefox.moblocks.content.decoration.lighting.siren.Siren;
+import kirothebluefox.moblocks.content.decoration.lighting.siren.SirenTile;
 import kirothebluefox.moblocks.content.furnitures.Carpet;
 import kirothebluefox.moblocks.content.furnitures.Chair;
 import kirothebluefox.moblocks.content.furnitures.CoffeeTable;
@@ -47,9 +63,18 @@ import kirothebluefox.moblocks.content.furnitures.drawers.doubles.DoubleDrawerTi
 import kirothebluefox.moblocks.content.furnitures.drawers.simples.SimpleDrawer;
 import kirothebluefox.moblocks.content.furnitures.drawers.simples.SimpleDrawerContainer;
 import kirothebluefox.moblocks.content.furnitures.drawers.simples.SimpleDrawerTile;
+import kirothebluefox.moblocks.content.furnitures.kitchencounters.InnerCornerKitchenCounter;
+import kirothebluefox.moblocks.content.furnitures.kitchencounters.OuterCornerKitchenCounter;
+import kirothebluefox.moblocks.content.furnitures.kitchencounters.StraightKitchenCounter;
+import kirothebluefox.moblocks.content.furnitures.kitchencounters.colorable.ColorableInnerCornerKitchenCounter;
+import kirothebluefox.moblocks.content.furnitures.kitchencounters.colorable.ColorableKitchenCounterTile;
+import kirothebluefox.moblocks.content.furnitures.kitchencounters.colorable.ColorableOuterCornerKitchenCounter;
+import kirothebluefox.moblocks.content.furnitures.kitchencounters.colorable.ColorableStraightKitchenCounter;
 import kirothebluefox.moblocks.content.furnitures.lamps.LampTile;
 import kirothebluefox.moblocks.content.furnitures.lamps.ShadeItem;
 import kirothebluefox.moblocks.content.furnitures.lamps.SmallLamp;
+import kirothebluefox.moblocks.content.furnitures.potionshelves.PotionShelf;
+import kirothebluefox.moblocks.content.furnitures.potionshelves.PotionShelfTile;
 import kirothebluefox.moblocks.content.furnitures.shelves.Shelf;
 import kirothebluefox.moblocks.content.furnitures.shelves.ShelfTile;
 import kirothebluefox.moblocks.content.specialblocks.ArchBlock;
@@ -676,6 +701,52 @@ public class RegistrationHandler {
         block.getRegistry().register(new Bookshelf(Blocks.CRIMSON_PLANKS).setRegistryName(MoBlocks.MODID, "crimson_bookshelf"));
         block.getRegistry().register(new Bookshelf(Blocks.WARPED_PLANKS).setRegistryName(MoBlocks.MODID, "warped_bookshelf"));
         
+        /* Potion Shelves */
+        block.getRegistry().register(new PotionShelf(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_potion_shelf"));
+        block.getRegistry().register(new PotionShelf(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_potion_shelf"));
+        block.getRegistry().register(new PotionShelf(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_potion_shelf"));
+        block.getRegistry().register(new PotionShelf(Blocks.JUNGLE_PLANKS).setRegistryName(MoBlocks.MODID, "jungle_potion_shelf"));
+        block.getRegistry().register(new PotionShelf(Blocks.ACACIA_PLANKS).setRegistryName(MoBlocks.MODID, "acacia_potion_shelf"));
+        block.getRegistry().register(new PotionShelf(Blocks.DARK_OAK_PLANKS).setRegistryName(MoBlocks.MODID, "dark_oak_potion_shelf"));
+        block.getRegistry().register(new PotionShelf(Blocks.NETHER_BRICKS).setRegistryName(MoBlocks.MODID, "nether_brick_potion_shelf"));
+        block.getRegistry().register(new PotionShelf(Blocks.CRIMSON_PLANKS).setRegistryName(MoBlocks.MODID, "crimson_potion_shelf"));
+        block.getRegistry().register(new PotionShelf(Blocks.WARPED_PLANKS).setRegistryName(MoBlocks.MODID, "warped_potion_shelf"));
+        
+        /* Straight Kitchen Counters */
+        block.getRegistry().register(new StraightKitchenCounter(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_straight_kitchen_counter"));
+        block.getRegistry().register(new StraightKitchenCounter(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_straight_kitchen_counter"));
+        block.getRegistry().register(new StraightKitchenCounter(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_straight_kitchen_counter"));
+        block.getRegistry().register(new StraightKitchenCounter(Blocks.JUNGLE_PLANKS).setRegistryName(MoBlocks.MODID, "jungle_straight_kitchen_counter"));
+        block.getRegistry().register(new StraightKitchenCounter(Blocks.ACACIA_PLANKS).setRegistryName(MoBlocks.MODID, "acacia_straight_kitchen_counter"));
+        block.getRegistry().register(new StraightKitchenCounter(Blocks.DARK_OAK_PLANKS).setRegistryName(MoBlocks.MODID, "dark_oak_straight_kitchen_counter"));
+        block.getRegistry().register(new StraightKitchenCounter(Blocks.CRIMSON_PLANKS).setRegistryName(MoBlocks.MODID, "crimson_straight_kitchen_counter"));
+        block.getRegistry().register(new StraightKitchenCounter(Blocks.WARPED_PLANKS).setRegistryName(MoBlocks.MODID, "warped_straight_kitchen_counter"));
+        block.getRegistry().register(new ColorableStraightKitchenCounter(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "colorable_straight_kitchen_counter"));
+
+        /* Inner Corner Kitchen Counters */
+        block.getRegistry().register(new InnerCornerKitchenCounter(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_inner_corner_kitchen_counter"));
+        block.getRegistry().register(new InnerCornerKitchenCounter(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_inner_corner_kitchen_counter"));
+        block.getRegistry().register(new InnerCornerKitchenCounter(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_inner_corner_kitchen_counter"));
+        block.getRegistry().register(new InnerCornerKitchenCounter(Blocks.JUNGLE_PLANKS).setRegistryName(MoBlocks.MODID, "jungle_inner_corner_kitchen_counter"));
+        block.getRegistry().register(new InnerCornerKitchenCounter(Blocks.ACACIA_PLANKS).setRegistryName(MoBlocks.MODID, "acacia_inner_corner_kitchen_counter"));
+        block.getRegistry().register(new InnerCornerKitchenCounter(Blocks.DARK_OAK_PLANKS).setRegistryName(MoBlocks.MODID, "dark_oak_inner_corner_kitchen_counter"));
+        block.getRegistry().register(new InnerCornerKitchenCounter(Blocks.CRIMSON_PLANKS).setRegistryName(MoBlocks.MODID, "crimson_inner_corner_kitchen_counter"));
+        block.getRegistry().register(new InnerCornerKitchenCounter(Blocks.WARPED_PLANKS).setRegistryName(MoBlocks.MODID, "warped_inner_corner_kitchen_counter"));
+        block.getRegistry().register(new ColorableInnerCornerKitchenCounter(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "colorable_inner_corner_kitchen_counter"));
+
+        /* Outer Corner Kitchen Counters */
+        block.getRegistry().register(new OuterCornerKitchenCounter(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_outer_corner_kitchen_counter"));
+        block.getRegistry().register(new OuterCornerKitchenCounter(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_outer_corner_kitchen_counter"));
+        block.getRegistry().register(new OuterCornerKitchenCounter(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_outer_corner_kitchen_counter"));
+        block.getRegistry().register(new OuterCornerKitchenCounter(Blocks.JUNGLE_PLANKS).setRegistryName(MoBlocks.MODID, "jungle_outer_corner_kitchen_counter"));
+        block.getRegistry().register(new OuterCornerKitchenCounter(Blocks.ACACIA_PLANKS).setRegistryName(MoBlocks.MODID, "acacia_outer_corner_kitchen_counter"));
+        block.getRegistry().register(new OuterCornerKitchenCounter(Blocks.DARK_OAK_PLANKS).setRegistryName(MoBlocks.MODID, "dark_oak_outer_corner_kitchen_counter"));
+        block.getRegistry().register(new OuterCornerKitchenCounter(Blocks.CRIMSON_PLANKS).setRegistryName(MoBlocks.MODID, "crimson_outer_corner_kitchen_counter"));
+        block.getRegistry().register(new OuterCornerKitchenCounter(Blocks.WARPED_PLANKS).setRegistryName(MoBlocks.MODID, "warped_outer_corner_kitchen_counter"));
+        block.getRegistry().register(new ColorableOuterCornerKitchenCounter(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "colorable_outer_corner_kitchen_counter"));
+        
+        
+        
         /* Candles */
         block.getRegistry().register(new Candle().setRegistryName(MoBlocks.MODID, "candle"));
         
@@ -788,6 +859,15 @@ public class RegistrationHandler {
         block.getRegistry().register(new ColorablePillar(Blocks.COBBLESTONE).setRegistryName(MoBlocks.MODID, "colorable_cobblestone_pillar"));
         block.getRegistry().register(new ColorableTriangleRamp(Blocks.COBBLESTONE).setRegistryName(MoBlocks.MODID, "colorable_cobblestone_triangle_ramp"));
         block.getRegistry().register(new ColorableRamp(Blocks.COBBLESTONE, Blocks.COBBLESTONE.getDefaultState()).setRegistryName(MoBlocks.MODID, "colorable_cobblestone_ramp"));
+
+        block.getRegistry().register(new NeonBlock(Blocks.WHITE_CONCRETE).setRegistryName(MoBlocks.MODID, "neon_block"));
+        block.getRegistry().register(new GlowingNeonBlock(Blocks.WHITE_CONCRETE).setRegistryName(MoBlocks.MODID, "glowing_neon_block"));
+        block.getRegistry().register(new RainbowBlock(Blocks.WHITE_CONCRETE).setRegistryName(MoBlocks.MODID, "rainbow_block"));
+        block.getRegistry().register(new LavaLamp().setRegistryName(MoBlocks.MODID, "lava_lamp"));
+        block.getRegistry().register(new Siren().setRegistryName(MoBlocks.MODID, "siren"));
+        block.getRegistry().register(new SignalTowerLight(0xFF0000, 0xFF7F00, 0x00FF00).setRegistryName(MoBlocks.MODID, "signal_tower_light"));
+        block.getRegistry().register(new EyeballLamp(Blocks.SKELETON_SKULL).setRegistryName(MoBlocks.MODID, "eyeball_lamp"));
+        block.getRegistry().register(new InkBlock(Blocks.HONEY_BLOCK).setRegistryName(MoBlocks.MODID, "ink_block"));
         
         
         
@@ -1470,23 +1550,23 @@ public class RegistrationHandler {
         item.getRegistry().register(new ShadeItem(ShadeItem.Color.RED, "tube_cube", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "red_tube_cube_shade"));
         item.getRegistry().register(new ShadeItem(ShadeItem.Color.BLACK, "tube_cube", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "black_tube_cube_shade"));
         
-        /* Tube Losange */
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.WHITE, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "white_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.ORANGE, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "orange_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.MAGENTA, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "magenta_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.LIGHT_BLUE, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "light_blue_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.YELLOW, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "yellow_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.LIME, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "lime_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.PINK, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "pink_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.GRAY, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "gray_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.LIGHT_GRAY, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "light_gray_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.CYAN, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "cyan_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.PURPLE, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "purple_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.BLUE, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "blue_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.BROWN, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "brown_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.GREEN, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "green_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.RED, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "red_tube_losange_shade"));
-        item.getRegistry().register(new ShadeItem(ShadeItem.Color.BLACK, "tube_losange", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "black_tube_losange_shade"));
+        /* Lozenge Tube */
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.WHITE, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "white_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.ORANGE, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "orange_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.MAGENTA, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "magenta_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.LIGHT_BLUE, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "light_blue_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.YELLOW, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "yellow_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.LIME, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "lime_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.PINK, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "pink_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.GRAY, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "gray_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.LIGHT_GRAY, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "light_gray_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.CYAN, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "cyan_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.PURPLE, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "purple_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.BLUE, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "blue_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.BROWN, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "brown_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.GREEN, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "green_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.RED, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "red_tube_lozenge_shade"));
+        item.getRegistry().register(new ShadeItem(ShadeItem.Color.BLACK, "tube_lozenge", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "black_tube_lozenge_shade"));
         
         /* Pyramid */
         item.getRegistry().register(new ShadeItem(ShadeItem.Color.WHITE, "pyramid", (new Item.Properties()).group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "white_pyramid_shade"));
@@ -1597,12 +1677,59 @@ public class RegistrationHandler {
         item.getRegistry().register(new BlockItem(ModBlocks.NETHER_BRICK_BOOKSHELF, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "nether_brick_bookshelf"));
         item.getRegistry().register(new BlockItem(ModBlocks.CRIMSON_BOOKSHELF, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "crimson_bookshelf"));
         item.getRegistry().register(new BlockItem(ModBlocks.WARPED_BOOKSHELF, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "warped_bookshelf"));
+        
+        /* Potion Shelves */
+        item.getRegistry().register(new BlockItem(ModBlocks.OAK_POTION_SHELF, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_potion_shelf"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_POTION_SHELF, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_potion_shelf"));
+        item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_POTION_SHELF, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_potion_shelf"));
+        item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_POTION_SHELF, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_potion_shelf"));
+        item.getRegistry().register(new BlockItem(ModBlocks.ACACIA_POTION_SHELF, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "acacia_potion_shelf"));
+        item.getRegistry().register(new BlockItem(ModBlocks.DARK_OAK_POTION_SHELF, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "dark_oak_potion_shelf"));
+        item.getRegistry().register(new BlockItem(ModBlocks.NETHER_BRICK_POTION_SHELF, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "nether_brick_potion_shelf"));
+        item.getRegistry().register(new BlockItem(ModBlocks.CRIMSON_POTION_SHELF, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "crimson_potion_shelf"));
+        item.getRegistry().register(new BlockItem(ModBlocks.WARPED_POTION_SHELF, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "warped_potion_shelf"));
 
+        /* Straight Kitchen Counter */
+        item.getRegistry().register(new BlockItem(ModBlocks.OAK_STRAIGHT_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_straight_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_STRAIGHT_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_straight_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_STRAIGHT_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_straight_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_STRAIGHT_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_straight_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.ACACIA_STRAIGHT_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "acacia_straight_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.DARK_OAK_STRAIGHT_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "dark_oak_straight_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.CRIMSON_STRAIGHT_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "crimson_straight_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.WARPED_STRAIGHT_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "warped_straight_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.COLORABLE_STRAIGHT_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "colorable_straight_kitchen_counter"));
+
+        /* Inner Corner Kitchen Counter */
+        item.getRegistry().register(new BlockItem(ModBlocks.OAK_INNER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_inner_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_INNER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_inner_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_INNER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_inner_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_INNER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_inner_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.ACACIA_INNER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "acacia_inner_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.DARK_OAK_INNER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "dark_oak_inner_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.CRIMSON_INNER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "crimson_inner_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.WARPED_INNER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "warped_inner_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.COLORABLE_INNER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "colorable_inner_corner_kitchen_counter"));
+
+        /* Outer Corner Kitchen Counter */
+        item.getRegistry().register(new BlockItem(ModBlocks.OAK_OUTER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_outer_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_OUTER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_outer_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_OUTER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_outer_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_OUTER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_outer_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.ACACIA_OUTER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "acacia_outer_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.DARK_OAK_OUTER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "dark_oak_outer_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.CRIMSON_OUTER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "crimson_outer_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.WARPED_OUTER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "warped_outer_corner_kitchen_counter"));
+        item.getRegistry().register(new BlockItem(ModBlocks.COLORABLE_OUTER_CORNER_KITCHEN_COUNTER, new Item.Properties().group(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "colorable_outer_corner_kitchen_counter"));
+
+
+        
         /* Candles */
         item.getRegistry().register(new BlockItem(ModBlocks.CANDLE, new Item.Properties().group(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "candle"));
         
         /* Colorable Blocks */
         item.getRegistry().register(new CustomColorPicker((new Item.Properties()).group(MoBlocks.decoration_creative_tab).maxStackSize(1)).setRegistryName(MoBlocks.MODID, "custom_color_picker"));
+        item.getRegistry().register(new CustomLightColorPicker((new Item.Properties()).group(MoBlocks.decoration_creative_tab).maxStackSize(1)).setRegistryName(MoBlocks.MODID, "custom_light_color_picker"));
         item.getRegistry().register(new BlockColorer((new Item.Properties()).group(MoBlocks.decoration_creative_tab).containerItem(ModItems.BLOCK_COLORER).maxStackSize(1)).setRegistryName(MoBlocks.MODID, "block_colorer"));
         item.getRegistry().register(new BlockItem(ModBlocks.COLORABLE_WOOL, new Item.Properties().group(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "colorable_wool"));
         item.getRegistry().register(new BlockItem(ModBlocks.COLORABLE_PLANKS, new Item.Properties().group(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "colorable_planks"));
@@ -1708,6 +1835,15 @@ public class RegistrationHandler {
         item.getRegistry().register(new BlockItem(ModBlocks.COLORABLE_STONE_INVERTED_ARCH, new Item.Properties().group(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "colorable_stone_inverted_arch"));
         item.getRegistry().register(new BlockItem(ModBlocks.COLORABLE_COBBLESTONE_INVERTED_ARCH, new Item.Properties().group(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "colorable_cobblestone_inverted_arch"));
 
+        item.getRegistry().register(new BlockItem(ModBlocks.NEON_BLOCK, new Item.Properties().group(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "neon_block"));
+        item.getRegistry().register(new BlockItem(ModBlocks.GLOWING_NEON_BLOCK, new Item.Properties().group(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "glowing_neon_block"));
+        item.getRegistry().register(new BlockItem(ModBlocks.RAINBOW_BLOCK, new Item.Properties().group(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "rainbow_block"));
+        item.getRegistry().register(new BlockItem(ModBlocks.LAVA_LAMP, new Item.Properties().group(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "lava_lamp"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SIREN, new Item.Properties().group(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "siren"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SIGNAL_TOWER_LIGHT, new Item.Properties().group(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "signal_tower_light"));
+        item.getRegistry().register(new BlockItem(ModBlocks.EYEBALL_LAMP, new Item.Properties().group(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "eyeball_lamp"));
+        item.getRegistry().register(new BlockItem(ModBlocks.INK_BLOCK, new Item.Properties().group(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "ink_block"));
+        
         
         
         /* 1.16 */
@@ -1792,8 +1928,15 @@ public class RegistrationHandler {
 		TE.getRegistry().register(TileEntityType.Builder.create(ShelfTile::new, ModBlocks.OAK_SHELF, ModBlocks.SPRUCE_SHELF, ModBlocks.BIRCH_SHELF, ModBlocks.JUNGLE_SHELF, ModBlocks.ACACIA_SHELF, ModBlocks.DARK_OAK_SHELF, ModBlocks.NETHER_BRICK_SHELF, ModBlocks.CRIMSON_SHELF, ModBlocks.WARPED_SHELF).build(null).setRegistryName(MoBlocks.MODID, "shelf"));
 		TE.getRegistry().register(TileEntityType.Builder.create(CrateTile::new, ModBlocks.OAK_CRATE, ModBlocks.SPRUCE_CRATE, ModBlocks.BIRCH_CRATE, ModBlocks.JUNGLE_CRATE, ModBlocks.ACACIA_CRATE, ModBlocks.DARK_OAK_CRATE, ModBlocks.NETHER_BRICK_CRATE, ModBlocks.CRIMSON_CRATE, ModBlocks.WARPED_CRATE).build(null).setRegistryName(MoBlocks.MODID, "crate"));
 		TE.getRegistry().register(TileEntityType.Builder.create(BookshelfTile::new, ModBlocks.OAK_BOOKSHELF, ModBlocks.SPRUCE_BOOKSHELF, ModBlocks.BIRCH_BOOKSHELF, ModBlocks.JUNGLE_BOOKSHELF, ModBlocks.ACACIA_BOOKSHELF, ModBlocks.DARK_OAK_BOOKSHELF, ModBlocks.NETHER_BRICK_BOOKSHELF, ModBlocks.CRIMSON_BOOKSHELF, ModBlocks.WARPED_BOOKSHELF).build(null).setRegistryName(MoBlocks.MODID, "small_bookshelf"));
+		TE.getRegistry().register(TileEntityType.Builder.create(PotionShelfTile::new, ModBlocks.OAK_POTION_SHELF, ModBlocks.SPRUCE_POTION_SHELF, ModBlocks.BIRCH_POTION_SHELF, ModBlocks.JUNGLE_POTION_SHELF, ModBlocks.ACACIA_POTION_SHELF, ModBlocks.DARK_OAK_POTION_SHELF, ModBlocks.NETHER_BRICK_POTION_SHELF, ModBlocks.CRIMSON_POTION_SHELF, ModBlocks.WARPED_POTION_SHELF).build(null).setRegistryName(MoBlocks.MODID, "potion_shelf"));
 		TE.getRegistry().register(TileEntityType.Builder.create(ColorableFlowerPotTile::new, ModBlocks.COLORABLE_FLOWER_POT).build(null).setRegistryName(MoBlocks.MODID, "colorable_flower_pot"));
-		TE.getRegistry().register(TileEntityType.Builder.create(ColorableBlockTile::new, ModBlocks.CANDLE,
+		TE.getRegistry().register(TileEntityType.Builder.create(ColorableLightBlockTile::new, ModBlocks.CANDLE).build(null).setRegistryName(MoBlocks.MODID, "colorable_light_block"));
+		TE.getRegistry().register(TileEntityType.Builder.create(RainbowBlockTile::new, ModBlocks.RAINBOW_BLOCK).build(null).setRegistryName(MoBlocks.MODID, "rainbow_block"));
+		TE.getRegistry().register(TileEntityType.Builder.create(LavaLampTile::new, ModBlocks.LAVA_LAMP).build(null).setRegistryName(MoBlocks.MODID, "lava_lamp"));
+		TE.getRegistry().register(TileEntityType.Builder.create(SirenTile::new, ModBlocks.SIREN).build(null).setRegistryName(MoBlocks.MODID, "siren"));
+		TE.getRegistry().register(TileEntityType.Builder.create(SignalTowerLightTile::new, ModBlocks.SIGNAL_TOWER_LIGHT).build(null).setRegistryName(MoBlocks.MODID, "signal_tower_light"));
+		TE.getRegistry().register(TileEntityType.Builder.create(EyeballLampTile::new, ModBlocks.EYEBALL_LAMP).build(null).setRegistryName(MoBlocks.MODID, "eyeball_lamp"));
+		TE.getRegistry().register(TileEntityType.Builder.create(ColorableBlockTile::new,
 				ModBlocks.COLORABLE_WOOL, ModBlocks.COLORABLE_PLANKS,
 				ModBlocks.COLORABLE_CONCRETE, ModBlocks.COLORABLE_BRICKS,
 				ModBlocks.COLORABLE_TERRACOTTA, ModBlocks.COLORABLE_STONE_BRICKS,
@@ -1849,7 +1992,30 @@ public class RegistrationHandler {
 				ModBlocks.COLORABLE_COBBLESTONE_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_COBBLESTONE_LOWER_SMALL_INVERTED_ARCH,
 				ModBlocks.COLORABLE_COBBLESTONE_PILLAR, ModBlocks.COLORABLE_COBBLESTONE_POST, ModBlocks.COLORABLE_COBBLESTONE_RAMP,
 				ModBlocks.COLORABLE_COBBLESTONE_TRIANGLE_RAMP, ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_ARCH,
-				ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_INVERTED_ARCH).build(null).setRegistryName(MoBlocks.MODID, "colorable_block"));
+				ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_INVERTED_ARCH,
+
+				ModBlocks.OAK_STRAIGHT_KITCHEN_COUNTER, ModBlocks.BIRCH_STRAIGHT_KITCHEN_COUNTER, 
+				ModBlocks.SPRUCE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.JUNGLE_STRAIGHT_KITCHEN_COUNTER, 
+				ModBlocks.ACACIA_STRAIGHT_KITCHEN_COUNTER, ModBlocks.DARK_OAK_STRAIGHT_KITCHEN_COUNTER, 
+				ModBlocks.WARPED_STRAIGHT_KITCHEN_COUNTER, ModBlocks.CRIMSON_STRAIGHT_KITCHEN_COUNTER,
+
+				ModBlocks.OAK_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_INNER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.SPRUCE_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_INNER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.ACACIA_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_INNER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.WARPED_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_INNER_CORNER_KITCHEN_COUNTER,
+
+				ModBlocks.OAK_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_OUTER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.SPRUCE_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_OUTER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.ACACIA_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_OUTER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.WARPED_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_OUTER_CORNER_KITCHEN_COUNTER,
+				
+				ModBlocks.INK_BLOCK)
+				.build(null).setRegistryName(MoBlocks.MODID, "colorable_block"));
+		TE.getRegistry().register(TileEntityType.Builder.create(ColorableKitchenCounterTile::new,
+				ModBlocks.COLORABLE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.COLORABLE_INNER_CORNER_KITCHEN_COUNTER,
+				ModBlocks.COLORABLE_OUTER_CORNER_KITCHEN_COUNTER).build(null).setRegistryName(MoBlocks.MODID, "colorable_kitchen_counter"));
+		TE.getRegistry().register(TileEntityType.Builder.create(NeonBlockTile::new,
+				ModBlocks.NEON_BLOCK, ModBlocks.GLOWING_NEON_BLOCK).build(null).setRegistryName(MoBlocks.MODID, "neon_block_tile"));
 	}
 	@SubscribeEvent
 	public static void onRegisterContainer(RegistryEvent.Register<ContainerType<?>> container) {
@@ -1864,8 +2030,8 @@ public class RegistrationHandler {
 	}
 	@SubscribeEvent
 	public static void onRegisterEntity(RegistryEvent.Register<EntityType<?>> entity) {
-		entity.getRegistry().register(EntityType.Builder.<SeatChair>create(SeatChair::new,EntityClassification.MISC).immuneToFire().size(0.0F, 0.0F).build("seat_chair").setRegistryName(MoBlocks.MODID, "seat_chair"));
-		entity.getRegistry().register(EntityType.Builder.<SeatSofa>create(SeatSofa::new,EntityClassification.MISC).immuneToFire().size(0.0F, 0.0F).build("seat_sofa").setRegistryName(MoBlocks.MODID, "seat_sofa"));
+		entity.getRegistry().register(EntityType.Builder.<SeatChair>create(SeatChair::new,EntityClassification.MISC).immuneToFire().disableSummoning().size(0.0F, 0.0F).build("seat_chair").setRegistryName(MoBlocks.MODID, "seat_chair"));
+		entity.getRegistry().register(EntityType.Builder.<SeatSofa>create(SeatSofa::new,EntityClassification.MISC).immuneToFire().disableSummoning().size(0.0F, 0.0F).build("seat_sofa").setRegistryName(MoBlocks.MODID, "seat_sofa"));
 	}
 	@SubscribeEvent
 	public static void init(FMLCommonSetupEvent event) {

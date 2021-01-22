@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "minecraft:green_wool"
-  },
-  "result": "moblocks:green_tube_losange_shade",
-  "count": 4
-}

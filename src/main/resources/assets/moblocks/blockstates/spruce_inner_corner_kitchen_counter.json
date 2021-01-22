@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=east":  { "model": "moblocks:block/furnitures/kitchen_counters/inner_corner/spruce", "y": 270, "uvlock": true },
+        "facing=west":  { "model": "moblocks:block/furnitures/kitchen_counters/inner_corner/spruce", "y": 90, "uvlock": true },
+        "facing=south": { "model": "moblocks:block/furnitures/kitchen_counters/inner_corner/spruce", "uvlock": true },
+        "facing=north": { "model": "moblocks:block/furnitures/kitchen_counters/inner_corner/spruce", "y": 180, "uvlock": true }
+    }
+}

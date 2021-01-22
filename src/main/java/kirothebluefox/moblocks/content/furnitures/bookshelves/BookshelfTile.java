@@ -1,7 +1,5 @@
 package kirothebluefox.moblocks.content.furnitures.bookshelves;
 
-import java.util.Random;
-
 import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.content.ModTileEntities;
 import kirothebluefox.moblocks.utils.ItemStackUtils;
@@ -19,7 +17,6 @@ public class BookshelfTile extends TileEntity {
 	private int layers = 2, stacksPerLayer = 7;
 	public String[][] KEYS = new String[layers][stacksPerLayer];
     public ItemStack[][] inventory = new ItemStack[layers][stacksPerLayer];
-    public double[][] sizes = new double[layers][stacksPerLayer];
 
 	public BookshelfTile() {
 		super(ModTileEntities.SMALL_BOOKSHELF);
@@ -49,6 +46,8 @@ public class BookshelfTile extends TileEntity {
 			    CompoundNBT inventory = new CompoundNBT();
 			    this.inventory[i][j].write(inventory);
 			    compound.put(KEYS[i][j], inventory);
+			    CompoundNBT sizes = new CompoundNBT();
+			    this.inventory[i][j].write(sizes);
 			}
 		}
 	    return super.write(compound);
@@ -62,9 +61,24 @@ public class BookshelfTile extends TileEntity {
 			    CompoundNBT inventory = new CompoundNBT();
 			    this.inventory[i][j].write(inventory);
 				tag.put(KEYS[i][j], inventory);
+			    CompoundNBT sizes = new CompoundNBT();
+			    this.inventory[i][j].write(sizes);
 			}
 		}
 		return tag;
+	}
+	
+	@Override
+	public void handleUpdateTag(BlockState blockstate, CompoundNBT tag) {
+		super.read(blockstate, tag);
+		for (int i = 0; i < this.layers; i++) {
+			for (int j = 0; j < this.stacksPerLayer; j++) {
+				if (!tag.getCompound(KEYS[i][j]).isEmpty()) {
+					ItemStack item = ItemStack.read(tag.getCompound(KEYS[i][j]));
+					this.inventory[i][j] = item;
+				}
+			}
+		}
 	}
 
     @Override
@@ -80,11 +94,8 @@ public class BookshelfTile extends TileEntity {
 	public boolean addItem(ItemStack itemstack, int layer, int pos, PlayerEntity player, Hand hand) {
 		if (inventory[layer][pos].isEmpty() && itemstack.getItem().getTags().contains(new ResourceLocation(MoBlocks.MODID, "book_items"))) {
 			inventory[layer][pos] = itemstack.split(1);
-			Random random = new Random();
-			sizes[layer][pos] = random.nextDouble()/4+0.75;
 		} else {
 			dropItem(player, hand, layer, pos);
-			sizes[layer][pos] = 1;
 		}
     	this.notifyBlock();
     	return true;
@@ -129,9 +140,5 @@ public class BookshelfTile extends TileEntity {
 
 	public int getStacksPerLayers() {
 		return this.stacksPerLayer;
-	}
-
-	public double[][] getSizes() {
-		return this.sizes;
 	}
 }

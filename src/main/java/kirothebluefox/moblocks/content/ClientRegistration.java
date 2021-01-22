@@ -7,13 +7,21 @@ import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableBlock;
 import kirothebluefox.moblocks.content.decoration.colorableflowerpot.ColorableFlowerPot;
 import kirothebluefox.moblocks.content.decoration.colorableflowerpot.ColorableFlowerPotTileRenderer;
+import kirothebluefox.moblocks.content.decoration.colorablefurnitures.Candle;
+import kirothebluefox.moblocks.content.decoration.lighting.eyeballlamp.EyeballLampTileRenderer;
+import kirothebluefox.moblocks.content.decoration.lighting.lavalamp.LavaLamp;
+import kirothebluefox.moblocks.content.decoration.lighting.neonblock.NeonBlockTileRenderer;
+import kirothebluefox.moblocks.content.decoration.lighting.rainbowblock.RainbowBlock;
+import kirothebluefox.moblocks.content.decoration.lighting.siren.Siren;
 import kirothebluefox.moblocks.content.furnitures.bookshelves.BookshelfTileRenderer;
 import kirothebluefox.moblocks.content.furnitures.crates.CrateTileRenderer;
 import kirothebluefox.moblocks.content.furnitures.drawers.doubles.DoubleDrawerContainerScreen;
 import kirothebluefox.moblocks.content.furnitures.drawers.doubles.DoubleDrawerTileRenderer;
 import kirothebluefox.moblocks.content.furnitures.drawers.simples.SimpleDrawerContainerScreen;
 import kirothebluefox.moblocks.content.furnitures.drawers.simples.SimpleDrawerTileRenderer;
+import kirothebluefox.moblocks.content.furnitures.kitchencounters.colorable.ColorableStraightKitchenCounter;
 import kirothebluefox.moblocks.content.furnitures.lamps.SmallLampTileRenderer;
+import kirothebluefox.moblocks.content.furnitures.potionshelves.PotionShelfTileRenderer;
 import kirothebluefox.moblocks.content.furnitures.shelves.ShelfTileRenderer;
 import kirothebluefox.moblocks.utils.InvisibleEntityRenderer;
 import net.minecraft.block.Block;
@@ -44,6 +52,9 @@ public class ClientRegistration {
 		DoubleDrawerTileRenderer.register();
 		SmallLampTileRenderer.register();
 		ShelfTileRenderer.register();
+		PotionShelfTileRenderer.register();
+		EyeballLampTileRenderer.register();
+		NeonBlockTileRenderer.register();
 		
 		List<Block> cutoutBlocks = new ArrayList<Block>();
 		cutoutBlocks.add(ModBlocks.OAK_COFFEE_TABLE);
@@ -81,6 +92,7 @@ public class ClientRegistration {
 		cutoutBlocks.add(ModBlocks.STRIPPED_DARK_OAK_WOOD_COFFEE_TABLE);
 		cutoutBlocks.add(ModBlocks.STRIPPED_CRIMSON_STEM_COFFEE_TABLE);
 		cutoutBlocks.add(ModBlocks.STRIPPED_WARPED_STEM_COFFEE_TABLE);
+		cutoutBlocks.add(ModBlocks.EYEBALL_LAMP);
 		
 		
 		
@@ -98,6 +110,9 @@ public class ClientRegistration {
 		translucentBlocks.add(ModBlocks.CRIMSON_SMALL_LAMP);
 		translucentBlocks.add(ModBlocks.WARPED_SMALL_LAMP);
 		
+		translucentBlocks.add(ModBlocks.LAVA_LAMP);
+		translucentBlocks.add(ModBlocks.SIREN);
+		
 		
 		
 		ScreenManager.registerFactory(ModContainers.SIMPLE_DRAWER_CONTAINER, SimpleDrawerContainerScreen::new);
@@ -113,6 +128,8 @@ public class ClientRegistration {
 		ModelLoader.addSpecialModel(allCustomModels.WARPED_DRAWER_MODEL.getLocation());
 		ModelLoader.addSpecialModel(allCustomModels.BOOK_COVER_MODEL.getLocation());
 		ModelLoader.addSpecialModel(allCustomModels.BOOK_PAGES_MODEL.getLocation());
+		ModelLoader.addSpecialModel(allCustomModels.EYEBALL_LAMP.getLocation());
+		ModelLoader.addSpecialModel(allCustomModels.NEON_BLOCK.getLocation());
 		
 		cutoutBlocks.forEach((block) -> {
 			RenderTypeLookup.setRenderLayer(block, RenderType.getCutoutMipped());
@@ -133,8 +150,20 @@ public class ClientRegistration {
 			return ColorableFlowerPot.getColor(p_210225_0_, p_210225_1_, p_210225_2_);
 		}, ModBlocks.COLORABLE_FLOWER_POT);
 		color.getBlockColors().register((p_210231_0_, p_210231_1_, p_210231_2_, p_210231_3_) -> {
-			return ColorableBlock.getColor(p_210231_0_, p_210231_1_, p_210231_2_);
-		}, ModBlocks.CANDLE,
+			return RainbowBlock.getColor(p_210231_1_, p_210231_2_);
+		}, ModBlocks.RAINBOW_BLOCK);
+		color.getBlockColors().register((p_210231_0_, p_210231_1_, p_210231_2_, p_210231_3_) -> {
+			return LavaLamp.getColor(p_210231_1_, p_210231_2_);
+		}, ModBlocks.LAVA_LAMP);
+		color.getBlockColors().register((p_210231_0_, p_210231_1_, p_210231_2_, p_210231_3_) -> {
+			return Siren.getMaxColor(p_210231_1_, p_210231_2_);
+		}, ModBlocks.SIREN);
+		color.getBlockColors().register((p_210231_0_, p_210231_1_, p_210231_2_, p_210231_3_) -> {
+			return Candle.getColor(p_210231_0_, p_210231_1_, p_210231_2_);
+		}, ModBlocks.CANDLE);
+		color.getBlockColors().register((p_210231_0_, p_210231_1_, p_210231_2_, p_210231_3_) -> {
+			return ColorableBlock.getColor(p_210231_1_, p_210231_2_);
+		},
 				ModBlocks.COLORABLE_WOOL, ModBlocks.COLORABLE_PLANKS, ModBlocks.COLORABLE_CONCRETE, ModBlocks.COLORABLE_BRICKS,
 				ModBlocks.COLORABLE_CARPET, ModBlocks.COLORABLE_ROUND_CARPET, ModBlocks.COLORABLE_TERRACOTTA,
 				ModBlocks.COLORABLE_STONE, ModBlocks.COLORABLE_COBBLESTONE, ModBlocks.COLORABLE_STONE_BRICKS,
@@ -186,13 +215,43 @@ public class ClientRegistration {
 				ModBlocks.COLORABLE_COBBLESTONE_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_COBBLESTONE_LOWER_SMALL_INVERTED_ARCH,
 				ModBlocks.COLORABLE_COBBLESTONE_PILLAR, ModBlocks.COLORABLE_COBBLESTONE_POST, ModBlocks.COLORABLE_COBBLESTONE_RAMP,
 				ModBlocks.COLORABLE_COBBLESTONE_TRIANGLE_RAMP, ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_ARCH,
-				ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_INVERTED_ARCH);
+				ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_INVERTED_ARCH,
+
+				ModBlocks.OAK_STRAIGHT_KITCHEN_COUNTER, ModBlocks.BIRCH_STRAIGHT_KITCHEN_COUNTER, 
+				ModBlocks.SPRUCE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.JUNGLE_STRAIGHT_KITCHEN_COUNTER, 
+				ModBlocks.ACACIA_STRAIGHT_KITCHEN_COUNTER, ModBlocks.DARK_OAK_STRAIGHT_KITCHEN_COUNTER, 
+				ModBlocks.WARPED_STRAIGHT_KITCHEN_COUNTER, ModBlocks.CRIMSON_STRAIGHT_KITCHEN_COUNTER,
+
+				ModBlocks.OAK_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_INNER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.SPRUCE_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_INNER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.ACACIA_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_INNER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.WARPED_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_INNER_CORNER_KITCHEN_COUNTER,
+
+				ModBlocks.OAK_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_OUTER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.SPRUCE_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_OUTER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.ACACIA_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_OUTER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.WARPED_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_OUTER_CORNER_KITCHEN_COUNTER,
+				
+				ModBlocks.EYEBALL_LAMP, ModBlocks.NEON_BLOCK, ModBlocks.GLOWING_NEON_BLOCK,
+				ModBlocks.INK_BLOCK);
+		color.getBlockColors().register((p_210231_0_, p_210231_1_, p_210231_2_, p_210231_3_) -> {
+			if (p_210231_3_ == 0)
+				return ColorableStraightKitchenCounter.getCounterColor(p_210231_0_, p_210231_1_, p_210231_2_);
+			else if (p_210231_3_ == 1)
+				return ColorableStraightKitchenCounter.getPlanksColor(p_210231_0_, p_210231_1_, p_210231_2_);
+			else
+				return 0xffffff;
+		}, ModBlocks.COLORABLE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.COLORABLE_INNER_CORNER_KITCHEN_COUNTER,
+				ModBlocks.COLORABLE_OUTER_CORNER_KITCHEN_COUNTER);
 	}
 	@SubscribeEvent
 	public static void onRegisterItemColors(ColorHandlerEvent.Item color) {
 		color.getItemColors().register((itemStack, p_210239_1_) -> {
-			return p_210239_1_ > 0 ? -1 : ((IDyeableArmorItem)itemStack.getItem()).getColor(itemStack);
-		}, ModItems.CUSTOM_COLOR_PICKER);
+			return (p_210239_1_ > 0 || itemStack.getTag() == null) ? -1 : ((IDyeableArmorItem)itemStack.getItem()).getColor(itemStack);
+		}, ModItems.CUSTOM_COLOR_PICKER, ModItems.CUSTOM_LIGHT_COLOR_PICKER);
+		color.getItemColors().register((itemStack, p_210239_1_) -> {
+			return (p_210239_1_ > 0 || itemStack.getTag() == null) ? -1 : itemStack.getTag().getCompound("BlockEntityTag").getInt("max_color");
+		},  ModBlocks.SIREN);
 		color.getItemColors().register((itemStack, p_210239_1_) -> {
 			return (p_210239_1_ > 0 || itemStack.getTag() == null) ? -1 : itemStack.getTag().getCompound("BlockEntityTag").getInt("color");
 		}, ModBlocks.CANDLE, ModBlocks.COLORABLE_WOOL, ModBlocks.COLORABLE_PLANKS,
@@ -252,6 +311,32 @@ public class ClientRegistration {
 				ModBlocks.COLORABLE_COBBLESTONE_TRIANGLE_RAMP, ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_ARCH,
 				ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_INVERTED_ARCH,
 				
-				ModBlocks.COLORABLE_FLOWER_POT);
+				ModBlocks.COLORABLE_FLOWER_POT,
+
+				ModBlocks.OAK_STRAIGHT_KITCHEN_COUNTER, ModBlocks.BIRCH_STRAIGHT_KITCHEN_COUNTER, 
+				ModBlocks.SPRUCE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.JUNGLE_STRAIGHT_KITCHEN_COUNTER, 
+				ModBlocks.ACACIA_STRAIGHT_KITCHEN_COUNTER, ModBlocks.DARK_OAK_STRAIGHT_KITCHEN_COUNTER, 
+				ModBlocks.WARPED_STRAIGHT_KITCHEN_COUNTER, ModBlocks.CRIMSON_STRAIGHT_KITCHEN_COUNTER,
+
+				ModBlocks.OAK_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_INNER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.SPRUCE_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_INNER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.ACACIA_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_INNER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.WARPED_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_INNER_CORNER_KITCHEN_COUNTER,
+
+				ModBlocks.OAK_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_OUTER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.SPRUCE_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_OUTER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.ACACIA_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_OUTER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.WARPED_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_OUTER_CORNER_KITCHEN_COUNTER,
+				
+				ModBlocks.RAINBOW_BLOCK, ModBlocks.LAVA_LAMP, ModBlocks.EYEBALL_LAMP, ModBlocks.NEON_BLOCK, ModBlocks.GLOWING_NEON_BLOCK,
+				ModBlocks.INK_BLOCK);
+		color.getItemColors().register((itemStack, p_210239_1_) -> {
+			return (p_210239_1_ != 0 || itemStack.getTag() == null) ? -1 : itemStack.getTag().getCompound("BlockEntityTag").getInt("counter_color");
+		}, ModBlocks.COLORABLE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.COLORABLE_INNER_CORNER_KITCHEN_COUNTER,
+				ModBlocks.COLORABLE_OUTER_CORNER_KITCHEN_COUNTER);
+		color.getItemColors().register((itemStack, p_210239_1_) -> {
+			return (p_210239_1_ != 1 || itemStack.getTag() == null) ? -1 : itemStack.getTag().getCompound("BlockEntityTag").getInt("planks_color");
+		}, ModBlocks.COLORABLE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.COLORABLE_INNER_CORNER_KITCHEN_COUNTER,
+				ModBlocks.COLORABLE_OUTER_CORNER_KITCHEN_COUNTER);
 	}
 }

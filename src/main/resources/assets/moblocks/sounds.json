@@ -1,0 +1,7 @@
+{
+  "siren_alarm": {
+    "category": "block",
+    "subtitle": "moblocks.subtitle.siren_alarm",
+    "sounds": [ "moblocks:siren_alarm" ]
+  }
+}

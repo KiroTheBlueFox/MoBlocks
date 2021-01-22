@@ -58,11 +58,11 @@ public class ColorableBlock extends Block implements IColorableBlock {
 		}
 	}
 
-	public static int getColor(BlockState blockState, IBlockDisplayReader blockReader, BlockPos pos) {
+	public static int getColor(IBlockDisplayReader blockReader, BlockPos pos) {
 		TileEntity tileEntity = blockReader.getTileEntity(pos);
 		if (tileEntity instanceof ColorableBlockTile) {
-			ColorableBlockTile colorablewoolentity = (ColorableBlockTile) tileEntity;
-			return colorablewoolentity.getColor();
+			ColorableBlockTile colorableBlockTile = (ColorableBlockTile) tileEntity;
+			return colorableBlockTile.getColor();
 		}
 		return 0xFFFFFF;
 	}

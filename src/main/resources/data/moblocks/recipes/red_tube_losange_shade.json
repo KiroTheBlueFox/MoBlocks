@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "minecraft:red_wool"
-  },
-  "result": "moblocks:red_tube_losange_shade",
-  "count": 4
-}

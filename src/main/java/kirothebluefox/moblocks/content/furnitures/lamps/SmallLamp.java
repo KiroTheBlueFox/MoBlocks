@@ -77,7 +77,7 @@ public class SmallLamp extends Block implements IWaterLoggable {
 	
 	@Override
 	public void addInformation(ItemStack stack, IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.lamps.turn_on").func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
+		tooltip.add(new TranslationTextComponent("tooltips.moblocks.lamps.turn_on").setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 	

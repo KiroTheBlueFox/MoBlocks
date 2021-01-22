@@ -41,58 +41,61 @@ public class ColorableSofa extends Sofa implements IColorableBlock {
 	
 	@Override
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		ItemStack itemstack = player.getHeldItem(handIn);
-		if (player.isSneaking()) {
-			if (itemstack.isEmpty()) {
-				worldIn.setBlockState(pos, state.with(ARMREST, !state.get(ARMREST)));
-			} else {
-				Item item = itemstack.getItem();
-				if (item instanceof IDyeableColorPicker) {
-					IDyeableColorPicker colorpicker = (IDyeableColorPicker)item;
-					TileEntity tileentity = worldIn.getTileEntity(pos);
-					if (tileentity instanceof ColorableBlockTile) {
-						ColorableBlockTile colorableblockentity = (ColorableBlockTile)tileentity;
-						colorpicker.setColor(itemstack, colorableblockentity.getColor());
-						return ActionResultType.SUCCESS;
+		if (!worldIn.isRemote()) {
+			ItemStack itemstack = player.getHeldItem(handIn);
+			if (player.isSneaking()) {
+				if (itemstack.isEmpty()) {
+					worldIn.setBlockState(pos, state.with(ARMREST, !state.get(ARMREST)));
+				} else {
+					Item item = itemstack.getItem();
+					if (item instanceof IDyeableColorPicker) {
+						IDyeableColorPicker colorpicker = (IDyeableColorPicker)item;
+						TileEntity tileentity = worldIn.getTileEntity(pos);
+						if (tileentity instanceof ColorableBlockTile) {
+							ColorableBlockTile colorableblockentity = (ColorableBlockTile)tileentity;
+							colorpicker.setColor(itemstack, colorableblockentity.getColor());
+							return ActionResultType.SUCCESS;
+						} else {
+							return ActionResultType.FAIL;
+						}
 					} else {
 						return ActionResultType.FAIL;
 					}
-				} else {
-					return ActionResultType.FAIL;
 				}
-			}
-		} else {
-			if (itemstack.isEmpty()) {
-				if (player.getRidingEntity() != null) {
-					return ActionResultType.SUCCESS;
-				}
-				
-				Vector3d vec = new Vector3d(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-				double maxDist = 2.0d;
-				if ((vec.x - player.getPosX()) * (vec.x - player.getPosX()) +
-						(vec.y - player.getPosY()) * (vec.y - player.getPosY()) +
-						(vec.z - player.getPosZ()) * (vec.z - player.getPosZ()) > maxDist * maxDist) {
-					player.sendStatusMessage(new TranslationTextComponent("status_messages.moblocks.seats.too_far", new TranslationTextComponent("status_messages.moblocks.seats.sofa")), true);
-					return ActionResultType.SUCCESS;
-				}
-				
-				SeatSofa seat = new SeatSofa(worldIn, pos);
-				worldIn.addEntity(seat);
-				player.startRiding(seat);
 			} else {
-				Item item = itemstack.getItem();
-				if (item instanceof IDyeableColorPicker) {
-					IDyeableColorPicker colorpicker = (IDyeableColorPicker)item;
-					TileEntity tileentity = worldIn.getTileEntity(pos);
-					if (tileentity instanceof ColorableBlockTile) {
-						ColorableBlockTile colorableblockentity = (ColorableBlockTile)tileentity;
-						colorableblockentity.setColor(colorpicker.getColor(itemstack));
+				if (itemstack.isEmpty()) {
+					if (player.getRidingEntity() != null) {
 						return ActionResultType.SUCCESS;
+					}
+					
+					Vector3d vec = new Vector3d(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+					double maxDist = 2.0d;
+					if ((vec.x - player.getPosX()) * (vec.x - player.getPosX()) +
+							(vec.y - player.getPosY()) * (vec.y - player.getPosY()) +
+							(vec.z - player.getPosZ()) * (vec.z - player.getPosZ()) > maxDist * maxDist) {
+						player.sendStatusMessage(new TranslationTextComponent("status_messages.moblocks.seats.too_far", new TranslationTextComponent("status_messages.moblocks.seats.sofa")), true);
+						return ActionResultType.SUCCESS;
+					}
+					
+					SeatSofa seat = new SeatSofa(worldIn, pos);
+					worldIn.addEntity(seat);
+					player.startRiding(seat);
+					return ActionResultType.SUCCESS;
+				} else {
+					Item item = itemstack.getItem();
+					if (item instanceof IDyeableColorPicker) {
+						IDyeableColorPicker colorpicker = (IDyeableColorPicker)item;
+						TileEntity tileentity = worldIn.getTileEntity(pos);
+						if (tileentity instanceof ColorableBlockTile) {
+							ColorableBlockTile colorableblockentity = (ColorableBlockTile)tileentity;
+							colorableblockentity.setColor(colorpicker.getColor(itemstack));
+							return ActionResultType.SUCCESS;
+						} else {
+							return ActionResultType.FAIL;
+						}
 					} else {
 						return ActionResultType.FAIL;
 					}
-				} else {
-					return ActionResultType.FAIL;
 				}
 			}
 		}

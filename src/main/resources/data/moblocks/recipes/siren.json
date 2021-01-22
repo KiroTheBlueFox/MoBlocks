@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G",
+    "P",
+    "R"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:white_stained_glass"
+    },
+    "P": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "R": {
+      "item": "minecraft:repeater"
+    }
+  },
+  "result": {
+    "item": "moblocks:siren",
+    "count": 5
+  }
+}

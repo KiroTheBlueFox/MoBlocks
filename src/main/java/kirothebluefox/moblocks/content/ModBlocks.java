@@ -596,6 +596,52 @@ public class ModBlocks {
     public static final Block CRIMSON_BOOKSHELF = null;
     public static final Block WARPED_BOOKSHELF = null;
     
+    /* Potion Shelves */
+    public static final Block OAK_POTION_SHELF = null;
+    public static final Block SPRUCE_POTION_SHELF = null;
+    public static final Block BIRCH_POTION_SHELF = null;
+    public static final Block JUNGLE_POTION_SHELF = null;
+    public static final Block ACACIA_POTION_SHELF = null;
+    public static final Block DARK_OAK_POTION_SHELF = null;
+    public static final Block NETHER_BRICK_POTION_SHELF = null;
+    public static final Block CRIMSON_POTION_SHELF = null;
+    public static final Block WARPED_POTION_SHELF = null;
+    
+    /* Straight Kitchen Counters */
+    public static final Block OAK_STRAIGHT_KITCHEN_COUNTER = null;
+    public static final Block SPRUCE_STRAIGHT_KITCHEN_COUNTER = null;
+    public static final Block BIRCH_STRAIGHT_KITCHEN_COUNTER = null;
+    public static final Block JUNGLE_STRAIGHT_KITCHEN_COUNTER = null;
+    public static final Block ACACIA_STRAIGHT_KITCHEN_COUNTER = null;
+    public static final Block DARK_OAK_STRAIGHT_KITCHEN_COUNTER = null;
+    public static final Block CRIMSON_STRAIGHT_KITCHEN_COUNTER = null;
+    public static final Block WARPED_STRAIGHT_KITCHEN_COUNTER = null;
+    public static final Block COLORABLE_STRAIGHT_KITCHEN_COUNTER = null;
+    
+    /* Inner Corner Kitchen Counters */
+    public static final Block OAK_INNER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block SPRUCE_INNER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block BIRCH_INNER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block JUNGLE_INNER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block ACACIA_INNER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block DARK_OAK_INNER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block CRIMSON_INNER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block WARPED_INNER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block COLORABLE_INNER_CORNER_KITCHEN_COUNTER = null;
+    
+    /* Outer Corner Kitchen Counters */
+    public static final Block OAK_OUTER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block SPRUCE_OUTER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block BIRCH_OUTER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block JUNGLE_OUTER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block ACACIA_OUTER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block DARK_OAK_OUTER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block CRIMSON_OUTER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block WARPED_OUTER_CORNER_KITCHEN_COUNTER = null;
+    public static final Block COLORABLE_OUTER_CORNER_KITCHEN_COUNTER = null;
+    
+    
+    
     /* Candles */
     public static final Block CANDLE = null;
     
@@ -703,6 +749,15 @@ public class ModBlocks {
 	public static final Block COLORABLE_STONE_BRICK_INVERTED_ARCH = null;
 	public static final Block COLORABLE_STONE_INVERTED_ARCH = null;
 	public static final Block COLORABLE_COBBLESTONE_INVERTED_ARCH = null;
+	
+	public static final Block NEON_BLOCK = null;
+	public static final Block GLOWING_NEON_BLOCK = null;
+	public static final Block RAINBOW_BLOCK = null;
+	public static final Block LAVA_LAMP = null;
+	public static final Block SIREN = null;
+	public static final Block SIGNAL_TOWER_LIGHT = null;
+	public static final Block EYEBALL_LAMP = null;
+	public static final Block INK_BLOCK = null;
 	
 	
 	

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=east":  { "model": "moblocks:block/furnitures/potion_shelves/spruce", "y": 270, "uvlock": true },
+        "facing=west":  { "model": "moblocks:block/furnitures/potion_shelves/spruce", "y": 90, "uvlock": true },
+        "facing=south": { "model": "moblocks:block/furnitures/potion_shelves/spruce", "uvlock": true },
+        "facing=north": { "model": "moblocks:block/furnitures/potion_shelves/spruce", "y": 180, "uvlock": true }
+    }
+}

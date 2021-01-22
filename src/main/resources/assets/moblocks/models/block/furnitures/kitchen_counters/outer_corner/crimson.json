@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/kitchen_counters/outer_corner/outer_corner",
+	"textures": {
+		"planks": "block/crimson_planks"
+	}
+}

@@ -1,17 +1,18 @@
 package kirothebluefox.moblocks.content;
 
-import java.util.Set;
+import java.util.List;
 
+import kirothebluefox.moblocks.MoBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.tags.ITag;
-import net.minecraft.tags.TagCollection;
+import net.minecraft.tags.ITagCollection;
+import net.minecraft.tags.ITagCollectionSupplier;
 import net.minecraft.tags.TagRegistry;
+import net.minecraft.tags.TagRegistryManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class CustomBlockTags {
-	private static TagRegistry<Block> collection = new TagRegistry<>();
+	private static TagRegistry<Block> collection = TagRegistryManager.create(new ResourceLocation(MoBlocks.MODID, "block"), ITagCollectionSupplier::getBlockTags);
 	public static final ITag.INamedTag<Block> VERTICAL_SLABS = makeWrapperTag("vertical_slabs");
 	public static final ITag.INamedTag<Block> VERTICAL_STAIRS = makeWrapperTag("vertical_stairs");
 	public static final ITag.INamedTag<Block> PILLARS = makeWrapperTag("pillars");
@@ -37,28 +38,29 @@ public class CustomBlockTags {
 	public static final ITag.INamedTag<Block> SHELVES = makeWrapperTag("shelves");
 	public static final ITag.INamedTag<Block> CRATES = makeWrapperTag("crates");
 	public static final ITag.INamedTag<Block> BOOKSHELVES = makeWrapperTag("bookshelves");
+	public static final ITag.INamedTag<Block> POTIONSHELVES = makeWrapperTag("potionshelves");
 	public static final ITag.INamedTag<Block> COLORABLE_BLOCKS = makeWrapperTag("colorable_blocks");
 	public static final ITag.INamedTag<Block> CONCRETE = makeWrapperTag("concrete");
 	public static final ITag.INamedTag<Block> GLASS_PANE = makeWrapperTag("glass_pane");
+	public static final ITag.INamedTag<Block> KITCHEN_COUNTERS = makeWrapperTag("kitchen_counters");
 
 	public static ITag.INamedTag<Block> makeWrapperTag(String id) {
-	   return collection.func_232937_a_(id);
+		return collection.createTag(id);
+   	}
+
+	public static net.minecraftforge.common.Tags.IOptionalNamedTag<Block> createOptional(ResourceLocation name) {
+		return createOptional(name, null);
 	}
 
-	public static void setCollection(TagCollection<Block> collectionIn) {
-	   collection.func_232935_a_(collectionIn);
+	public static net.minecraftforge.common.Tags.IOptionalNamedTag<Block> createOptional(ResourceLocation name, @javax.annotation.Nullable java.util.Set<java.util.function.Supplier<Block>> defaults) {
+		return collection.createOptional(name, defaults);
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	public static void func_232890_a_() {
-	   collection.func_232932_a_();
+	public static ITagCollection<Block> getCollection() {
+		return collection.getCollection();
 	}
 
-	public static TagCollection<Block> getCollection() {
-	   return collection.func_232939_b_();
-	}
-
-	public static Set<ResourceLocation> func_232892_b_(TagCollection<Block> p_232892_0_) {
-	   return collection.func_232940_b_(p_232892_0_);
+	public static List<? extends ITag.INamedTag<Block>> getAllTags() {
+		return collection.getTags();
 	}
 }

@@ -1,0 +1,12 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "moblocks:jungle_outer_corner_kitchen_counter"
+    }
+  ],
+  "result": {
+    "item": "moblocks:jungle_inner_corner_kitchen_counter",
+    "count": 1
+  }
+}

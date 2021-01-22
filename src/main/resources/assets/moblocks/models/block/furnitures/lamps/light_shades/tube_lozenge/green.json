@@ -1,0 +1,6 @@
+{
+	"parent": "moblocks:block/furnitures/lamps/light_shades/tube_lozenge/shade",
+	"textures": {
+		"texture": "block/green_wool"
+	}
+}

@@ -1,0 +1,12 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "moblocks:warped_outer_corner_kitchen_counter"
+    }
+  ],
+  "result": {
+    "item": "moblocks:warped_inner_corner_kitchen_counter",
+    "count": 1
+  }
+}

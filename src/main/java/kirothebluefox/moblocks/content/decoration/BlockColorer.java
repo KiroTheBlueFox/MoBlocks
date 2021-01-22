@@ -18,7 +18,7 @@ public class BlockColorer extends Item {
 	
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.block_colorer.description").func_240703_c_(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
+		tooltip.add(new TranslationTextComponent("tooltips.moblocks.block_colorer.description").setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 	
