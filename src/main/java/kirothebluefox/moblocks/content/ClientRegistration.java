@@ -5,6 +5,7 @@ import java.util.List;
 
 import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableBlock;
+import kirothebluefox.moblocks.content.decoration.colorableblock.inkblock.InkDripParticle;
 import kirothebluefox.moblocks.content.decoration.colorableflowerpot.ColorableFlowerPot;
 import kirothebluefox.moblocks.content.decoration.colorableflowerpot.ColorableFlowerPotTileRenderer;
 import kirothebluefox.moblocks.content.decoration.colorablefurnitures.Candle;
@@ -27,12 +28,14 @@ import kirothebluefox.moblocks.utils.InvisibleEntityRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.item.IDyeableArmorItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -143,6 +146,13 @@ public class ClientRegistration {
 		
 		entityRendererManager.register(ModEntities.SEAT_CHAIR, new InvisibleEntityRenderer());
 		entityRendererManager.register(ModEntities.SEAT_SOFA, new InvisibleEntityRenderer());
+	}
+	@SubscribeEvent
+	public static void onRegisterParticleFactories(ParticleFactoryRegisterEvent event) {
+		ParticleManager particles = Minecraft.getInstance().particles;
+		particles.registerFactory(ModParticles.DRIPPING_INK, InkDripParticle.DrippingInkFactory::new);
+		particles.registerFactory(ModParticles.FALLING_INK, InkDripParticle.FallingInkFactory::new);
+		particles.registerFactory(ModParticles.LANDING_INK, InkDripParticle.LandingInkFactory::new);
 	}
 	@SubscribeEvent
 	public static void onRegisterBlockColors(ColorHandlerEvent.Block color) {

@@ -21,7 +21,7 @@ import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableUpperS
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableUpperSmallInvertedArch;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableVerticalSlab;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableVerticalStairs;
-import kirothebluefox.moblocks.content.decoration.colorableblock.InkBlock;
+import kirothebluefox.moblocks.content.decoration.colorableblock.inkblock.InkBlock;
 import kirothebluefox.moblocks.content.decoration.colorableflowerpot.ColorableFlowerPot;
 import kirothebluefox.moblocks.content.decoration.colorableflowerpot.ColorableFlowerPotTile;
 import kirothebluefox.moblocks.content.decoration.colorablefurnitures.Candle;
@@ -100,6 +100,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.particles.ParticleType;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -2032,6 +2033,12 @@ public class RegistrationHandler {
 	public static void onRegisterEntity(RegistryEvent.Register<EntityType<?>> entity) {
 		entity.getRegistry().register(EntityType.Builder.<SeatChair>create(SeatChair::new,EntityClassification.MISC).immuneToFire().disableSummoning().size(0.0F, 0.0F).build("seat_chair").setRegistryName(MoBlocks.MODID, "seat_chair"));
 		entity.getRegistry().register(EntityType.Builder.<SeatSofa>create(SeatSofa::new,EntityClassification.MISC).immuneToFire().disableSummoning().size(0.0F, 0.0F).build("seat_sofa").setRegistryName(MoBlocks.MODID, "seat_sofa"));
+	}
+	@SubscribeEvent
+	public static void onRegisterParticleTypes(RegistryEvent.Register<ParticleType<?>> particles) {
+		particles.getRegistry().register(ModParticles.DRIPPING_INK.setRegistryName(MoBlocks.MODID, "dripping_ink"));
+		particles.getRegistry().register(ModParticles.FALLING_INK.setRegistryName(MoBlocks.MODID, "falling_ink"));
+		particles.getRegistry().register(ModParticles.LANDING_INK.setRegistryName(MoBlocks.MODID, "landing_ink"));
 	}
 	@SubscribeEvent
 	public static void init(FMLCommonSetupEvent event) {
