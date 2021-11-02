@@ -1,22 +1,19 @@
 package kirothebluefox.moblocks.utils;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 
 public class InvisibleEntityRenderer extends EntityRenderer<Entity> {
-	protected InvisibleEntityRenderer(EntityRendererManager renderManager) {
-		super(renderManager);
-	}
-	
-	public InvisibleEntityRenderer() {
-		this(Minecraft.getInstance().getRenderManager());
+
+
+	public InvisibleEntityRenderer(EntityRendererProvider.Context p_174008_) {
+		super(p_174008_);
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(Entity entity) {
+	public ResourceLocation getTextureLocation(Entity entity) {
 		return null;
 	}
 }

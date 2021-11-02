@@ -1,52 +1,51 @@
 package kirothebluefox.moblocks.content.decoration.lighting.eyeballlamp;
 
-import java.util.List;
-
-import com.mojang.blaze3d.matrix.MatrixStack;
-
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
 import kirothebluefox.moblocks.content.ModTileEntities;
 import kirothebluefox.moblocks.content.allCustomModels;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.model.IBakedModel;
+import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
-public class EyeballLampTileRenderer extends TileEntityRenderer<EyeballLampTile> {
-	public EyeballLampTileRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
-		super(rendererDispatcherIn);
+import java.util.List;
+
+public class EyeballLampTileRenderer implements BlockEntityRenderer<EyeballLampTile> {
+
+	public EyeballLampTileRenderer(BlockEntityRendererProvider.Context context) {
 	}
 
 	@Override
-	public void render(EyeballLampTile tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+	public void render(EyeballLampTile tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
 		float horizontalAngle = tileEntityIn.getHorizontalAngle(),
 				verticalAngle = tileEntityIn.getVerticalAngle();
-		matrixStackIn.push();
-		
+		matrixStackIn.pushPose();
+
 		if (tileEntityIn.followPlayer()) {
-			List<Entity> nearEntities = tileEntityIn.getWorld().getEntitiesWithinAABB(PlayerEntity.class, new AxisAlignedBB(tileEntityIn.getPos().add(-6, -6, -6), tileEntityIn.getPos().add(6, 6, 6)));
+			List<Player> nearEntities = tileEntityIn.getLevel().getEntitiesOfClass(Player.class, new AABB(tileEntityIn.getBlockPos().offset(-6, -6, -6), tileEntityIn.getBlockPos().offset(6, 6, 6)));
 			double distance = -1;
 			Entity nearest = null;
 			for (Entity entity : nearEntities) {
-				double distanceFromEntity = tileEntityIn.getPos().distanceSq(entity.getPosX(), entity.getPosY(), entity.getPosZ(), true);
+				double distanceFromEntity = tileEntityIn.getBlockPos().distSqr(entity.getX(), entity.getY(), entity.getZ(), true);
 				if (distance < 0 || distanceFromEntity < distance) {
 					distance = distanceFromEntity;
 					nearest = entity;
 				}
 			}
 			if (!(nearest == null)) {
-				Vector3d thisPos = new Vector3d(tileEntityIn.getPos().getX()+0.5, tileEntityIn.getPos().getY()+0.5, tileEntityIn.getPos().getZ()+0.5);
-				Vector3d nearestPos = nearest.getEyePosition(partialTicks);
-				Vector3d vector = nearestPos.subtract(thisPos);
+				Vec3 thisPos = new Vec3(tileEntityIn.getBlockPos().getX()+0.5, tileEntityIn.getBlockPos().getY()+0.5, tileEntityIn.getBlockPos().getZ()+0.5);
+				Vec3 nearestPos = nearest.getEyePosition(partialTicks);
+				Vec3 vector = nearestPos.subtract(thisPos);
 				double pitch = Math.toDegrees(Math.acos(vector.y/Math.sqrt(Math.pow(vector.x,2)+Math.pow(vector.y,2)+Math.pow(vector.z,2))));
 				double yaw = Math.toDegrees(Math.atan(vector.z/vector.x))+270;
 				yaw += (nearestPos.x >= thisPos.x) ? 180 : 0;
@@ -55,19 +54,19 @@ public class EyeballLampTileRenderer extends TileEntityRenderer<EyeballLampTile>
 				verticalAngle = tileEntityIn.getVerticalAngle();
 			}
 		}
-		
-		matrixStackIn.translate(0.5f, 0.5f, 0.5f);
-    	matrixStackIn.rotate(Vector3f.YP.rotationDegrees(horizontalAngle));
-    	matrixStackIn.rotate(Vector3f.XP.rotationDegrees(verticalAngle));
-		matrixStackIn.translate(-0.5f, -0.5f, -0.5f);
-		
-		RenderType renderType = RenderType.getCutoutMipped(); // RenderTypeLookup.func_239221_b_(blockstate); // RenderTypeLookup.getRenderType
-		net.minecraftforge.client.ForgeHooksClient.setRenderLayer(renderType);
-		BlockRendererDispatcher blockDispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
-		IBakedModel model = Minecraft.getInstance().getModelManager().getModel(allCustomModels.EYEBALL_LAMP.getLocation());
 
-		blockDispatcher.getBlockModelRenderer().renderModel(
-				matrixStackIn.getLast(),
+		matrixStackIn.translate(0.5f, 0.5f, 0.5f);
+    	matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(horizontalAngle));
+    	matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(verticalAngle));
+		matrixStackIn.translate(-0.5f, -0.5f, -0.5f);
+
+		RenderType renderType = RenderType.cutoutMipped(); // RenderTypeLookup.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
+		net.minecraftforge.client.ForgeHooksClient.setRenderLayer(renderType);
+		BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
+		BakedModel model = Minecraft.getInstance().getModelManager().getModel(allCustomModels.EYEBALL_LAMP.getLocation());
+
+		blockDispatcher.getModelRenderer().renderModel(
+				matrixStackIn.last(),
 				bufferIn.getBuffer(renderType),
 				tileEntityIn.getBlockState(),
 				model,
@@ -78,10 +77,10 @@ public class EyeballLampTileRenderer extends TileEntityRenderer<EyeballLampTile>
 				OverlayTexture.NO_OVERLAY,
 				net.minecraftforge.client.model.data.EmptyModelData.INSTANCE);
 
-		matrixStackIn.pop();
+		matrixStackIn.popPose();
 	}
-	
+
 	public static void register() {
-		ClientRegistry.bindTileEntityRenderer(ModTileEntities.EYEBALL_LAMP, EyeballLampTileRenderer::new);
+		BlockEntityRenderers.register(ModTileEntities.EYEBALL_LAMP, EyeballLampTileRenderer::new);
 	}
 }

@@ -1,8 +1,8 @@
 package kirothebluefox.moblocks.content.customproperties;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum PillarSide implements IStringSerializable {
+public enum PillarSide implements StringRepresentable {
 	NONE("none"),
 	NORTHWEST("northwest"),
 	NORTHEAST("northeast"),
@@ -24,7 +24,7 @@ public enum PillarSide implements IStringSerializable {
 	}
 
 	@Override
-	public String getString() {
+	public String getSerializedName() {
 		return getName();
 	}
 }

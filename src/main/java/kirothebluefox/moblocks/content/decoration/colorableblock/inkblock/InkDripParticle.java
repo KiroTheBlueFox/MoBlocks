@@ -1,56 +1,52 @@
 package kirothebluefox.moblocks.content.decoration.colorableblock.inkblock;
 
 import kirothebluefox.moblocks.content.ModParticles;
-import net.minecraft.client.particle.IAnimatedSprite;
-import net.minecraft.client.particle.IParticleFactory;
-import net.minecraft.client.particle.IParticleRenderType;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.SpriteTexturedParticle;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.particle.*;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class InkDripParticle extends SpriteTexturedParticle {
+public class InkDripParticle extends TextureSheetParticle {
 	private final Fluid fluid;
 	protected boolean fullbright;
 
-	private InkDripParticle(ClientWorld world, double x, double y, double z, Fluid fluid, float red, float green, float blue) {
+	private InkDripParticle(ClientLevel world, double x, double y, double z, Fluid fluid, float red, float green, float blue) {
 		super(world, x, y, z);
 		this.setSize(0.01F, 0.01F);
-		this.particleGravity = 0.06F;
+		this.gravity = 0.06F;
 		this.fluid = fluid;
 		this.setColor(red, green, blue);
 	}
 
-	public IParticleRenderType getRenderType() {
-		return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+	public ParticleRenderType getRenderType() {
+		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
-	public int getBrightnessForRender(float partialTick) {
-		return this.fullbright ? 240 : super.getBrightnessForRender(partialTick);
+	public int getLightColor(float partialTick) {
+		return this.fullbright ? 240 : super.getLightColor(partialTick);
 	}
 
 	public void tick() {
-		this.prevPosX = this.posX;
-		this.prevPosY = this.posY;
-		this.prevPosZ = this.posZ;
+		this.xo = this.x;
+		this.yo = this.y;
+		this.zo = this.z;
 		this.ageParticle();
-		if (!this.isExpired) {
-			this.motionY -= (double)this.particleGravity;
-			this.move(this.motionX, this.motionY, this.motionZ);
+		if (!this.removed) {
+			this.yd -= (double)this.gravity;
+			this.move(this.xd, this.yd, this.zd);
 			this.updateMotion();
-			if (!this.isExpired) {
-				this.motionX *= (double)0.98F;
-				this.motionY *= (double)0.98F;
-				this.motionZ *= (double)0.98F;
-				BlockPos blockpos = new BlockPos(this.posX, this.posY, this.posZ);
-				FluidState fluidstate = this.world.getFluidState(blockpos);
-				if (fluidstate.getFluid() == this.fluid && this.posY < (double)((float)blockpos.getY() + fluidstate.getActualHeight(this.world, blockpos))) {
-					this.setExpired();
+			if (!this.removed) {
+				this.xd *= (double)0.98F;
+				this.yd *= (double)0.98F;
+				this.zd *= (double)0.98F;
+				BlockPos blockpos = new BlockPos(this.x, this.y, this.z);
+				FluidState fluidstate = this.level.getFluidState(blockpos);
+				if (fluidstate.getType() == this.fluid && this.y < (double)((float)blockpos.getY() + fluidstate.getHeight(this.level, blockpos))) {
+					this.remove();
 				}
 
 			}
@@ -58,8 +54,8 @@ public class InkDripParticle extends SpriteTexturedParticle {
 	}
 
 	protected void ageParticle() {
-		if (this.maxAge-- <= 0) {
-			this.setExpired();
+		if (this.lifetime-- <= 0) {
+			this.remove();
 		}
 
 	}
@@ -71,59 +67,59 @@ public class InkDripParticle extends SpriteTexturedParticle {
 	static class Dripping extends InkDripParticle {
 		private final InkParticleData particleData;
 
-		private Dripping(ClientWorld world, double x, double y, double z, Fluid fluid, InkParticleData particleData) {
+		private Dripping(ClientLevel world, double x, double y, double z, Fluid fluid, InkParticleData particleData) {
 			super(world, x, y, z, fluid, particleData.getRed(), particleData.getGreen(), particleData.getBlue());
 			this.particleData = particleData;
-			this.particleGravity *= 0.02F;
-			this.maxAge = 40;
+			this.gravity *= 0.02F;
+			this.lifetime = 40;
 		}
 
 		protected void ageParticle() {
-			if (this.maxAge-- <= 0) {
-				this.setExpired();
-				this.world.addParticle(this.particleData, this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ);
+			if (this.lifetime-- <= 0) {
+				this.remove();
+				this.level.addParticle(this.particleData, this.x, this.y, this.z, this.xd, this.yd, this.zd);
 			}
 
 		}
 
 		protected void updateMotion() {
-			this.motionX *= 0.02D;
-			this.motionY *= 0.02D;
-			this.motionZ *= 0.02D;
+			this.xd *= 0.02D;
+			this.yd *= 0.02D;
+			this.zd *= 0.02D;
 		}
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public static class DrippingInkFactory implements IParticleFactory<InkParticleData> {
-		protected final IAnimatedSprite spriteSet;
+	public static class DrippingInkFactory implements ParticleProvider<InkParticleData> {
+		protected final SpriteSet spriteSet;
 
-		public DrippingInkFactory(IAnimatedSprite spriteSet) {
+		public DrippingInkFactory(SpriteSet spriteSet) {
 			this.spriteSet = spriteSet;
 		}
 
-		public Particle makeParticle(InkParticleData typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(InkParticleData typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			InkDripParticle.Dripping dripparticle$dripping = new InkDripParticle.Dripping(worldIn, x, y, z, Fluids.EMPTY, new InkParticleData(ModParticles.FALLING_INK, typeIn.getRed(), typeIn.getGreen(), typeIn.getBlue()));
 			dripparticle$dripping.fullbright = true;
-			dripparticle$dripping.particleGravity *= 0.01F;
-			dripparticle$dripping.maxAge = 100;
-			dripparticle$dripping.selectSpriteRandomly(this.spriteSet);
+			dripparticle$dripping.gravity *= 0.01F;
+			dripparticle$dripping.lifetime = 100;
+			dripparticle$dripping.pickSprite(this.spriteSet);
 			return dripparticle$dripping;
 		}
 	}
-	
+
 	@OnlyIn(Dist.CLIENT)
 	static class FallingLiquidParticle extends InkDripParticle.FallingNectarParticle {
 		protected final InkParticleData particleData;
 
-		private FallingLiquidParticle(ClientWorld world, double x, double y, double z, Fluid fluid, InkParticleData landingInk) {
+		private FallingLiquidParticle(ClientLevel world, double x, double y, double z, Fluid fluid, InkParticleData landingInk) {
 			super(world, x, y, z, fluid, landingInk);
 			this.particleData = landingInk;
 		}
 
 		protected void updateMotion() {
 			if (this.onGround) {
-				this.setExpired();
-				this.world.addParticle(this.particleData, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+				this.remove();
+				this.level.addParticle(this.particleData, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
 			}
 
 		}
@@ -131,57 +127,57 @@ public class InkDripParticle extends SpriteTexturedParticle {
 
 	@OnlyIn(Dist.CLIENT)
 	static class FallingNectarParticle extends InkDripParticle {
-		private FallingNectarParticle(ClientWorld world, double x, double y, double z, Fluid fluid, InkParticleData particleData) {
+		private FallingNectarParticle(ClientLevel world, double x, double y, double z, Fluid fluid, InkParticleData particleData) {
 			super(world, x, y, z, fluid, particleData.getRed(), particleData.getGreen(), particleData.getBlue());
-			this.maxAge = (int)(64.0D / (Math.random() * 0.8D + 0.2D));
+			this.lifetime = (int)(64.0D / (Math.random() * 0.8D + 0.2D));
 		}
 
 		protected void updateMotion() {
 			if (this.onGround) {
-				this.setExpired();
+				this.remove();
 			}
 
 		}
 	}
-	
-	@OnlyIn(Dist.CLIENT)
-	public static class FallingInkFactory implements IParticleFactory<InkParticleData> {
-		protected final IAnimatedSprite spriteSet;
 
-		public FallingInkFactory(IAnimatedSprite spriteSet) {
+	@OnlyIn(Dist.CLIENT)
+	public static class FallingInkFactory implements ParticleProvider<InkParticleData> {
+		protected final SpriteSet spriteSet;
+
+		public FallingInkFactory(SpriteSet spriteSet) {
 			this.spriteSet = spriteSet;
 		}
 
-		public Particle makeParticle(InkParticleData typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(InkParticleData typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			InkDripParticle dripparticle = new InkDripParticle.FallingLiquidParticle(worldIn, x, y, z, Fluids.EMPTY, new InkParticleData(ModParticles.LANDING_INK, typeIn.getRed(), typeIn.getGreen(), typeIn.getBlue()));
 			dripparticle.fullbright = true;
-			dripparticle.particleGravity = 0.01F;
-			dripparticle.selectSpriteRandomly(this.spriteSet);
+			dripparticle.gravity = 0.01F;
+			dripparticle.pickSprite(this.spriteSet);
 			return dripparticle;
 		}
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	static class Landing extends InkDripParticle {
-		private Landing(ClientWorld world, double x, double y, double z, Fluid fluid, InkParticleData particleData) {
+		private Landing(ClientLevel world, double x, double y, double z, Fluid fluid, InkParticleData particleData) {
 			super(world, x, y, z, fluid, particleData.getRed(), particleData.getGreen(), particleData.getBlue());
-			this.maxAge = (int)(16.0D / (Math.random() * 0.8D + 0.2D));
+			this.lifetime = (int)(16.0D / (Math.random() * 0.8D + 0.2D));
 		}
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public static class LandingInkFactory implements IParticleFactory<InkParticleData> {
-		protected final IAnimatedSprite spriteSet;
+	public static class LandingInkFactory implements ParticleProvider<InkParticleData> {
+		protected final SpriteSet spriteSet;
 
-		public LandingInkFactory(IAnimatedSprite spriteSet) {
+		public LandingInkFactory(SpriteSet spriteSet) {
 			this.spriteSet = spriteSet;
 		}
 
-		public Particle makeParticle(InkParticleData typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(InkParticleData typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			InkDripParticle dripparticle = new InkDripParticle.Landing(worldIn, x, y, z, Fluids.EMPTY, typeIn);
 			dripparticle.fullbright = true;
-			dripparticle.maxAge = (int)(28.0D / (Math.random() * 0.8D + 0.2D));
-			dripparticle.selectSpriteRandomly(this.spriteSet);
+			dripparticle.lifetime = (int)(28.0D / (Math.random() * 0.8D + 0.2D));
+			dripparticle.pickSprite(this.spriteSet);
 			return dripparticle;
 		}
 	}

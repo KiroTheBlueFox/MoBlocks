@@ -1,148 +1,161 @@
 package kirothebluefox.moblocks.content.furnitures.drawers.simples;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.IWaterLoggable;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
-public class SimpleDrawer extends Block implements IWaterLoggable {
+import javax.annotation.Nullable;
+
+public class SimpleDrawer extends Block implements SimpleWaterloggedBlock, EntityBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	private Block baseBlock;
 
-	private static final VoxelShape foot1 = Block.makeCuboidShape(0, 0, 0, 2, 8, 2);
-	private static final VoxelShape foot2 = Block.makeCuboidShape(14, 0, 0, 16, 8, 2);
-	private static final VoxelShape foot3 = Block.makeCuboidShape(0, 0, 14, 2, 8, 16);
-	private static final VoxelShape foot4 = Block.makeCuboidShape(14, 0, 14, 16, 8, 16);
-	private static final VoxelShape container = Block.makeCuboidShape(0, 8, 0, 16, 16, 16);
-	private static final VoxelShape SHAPE = VoxelShapes.or(foot1, foot2, foot3, foot4, container);
-	
+	private static final VoxelShape foot1 = Block.box(0, 0, 0, 2, 8, 2);
+	private static final VoxelShape foot2 = Block.box(14, 0, 0, 16, 8, 2);
+	private static final VoxelShape foot3 = Block.box(0, 0, 14, 2, 8, 16);
+	private static final VoxelShape foot4 = Block.box(14, 0, 14, 16, 8, 16);
+	private static final VoxelShape container = Block.box(0, 8, 0, 16, 16, 16);
+	private static final VoxelShape SHAPE = Shapes.or(foot1, foot2, foot3, foot4, container);
+
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
-	
+
 	public SimpleDrawer(Block baseBlock) {
-		super(Block.Properties.from(baseBlock));
+		super(Block.Properties.copy(baseBlock));
 		this.baseBlock = baseBlock;
-		setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
+		registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
-	
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING, WATERLOGGED);
 	}
-	
+
+	@Nullable
 	@Override
-	public boolean hasTileEntity(BlockState state) {
-		return true;
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new SimpleDrawerTile(pos, state);
 	}
-	
+
+	@Nullable
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return new SimpleDrawerTile();
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_153212_, BlockState p_153213_, BlockEntityType<T> p_153214_) {
+		return (level1, blockPos, blockState, t) -> {
+			if (t instanceof SimpleDrawerTile tile) {
+				if (level1.isClientSide()) {
+					tile.tick();
+				}
+			}
+		};
 	}
-	
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
+
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.MODEL;
 	}
-	
+
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if (!worldIn.isRemote && handIn.equals(Hand.MAIN_HAND)) {
-			worldIn.notifyBlockUpdate(pos, state, state, 2);
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+		if (!worldIn.isClientSide && handIn.equals(InteractionHand.MAIN_HAND)) {
+			worldIn.sendBlockUpdated(pos, state, state, 2);
 			if (isBlocked(state, worldIn, pos)) {
-				player.sendStatusMessage(new TranslationTextComponent("status_messages.moblocks.drawers.is_blocked"), true);
+				player.displayClientMessage(new TranslatableComponent("status_messages.moblocks.drawers.is_blocked"), true);
 			} else {
-				TileEntity tileEntity = worldIn.getTileEntity(pos);
+				BlockEntity tileEntity = worldIn.getBlockEntity(pos);
 				if (tileEntity instanceof SimpleDrawerTile) {
 					if (((SimpleDrawerTile)tileEntity).isOpened()) {
-						player.sendStatusMessage(new TranslationTextComponent("status_messages.moblocks.drawers.already_in_use"), true);
+						player.displayClientMessage(new TranslatableComponent("status_messages.moblocks.drawers.already_in_use"), true);
 					} else {
-						NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+						NetworkHooks.openGui((ServerPlayer) player, (MenuProvider) tileEntity, tileEntity.getBlockPos());
 					}
 				}
 			}
 		}
-		return ActionResultType.SUCCESS;
+		return InteractionResult.SUCCESS;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
-	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+	public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (state.getBlock() != newState.getBlock()) {
-			TileEntity tileentity = worldIn.getTileEntity(pos);
+			BlockEntity tileentity = worldIn.getBlockEntity(pos);
      		if (tileentity instanceof SimpleDrawerTile) {
      			((SimpleDrawerTile) tileentity).dropItems();
      		}
 
-     		super.onReplaced(state, worldIn, pos, newState, isMoving);
+     		super.onRemove(state, worldIn, pos, newState, isMoving);
 		}
 	}
-	
-	private static boolean isBlocked(BlockState stateIn, IWorld worldIn, BlockPos pos) {
+
+	private static boolean isBlocked(BlockState stateIn, LevelAccessor worldIn, BlockPos pos) {
 		return isFrontSolidBlock(worldIn, pos, stateIn);
 	}
 
-	private static boolean isFrontSolidBlock(IBlockReader worldIn, BlockPos pos, BlockState stateIn) {
-		BlockPos blockpos = pos.offset(stateIn.get(FACING).getOpposite());
-		return worldIn.getBlockState(blockpos).isNormalCube(worldIn, blockpos);
-	}
-	
-	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		FluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
-		return this.getDefaultState().with(WATERLOGGED, Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER)).with(FACING, context.getPlacementHorizontalFacing());
-	}
-	
-	public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
-		return IWaterLoggable.super.receiveFluid(worldIn, pos, state, fluidStateIn);
+	private static boolean isFrontSolidBlock(BlockGetter worldIn, BlockPos pos, BlockState stateIn) {
+		BlockPos blockpos = pos.relative(stateIn.getValue(FACING).getOpposite());
+		return worldIn.getBlockState(blockpos).isRedstoneConductor(worldIn, blockpos);
 	}
 
-	public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
-	   return IWaterLoggable.super.canContainFluid(worldIn, pos, state, fluidIn);
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		FluidState ifluidstate = context.getLevel().getFluidState(context.getClickedPos());
+		return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(ifluidstate.getType() == Fluids.WATER)).setValue(FACING, context.getHorizontalDirection());
 	}
-	
+
+	public boolean placeLiquid(LevelAccessor worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+		return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
+	}
+
+	public boolean canPlaceLiquid(BlockGetter worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
+	   return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
+	}
+
 	@SuppressWarnings("deprecation")
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) {
-			worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+		if (stateIn.getValue(WATERLOGGED)) {
+			worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 		}
-		
-		return facing.getAxis().isHorizontal() ? stateIn : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+
+		return facing.getAxis().isHorizontal() ? stateIn : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
-	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+	public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
 		switch(type) {
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).isTagged(FluidTags.WATER);
+			return worldIn.getFluidState(pos).is(FluidTags.WATER);
 		case AIR:
 			return false;
 		default:

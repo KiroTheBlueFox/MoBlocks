@@ -1,76 +1,76 @@
 package kirothebluefox.moblocks.content.decoration.lighting.rainbowblock;
 
-import java.awt.Color;
-
 import kirothebluefox.moblocks.content.ModTileEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class RainbowBlockTile extends TileEntity implements ITickableTileEntity {
+import java.awt.*;
+
+public class RainbowBlockTile extends BlockEntity {
 	public static final String COLOR_KEY = "color";
     public int color = 0xFF0000;
     public static final String SPEED_KEY = "speed";
     public int speed = 1;
 
-	public RainbowBlockTile() {
-		super(ModTileEntities.RAINBOW_BLOCK);
-	}
-	
-	@Override
-	public void read(BlockState blockState, CompoundNBT compound) {
-		super.read(blockState, compound);
-	    this.color = compound.getInt(COLOR_KEY);
-	    this.speed = compound.getInt(SPEED_KEY);
-	}
-	
-	@Override
-	public CompoundNBT write(CompoundNBT compound) {
-	    compound.putInt(COLOR_KEY, this.color);
-	    compound.putInt(SPEED_KEY, this.speed);
-	    return super.write(compound);
+	public RainbowBlockTile(BlockPos pos, BlockState state) {
+		super(ModTileEntities.RAINBOW_BLOCK, pos, state);
 	}
 
 	@Override
-	public CompoundNBT getUpdateTag() {
-		CompoundNBT tag = super.getUpdateTag();
+	public void load(CompoundTag compound) {
+		super.load(compound);
+	    this.color = compound.getInt(COLOR_KEY);
+	    this.speed = compound.getInt(SPEED_KEY);
+	}
+
+	@Override
+	public CompoundTag save(CompoundTag compound) {
+	    compound.putInt(COLOR_KEY, this.color);
+	    compound.putInt(SPEED_KEY, this.speed);
+	    return super.save(compound);
+	}
+
+	@Override
+	public CompoundTag getUpdateTag() {
+		CompoundTag tag = super.getUpdateTag();
 	    tag.putInt(COLOR_KEY, this.color);
 	    tag.putInt(SPEED_KEY, this.speed);
 		return tag;
 	}
-	
+
 	@Override
-	public void handleUpdateTag(BlockState blockstate, CompoundNBT tag) {
-		super.read(blockstate, tag);
+	public void handleUpdateTag(CompoundTag tag) {
+		super.load(tag);
 		setColor(tag.getInt(COLOR_KEY));
 		setSpeed(tag.getInt(SPEED_KEY));
 	}
-	
+
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket()
+    public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new SUpdateTileEntityPacket(pos, 0, getUpdateTag());
+        return new ClientboundBlockEntityDataPacket(worldPosition, 0, getUpdateTag());
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet)
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet)
     {
-        handleUpdateTag(getBlockState(), packet.getNbtCompound());
+        handleUpdateTag(packet.getTag());
     }
 
 	private void notifyBlock() {
-		this.markDirty();
-		this.getWorld().notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);
+		this.setChanged();
+		this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
 	}
 
 	public void setColor(int color) {
 		this.color = color;
 		notifyBlock();
 	}
-	
+
 	public int getColor() {
 		return this.color;
 	}
@@ -79,12 +79,11 @@ public class RainbowBlockTile extends TileEntity implements ITickableTileEntity 
 		this.speed = speed;
 		notifyBlock();
 	}
-	
+
 	public int getSpeed() {
 		return this.speed;
 	}
 
-	@Override
 	public void tick() {
 		Color color = new Color(getColor());
 		int r = color.getRed(),

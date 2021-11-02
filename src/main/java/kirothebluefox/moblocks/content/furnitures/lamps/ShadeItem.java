@@ -1,65 +1,65 @@
 package kirothebluefox.moblocks.content.furnitures.lamps;
 
-import java.util.List;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import java.util.List;
 
 public class ShadeItem extends Item {
 	private String shape;
 	private Color color;
-	
+
 	public ShadeItem(Color color, String shape, Properties properties) {
 		super(properties);
 		this.color = color;
 		this.shape = shape;
 	}
-	
+
 	public Color getColor() {
 		return this.color;
 	}
-	
+
 	public String getShape() {
 		return this.shape;
 	}
-	
+
 	@Override
-	public String getTranslationKey() {
+	public String getDescriptionId() {
 		return "item.moblocks.shades.name";
 	}
-	
+
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shades.color", new TranslationTextComponent("item.moblocks.shades.colors."+this.color.getName()).setStyle(Style.EMPTY.setColor(this.color.getColor()))).setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shades.shape", new TranslationTextComponent("item.moblocks.shades.shapes."+this.shape)).setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shades.place").setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
-		super.addInformation(stack, worldIn, tooltip, flagIn);
+	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+		tooltip.add(new TranslatableComponent("tooltips.moblocks.shades.color", new TranslatableComponent("item.moblocks.shades.colors."+this.color.getName()).setStyle(Style.EMPTY.withColor(this.color.getColor()))).setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+		tooltip.add(new TranslatableComponent("tooltips.moblocks.shades.shape", new TranslatableComponent("item.moblocks.shades.shapes."+this.shape)).setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+		tooltip.add(new TranslatableComponent("tooltips.moblocks.shades.place").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
-	
+
 	public enum Color {
-		WHITE("white", DyeColor.WHITE.getColorValue()),
-		LIGHT_GRAY("light_gray", DyeColor.LIGHT_GRAY.getColorValue()),
-		GRAY("gray", DyeColor.GRAY.getColorValue()),
-		BLACK("black", DyeColor.BLACK.getColorValue()),
-		BROWN("brown", DyeColor.BROWN.getColorValue()),
-		PINK("pink", DyeColor.PINK.getColorValue()),
-		MAGENTA("magenta", DyeColor.MAGENTA.getColorValue()),
-		PURPLE("purple", DyeColor.PURPLE.getColorValue()),
-		LIGHT_BLUE("light_blue", DyeColor.LIGHT_BLUE.getColorValue()),
-		CYAN("cyan", DyeColor.CYAN.getColorValue()),
-		BLUE("blue", DyeColor.BLUE.getColorValue()),
-		GREEN("green", DyeColor.GREEN.getColorValue()),
-		LIME("lime", DyeColor.LIME.getColorValue()),
-		YELLOW("yellow", DyeColor.YELLOW.getColorValue()),
-		ORANGE("orange", DyeColor.ORANGE.getColorValue()),
-		RED("red", DyeColor.RED.getColorValue());
+		WHITE("white", DyeColor.WHITE.getFireworkColor()),
+		LIGHT_GRAY("light_gray", DyeColor.LIGHT_GRAY.getFireworkColor()),
+		GRAY("gray", DyeColor.GRAY.getFireworkColor()),
+		BLACK("black", DyeColor.BLACK.getFireworkColor()),
+		BROWN("brown", DyeColor.BROWN.getFireworkColor()),
+		PINK("pink", DyeColor.PINK.getFireworkColor()),
+		MAGENTA("magenta", DyeColor.MAGENTA.getFireworkColor()),
+		PURPLE("purple", DyeColor.PURPLE.getFireworkColor()),
+		LIGHT_BLUE("light_blue", DyeColor.LIGHT_BLUE.getFireworkColor()),
+		CYAN("cyan", DyeColor.CYAN.getFireworkColor()),
+		BLUE("blue", DyeColor.BLUE.getFireworkColor()),
+		GREEN("green", DyeColor.GREEN.getFireworkColor()),
+		LIME("lime", DyeColor.LIME.getFireworkColor()),
+		YELLOW("yellow", DyeColor.YELLOW.getFireworkColor()),
+		ORANGE("orange", DyeColor.ORANGE.getFireworkColor()),
+		RED("red", DyeColor.RED.getFireworkColor());
 
 		String name;
 		int color;
@@ -68,25 +68,25 @@ public class ShadeItem extends Item {
 			this.name = name;
 			this.color = color;
 		}
-		
+
 		Color(String name) {
 			this.name = name;
-			this.color = DyeColor.LIGHT_GRAY.getColorValue();
+			this.color = DyeColor.LIGHT_GRAY.getFireworkColor();
 		}
 
 		public String toString() {
 			return this.name;
 		}
-		
+
 		public String getName() {
 			return this.name;
 		}
-		
-		public net.minecraft.util.text.Color getColor() {
-			return net.minecraft.util.text.Color.fromInt(this.color);
+
+		public net.minecraft.network.chat.TextColor getColor() {
+			return net.minecraft.network.chat.TextColor.fromRgb(this.color);
 		}
-		
-		public int getColorValue() {
+
+		public int getFireworkColor() {
 			return this.color;
 		}
 	}

@@ -3,7 +3,7 @@ package kirothebluefox.moblocks.content;
 import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.content.furnitures.SeatChair;
 import kirothebluefox.moblocks.content.furnitures.SeatSofa;
-import net.minecraft.entity.EntityType;
+import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder(MoBlocks.MODID)

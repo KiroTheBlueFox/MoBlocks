@@ -1,18 +1,18 @@
 package kirothebluefox.moblocks.content.decoration.lighting.siren;
 
-import java.awt.Color;
-
 import kirothebluefox.moblocks.content.ModSounds;
 import kirothebluefox.moblocks.content.ModTileEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class SirenTile extends TileEntity implements ITickableTileEntity {
+import java.awt.*;
+
+public class SirenTile extends BlockEntity {
 	public static final String COLOR_KEY = "color";
 	public static final String MAX_COLOR_KEY = "max_color";
     public int color = 0xFFFFFF,
@@ -21,8 +21,8 @@ public class SirenTile extends TileEntity implements ITickableTileEntity {
     		rAnim, gAnim, bAnim, maxColor = 0xFFFFFF;
     public double factor = 1.1;
 
-	public SirenTile() {
-		super(ModTileEntities.SIREN);
+	public SirenTile(BlockPos pos, BlockState state) {
+		super(ModTileEntities.SIREN, pos, state);
 		Color color = new Color(maxColor);
 		int r = color.getRed(),
 				g = color.getGreen(),
@@ -31,51 +31,51 @@ public class SirenTile extends TileEntity implements ITickableTileEntity {
 		this.gAnim = (int) Math.round(g/(animationMax*factor));
 		this.bAnim = (int) Math.round(b/(animationMax*factor));
 	}
-	
+
 	@Override
-	public void read(BlockState blockState, CompoundNBT compound) {
-		super.read(blockState, compound);
+	public void load(CompoundTag compound) {
+		super.load(compound);
 	    this.color = compound.getInt(COLOR_KEY);
 	    setMaxColor(compound.getInt(MAX_COLOR_KEY));
 	}
-	
+
 	@Override
-	public CompoundNBT write(CompoundNBT compound) {
+	public CompoundTag save(CompoundTag compound) {
 	    compound.putInt(COLOR_KEY, this.color);
 	    compound.putInt(MAX_COLOR_KEY, this.maxColor);
-	    return super.write(compound);
+	    return super.save(compound);
 	}
 
 	@Override
-	public CompoundNBT getUpdateTag() {
-		CompoundNBT tag = super.getUpdateTag();
+	public CompoundTag getUpdateTag() {
+		CompoundTag tag = super.getUpdateTag();
 	    tag.putInt(COLOR_KEY, this.color);
 	    tag.putInt(MAX_COLOR_KEY, this.maxColor);
 		return tag;
 	}
-	
+
 	@Override
-	public void handleUpdateTag(BlockState blockstate, CompoundNBT tag) {
-		super.read(blockstate, tag);
+	public void handleUpdateTag(CompoundTag tag) {
+		super.load(tag);
 		setColor(tag.getInt(COLOR_KEY));
 		setMaxColor(tag.getInt(MAX_COLOR_KEY));
 	}
-	
+
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket()
+    public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new SUpdateTileEntityPacket(pos, 0, getUpdateTag());
+        return new ClientboundBlockEntityDataPacket(worldPosition, 0, getUpdateTag());
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet)
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet)
     {
-        handleUpdateTag(getBlockState(), packet.getNbtCompound());
+        handleUpdateTag(packet.getTag());
     }
 
 	private void notifyBlock() {
-		this.markDirty();
-		this.getWorld().notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);
+		this.setChanged();
+		this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
 	}
 
 	public void setColor(int color) {
@@ -93,18 +93,17 @@ public class SirenTile extends TileEntity implements ITickableTileEntity {
 		this.gAnim = (int) Math.round(g/(animationMax*factor));
 		this.bAnim = (int) Math.round(b/(animationMax*factor));
 	}
-	
+
 	public int getColor() {
 		return this.color;
 	}
-	
+
 	public int getMaxColor() {
 		return maxColor;
 	}
 
-	@Override
 	public void tick() {
-		if (this.getBlockState().get(Siren.POWERED)) {
+		if (this.getBlockState().getValue(Siren.POWERED)) {
 			Color color = new Color(getColor());
 			int r = color.getRed(),
 					g = color.getGreen(),
@@ -121,7 +120,7 @@ public class SirenTile extends TileEntity implements ITickableTileEntity {
 				animation++;
 			} else {
 				animation = 0;
-				this.getWorld().playSound(null, this.getPos(), ModSounds.SIREN, SoundCategory.BLOCKS, 3, 1);
+				this.getLevel().playSound(null, this.getBlockPos(), ModSounds.SIREN, SoundSource.BLOCKS, 3, 1);
 			}
 			setColor(r*256*256 + g*256 + b);
 		} else {

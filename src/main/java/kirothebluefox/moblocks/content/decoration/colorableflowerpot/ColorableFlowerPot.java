@@ -1,109 +1,105 @@
 package kirothebluefox.moblocks.content.decoration.colorableflowerpot;
 
-import javax.annotation.Nullable;
-
 import kirothebluefox.moblocks.content.customproperties.IColorableBlock;
 import kirothebluefox.moblocks.content.decoration.customcolorpicker.IDyeableColorPicker;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockDisplayReader;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ColorableFlowerPot extends Block implements IColorableBlock {
-	protected static final VoxelShape SHAPE = Block.makeCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D);
-	
+import javax.annotation.Nullable;
+
+public class ColorableFlowerPot extends Block implements IColorableBlock, EntityBlock {
+	protected static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D);
+
 	public ColorableFlowerPot(Block.Properties properties) {
 		super(properties);
 	}
 
-	@Override
-	public boolean hasTileEntity(BlockState state) {
-		return true;
-	}
-	
 	@Nullable
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return new ColorableFlowerPotTile();
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new ColorableFlowerPotTile(pos, state);
 	}
-	
+
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		ItemStack itemstack = player.getHeldItem(handIn);
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+		ItemStack itemstack = player.getItemInHand(handIn);
 		if (itemstack.isEmpty()) {
-			TileEntity tileentity = worldIn.getTileEntity(pos);
+			BlockEntity tileentity = worldIn.getBlockEntity(pos);
 			if (tileentity instanceof ColorableFlowerPotTile) {
 				ColorableFlowerPotTile colorableflowerpotentity = (ColorableFlowerPotTile)tileentity;
 				colorableflowerpotentity.dropItem(player, handIn);
 			}
-			return ActionResultType.SUCCESS;
+			return InteractionResult.SUCCESS;
 		} else {
 			Item item = itemstack.getItem();
 			if (item instanceof IDyeableColorPicker) {
 				IDyeableColorPicker colorpicker = (IDyeableColorPicker)item;
-				TileEntity tileentity = worldIn.getTileEntity(pos);
+				BlockEntity tileentity = worldIn.getBlockEntity(pos);
 				if (tileentity instanceof ColorableFlowerPotTile) {
 					ColorableFlowerPotTile colorableflowerpotentity = (ColorableFlowerPotTile)tileentity;
-					if (player.isSneaking()) colorpicker.setColor(itemstack, colorableflowerpotentity.getColor());
+					if (player.isShiftKeyDown()) colorpicker.setColor(itemstack, colorableflowerpotentity.getColor());
 					else colorableflowerpotentity.setColor(colorpicker.getColor(itemstack));
-					return ActionResultType.SUCCESS;
+					return InteractionResult.SUCCESS;
 				} else {
-					return ActionResultType.FAIL;
+					return InteractionResult.FAIL;
 				}
 			} else if (item.getTags().contains(new ResourceLocation("minecraft:small_flowers"))) {
-				TileEntity tileentity = worldIn.getTileEntity(pos);
+				BlockEntity tileentity = worldIn.getBlockEntity(pos);
 				if (tileentity instanceof ColorableFlowerPotTile) {
 					ColorableFlowerPotTile colorableflowerpotentity = (ColorableFlowerPotTile)tileentity;
-					if (!player.isSneaking()) colorableflowerpotentity.addItem(player.abilities.isCreativeMode ? itemstack.copy() : itemstack);
+					if (!player.isShiftKeyDown()) colorableflowerpotentity.addItem(player.isCreative() ? itemstack.copy() : itemstack);
 					else colorableflowerpotentity.dropItem();
 				}
-				return ActionResultType.SUCCESS;
+				return InteractionResult.SUCCESS;
 			} else {
-				return ActionResultType.FAIL;
+				return InteractionResult.FAIL;
 			}
 		}
 	}
 
-	public static int getColor(BlockState blockState, IBlockDisplayReader blockReader, BlockPos pos) {
-		TileEntity tileEntity = blockReader.getTileEntity(pos);
+	public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {
+		BlockEntity tileEntity = blockReader.getBlockEntity(pos);
 		if (tileEntity instanceof ColorableFlowerPotTile) {
 			ColorableFlowerPotTile colorableflowerpotentity = (ColorableFlowerPotTile) tileEntity;
 			return colorableflowerpotentity.getColor();
 		}
 		return 0xFFFFFF;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
-	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+	public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (state.getBlock() != newState.getBlock()) {
-			TileEntity tileentity = worldIn.getTileEntity(pos);
+			BlockEntity tileentity = worldIn.getBlockEntity(pos);
      		if (tileentity instanceof ColorableFlowerPotTile) {
      			((ColorableFlowerPotTile) tileentity).dropItem();
      		}
 
-     		super.onReplaced(state, worldIn, pos, newState, isMoving);
+     		super.onRemove(state, worldIn, pos, newState, isMoving);
 		}
 	}
-	
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+
+	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
-	
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
+
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.MODEL;
 	}
 }

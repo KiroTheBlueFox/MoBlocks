@@ -1,8 +1,8 @@
 package kirothebluefox.moblocks.content.customproperties;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum PillarSize implements IStringSerializable {
+public enum PillarSize implements StringRepresentable {
 	SMALL("small"),
 	BIG("big");
 
@@ -21,7 +21,7 @@ public enum PillarSize implements IStringSerializable {
 	}
 
 	@Override
-	public String getString() {
+	public String getSerializedName() {
 		return getName();
 	}
 }

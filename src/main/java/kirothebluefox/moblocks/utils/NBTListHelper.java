@@ -1,16 +1,16 @@
 package kirothebluefox.moblocks.utils;
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-
 /**
- * 
+ *
 The MIT License (MIT)
 
 Copyright (c) 2019 Joseph Bettendorff aka "Commoble"
@@ -37,18 +37,18 @@ SOFTWARE.
 /**
  * Helper class for writing a List<T> into a CompoundNBT
  * example usage for use in e.g. a WorldSavedData, a TileEntity, etc:
- * 
+ *
  * private static final String POSITIONS = "positions";
  * private static final String BLOCKPOS = "blockpos";
- * 
+ *
  * private List<BlockPos> list = new ArrayList<>();
- * 
+ *
  * private static final NBTListHelper<BlockPos> BLOCKPOS_LISTER = new NBTListHelper<>(
  * 		POSITIONS,
  * 		(nbt, blockPos) -> nbt.put(BLOCKPOS, NBTUtil.writeBlockPos(blockPos),
  * 		nbt -> NBTUtil.readBlockPos(nbt.getCompound(BLOCKPOS))
  * );
- * 
+ *
  * 	@Override
  *	public void read(CompoundNBT nbt)
  *	{
@@ -67,9 +67,9 @@ SOFTWARE.
 public class NBTListHelper<T>
 {
 	private final String name;
-	private final BiConsumer<CompoundNBT, T> elementWriter;
-	private final Function<CompoundNBT, T> elementReader;
-	
+	private final BiConsumer<CompoundTag, T> elementWriter;
+	private final Function<CompoundTag, T> elementReader;
+
 	/**
 	 * @param name A unique identifier for the list's representation in the CompoundNBT
 	 * @param elementWriter A function that, given a CompoundNBT and a list element, writes that element into the NBT
@@ -77,59 +77,59 @@ public class NBTListHelper<T>
 	 */
 	public NBTListHelper(
 			String name,
-			BiConsumer<CompoundNBT, T> elementWriter,
-			Function<CompoundNBT, T> elementReader)
+			BiConsumer<CompoundTag, T> elementWriter,
+			Function<CompoundTag, T> elementReader)
 	{
 		this.name = name;
 		this.elementWriter = elementWriter;
 		this.elementReader = elementReader;
 	}
-	
+
 	/**
 	 * Reconstructs and returns a List<T> from a CompoundNBT
 	 * If the nbt used was given by this.write(list), the list returned will be a reconstruction of the original List
 	 * @param compound The CompoundNBT to read and construct the List from
 	 * @return A List that the data contained in the CompoundNBT represents
 	 */
-	public List<T> read(final CompoundNBT compound)
+	public List<T> read(final CompoundTag compound)
 	{
 		final List<T> newList = new ArrayList<>();
-		
-		final ListNBT listNBT = compound.getList(this.name, 10);
+
+		final ListTag listNBT = compound.getList(this.name, 10);
 		if (listNBT == null)
 			return newList;
-		
+
 		final int listSize = listNBT.size();
-		
+
 		if (listSize <= 0)
 			return newList;
-		
+
 		IntStream.range(0, listSize).mapToObj(i -> listNBT.getCompound(i))
 			.forEach(nbt -> newList.add(this.elementReader.apply(nbt)));
-		
+
 		return newList;
 	}
-	
+
 	/**
 	 * Given a list and a CompoundNBT,writes the contents of that list into the NBT
-	 * The same CompoundNBT can be given to this.read to retrieve that map 
+	 * The same CompoundNBT can be given to this.read to retrieve that map
 	 * @param list A List<T> to write into the nbt
 	 * @param compound A CompoundNBT to write the list into
 	 * @return A CompoundNBT that, when used as the argument to this.read(nbt), will cause that function to reconstruct and return a copy of the original list
 	 */
-	public CompoundNBT write(final List<T> list, final CompoundNBT compound)
+	public CompoundTag write(final List<T> list, final CompoundTag compound)
 	{
-		final ListNBT nbtList = new ListNBT();
-		
+		final ListTag nbtList = new ListTag();
+
 		list.forEach(element ->
 			{
-				final CompoundNBT nbt = new CompoundNBT();
+				final CompoundTag nbt = new CompoundTag();
 				this.elementWriter.accept(nbt, element);
 				nbtList.add(nbt);
 			});
-		
+
 		compound.put(this.name, nbtList);
-		
+
 		return compound;
 	}
 }
