@@ -1,33 +1,32 @@
 package kirothebluefox.moblocks.content.furnitures;
 
+import kirothebluefox.moblocks.MoBlocks;
+import kirothebluefox.moblocks.content.customproperties.CustomBlockStateProperties;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Nullable;
-
-import kirothebluefox.moblocks.MoBlocks;
-import kirothebluefox.moblocks.content.customproperties.CustomBlockStateProperties;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.IWaterLoggable;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-
-public class Carpet extends Block implements IWaterLoggable {
+public class Carpet extends Block implements SimpleWaterloggedBlock {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	private static final BooleanProperty NORTH = CustomBlockStateProperties.NORTH;
 	private static final BooleanProperty SOUTH = CustomBlockStateProperties.SOUTH;
@@ -38,55 +37,55 @@ public class Carpet extends Block implements IWaterLoggable {
 	private static final BooleanProperty SOUTH_WEST = CustomBlockStateProperties.SOUTH_WEST;
 	private static final BooleanProperty SOUTH_EAST = CustomBlockStateProperties.SOUTH_EAST;
 
-	protected static final VoxelShape CARPET = Block.makeCuboidShape(0, 0, 0, 16, 1, 16);
-	
+	protected static final VoxelShape CARPET = Block.box(0, 0, 0, 16, 1, 16);
+
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
 		return CARPET;
 	}
-	
+
 	public Carpet(Block baseBlock) {
-		super(Block.Properties.from(baseBlock).notSolid());
-	    this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, false)
-	    		.with(NORTH, false)
-	    		.with(SOUTH, false)
-	    		.with(EAST, false)
-	    		.with(WEST, false)
-	    		.with(NORTH_WEST, false)
-	    		.with(NORTH_EAST, false)
-	    		.with(SOUTH_WEST, false)
-	    		.with(SOUTH_EAST, false));
+		super(Block.Properties.copy(baseBlock).noOcclusion());
+	    this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false)
+	    		.setValue(NORTH, false)
+	    		.setValue(SOUTH, false)
+	    		.setValue(EAST, false)
+	    		.setValue(WEST, false)
+	    		.setValue(NORTH_WEST, false)
+	    		.setValue(NORTH_EAST, false)
+	    		.setValue(SOUTH_WEST, false)
+	    		.setValue(SOUTH_EAST, false));
 	}
-	
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(NORTH, SOUTH, EAST, WEST, NORTH_WEST, NORTH_EAST, SOUTH_WEST, SOUTH_EAST, WATERLOGGED);
 	}
-	
+
 	@Nullable
-	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockPos blockpos = context.getPos();
-		FluidState ifluidstate = context.getWorld().getFluidState(blockpos);
-		IWorld world = context.getWorld();
-		BlockState blockstate = this.getDefaultState().with(WATERLOGGED, Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER));
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		BlockPos blockpos = context.getClickedPos();
+		FluidState ifluidstate = context.getLevel().getFluidState(blockpos);
+		LevelAccessor world = context.getLevel();
+		BlockState blockstate = this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(ifluidstate.getType() == Fluids.WATER));
 		blockstate = forEachDirections(blockstate, world, blockpos);
 		return blockstate;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public FluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 
 	/**
 	 * Test if the block is a table or not
-	 * 
+	 *
 	 * @param direction N, S, E, W, NW, NE, SW or SE
 	 * @param stateIn
 	 * @param worldIn
 	 * @param currentPos
 	 * @return true or false
 	 */
-	private boolean isBlockAtCarpet(String direction, BlockState stateIn, IWorld worldIn, BlockPos currentPos) {
+	private boolean isBlockAtCarpet(String direction, BlockState stateIn, LevelAccessor worldIn, BlockPos currentPos) {
 		BlockPos blockToTest;
 		switch (direction.toLowerCase()) {
 		case "n":
@@ -119,8 +118,8 @@ public class Carpet extends Block implements IWaterLoggable {
 	    Block block = worldIn.getBlockState(blockToTest).getBlock();
 	    return block.getTags().contains(new ResourceLocation(MoBlocks.MODID, "carpets"));
 	}
-	
-	public BlockState forEachDirections(BlockState stateIn, IWorld worldIn, BlockPos currentPos) {
+
+	public BlockState forEachDirections(BlockState stateIn, LevelAccessor worldIn, BlockPos currentPos) {
 		Map<String, BooleanProperty> allDirections = new HashMap<String, BooleanProperty>();
 		BlockState[] state = {stateIn};
 		allDirections.put("N", NORTH);
@@ -132,35 +131,35 @@ public class Carpet extends Block implements IWaterLoggable {
 		allDirections.put("SE", SOUTH_EAST);
 		allDirections.put("SW", SOUTH_WEST);
 		allDirections.forEach((direction, property) -> {
-			state[0] = state[0].with(property, isBlockAtCarpet(direction, stateIn, worldIn, currentPos));
+			state[0] = state[0].setValue(property, isBlockAtCarpet(direction, stateIn, worldIn, currentPos));
 		});
 		return state[0];
 	}
-	
-	public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
-		return IWaterLoggable.super.receiveFluid(worldIn, pos, state, fluidStateIn);
+
+	public boolean placeLiquid(LevelAccessor worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+		return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
 	}
 
-	public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
-	   return IWaterLoggable.super.canContainFluid(worldIn, pos, state, fluidIn);
+	public boolean canPlaceLiquid(BlockGetter worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
+	   return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
 	}
-	
+
 	@SuppressWarnings("deprecation")
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) {
-			worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+		if (stateIn.getValue(WATERLOGGED)) {
+			worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 		}
-		
+
 		stateIn = forEachDirections(stateIn, worldIn, currentPos);
-		return facing.getAxis().isHorizontal() ? stateIn : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return facing.getAxis().isHorizontal() ? stateIn : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
-	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+	public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
 		switch(type) {
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).isTagged(FluidTags.WATER);
+			return worldIn.getFluidState(pos).is(FluidTags.WATER);
 		case AIR:
 			return false;
 		default:

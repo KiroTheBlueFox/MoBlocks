@@ -1,32 +1,27 @@
 package kirothebluefox.moblocks.utils;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.Matrix4f;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.util.FormattedCharSequence;
+
 import java.util.List;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldVertexBufferUploader;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.IReorderingProcessor;
-import net.minecraft.util.math.vector.Matrix4f;
-
 public class GuiUtils {
-	private static int width = Minecraft.getInstance().getMainWindow().getWidth();
-	private static int height = Minecraft.getInstance().getMainWindow().getHeight();
-	
+	private static int width = Minecraft.getInstance().getWindow().getScreenWidth();
+	private static int height = Minecraft.getInstance().getWindow().getScreenHeight();
+
 	@SuppressWarnings({ "deprecation", "unused" })
-	public static void renderToolTip(MatrixStack p_238654_1_, List<? extends IReorderingProcessor> p_238654_2_, int p_238654_3_, int p_238654_4_, FontRenderer font) {
+	public static void renderToolTip(PoseStack p_238654_1_, List<? extends FormattedCharSequence> p_238654_2_, int p_238654_3_, int p_238654_4_, Font font) {
 		//net.minecraftforge.fml.client.gui.GuiUtils.drawHoveringText(p_238654_1_, p_238654_2_, p_238654_3_, p_238654_4_, width, height, -1, font);
 		if (!p_238654_2_.isEmpty()) {
 			int i = 0;
 
-     		for(IReorderingProcessor ireorderingprocessor : p_238654_2_) {
-     			int j = font.func_243245_a(ireorderingprocessor);
+     		for(FormattedCharSequence ireorderingprocessor : p_238654_2_) {
+     			int j = font.width(ireorderingprocessor);
 	            if (j > i) {
 	            	i = j;
 	            }
@@ -47,15 +42,15 @@ public class GuiUtils {
 	            j2 = height - k - 6;
      		}
 
-     		p_238654_1_.push();
+     		p_238654_1_.pushPose();
      		int l = -267386864;
      		int i1 = 1347420415;
      		int j1 = 1344798847;
      		int k1 = 400;
-     		Tessellator tessellator = Tessellator.getInstance();
-     		BufferBuilder bufferbuilder = tessellator.getBuffer();
-     		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
-     		Matrix4f matrix4f = p_238654_1_.getLast().getMatrix();
+     		Tesselator tessellator = Tesselator.getInstance();
+     		BufferBuilder bufferbuilder = tessellator.getBuilder();
+     		bufferbuilder.begin(VertexFormat.Mode.LINES, DefaultVertexFormat.POSITION_COLOR);
+     		Matrix4f matrix4f = p_238654_1_.last().pose();
      		fillGradient(matrix4f, bufferbuilder, i2 - 3, j2 - 4, i2 + i + 3, j2 - 3, 400, -267386864, -267386864);
      		fillGradient(matrix4f, bufferbuilder, i2 - 3, j2 + k + 3, i2 + i + 3, j2 + k + 4, 400, -267386864, -267386864);
      		fillGradient(matrix4f, bufferbuilder, i2 - 3, j2 - 3, i2 + i + 3, j2 + k + 3, 400, -267386864, -267386864);
@@ -69,19 +64,19 @@ public class GuiUtils {
      		RenderSystem.disableTexture();
      		RenderSystem.enableBlend();
      		RenderSystem.defaultBlendFunc();
-     		RenderSystem.shadeModel(7425);
-     		bufferbuilder.finishDrawing();
-     		WorldVertexBufferUploader.draw(bufferbuilder);
-     		RenderSystem.shadeModel(7424);
+     		//RenderSystem.shadeModel(7425);
+     		bufferbuilder.end();
+     		BufferUploader.end(bufferbuilder);
+     		//RenderSystem.shadeModel(7424);
      		RenderSystem.disableBlend();
      		RenderSystem.enableTexture();
-     		IRenderTypeBuffer.Impl irendertypebuffer$impl = IRenderTypeBuffer.getImpl(Tessellator.getInstance().getBuffer());
+     		MultiBufferSource.BufferSource irendertypebuffer$impl = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
      		p_238654_1_.translate(0.0D, 0.0D, 400.0D);
-     		
+
      		for(int l1 = 0; l1 < p_238654_2_.size(); ++l1) {
-     			IReorderingProcessor ireorderingprocessor1 = p_238654_2_.get(l1);
+     			FormattedCharSequence ireorderingprocessor1 = p_238654_2_.get(l1);
      			if (ireorderingprocessor1 != null) {
-     				font.func_238416_a_(ireorderingprocessor1, (float)i2, (float)j2, -1, true, matrix4f, irendertypebuffer$impl, false, 0, 15728880);
+     				font.drawInBatch(ireorderingprocessor1, (float)i2, (float)j2, -1, true, matrix4f, irendertypebuffer$impl, false, 0, 15728880);
 	            }
 
 	            if (l1 == 0) {
@@ -90,9 +85,9 @@ public class GuiUtils {
 
 	            j2 += 10;
      		}
-     		
-     		irendertypebuffer$impl.finish();
-     		p_238654_1_.pop();
+
+     		irendertypebuffer$impl.endBatch();
+     		p_238654_1_.popPose();
 		}
 	}
 
@@ -105,9 +100,9 @@ public class GuiUtils {
 		float f5 = (float)(colorB >> 16 & 255) / 255.0F;
 		float f6 = (float)(colorB >> 8 & 255) / 255.0F;
 		float f7 = (float)(colorB & 255) / 255.0F;
-		builder.pos(matrix, (float)x2, (float)y1, (float)z).color(f1, f2, f3, f).endVertex();
-		builder.pos(matrix, (float)x1, (float)y1, (float)z).color(f1, f2, f3, f).endVertex();
-		builder.pos(matrix, (float)x1, (float)y2, (float)z).color(f5, f6, f7, f4).endVertex();
-		builder.pos(matrix, (float)x2, (float)y2, (float)z).color(f5, f6, f7, f4).endVertex();
+		builder.vertex(matrix, (float)x2, (float)y1, (float)z).color(f1, f2, f3, f).endVertex();
+		builder.vertex(matrix, (float)x1, (float)y1, (float)z).color(f1, f2, f3, f).endVertex();
+		builder.vertex(matrix, (float)x1, (float)y2, (float)z).color(f5, f6, f7, f4).endVertex();
+		builder.vertex(matrix, (float)x2, (float)y2, (float)z).color(f5, f6, f7, f4).endVertex();
    	}
 }

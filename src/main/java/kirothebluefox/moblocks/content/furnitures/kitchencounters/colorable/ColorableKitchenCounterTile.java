@@ -1,73 +1,74 @@
 package kirothebluefox.moblocks.content.furnitures.kitchencounters.colorable;
 
 import kirothebluefox.moblocks.content.ModTileEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class ColorableKitchenCounterTile extends TileEntity {
+public class ColorableKitchenCounterTile extends BlockEntity {
 	public static final String COLOR_KEY1 = "counter_color";
     public int color1 = 0xFFFFFF;
 	public static final String COLOR_KEY2 = "planks_color";
     public int color2 = 0xFFFFFF;
-    
-	public ColorableKitchenCounterTile() {
-		super(ModTileEntities.COLORABLE_KITCHEN_COUNTER);
-	}
-	
-	@Override
-	public void read(BlockState blockState, CompoundNBT compound) {
-		super.read(blockState, compound);
-	    this.color1 = compound.getInt(COLOR_KEY1);
-	    this.color2 = compound.getInt(COLOR_KEY2);
-	}
-	
-	@Override
-	public CompoundNBT write(CompoundNBT compound) {
-	    compound.putInt(COLOR_KEY1, this.color1);
-	    compound.putInt(COLOR_KEY2, this.color2);
-	    return super.write(compound);
+
+	public ColorableKitchenCounterTile(BlockPos pos, BlockState state) {
+		super(ModTileEntities.COLORABLE_KITCHEN_COUNTER, pos, state);
 	}
 
 	@Override
-	public CompoundNBT getUpdateTag() {
-		CompoundNBT tag = super.getUpdateTag();
+	public void load(CompoundTag compound) {
+		super.load(compound);
+	    this.color1 = compound.getInt(COLOR_KEY1);
+	    this.color2 = compound.getInt(COLOR_KEY2);
+	}
+
+	@Override
+	public CompoundTag save(CompoundTag compound) {
+	    compound.putInt(COLOR_KEY1, this.color1);
+	    compound.putInt(COLOR_KEY2, this.color2);
+	    return super.save(compound);
+	}
+
+	@Override
+	public CompoundTag getUpdateTag() {
+		CompoundTag tag = super.getUpdateTag();
 	    tag.putInt(COLOR_KEY1, this.color1);
 	    tag.putInt(COLOR_KEY2, this.color2);
 		return tag;
 	}
-	
+
 	@Override
-	public void handleUpdateTag(BlockState blockstate, CompoundNBT tag) {
-		super.read(blockstate, tag);
+	public void handleUpdateTag(CompoundTag tag) {
+		super.load(tag);
 		setCounterColor(tag.getInt(COLOR_KEY1));
 		setPlanksColor(tag.getInt(COLOR_KEY2));
 	}
-	
+
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket()
+    public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new SUpdateTileEntityPacket(pos, 0, getUpdateTag());
+        return new ClientboundBlockEntityDataPacket(worldPosition, 0, getUpdateTag());
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet)
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet)
     {
-        handleUpdateTag(getBlockState(), packet.getNbtCompound());
+        handleUpdateTag(packet.getTag());
     }
 
 	private void notifyBlock() {
-		this.markDirty();
-		this.getWorld().notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);
+		this.setChanged();
+		this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
 	}
 
 	public void setCounterColor(int color) {
 		this.color1 = color;
 		notifyBlock();
 	}
-	
+
 	public int getCounterColor() {
 		return this.color1;
 	}
@@ -76,7 +77,7 @@ public class ColorableKitchenCounterTile extends TileEntity {
 		this.color2 = color;
 		notifyBlock();
 	}
-	
+
 	public int getPlanksColor() {
 		return this.color2;
 	}

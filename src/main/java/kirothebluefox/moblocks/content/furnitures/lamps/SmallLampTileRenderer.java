@@ -1,36 +1,35 @@
 package kirothebluefox.moblocks.content.furnitures.lamps;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-
+import com.mojang.blaze3d.vertex.PoseStack;
 import kirothebluefox.moblocks.content.ModTileEntities;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 @OnlyIn(Dist.CLIENT)
-public class SmallLampTileRenderer extends TileEntityRenderer<LampTile> {
-	public SmallLampTileRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
-		super(rendererDispatcherIn);
+public class SmallLampTileRenderer implements BlockEntityRenderer<LampTile> {
+	public SmallLampTileRenderer(BlockEntityRendererProvider.Context context) {
+
 	}
 
 	@Override
-	public void render(LampTile tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+	public void render(LampTile tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
 		ItemStack itemstack = tileEntityIn.getItem();
 		if (!itemstack.isEmpty()) {
-			matrixStackIn.push();
+			matrixStackIn.pushPose();
             matrixStackIn.translate(0.5, 0.5, 0.5);
-	        Minecraft.getInstance().getItemRenderer().renderItem(itemstack, ItemCameraTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn);
-	        matrixStackIn.pop();
+	        Minecraft.getInstance().getItemRenderer().renderStatic(itemstack, ItemTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn, (int) tileEntityIn.getBlockPos().asLong());
+	        matrixStackIn.popPose();
 		}
 	}
-	
+
 	public static void register() {
-		ClientRegistry.bindTileEntityRenderer(ModTileEntities.SMALL_LAMP, SmallLampTileRenderer::new);
+		BlockEntityRenderers.register(ModTileEntities.SMALL_LAMP, SmallLampTileRenderer::new);
 	}
 }

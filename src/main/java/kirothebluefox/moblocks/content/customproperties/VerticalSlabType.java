@@ -1,8 +1,8 @@
 package kirothebluefox.moblocks.content.customproperties;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum VerticalSlabType implements IStringSerializable {
+public enum VerticalSlabType implements StringRepresentable {
 	SINGLE("single"),
 	DOUBLE("double");
 
@@ -21,7 +21,7 @@ public enum VerticalSlabType implements IStringSerializable {
 	}
 
 	@Override
-	public String getString() {
+	public String getSerializedName() {
 		return getName();
 	}
 }

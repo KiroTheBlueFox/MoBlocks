@@ -1,31 +1,31 @@
 package kirothebluefox.moblocks.content.furnitures.drawers.simples;
 
 import kirothebluefox.moblocks.content.ModContainers;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class SimpleDrawerContainer extends Container {
+public class SimpleDrawerContainer extends AbstractContainerMenu {
 	private SimpleDrawerTile tileEntity;
 	private final IItemHandler inventory;
-	
-	public SimpleDrawerContainer(int id, BlockPos pos, PlayerInventory playerInv) {
+
+	public SimpleDrawerContainer(int id, BlockPos pos, Inventory playerInv) {
 		super(ModContainers.SIMPLE_DRAWER_CONTAINER, id);
-		this.tileEntity = (SimpleDrawerTile) playerInv.player.world.getTileEntity(pos);
+		this.tileEntity = (SimpleDrawerTile) playerInv.player.level.getBlockEntity(pos);
 		this.inventory = tileEntity.getItems();
-		
+
 
 		for(int j = 0; j < 2; ++j) {
 			for(int k = 0; k < 8; ++k) {
 				this.addSlot(new SlotItemHandler(this.inventory, k + j * 8, 17 + k * 18, 17 + j * 18));
          	}
 		}
-		
+
         for(int l = 0; l < 3; ++l) {
             for(int j1 = 0; j1 < 9; ++j1) {
                this.addSlot(new Slot(playerInv, j1 + l * 9 + 9, 8 + j1 * 18, 66 + l * 18));
@@ -37,25 +37,25 @@ public class SimpleDrawerContainer extends Container {
          }
 	}
 
-	public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+	public ItemStack quickMoveStack(Player playerIn, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
-		Slot slot = this.inventorySlots.get(index);
-		if (slot != null && slot.getHasStack()) {
-			ItemStack itemstack1 = slot.getStack();
+		Slot slot = this.slots.get(index);
+		if (slot != null && slot.hasItem()) {
+			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			int numberOfSlots = this.inventory.getSlots();
 			if (index < numberOfSlots) {
-				if (!this.mergeItemStack(itemstack1, numberOfSlots, 36+numberOfSlots, true)) {
+				if (!this.moveItemStackTo(itemstack1, numberOfSlots, 36+numberOfSlots, true)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.mergeItemStack(itemstack1, 0, numberOfSlots, false)) {
+			} else if (!this.moveItemStackTo(itemstack1, 0, numberOfSlots, false)) {
 				return ItemStack.EMPTY;
 			}
 
 			if (itemstack1.isEmpty()) {
-	            slot.putStack(ItemStack.EMPTY);
+	            slot.set(ItemStack.EMPTY);
 			} else {
-	            slot.onSlotChanged();
+	            slot.setChanged();
 			}
 
 			if (itemstack1.getCount() == itemstack.getCount()) {
@@ -64,15 +64,15 @@ public class SimpleDrawerContainer extends Container {
 
 			slot.onTake(playerIn, itemstack1);
 		}
-		
+
 		return itemstack;
 	}
-	
+
 	@Override
-	public boolean canInteractWith(PlayerEntity playerIn) {
+	public boolean stillValid(Player playerIn) {
 		return true;
 	}
-	
+
 	public IItemHandler getBlockInventory() {
 		return this.inventory;
 	}

@@ -1,78 +1,78 @@
 package kirothebluefox.moblocks.content.decoration.lighting.eyeballlamp;
 
-import java.util.List;
-
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableBlock;
-import net.hypherionmc.hypcore.api.ColoredLightManager;
-import net.hypherionmc.hypcore.api.Light;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.fml.ModList;
 
-public class EyeballLamp extends ColorableBlock {
+import javax.annotation.Nullable;
+import java.util.List;
+
+public class EyeballLamp extends ColorableBlock implements EntityBlock {
 	public EyeballLamp(Block block) {
 		super(block);
 		if (ModList.get().isLoaded("hypcore")) {
-			ColoredLightManager.registerProvider(this, this::produceColoredLight);
+			//ColoredLightManager.registerProvider(this, this::produceColoredLight);
 		}
 	}
-	
+
 	@Override
-	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+	public int getLightEmission(BlockState state, BlockGetter world, BlockPos pos) {
 		if (ModList.get().isLoaded("hypcore")) {
 			return 0;
 		}
 		return 15;
 	}
-	
+
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return Block.makeCuboidShape(4, 4, 4, 12, 12, 12);
+	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+		return Block.box(4, 4, 4, 12, 12, 12);
 	}
-	
+
+	@Nullable
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return new EyeballLampTile();
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new EyeballLampTile(pos, state);
 	}
-	
+
 	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.ENTITYBLOCK_ANIMATED;
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.ENTITYBLOCK_ANIMATED;
 	}
-	
+
 	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-		TileEntity tileentity = worldIn.getTileEntity(pos);
+	public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+		BlockEntity tileentity = worldIn.getBlockEntity(pos);
 		if (tileentity instanceof EyeballLampTile) {
 			EyeballLampTile eyeballLampTile = (EyeballLampTile)tileentity;
-			if (placer.isSneaking()) {
+			if (placer.isShiftKeyDown()) {
 				eyeballLampTile.setFollowPlayer(!eyeballLampTile.followPlayer());
 			}
 			else if (!eyeballLampTile.followPlayer()) {
-				Vector3d thisPos = new Vector3d(eyeballLampTile.getPos().getX()+0.5, eyeballLampTile.getPos().getY()+0.5, eyeballLampTile.getPos().getZ()+0.5);
-				Vector3d nearestPos = placer.getEyePosition(1);
-				Vector3d vector = nearestPos.subtract(thisPos);
+				Vec3 thisPos = new Vec3(eyeballLampTile.getBlockPos().getX()+0.5, eyeballLampTile.getBlockPos().getY()+0.5, eyeballLampTile.getBlockPos().getZ()+0.5);
+				Vec3 nearestPos = placer.getEyePosition(1);
+				Vec3 vector = nearestPos.subtract(thisPos);
 				double pitch = Math.toDegrees(Math.acos(vector.y/Math.sqrt(Math.pow(vector.x,2)+Math.pow(vector.y,2)+Math.pow(vector.z,2))));
 				double yaw = Math.toDegrees(Math.atan(vector.z/vector.x))+270;
 				yaw += (nearestPos.x >= thisPos.x) ? 180 : 0;
@@ -80,43 +80,43 @@ public class EyeballLamp extends ColorableBlock {
 			}
 		}
 	}
-	
+
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		ItemStack itemstack = player.getHeldItem(handIn);
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+		ItemStack itemstack = player.getItemInHand(handIn);
 		if (!itemstack.isEmpty())
-			return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+			return super.use(state, worldIn, pos, player, handIn, hit);
 		else {
-			TileEntity tileentity = worldIn.getTileEntity(pos);
+			BlockEntity tileentity = worldIn.getBlockEntity(pos);
 			if (tileentity instanceof EyeballLampTile) {
 				EyeballLampTile eyeballLampTile = (EyeballLampTile)tileentity;
-				if (player.isSneaking()) {
+				if (player.isShiftKeyDown()) {
 					eyeballLampTile.setFollowPlayer(!eyeballLampTile.followPlayer());
 				}
 				else if (!eyeballLampTile.followPlayer()) {
-					Vector3d thisPos = new Vector3d(eyeballLampTile.getPos().getX()+0.5, eyeballLampTile.getPos().getY()+0.5, eyeballLampTile.getPos().getZ()+0.5);
-					Vector3d nearestPos = player.getEyePosition(1);
-					Vector3d vector = nearestPos.subtract(thisPos);
+					Vec3 thisPos = new Vec3(eyeballLampTile.getBlockPos().getX()+0.5, eyeballLampTile.getBlockPos().getY()+0.5, eyeballLampTile.getBlockPos().getZ()+0.5);
+					Vec3 nearestPos = player.getEyePosition(1);
+					Vec3 vector = nearestPos.subtract(thisPos);
 					double pitch = Math.toDegrees(Math.acos(vector.y/Math.sqrt(Math.pow(vector.x,2)+Math.pow(vector.y,2)+Math.pow(vector.z,2))));
 					double yaw = Math.toDegrees(Math.atan(vector.z/vector.x))+270;
 					yaw += (nearestPos.x >= thisPos.x) ? 180 : 0;
 					eyeballLampTile.setAngle((float) -yaw, (float) -pitch+90);
 				}
-				return ActionResultType.SUCCESS;
+				return InteractionResult.SUCCESS;
 			}
-			return ActionResultType.FAIL;
+			return InteractionResult.FAIL;
 		}
 	}
-	
+
 	@Override
-	public void addInformation(ItemStack stack, IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.reference_to").setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)).append(new StringTextComponent("AsianHalfSquat").setStyle(Style.EMPTY.setFormatting(TextFormatting.BLUE))));
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.eyeball_lamp.follow_player").setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
-		super.addInformation(stack, worldIn, tooltip, flagIn);
+	public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+		tooltip.add(new TranslatableComponent("tooltips.moblocks.reference_to").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)).append(new TextComponent("AsianHalfSquat").setStyle(Style.EMPTY.withColor(ChatFormatting.BLUE))));
+		tooltip.add(new TranslatableComponent("tooltips.moblocks.eyeball_lamp.follow_player").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
-	
-	public Light produceColoredLight(BlockPos pos, BlockState state) {
+
+	/*public Light produceColoredLight(BlockPos pos, BlockState state) {
 		int color = getColor(Minecraft.getInstance().world, pos);
 		return Light.builder().pos(pos).color(color, false).radius(15).build();
-	}
+	}*/
 }

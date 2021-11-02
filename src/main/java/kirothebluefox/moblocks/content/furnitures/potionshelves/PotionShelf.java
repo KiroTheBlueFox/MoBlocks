@@ -1,61 +1,61 @@
 package kirothebluefox.moblocks.content.furnitures.potionshelves;
 
-import java.util.List;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.IWaterLoggable;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-
-public class PotionShelf extends Block implements IWaterLoggable {
+public class PotionShelf extends Block implements SimpleWaterloggedBlock, EntityBlock {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	
-	public static final VoxelShape NORTH = Block.makeCuboidShape(0,0,0,16,16,2);
-	public static final VoxelShape SOUTH = Block.makeCuboidShape(0,0,14,16,16,16);
-	public static final VoxelShape EAST = Block.makeCuboidShape(14,0,0,16,16,16);
-	public static final VoxelShape WEST = Block.makeCuboidShape(0,0,0,2,16,16);
-	
+
+	public static final VoxelShape NORTH = Block.box(0,0,0,16,16,2);
+	public static final VoxelShape SOUTH = Block.box(0,0,14,16,16,16);
+	public static final VoxelShape EAST = Block.box(14,0,0,16,16,16);
+	public static final VoxelShape WEST = Block.box(0,0,0,2,16,16);
+
 	public PotionShelf(Block baseBlock) {
-		super(Block.Properties.from(baseBlock));
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
+		super(Block.Properties.copy(baseBlock));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
 	}
-	
+
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		switch (state.get(FACING)) {
+	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+		switch (state.getValue(FACING)) {
 		case NORTH:
 			return NORTH;
 		case SOUTH:
@@ -68,57 +68,52 @@ public class PotionShelf extends Block implements IWaterLoggable {
 			return NORTH;
 		}
 	}
-	
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING, WATERLOGGED);
 	}
-	
-	@Override
-	public boolean hasTileEntity(BlockState state) {
-		return true;
-	}
-	
+
 	@Nullable
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return new PotionShelfTile();
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new PotionShelfTile(pos, state);
 	}
-	
+
 	@Override
-	public void addInformation(ItemStack stack, IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(new TranslationTextComponent("tooltips.moblocks.shelves.place_item").setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)));
+	public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+		tooltip.add(new TranslatableComponent("tooltips.moblocks.shelves.place_item").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
-	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+	public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (state.getBlock() != newState.getBlock()) {
-			TileEntity tileentity = worldIn.getTileEntity(pos);
+			BlockEntity tileentity = worldIn.getBlockEntity(pos);
      		if (tileentity instanceof PotionShelfTile) {
      			((PotionShelfTile) tileentity).dropItems();
      		}
 
-     		super.onReplaced(state, worldIn, pos, newState, isMoving);
+     		super.onRemove(state, worldIn, pos, newState, isMoving);
 		}
 	}
-	
+
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		Direction direction = state.get(FACING);
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+		Direction direction = state.getValue(FACING);
 		int slot, layer, rows = 3, columns = 3;
-		double x = 0, y = hit.getHitVec().getY()-pos.getY();
+		double x = 0, y = hit.getLocation().y()-pos.getY();
 		switch (direction) {
 		case NORTH:
-			x = hit.getHitVec().getX()-pos.getX();
+			x = hit.getLocation().x()-pos.getX();
 			break;
 		case SOUTH:
-			x = 1-(hit.getHitVec().getX()-pos.getX());
+			x = 1-(hit.getLocation().x()-pos.getX());
 			break;
 		case EAST:
-			x = hit.getHitVec().getZ()-pos.getZ();
+			x = hit.getLocation().z()-pos.getZ();
 			break;
 		case WEST:
-			x = 1-(hit.getHitVec().getZ()-pos.getZ());
+			x = 1-(hit.getLocation().z()-pos.getZ());
 			break;
 		default:
 			slot = -1;
@@ -131,51 +126,51 @@ public class PotionShelf extends Block implements IWaterLoggable {
 			slot = -1;
 			layer = -1;
 		}
-		TileEntity tileentity = worldIn.getTileEntity(pos);
+		BlockEntity tileentity = worldIn.getBlockEntity(pos);
 		if (tileentity instanceof PotionShelfTile && slot > -1 && slot < rows*columns+columns) {
 			PotionShelfTile shelftileentity = (PotionShelfTile)tileentity;
-			if (!player.isSneaking()) {
-				ItemStack itemstack = player.getHeldItem(handIn);
+			if (!player.isShiftKeyDown()) {
+				ItemStack itemstack = player.getItemInHand(handIn);
 				shelftileentity.addItem(itemstack, layer, slot, player, handIn);
 			}
 		} else {
-			return ActionResultType.FAIL;
+			return InteractionResult.FAIL;
 		}
-		return ActionResultType.SUCCESS;
-	}
-	
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
+		return InteractionResult.SUCCESS;
 	}
 
-	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		FluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
-		return this.getDefaultState().with(WATERLOGGED, Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER)).with(FACING, context.getPlacementHorizontalFacing());
-	}
-	
-	public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
-		return IWaterLoggable.super.receiveFluid(worldIn, pos, state, fluidStateIn);
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.MODEL;
 	}
 
-	public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
-	   return IWaterLoggable.super.canContainFluid(worldIn, pos, state, fluidIn);
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		FluidState ifluidstate = context.getLevel().getFluidState(context.getClickedPos());
+		return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(ifluidstate.getType() == Fluids.WATER)).setValue(FACING, context.getHorizontalDirection());
 	}
-	
+
+	public boolean placeLiquid(LevelAccessor worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+		return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
+	}
+
+	public boolean canPlaceLiquid(BlockGetter worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
+	   return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
+	}
+
 	@SuppressWarnings("deprecation")
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) {
-			worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+		if (stateIn.getValue(WATERLOGGED)) {
+			worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 		}
-		
-		return facing.getAxis().isHorizontal() ? stateIn : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+
+		return facing.getAxis().isHorizontal() ? stateIn : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
-	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+	public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
 		switch(type) {
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).isTagged(FluidTags.WATER);
+			return worldIn.getFluidState(pos).is(FluidTags.WATER);
 		case AIR:
 			return false;
 		default:
@@ -183,22 +178,22 @@ public class PotionShelf extends Block implements IWaterLoggable {
 		}
 	}
 
-	public ItemStack getItemAtHit(ClientWorld worldIn, BlockState state, Vector3d hit, BlockPos pos) {
-		Direction direction = state.get(FACING);
+	public ItemStack getItemAtHit(ClientLevel worldIn, BlockState state, Vec3 hit, BlockPos pos) {
+		Direction direction = state.getValue(FACING);
 		int slot, layer, rows = 3, columns = 3;
-		double x = 0, y = hit.getY()-pos.getY();
+		double x = 0, y = hit.y()-pos.getY();
 		switch (direction) {
 		case NORTH:
-			x = hit.getX()-pos.getX();
+			x = hit.x()-pos.getX();
 			break;
 		case SOUTH:
-			x = 1-(hit.getX()-pos.getX());
+			x = 1-(hit.x()-pos.getX());
 			break;
 		case EAST:
-			x = hit.getZ()-pos.getZ();
+			x = hit.z()-pos.getZ();
 			break;
 		case WEST:
-			x = 1-(hit.getZ()-pos.getZ());
+			x = 1-(hit.z()-pos.getZ());
 			break;
 		default:
 			slot = -1;
@@ -211,7 +206,7 @@ public class PotionShelf extends Block implements IWaterLoggable {
 			slot = -1;
 			layer = -1;
 		}
-		TileEntity tileentity = worldIn.getTileEntity(pos);
+		BlockEntity tileentity = worldIn.getBlockEntity(pos);
 		if (tileentity instanceof PotionShelfTile && slot > -1 && slot < rows*columns+columns) {
 			PotionShelfTile shelftileentity = (PotionShelfTile)tileentity;
 			return shelftileentity.getItem(layer, slot);

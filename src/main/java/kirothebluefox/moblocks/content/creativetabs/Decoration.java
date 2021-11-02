@@ -1,10 +1,10 @@
 package kirothebluefox.moblocks.content.creativetabs;
 
 import kirothebluefox.moblocks.content.ModBlocks;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
-public class Decoration extends ItemGroup {
+public class Decoration extends CreativeModeTab {
 	public Decoration() {
 		super("decoration_creative_tab");
 	}
@@ -15,7 +15,7 @@ public class Decoration extends ItemGroup {
 	}
 	
 	@Override
-	public ItemStack createIcon() {
+	public ItemStack makeIcon() {
 		return new ItemStack(ModBlocks.COLORABLE_FLOWER_POT);
 	}
 }

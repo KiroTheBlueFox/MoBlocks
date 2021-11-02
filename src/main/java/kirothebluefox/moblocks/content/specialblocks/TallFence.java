@@ -1,61 +1,61 @@
 package kirothebluefox.moblocks.content.specialblocks;
 
 import kirothebluefox.moblocks.MoBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FenceGateBlock;
-import net.minecraft.block.FourWayBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.LeadItem;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.state.StateContainer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.LeadItem;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CrossCollisionBlock;
+import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
 
-public class TallFence extends FourWayBlock {
+public class TallFence extends CrossCollisionBlock {
 
 	public TallFence(Block baseBlock) {
-		super(2.0F, 2.0F, 24.0F, 24.0F, 24.0F, Block.Properties.from(baseBlock));
-		this.setDefaultState(this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(WATERLOGGED, Boolean.valueOf(false)));
+		super(2.0F, 2.0F, 24.0F, 24.0F, 24.0F, Block.Properties.copy(baseBlock));
+		this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, Boolean.valueOf(false)).setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false)).setValue(WEST, Boolean.valueOf(false)).setValue(WATERLOGGED, Boolean.valueOf(false)));
 	}
- 
-	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+
+	public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
 		return false;
 	}
- 
-	public boolean func_220111_a(BlockState p_220111_1_, boolean p_220111_2_, Direction p_220111_3_) {
+
+	public boolean connectsTo(BlockState p_220111_1_, boolean p_220111_2_, Direction p_220111_3_) {
 		Block block = p_220111_1_.getBlock();
-		boolean flag = (block.isIn(BlockTags.getCollection().get(new ResourceLocation(MoBlocks.MODID,"tall_fences"))) || block.isIn(BlockTags.getCollection().get(new ResourceLocation(MoBlocks.MODID,"tall_fence_gates")))) && p_220111_1_.getMaterial() == this.material;
-		boolean flag1 = block instanceof FenceGateBlock && FenceGateBlock.isParallel(p_220111_1_, p_220111_3_);
-		return !cannotAttach(block) && p_220111_2_ || flag || flag1;
+		boolean flag = (p_220111_1_.is(BlockTags.getAllTags().getTag(new ResourceLocation(MoBlocks.MODID,"tall_fences"))) || p_220111_1_.is(BlockTags.getAllTags().getTag(new ResourceLocation(MoBlocks.MODID,"tall_fence_gates")))) && p_220111_1_.getMaterial() == this.material;
+		boolean flag1 = block instanceof FenceGateBlock && FenceGateBlock.connectsToDirection(p_220111_1_, p_220111_3_);
+		return !isExceptionForConnection(p_220111_1_) && p_220111_2_ || flag || flag1;
 	}
- 
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if (!worldIn.isRemote) {
+
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+		if (!worldIn.isClientSide) {
 			return LeadItem.bindPlayerMobs(player, worldIn, pos);
 		} else {
-			ItemStack itemstack = player.getHeldItem(handIn);
-			return (itemstack.getItem() == Items.LEAD || itemstack.isEmpty()) ? ActionResultType.SUCCESS : ActionResultType.FAIL;
+			ItemStack itemstack = player.getItemInHand(handIn);
+			return (itemstack.getItem() == Items.LEAD || itemstack.isEmpty()) ? InteractionResult.SUCCESS : InteractionResult.FAIL;
 		}
 	}
-	
-	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		IBlockReader iblockreader = context.getWorld();
-		BlockPos blockpos = context.getPos();
-		FluidState FluidState = context.getWorld().getFluidState(context.getPos());
+
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		BlockGetter iblockreader = context.getLevel();
+		BlockPos blockpos = context.getClickedPos();
+		FluidState FluidState = context.getLevel().getFluidState(context.getClickedPos());
 		BlockPos blockpos1 = blockpos.north();
 		BlockPos blockpos2 = blockpos.east();
 		BlockPos blockpos3 = blockpos.south();
@@ -64,19 +64,19 @@ public class TallFence extends FourWayBlock {
 		BlockState blockstate1 = iblockreader.getBlockState(blockpos2);
 		BlockState blockstate2 = iblockreader.getBlockState(blockpos3);
 		BlockState blockstate3 = iblockreader.getBlockState(blockpos4);
-		return super.getStateForPlacement(context).with(NORTH, Boolean.valueOf(this.func_220111_a(blockstate, blockstate.isSolidSide(iblockreader, blockpos1, Direction.SOUTH), Direction.SOUTH))).with(EAST, Boolean.valueOf(this.func_220111_a(blockstate1, blockstate1.isSolidSide(iblockreader, blockpos2, Direction.WEST), Direction.WEST))).with(SOUTH, Boolean.valueOf(this.func_220111_a(blockstate2, blockstate2.isSolidSide(iblockreader, blockpos3, Direction.NORTH), Direction.NORTH))).with(WEST, Boolean.valueOf(this.func_220111_a(blockstate3, blockstate3.isSolidSide(iblockreader, blockpos4, Direction.EAST), Direction.EAST))).with(WATERLOGGED, Boolean.valueOf(FluidState.getFluid() == Fluids.WATER));
+		return super.getStateForPlacement(context).setValue(NORTH, Boolean.valueOf(this.connectsTo(blockstate, blockstate.isFaceSturdy(iblockreader, blockpos1, Direction.SOUTH), Direction.SOUTH))).setValue(EAST, Boolean.valueOf(this.connectsTo(blockstate1, blockstate1.isFaceSturdy(iblockreader, blockpos2, Direction.WEST), Direction.WEST))).setValue(SOUTH, Boolean.valueOf(this.connectsTo(blockstate2, blockstate2.isFaceSturdy(iblockreader, blockpos3, Direction.NORTH), Direction.NORTH))).setValue(WEST, Boolean.valueOf(this.connectsTo(blockstate3, blockstate3.isFaceSturdy(iblockreader, blockpos4, Direction.EAST), Direction.EAST))).setValue(WATERLOGGED, Boolean.valueOf(FluidState.getType() == Fluids.WATER));
 	}
-	
+
 	@SuppressWarnings("deprecation")
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) {
-			worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+		if (stateIn.getValue(WATERLOGGED)) {
+			worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 		}
-		
-		return facing.getAxis().getPlane() == Direction.Plane.HORIZONTAL ? stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), Boolean.valueOf(this.func_220111_a(facingState, facingState.isSolidSide(worldIn, facingPos, facing.getOpposite()), facing.getOpposite()))) : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+
+		return facing.getAxis().getPlane() == Direction.Plane.HORIZONTAL ? stateIn.setValue(PROPERTY_BY_DIRECTION.get(facing), Boolean.valueOf(this.connectsTo(facingState, facingState.isFaceSturdy(worldIn, facingPos, facing.getOpposite()), facing.getOpposite()))) : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
-	
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(NORTH, EAST, WEST, SOUTH, WATERLOGGED);
 	}
 }

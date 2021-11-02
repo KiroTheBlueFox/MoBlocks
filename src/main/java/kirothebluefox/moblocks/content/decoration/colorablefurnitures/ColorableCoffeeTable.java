@@ -1,67 +1,62 @@
 package kirothebluefox.moblocks.content.decoration.colorablefurnitures;
 
-import javax.annotation.Nullable;
-
 import kirothebluefox.moblocks.content.customproperties.IColorableBlock;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableBlockTile;
 import kirothebluefox.moblocks.content.decoration.customcolorpicker.IDyeableColorPicker;
 import kirothebluefox.moblocks.content.furnitures.CoffeeTable;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockDisplayReader;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 
-public class ColorableCoffeeTable extends CoffeeTable implements IColorableBlock {
+import javax.annotation.Nullable;
+
+public class ColorableCoffeeTable extends CoffeeTable implements IColorableBlock, EntityBlock {
 	public ColorableCoffeeTable(Block baseBlock) {
 		super(baseBlock);
 	}
 
-	@Override
-	public boolean hasTileEntity(BlockState state) {
-		return true;
-	}
-	
 	@Nullable
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return new ColorableBlockTile();
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new ColorableBlockTile(pos, state);
 	}
-	
+
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		ItemStack itemstack = player.getHeldItem(handIn);
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+		ItemStack itemstack = player.getItemInHand(handIn);
 		if (itemstack.isEmpty()) {
-			return ActionResultType.SUCCESS;
+			return InteractionResult.SUCCESS;
 		} else {
 			Item item = itemstack.getItem();
 			if (item instanceof IDyeableColorPicker) {
 				IDyeableColorPicker colorpicker = (IDyeableColorPicker)item;
-				TileEntity tileentity = worldIn.getTileEntity(pos);
+				BlockEntity tileentity = worldIn.getBlockEntity(pos);
 				if (tileentity instanceof ColorableBlockTile) {
 					ColorableBlockTile colorableblockentity = (ColorableBlockTile)tileentity;
-					if (player.isSneaking()) colorpicker.setColor(itemstack, colorableblockentity.getColor());
+					if (player.isShiftKeyDown()) colorpicker.setColor(itemstack, colorableblockentity.getColor());
 					else colorableblockentity.setColor(colorpicker.getColor(itemstack));
-					return ActionResultType.SUCCESS;
+					return InteractionResult.SUCCESS;
 				} else {
-					return ActionResultType.FAIL;
+					return InteractionResult.FAIL;
 				}
 			} else {
-				return ActionResultType.FAIL;
+				return InteractionResult.FAIL;
 			}
 		}
 	}
 
-	public static int getColor(BlockState blockState, IBlockDisplayReader blockReader, BlockPos pos) {
-		TileEntity tileEntity = blockReader.getTileEntity(pos);
+	public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {
+		BlockEntity tileEntity = blockReader.getBlockEntity(pos);
 		if (tileEntity instanceof ColorableBlockTile) {
 			ColorableBlockTile colorablewoolentity = (ColorableBlockTile) tileEntity;
 			return colorablewoolentity.getColor();

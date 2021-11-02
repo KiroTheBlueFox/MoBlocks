@@ -1,32 +1,32 @@
 package kirothebluefox.moblocks.content.furnitures.kitchencounters;
 
 import kirothebluefox.moblocks.utils.VoxelShapeUtils;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class OuterCornerKitchenCounter extends KitchenCounter {
-	private static final VoxelShape PLANKS = Block.makeCuboidShape(1, 0, 1, 16, 15, 16);
-	private static final VoxelShape COUNTER1 = Block.makeCuboidShape(0, 15, 0, 16, 16, 16);
-	private static final VoxelShape COUNTER2 = Block.makeCuboidShape(15, 16, 15, 16, 18, 16);
-	
+	private static final VoxelShape PLANKS = Block.box(1, 0, 1, 16, 15, 16);
+	private static final VoxelShape COUNTER1 = Block.box(0, 15, 0, 16, 16, 16);
+	private static final VoxelShape COUNTER2 = Block.box(15, 16, 15, 16, 18, 16);
+
 	public OuterCornerKitchenCounter(Block block) {
 		super(block);
-		super.SHAPE = VoxelShapes.or(PLANKS,COUNTER1,COUNTER2);
+		super.SHAPE = Shapes.or(PLANKS,COUNTER1,COUNTER2);
 	}
-	
+
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
 		VoxelShapeUtils.Angle angle = VoxelShapeUtils.Angle.Angle0;
-		switch (state.get(FACING)) {
+		switch (state.getValue(FACING)) {
 		case WEST:
 			angle = VoxelShapeUtils.Angle.Angle180;
 			break;
@@ -41,20 +41,20 @@ public class OuterCornerKitchenCounter extends KitchenCounter {
 		}
 		return VoxelShapeUtils.rotateYAngle(SHAPE, angle);
 	}
-	
+
 	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockPos blockpos = context.getPos();
-		FluidState FluidState = context.getWorld().getFluidState(blockpos);
-		BlockState blockstate = this.getDefaultState().with(FACING, Direction.SOUTH).with(WATERLOGGED, Boolean.valueOf(FluidState.getFluid() == Fluids.WATER));
-		float direction = (context.getPlayer().getYaw(1.0F))%360;
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		BlockPos blockpos = context.getClickedPos();
+		FluidState FluidState = context.getLevel().getFluidState(blockpos);
+		BlockState blockstate = this.defaultBlockState().setValue(FACING, Direction.SOUTH).setValue(WATERLOGGED, Boolean.valueOf(FluidState.getType() == Fluids.WATER));
+		float direction = (context.getPlayer().getViewYRot(1.0F))%360;
 		if (direction < 0) direction += 360.0F;
 		if (direction >= 180.0F && direction < 270.0F) {
-			return blockstate.with(FACING, Direction.NORTH);
+			return blockstate.setValue(FACING, Direction.NORTH);
 		} else if (direction >= 90.0F && direction < 180.0F) {
-			return blockstate.with(FACING, Direction.WEST);
+			return blockstate.setValue(FACING, Direction.WEST);
 		} else if (direction >= 270.0F) {
-			return blockstate.with(FACING, Direction.EAST);
+			return blockstate.setValue(FACING, Direction.EAST);
 		} else {
 			return blockstate;
 		}

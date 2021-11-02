@@ -2,71 +2,73 @@ package kirothebluefox.moblocks.content.furnitures.kitchencounters.colorable;
 
 import kirothebluefox.moblocks.content.decoration.customcolorpicker.IDyeableColorPicker;
 import kirothebluefox.moblocks.content.furnitures.kitchencounters.StraightKitchenCounter;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockDisplayReader;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+
+import javax.annotation.Nullable;
 
 public class ColorableStraightKitchenCounter extends StraightKitchenCounter {
 	public ColorableStraightKitchenCounter(Block block) {
 		super(block);
 	}
-	
+
+	@Nullable
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return new ColorableKitchenCounterTile();
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new ColorableKitchenCounterTile(pos, state);
 	}
-	
+
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		ItemStack itemstack = player.getHeldItem(handIn);
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+		ItemStack itemstack = player.getItemInHand(handIn);
 		if (itemstack.isEmpty()) {
-			return ActionResultType.SUCCESS;
+			return InteractionResult.SUCCESS;
 		} else {
 			Item item = itemstack.getItem();
 			if (item instanceof IDyeableColorPicker) {
 				IDyeableColorPicker colorpicker = (IDyeableColorPicker)item;
-				TileEntity tileentity = worldIn.getTileEntity(pos);
+				BlockEntity tileentity = worldIn.getBlockEntity(pos);
 				if (tileentity instanceof ColorableKitchenCounterTile) {
 					ColorableKitchenCounterTile colorableKitchCounterEntity = (ColorableKitchenCounterTile)tileentity;
-					double y = hit.getHitVec().getY()-hit.getPos().getY();
+					double y = hit.getLocation().y()-hit.getBlockPos().getY();
 					if (y > 15/16f) {
-						if (player.isSneaking()) colorpicker.setColor(itemstack, colorableKitchCounterEntity.getCounterColor());
+						if (player.isShiftKeyDown()) colorpicker.setColor(itemstack, colorableKitchCounterEntity.getCounterColor());
 						else colorableKitchCounterEntity.setCounterColor(colorpicker.getColor(itemstack));
 					} else {
-						if (player.isSneaking()) colorpicker.setColor(itemstack, colorableKitchCounterEntity.getPlanksColor());
+						if (player.isShiftKeyDown()) colorpicker.setColor(itemstack, colorableKitchCounterEntity.getPlanksColor());
 						else colorableKitchCounterEntity.setPlanksColor(colorpicker.getColor(itemstack));
 					}
-					return ActionResultType.SUCCESS;
+					return InteractionResult.SUCCESS;
 				} else {
-					return ActionResultType.FAIL;
+					return InteractionResult.FAIL;
 				}
 			} else {
-				return ActionResultType.FAIL;
+				return InteractionResult.FAIL;
 			}
 		}
 	}
-	
-	public static int getCounterColor(BlockState blockState, IBlockDisplayReader blockReader, BlockPos pos) {
-		TileEntity tileEntity = blockReader.getTileEntity(pos);
+
+	public static int getCounterColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {
+		BlockEntity tileEntity = blockReader.getBlockEntity(pos);
 		if (tileEntity instanceof ColorableKitchenCounterTile) {
 			ColorableKitchenCounterTile colorableKitchenCounterTileentity = (ColorableKitchenCounterTile) tileEntity;
 			return colorableKitchenCounterTileentity.getCounterColor();
 		}
 		return 0xFFFFFF;
 	}
-	
-	public static int getPlanksColor(BlockState blockState, IBlockDisplayReader blockReader, BlockPos pos) {
-		TileEntity tileEntity = blockReader.getTileEntity(pos);
+
+	public static int getPlanksColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {
+		BlockEntity tileEntity = blockReader.getBlockEntity(pos);
 		if (tileEntity instanceof ColorableKitchenCounterTile) {
 			ColorableKitchenCounterTile colorableKitchenCounterTileentity = (ColorableKitchenCounterTile) tileEntity;
 			return colorableKitchenCounterTileentity.getPlanksColor();
