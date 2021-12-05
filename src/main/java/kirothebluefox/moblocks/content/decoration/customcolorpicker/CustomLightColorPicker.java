@@ -15,6 +15,8 @@ import net.minecraftforge.fml.ModList;
 
 import java.util.List;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class CustomLightColorPicker extends Item implements IDyeableLightColorPicker {
 	public CustomLightColorPicker(Properties properties) {
 		super(properties);

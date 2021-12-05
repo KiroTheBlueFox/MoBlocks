@@ -73,7 +73,7 @@ public class BookshelfTileRenderer implements BlockEntityRenderer<BookshelfTile>
 		            BlockState blockstate = tileEntityIn.getBlockState();
 		            BakedModel model = bookCoverModels.get(layer*7+stackIndex);
 		            RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-					net.minecraftforge.client.ForgeHooksClient.setRenderLayer(renderType);
+					net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
 					BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
 					Level world = tileEntityIn.getLevel();
 					ModelBlockRenderer blockModelRenderer = blockDispatcher.getModelRenderer();
@@ -125,7 +125,7 @@ public class BookshelfTileRenderer implements BlockEntityRenderer<BookshelfTile>
 					BlockState blockstate = tileEntityIn.getBlockState();
 		            BakedModel model = bookPagesModels.get(layer*7+stackIndex);
 					RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-					net.minecraftforge.client.ForgeHooksClient.setRenderLayer(renderType);
+					net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
 					BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
 					Level world = tileEntityIn.getLevel();
 					ModelBlockRenderer blockModelRenderer = blockDispatcher.getModelRenderer();

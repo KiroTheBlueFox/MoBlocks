@@ -42,7 +42,7 @@ public class ColorableFlowerPotTileRenderer implements BlockEntityRenderer<Color
 
 				BlockState blockstate = ((BlockItem) item).getBlock().defaultBlockState();
 				RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-				net.minecraftforge.client.ForgeHooksClient.setRenderLayer(renderType);
+				net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
 				BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
 				Level world = tileEntityIn.getLevel();
 				ModelBlockRenderer renderer = new ModelBlockRenderer(BlockColors.createDefault());

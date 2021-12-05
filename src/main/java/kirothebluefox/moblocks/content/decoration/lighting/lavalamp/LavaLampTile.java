@@ -23,9 +23,8 @@ public class LavaLampTile extends BlockEntity {
 	}
 
 	@Override
-	public CompoundTag save(CompoundTag compound) {
+	public void saveAdditional(CompoundTag compound) {
 	    compound.putInt(COLOR_KEY, this.color);
-	    return super.save(compound);
 	}
 
 	@Override
@@ -44,7 +43,7 @@ public class LavaLampTile extends BlockEntity {
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new ClientboundBlockEntityDataPacket(worldPosition, 0, getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override

@@ -74,7 +74,7 @@ public class SimpleDrawerTileRenderer implements BlockEntityRenderer<SimpleDrawe
 
 		BlockState blockstate = tileEntityIn.getBlockState();
 		RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-		net.minecraftforge.client.ForgeHooksClient.setRenderLayer(renderType);
+		net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
 		BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
 		Level world = tileEntityIn.getLevel();
 

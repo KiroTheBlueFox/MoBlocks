@@ -7,9 +7,10 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 import java.util.List;
+
+import net.minecraftforge.network.NetworkHooks;
 
 public class SeatChair extends Entity {
 	public SeatChair(Level worldIn, BlockPos pos) {

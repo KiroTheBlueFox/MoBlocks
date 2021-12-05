@@ -37,7 +37,7 @@ public class ShelfTile extends BlockEntity {
 	}
 
 	@Override
-	public CompoundTag save(CompoundTag compound) {
+	public void saveAdditional(CompoundTag compound) {
 	    CompoundTag inventory1 = new CompoundTag();
 	    CompoundTag inventory2 = new CompoundTag();
 	    CompoundTag inventory3 = new CompoundTag();
@@ -50,7 +50,6 @@ public class ShelfTile extends BlockEntity {
 	    compound.put(ITEM2_KEY, inventory2);
 	    compound.put(ITEM3_KEY, inventory3);
 	    compound.put(ITEM4_KEY, inventory4);
-	    return super.save(compound);
 	}
 
 	@Override
@@ -83,7 +82,7 @@ public class ShelfTile extends BlockEntity {
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new ClientboundBlockEntityDataPacket(worldPosition, 0, getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override

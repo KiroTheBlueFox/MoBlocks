@@ -40,10 +40,9 @@ public class SirenTile extends BlockEntity {
 	}
 
 	@Override
-	public CompoundTag save(CompoundTag compound) {
+	public void saveAdditional(CompoundTag compound) {
 	    compound.putInt(COLOR_KEY, this.color);
 	    compound.putInt(MAX_COLOR_KEY, this.maxColor);
-	    return super.save(compound);
 	}
 
 	@Override
@@ -64,7 +63,7 @@ public class SirenTile extends BlockEntity {
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new ClientboundBlockEntityDataPacket(worldPosition, 0, getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override

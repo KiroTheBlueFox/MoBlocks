@@ -41,7 +41,7 @@ public class BookshelfTile extends BlockEntity {
 	}
 
 	@Override
-	public CompoundTag save(CompoundTag compound) {
+	public void saveAdditional(CompoundTag compound) {
 		for (int i = 0; i < this.layers; i++) {
 			for (int j = 0; j < this.stacksPerLayer; j++) {
 			    CompoundTag inventory = new CompoundTag();
@@ -51,7 +51,6 @@ public class BookshelfTile extends BlockEntity {
 			    this.inventory[i][j].save(sizes);
 			}
 		}
-	    return super.save(compound);
 	}
 
 	@Override
@@ -84,7 +83,7 @@ public class BookshelfTile extends BlockEntity {
 
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        return new ClientboundBlockEntityDataPacket(worldPosition, 0, getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override

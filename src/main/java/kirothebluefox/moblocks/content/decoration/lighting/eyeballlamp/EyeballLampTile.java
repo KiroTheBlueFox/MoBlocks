@@ -27,11 +27,10 @@ public class EyeballLampTile extends ColorableBlockTile {
 	}
 
 	@Override
-	public CompoundTag save(CompoundTag compound) {
+	public void saveAdditional(CompoundTag compound) {
 		compound.putFloat(HORIZONTAL_ANGLE, this.horizontalAngle);
 		compound.putFloat(VERTICAL_ANGLE, this.verticalAngle);
 		compound.putBoolean(FOLLOW_PLAYER, this.followPlayer);
-		return super.save(compound);
 	}
 
 	@Override

@@ -60,7 +60,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.material.Material;
-import net.minecraftforge.common.extensions.IForgeContainerType;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -1977,11 +1977,11 @@ public class RegistrationHandler {
 	}
 	@SubscribeEvent
 	public static void onRegisterContainer(RegistryEvent.Register<MenuType<?>> container) {
-		container.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+		container.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
 			BlockPos pos = data.readBlockPos();
 			return new SimpleDrawerContainer(windowId, pos, inv);
 		}).setRegistryName(MoBlocks.MODID, "simple_drawer_container"));
-		container.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+		container.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
 			BlockPos pos = data.readBlockPos();
 			return new DoubleDrawerContainer(windowId, pos, inv);
 		}).setRegistryName(MoBlocks.MODID, "double_drawer_container"));

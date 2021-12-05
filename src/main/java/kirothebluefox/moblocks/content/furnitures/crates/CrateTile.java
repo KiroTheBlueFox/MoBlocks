@@ -39,7 +39,7 @@ public class CrateTile extends BlockEntity {
 	}
 
 	@Override
-	public CompoundTag save(CompoundTag compound) {
+	public void saveAdditional(CompoundTag compound) {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 16; j++) {
 			    CompoundTag inventory = new CompoundTag();
@@ -47,7 +47,6 @@ public class CrateTile extends BlockEntity {
 			    compound.put(KEYS[i][j], inventory);
 			}
 		}
-	    return super.save(compound);
 	}
 
 	@Override
@@ -66,7 +65,7 @@ public class CrateTile extends BlockEntity {
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new ClientboundBlockEntityDataPacket(worldPosition, 0, getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override

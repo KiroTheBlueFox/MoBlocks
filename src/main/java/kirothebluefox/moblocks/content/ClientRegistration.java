@@ -34,7 +34,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
-import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ForgeModelBakery;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -121,19 +121,19 @@ public class ClientRegistration {
 
 		MenuScreens.register(ModContainers.SIMPLE_DRAWER_CONTAINER, SimpleDrawerContainerScreen::new);
 		MenuScreens.register(ModContainers.DOUBLE_DRAWER_CONTAINER, DoubleDrawerContainerScreen::new);
-		ModelLoader.addSpecialModel(allCustomModels.OAK_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.SPRUCE_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.BIRCH_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.JUNGLE_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.ACACIA_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.DARK_OAK_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.NETHER_BRICK_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.CRIMSON_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.WARPED_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.BOOK_COVER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.BOOK_PAGES_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.EYEBALL_LAMP.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.NEON_BLOCK.getLocation());
+		ForgeModelBakery.addSpecialModel(allCustomModels.OAK_DRAWER_MODEL.getLocation());
+		ForgeModelBakery.addSpecialModel(allCustomModels.SPRUCE_DRAWER_MODEL.getLocation());
+		ForgeModelBakery.addSpecialModel(allCustomModels.BIRCH_DRAWER_MODEL.getLocation());
+		ForgeModelBakery.addSpecialModel(allCustomModels.JUNGLE_DRAWER_MODEL.getLocation());
+		ForgeModelBakery.addSpecialModel(allCustomModels.ACACIA_DRAWER_MODEL.getLocation());
+		ForgeModelBakery.addSpecialModel(allCustomModels.DARK_OAK_DRAWER_MODEL.getLocation());
+		ForgeModelBakery.addSpecialModel(allCustomModels.NETHER_BRICK_DRAWER_MODEL.getLocation());
+		ForgeModelBakery.addSpecialModel(allCustomModels.CRIMSON_DRAWER_MODEL.getLocation());
+		ForgeModelBakery.addSpecialModel(allCustomModels.WARPED_DRAWER_MODEL.getLocation());
+		ForgeModelBakery.addSpecialModel(allCustomModels.BOOK_COVER_MODEL.getLocation());
+		ForgeModelBakery.addSpecialModel(allCustomModels.BOOK_PAGES_MODEL.getLocation());
+		ForgeModelBakery.addSpecialModel(allCustomModels.EYEBALL_LAMP.getLocation());
+		ForgeModelBakery.addSpecialModel(allCustomModels.NEON_BLOCK.getLocation());
 
 		cutoutBlocks.forEach((block) -> {
 			ItemBlockRenderTypes.setRenderLayer(block, RenderType.cutoutMipped());

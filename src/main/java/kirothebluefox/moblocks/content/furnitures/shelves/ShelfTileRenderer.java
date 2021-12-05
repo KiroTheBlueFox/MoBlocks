@@ -1,5 +1,6 @@
 package kirothebluefox.moblocks.content.furnitures.shelves;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import kirothebluefox.moblocks.MoBlocks;
@@ -162,7 +163,7 @@ public class ShelfTileRenderer implements BlockEntityRenderer<ShelfTile> {
 	                }
 	                matrixStackIn.translate(0.225f*i+0.125f,-0.25f,-0.51f);
 	                matrixStackIn.scale(0.0075f, 0.0075f, 0.0075f);
-	                GL11.glNormal3f(0.0F, 0.0F, -1.0F);
+	                //GL11.glNormal3f(0.0F, 0.0F, -1.0F);
 	                FormattedText itextproperties = FormattedText.of(Integer.toString(tileEntityIn.getItem(i).getCount()));
                 	if (itextproperties != null) {
                 		fontrenderer.drawInBatch(itextproperties.getString(), 0, 0, 0xffffff, false, matrixStackIn.last().pose(), bufferIn, false, 0, combinedLightIn);

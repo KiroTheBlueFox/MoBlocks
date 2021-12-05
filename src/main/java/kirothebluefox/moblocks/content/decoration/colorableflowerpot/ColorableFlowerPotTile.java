@@ -31,12 +31,11 @@ public class ColorableFlowerPotTile extends BlockEntity {
 	}
 
 	@Override
-	public CompoundTag save(CompoundTag compound) {
+	public void saveAdditional(CompoundTag compound) {
 	    compound.putInt(COLOR_KEY, this.color);
 	    CompoundTag inventory = new CompoundTag();
 	    this.item.save(inventory);
 	    compound.put(ITEM_KEY, inventory);
-	    return super.save(compound);
 	}
 
 	@Override
@@ -59,7 +58,7 @@ public class ColorableFlowerPotTile extends BlockEntity {
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new ClientboundBlockEntityDataPacket(worldPosition, 0, getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override

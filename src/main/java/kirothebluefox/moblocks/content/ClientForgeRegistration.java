@@ -29,9 +29,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.minecraftforge.fmlclient.gui.GuiUtils.postItemToolTip;
-import static net.minecraftforge.fmlclient.gui.GuiUtils.preItemToolTip;
-
 @EventBusSubscriber(modid = MoBlocks.MODID, value = Dist.CLIENT, bus=Bus.FORGE)
 public class ClientForgeRegistration {
 	@SubscribeEvent
@@ -67,7 +64,7 @@ public class ClientForgeRegistration {
 								height = Minecraft.getInstance().getWindow().getGuiScaledHeight(),
 								posx = (int) (width/2),
 								posy = (int) (height/2);
-						preItemToolTip(item);
+						//preItemHoverText(item);
 					    List<Component> tooltip = item.getTooltipLines(Minecraft.getInstance().player, Minecraft.getInstance().options.advancedItemTooltips ? TooltipFlag.Default.ADVANCED : TooltipFlag.Default.NORMAL);
 						// MatrixStack, List<ITextComponent>, int, int, int, int, int, FontRenderer
 					    // net.minecraftforge.fml.client.gui.GuiUtils.drawHoveringText(matrixStack, tooltip, posx, posy, width, height, -1, font);
@@ -76,7 +73,7 @@ public class ClientForgeRegistration {
 							tooltipReordering.add(FormattedCharSequence.forward(textcomponent.getString(), textcomponent.getStyle()));
 						});
 					    kirothebluefox.moblocks.utils.GuiUtils.renderToolTip(matrixStack, tooltipReordering, posx, posy, font);
-					    postItemToolTip();
+					    //postItemToolTip();
 					}
 				}
 			}

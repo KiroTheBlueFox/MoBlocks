@@ -28,9 +28,8 @@ public class ColorableBlockTile extends BlockEntity {
 	}
 
 	@Override
-	public CompoundTag save(CompoundTag compound) {
-	    compound.putInt(COLOR_KEY, this.color);
-	    return super.save(compound);
+	protected void saveAdditional(CompoundTag compound) {
+		compound.putInt(COLOR_KEY, this.color);
 	}
 
 	@Override
@@ -47,14 +46,12 @@ public class ColorableBlockTile extends BlockEntity {
 	}
 
     @Override
-    public ClientboundBlockEntityDataPacket getUpdatePacket()
-    {
-        return new ClientboundBlockEntityDataPacket(worldPosition, 0, getUpdateTag());
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+		return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet)
-    {
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet) {
         handleUpdateTag(packet.getTag());
     }
 

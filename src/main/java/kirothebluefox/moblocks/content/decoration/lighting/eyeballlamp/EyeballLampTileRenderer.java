@@ -61,7 +61,7 @@ public class EyeballLampTileRenderer implements BlockEntityRenderer<EyeballLampT
 		matrixStackIn.translate(-0.5f, -0.5f, -0.5f);
 
 		RenderType renderType = RenderType.cutoutMipped(); // RenderTypeLookup.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-		net.minecraftforge.client.ForgeHooksClient.setRenderLayer(renderType);
+		net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
 		BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
 		BakedModel model = Minecraft.getInstance().getModelManager().getModel(allCustomModels.EYEBALL_LAMP.getLocation());
 

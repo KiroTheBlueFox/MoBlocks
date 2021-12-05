@@ -81,12 +81,11 @@ public class DoubleDrawerTile extends BlockEntity implements MenuProvider {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public CompoundTag save(CompoundTag compound) {
+	public void saveAdditional(CompoundTag compound) {
 	    handler.ifPresent(h -> {
 	    	CompoundTag inventory = ((INBTSerializable<CompoundTag>)h).serializeNBT();
 	    	compound.put(INV_KEY, inventory);
 	    });
-	    return super.save(compound);
 	}
 
 	private IItemHandlerModifiable createItemHandler() {

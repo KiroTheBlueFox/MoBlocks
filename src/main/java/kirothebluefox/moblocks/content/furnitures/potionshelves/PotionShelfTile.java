@@ -41,7 +41,7 @@ public class PotionShelfTile extends BlockEntity {
 	}
 
 	@Override
-	public CompoundTag save(CompoundTag compound) {
+	public void saveAdditional(CompoundTag compound) {
 		for (int i = 0; i < this.layers; i++) {
 			for (int j = 0; j < this.stacksPerLayer; j++) {
 			    CompoundTag inventory = new CompoundTag();
@@ -49,7 +49,6 @@ public class PotionShelfTile extends BlockEntity {
 			    compound.put(KEYS[i][j], inventory);
 			}
 		}
-	    return super.save(compound);
 	}
 
 	@Override
@@ -67,7 +66,7 @@ public class PotionShelfTile extends BlockEntity {
 
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        return new ClientboundBlockEntityDataPacket(worldPosition, 0, getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override

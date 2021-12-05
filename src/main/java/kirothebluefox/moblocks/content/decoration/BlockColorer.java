@@ -11,6 +11,8 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class BlockColorer extends Item {
 	public BlockColorer(Properties properties) {
 		super(properties);

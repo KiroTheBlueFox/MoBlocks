@@ -34,11 +34,10 @@ public class SignalTowerLightTile extends BlockEntity {
 	}
 
 	@Override
-	public CompoundTag save(CompoundTag compound) {
+	public void saveAdditional(CompoundTag compound) {
 	    compound.putInt(COLOR1_KEY, this.color1);
 	    compound.putInt(COLOR2_KEY, this.color2);
 	    compound.putInt(COLOR3_KEY, this.color3);
-	    return super.save(compound);
 	}
 
 	@Override
@@ -61,7 +60,7 @@ public class SignalTowerLightTile extends BlockEntity {
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new ClientboundBlockEntityDataPacket(worldPosition, 0, getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override

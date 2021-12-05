@@ -21,7 +21,7 @@ public class NeonBlockTileRenderer implements BlockEntityRenderer<NeonBlockTile>
 		matrixStackIn.pushPose();
 
 		RenderType renderType = RenderType.solid();
-		net.minecraftforge.client.ForgeHooksClient.setRenderLayer(renderType);
+		net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
 		BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
 		BakedModel model = Minecraft.getInstance().getModelManager().getModel(allCustomModels.NEON_BLOCK.getLocation());
 

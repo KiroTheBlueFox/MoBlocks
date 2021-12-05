@@ -30,11 +30,10 @@ public class LampTile extends BlockEntity {
 	}
 
 	@Override
-	public CompoundTag save(CompoundTag compound) {
+	public void saveAdditional(CompoundTag compound) {
 	    CompoundTag inventory = new CompoundTag();
 	    this.stack.save(inventory);
 	    compound.put(INV_KEY, inventory);
-	    return super.save(compound);
 	}
 
 	@Override
@@ -55,7 +54,7 @@ public class LampTile extends BlockEntity {
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new ClientboundBlockEntityDataPacket(worldPosition, 0, getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override

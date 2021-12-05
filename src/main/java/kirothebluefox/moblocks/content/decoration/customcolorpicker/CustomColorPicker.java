@@ -14,6 +14,8 @@ import net.minecraft.world.level.LevelReader;
 
 import java.util.List;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class CustomColorPicker extends Item implements IDyeableColorPicker {
 	public CustomColorPicker(Properties properties) {
 		super(properties);
