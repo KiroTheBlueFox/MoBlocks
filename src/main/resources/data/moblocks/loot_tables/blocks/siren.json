@@ -29,6 +29,7 @@
             },
             {
               "function": "minecraft:set_contents",
+              "type": "minecraft:chest",
               "entries": [
                 {
                   "type": "minecraft:dynamic",
