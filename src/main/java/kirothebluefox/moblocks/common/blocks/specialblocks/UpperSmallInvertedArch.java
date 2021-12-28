@@ -1,8 +1,12 @@
 package kirothebluefox.moblocks.common.blocks.specialblocks;
 
+import kirothebluefox.moblocks.MoBlocks;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -70,9 +74,10 @@ public class UpperSmallInvertedArch extends HorizontalDirectionalBlock implement
     protected static final VoxelShape EWPart9 = Block.box(EW[8][0], EW[8][1], EW[8][2], EW[8][3], EW[8][4], EW[8][5]);
     private static final VoxelShape FULL_EW_SHAPE = Shapes.or(EWPart1, EWPart2, EWPart3, EWPart4, EWPart5, EWPart6, EWPart7, EWPart8, EWPart9);
 
-    public UpperSmallInvertedArch(Block baseBlock) {
+    public UpperSmallInvertedArch(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.valueOf(false)));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)));
     }
 
     @Override

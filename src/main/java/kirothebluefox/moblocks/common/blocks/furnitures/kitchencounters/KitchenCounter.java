@@ -28,8 +28,8 @@ public abstract class KitchenCounter extends ColorableBlock implements SimpleWat
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     protected VoxelShape SHAPE = Shapes.empty();
 
-    public KitchenCounter(Block block) {
-        super(block);
+    public KitchenCounter(String name, Block block) {
+        super(name, block);
         registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 

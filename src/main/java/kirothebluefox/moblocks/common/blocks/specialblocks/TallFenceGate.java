@@ -1,10 +1,14 @@
 package kirothebluefox.moblocks.common.blocks.specialblocks;
 
+import kirothebluefox.moblocks.MoBlocks;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -42,9 +46,10 @@ public class TallFenceGate extends Block {
     private static final VoxelShape OPEN_LEFT_W = Block.box(6, 0, 0, 22, 24, 4);
     private static final VoxelShape OPEN_RIGHT_W = Block.box(6, 0, 12, 22, 24, 16);
 
-    public TallFenceGate(Block baseBlock) {
+    public TallFenceGate(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN, Boolean.valueOf(false)).setValue(HINGE, DoorHingeSide.LEFT).setValue(POWERED, Boolean.valueOf(false)));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.decoration_creative_tab)));
     }
 
     @Override

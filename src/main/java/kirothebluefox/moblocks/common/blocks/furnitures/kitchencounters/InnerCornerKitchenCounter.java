@@ -17,8 +17,8 @@ public class InnerCornerKitchenCounter extends KitchenCounter {
     private static final VoxelShape COUNTER2 = Block.box(0, 16, 15, 16, 18, 16);
     private static final VoxelShape COUNTER3 = Block.box(15, 16, 0, 16, 18, 15);
 
-    public InnerCornerKitchenCounter(Block block) {
-        super(block);
+    public InnerCornerKitchenCounter(String name, Block block) {
+        super(name, block);
         super.SHAPE = Shapes.or(PLANKS1, PLANKS2, COUNTER1, COUNTER2, COUNTER3);
     }
 

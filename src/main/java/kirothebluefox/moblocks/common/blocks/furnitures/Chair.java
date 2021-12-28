@@ -1,5 +1,7 @@
 package kirothebluefox.moblocks.common.blocks.furnitures;
 
+import kirothebluefox.moblocks.MoBlocks;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,6 +13,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -39,9 +43,10 @@ public class Chair extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
 
-    public Chair(Block baseBlock) {
+    public Chair(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock));
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(ROTATION, 0));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)));
     }
 
     @Override

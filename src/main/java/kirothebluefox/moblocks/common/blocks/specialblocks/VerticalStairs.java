@@ -1,8 +1,12 @@
 package kirothebluefox.moblocks.common.blocks.specialblocks;
 
+import kirothebluefox.moblocks.MoBlocks;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -56,9 +60,10 @@ public class VerticalStairs extends HorizontalDirectionalBlock implements Simple
     protected static final VoxelShape SouthPart2 = Block.box(South[1][0], South[1][1], South[1][2], South[1][3], South[1][4], South[1][5]);
     private static final VoxelShape FULL_SOUTH_SHAPE = Shapes.or(SouthPart1, SouthPart2);
 
-    public VerticalStairs(Block baseBlock) {
+    public VerticalStairs(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.valueOf(false)));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)));
     }
 
     @Override

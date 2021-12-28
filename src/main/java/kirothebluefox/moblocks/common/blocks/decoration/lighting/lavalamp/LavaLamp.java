@@ -1,13 +1,16 @@
 package kirothebluefox.moblocks.common.blocks.decoration.lighting.lavalamp;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.blockentities.LavaLampTile;
 import kirothebluefox.moblocks.common.customproperties.IColorableBlock;
+import kirothebluefox.moblocks.common.init.ModItems;
 import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableColorPicker;
 import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableLightColorPicker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -31,8 +34,9 @@ public class LavaLamp extends Block implements IColorableBlock, EntityBlock {
     private final VoxelShape shape3 = Block.box(6, 3, 6, 10, 16, 10);
     private final VoxelShape shape = Shapes.or(shape1, shape2, shape3);
 
-    public LavaLamp() {
+    public LavaLamp(String name) {
         super(Block.Properties.of(Material.DECORATION).instabreak());
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.decoration_creative_tab)));
         if (ModList.get().isLoaded("hypcore")) {
             //ColoredLightManager.registerProvider(this, this::produceColoredLight);
         }

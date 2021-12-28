@@ -18,8 +18,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 
 public class ColorableOuterCornerKitchenCounter extends OuterCornerKitchenCounter {
-    public ColorableOuterCornerKitchenCounter(Block block) {
-        super(block);
+    public ColorableOuterCornerKitchenCounter(String name, Block block) {
+        super(name, block);
     }
 
     @Nullable

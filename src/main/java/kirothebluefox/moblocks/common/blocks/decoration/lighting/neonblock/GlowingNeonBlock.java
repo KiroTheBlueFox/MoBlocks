@@ -10,8 +10,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fml.ModList;
 
 public class GlowingNeonBlock extends NeonBlock {
-    public GlowingNeonBlock(Block block) {
-        super(block);
+    public GlowingNeonBlock(String name, Block block) {
+        super(name, block);
         if (ModList.get().isLoaded("hypcore")) {
             //ColoredLightManager.registerProvider(this, this::produceColoredLight);
         }

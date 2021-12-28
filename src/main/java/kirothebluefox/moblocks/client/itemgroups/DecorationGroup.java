@@ -16,6 +16,6 @@ public class DecorationGroup extends CreativeModeTab {
 
     @Override
     public ItemStack makeIcon() {
-        return new ItemStack(ModBlocks.COLORABLE_FLOWER_POT);
+        return new ItemStack(ModBlocks.COLORABLE_FLOWER_POT.get());
     }
 }

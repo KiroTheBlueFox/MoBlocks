@@ -53,7 +53,7 @@ public class DoubleDrawerTileRenderer implements BlockEntityRenderer<DoubleDrawe
         }
         BakedModel model = Minecraft.getInstance().getModelManager().getModel(ModCustomModels.OAK_DRAWER_MODEL.getLocation());
         BakedModel model2 = Minecraft.getInstance().getModelManager().getModel(ModCustomModels.OAK_DRAWER_MODEL.getLocation());
-        Block baseBlock = Blocks.OAK_PLANKS;
+        Block baseBlock;
         Direction direction = tileEntityIn.getBlockState().getValue(DoubleDrawer.FACING);
         if (tileEntityIn.getBlockState().getBlock() instanceof DoubleDrawer) {
             baseBlock = ((DoubleDrawer) tileEntityIn.getBlockState().getBlock()).getBaseBlock();
@@ -101,7 +101,6 @@ public class DoubleDrawerTileRenderer implements BlockEntityRenderer<DoubleDrawe
         RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
         net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
         BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
-        Level world = tileEntityIn.getLevel();
 
         switch (direction) {
             case NORTH:

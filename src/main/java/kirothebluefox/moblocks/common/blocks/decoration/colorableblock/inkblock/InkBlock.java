@@ -24,8 +24,8 @@ import java.util.Random;
 public class InkBlock extends ColorableBlock {
     private static final String IDEA_BY = "Mysticpasta1";
 
-    public InkBlock(Block baseBlock) {
-        super(baseBlock);
+    public InkBlock(String name, Block baseBlock) {
+        super(name, baseBlock);
     }
 
     @Override

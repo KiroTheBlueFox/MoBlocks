@@ -1,9 +1,13 @@
 package kirothebluefox.moblocks.common.blocks.specialblocks;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.customproperties.*;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -488,9 +492,10 @@ public class TriangleRamp extends Block implements SimpleWaterloggedBlock {
     private static final VoxelShape TopLongLongTrueLong = Shapes.or(FULL_DOTTOP_SHAPE, FULL_ENDTOPNORTH_SHAPE, FULL_LONGENDTOPNORTH_SHAPE, FULL_ENDTOPSOUTH_SHAPE, FULL_LONGENDTOPSOUTH_SHAPE, FULL_ENDTOPEAST_SHAPE, FULL_ENDTOPWEST_SHAPE, FULL_LONGENDTOPWEST_SHAPE);
     private static final VoxelShape TopLongLongLongLong = Shapes.or(FULL_DOTTOP_SHAPE, FULL_ENDTOPNORTH_SHAPE, FULL_LONGENDTOPNORTH_SHAPE, FULL_ENDTOPSOUTH_SHAPE, FULL_LONGENDTOPSOUTH_SHAPE, FULL_ENDTOPEAST_SHAPE, FULL_LONGENDTOPEAST_SHAPE, FULL_ENDTOPWEST_SHAPE, FULL_LONGENDTOPWEST_SHAPE);
 
-    public TriangleRamp(Block baseBlock) {
+    public TriangleRamp(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock));
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(HALF, Half.BOTTOM).setValue(NORTH, MultipleNorth.FALSE).setValue(SOUTH, MultipleSouth.FALSE).setValue(EAST, MultipleEast.FALSE).setValue(WEST, MultipleWest.FALSE));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)));
     }
 
     @Override

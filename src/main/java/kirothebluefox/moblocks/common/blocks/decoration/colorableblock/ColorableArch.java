@@ -21,8 +21,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 
 public class ColorableArch extends ArchBlock implements IColorableBlock, EntityBlock {
-    public ColorableArch(Block baseBlock) {
-        super(baseBlock);
+    public ColorableArch(String name, Block baseBlock) {
+        super(name, baseBlock);
     }
 
     public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {

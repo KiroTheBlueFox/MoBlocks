@@ -1,13 +1,16 @@
 package kirothebluefox.moblocks.common.blocks.decoration.colorableflowerpot;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.blockentities.ColorableFlowerPotTile;
 import kirothebluefox.moblocks.common.customproperties.IColorableBlock;
+import kirothebluefox.moblocks.common.init.ModItems;
 import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableColorPicker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
@@ -27,8 +30,9 @@ import javax.annotation.Nullable;
 public class ColorableFlowerPot extends Block implements IColorableBlock, EntityBlock {
     protected static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D);
 
-    public ColorableFlowerPot(Block.Properties properties) {
+    public ColorableFlowerPot(String name, Block.Properties properties) {
         super(properties);
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.decoration_creative_tab)));
     }
 
     public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {

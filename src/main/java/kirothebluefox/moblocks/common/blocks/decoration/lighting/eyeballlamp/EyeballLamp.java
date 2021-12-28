@@ -31,8 +31,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class EyeballLamp extends ColorableBlock implements EntityBlock {
-    public EyeballLamp(Block block) {
-        super(block);
+    public EyeballLamp(String name, Block block) {
+        super(name, block);
         if (ModList.get().isLoaded("hypcore")) {
             //ColoredLightManager.registerProvider(this, this::produceColoredLight);
         }

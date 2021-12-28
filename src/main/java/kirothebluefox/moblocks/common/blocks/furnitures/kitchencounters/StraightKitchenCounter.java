@@ -9,8 +9,8 @@ public class StraightKitchenCounter extends KitchenCounter {
     private static final VoxelShape COUNTER1 = Block.box(0, 15, 0, 16, 16, 16);
     private static final VoxelShape COUNTER2 = Block.box(0, 16, 15, 16, 18, 16);
 
-    public StraightKitchenCounter(Block block) {
-        super(block);
+    public StraightKitchenCounter(String name, Block block) {
+        super(name, block);
         super.SHAPE = Shapes.or(PLANKS, COUNTER1, COUNTER2);
     }
 }

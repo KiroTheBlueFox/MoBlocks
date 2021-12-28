@@ -1,6 +1,8 @@
 package kirothebluefox.moblocks.common.blocks.furnitures;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.customproperties.CustomBlockStateProperties;
+import kirothebluefox.moblocks.common.init.ModItems;
 import kirothebluefox.moblocks.utils.VoxelShapeUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -11,6 +13,8 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -172,9 +176,10 @@ public class Sofa extends Block implements SimpleWaterloggedBlock {
     protected static final VoxelShape straight_right_armrestPart9 = Block.box(straight_right_armrest[8][0], straight_right_armrest[8][1], straight_right_armrest[8][2], straight_right_armrest[8][3], straight_right_armrest[8][4], straight_right_armrest[8][5]);
     private static final VoxelShape FULL_straight_right_armrest_SHAPE = Shapes.or(straight_right_armrestPart1, straight_right_armrestPart2, straight_right_armrestPart3, straight_right_armrestPart4, straight_right_armrestPart5, straight_right_armrestPart6, straight_right_armrestPart7, straight_right_armrestPart8, straight_right_armrestPart9);
 
-    public Sofa(Block baseBlock) {
+    public Sofa(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, StairsShape.STRAIGHT).setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(CONNECTED_LEFT, Boolean.valueOf(false)).setValue(CONNECTED_RIGHT, Boolean.valueOf(false)).setValue(ARMREST, Boolean.valueOf(false)));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)));
     }
 
     private static Boolean getRightConnection(BlockState state, LevelAccessor worldIn, BlockPos pos) {

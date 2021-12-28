@@ -21,8 +21,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 
 public class ColorableRamp extends RampBlock implements IColorableBlock, EntityBlock {
-    public ColorableRamp(Block baseBlock, BlockState state) {
-        super(baseBlock, state);
+    public ColorableRamp(String name, Block baseBlock, BlockState state) {
+        super(name, baseBlock, state);
     }
 
     public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {

@@ -19,8 +19,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 
 public class ColorableInnerCornerKitchenCounter extends InnerCornerKitchenCounter implements EntityBlock {
-    public ColorableInnerCornerKitchenCounter(Block block) {
-        super(block);
+    public ColorableInnerCornerKitchenCounter(String name, Block block) {
+        super(name, block);
     }
 
     @Nullable

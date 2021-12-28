@@ -4,6 +4,7 @@ import kirothebluefox.moblocks.client.itemgroups.DecorationGroup;
 import kirothebluefox.moblocks.client.itemgroups.FurnitureGroup;
 import kirothebluefox.moblocks.common.setup.CommonSetup;
 import kirothebluefox.moblocks.client.itemgroups.SpecialBlocksGroup;
+import kirothebluefox.moblocks.common.setup.RegistrationHandler;
 import kirothebluefox.moblocks.utils.ConfigHelper;
 import kirothebluefox.moblocks.utils.ConfigHelper.ConfigValueListener;
 import net.minecraft.world.item.CreativeModeTab;
@@ -22,6 +23,7 @@ public class MoBlocks {
     public static final CreativeModeTab furnitures_creative_tab = new FurnitureGroup().hideTitle().setBackgroundSuffix("item_search.png");
 
     public MoBlocks() {
+		RegistrationHandler.init(FMLJavaModLoadingContext.get().getModEventBus());
     	config = ConfigHelper.register(ModConfig.Type.CLIENT, ConfigImplementation::new);
     	FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::init);
     }

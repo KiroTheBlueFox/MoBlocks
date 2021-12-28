@@ -1,6 +1,8 @@
 package kirothebluefox.moblocks.common.blocks.furnitures.crates;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.blockentities.CrateTile;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -8,6 +10,8 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -36,9 +40,10 @@ public class Crate extends Block implements SimpleWaterloggedBlock, EntityBlock 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public Crate(Block baseBlock) {
+    public Crate(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock).noOcclusion());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)));
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

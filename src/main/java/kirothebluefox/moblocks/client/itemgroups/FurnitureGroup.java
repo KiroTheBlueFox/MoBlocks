@@ -12,7 +12,7 @@ public class FurnitureGroup extends CreativeModeTab {
 
     @Override
     public ItemStack makeIcon() {
-        return new ItemStack(Item.BY_BLOCK.get(ModBlocks.OAK_TABLE));
+        return new ItemStack(Item.BY_BLOCK.get(ModBlocks.OAK_TABLE.get()));
     }
 
     @Override

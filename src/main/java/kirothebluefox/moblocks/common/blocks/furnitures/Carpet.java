@@ -2,10 +2,13 @@ package kirothebluefox.moblocks.common.blocks.furnitures;
 
 import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.customproperties.CustomBlockStateProperties;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -38,7 +41,7 @@ public class Carpet extends Block implements SimpleWaterloggedBlock {
     private static final BooleanProperty SOUTH_WEST = CustomBlockStateProperties.SOUTH_WEST;
     private static final BooleanProperty SOUTH_EAST = CustomBlockStateProperties.SOUTH_EAST;
 
-    public Carpet(Block baseBlock) {
+    public Carpet(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock).noOcclusion());
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false)
                 .setValue(NORTH, false)
@@ -49,6 +52,7 @@ public class Carpet extends Block implements SimpleWaterloggedBlock {
                 .setValue(NORTH_EAST, false)
                 .setValue(SOUTH_WEST, false)
                 .setValue(SOUTH_EAST, false));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)));
     }
 
     @Override

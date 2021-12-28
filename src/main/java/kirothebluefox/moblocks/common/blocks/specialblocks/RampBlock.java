@@ -1,6 +1,8 @@
 package kirothebluefox.moblocks.common.blocks.specialblocks;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.customproperties.CustomBlockStateProperties;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -8,6 +10,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
@@ -1191,11 +1195,12 @@ public class RampBlock extends Block implements SimpleWaterloggedBlock {
     private final Block modelBlock;
     private final BlockState modelState;
 
-    public RampBlock(Block baseBlock, BlockState state) {
+    public RampBlock(String name, Block baseBlock, BlockState state) {
         super(Block.Properties.copy(baseBlock));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HALF, Half.BOTTOM).setValue(SHAPE, StairsShape.STRAIGHT).setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(CONNECTED_LEFT, Boolean.valueOf(false)).setValue(CONNECTED_RIGHT, Boolean.valueOf(false)));
         this.modelBlock = state.getBlock();
         this.modelState = state;
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)));
     }
 
     private static Boolean getRightConnection(BlockState state, LevelAccessor worldIn, BlockPos pos) {

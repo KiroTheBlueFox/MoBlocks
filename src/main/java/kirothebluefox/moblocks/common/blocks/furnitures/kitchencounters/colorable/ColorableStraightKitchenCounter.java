@@ -19,8 +19,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 
 public class ColorableStraightKitchenCounter extends StraightKitchenCounter {
-    public ColorableStraightKitchenCounter(Block block) {
-        super(block);
+    public ColorableStraightKitchenCounter(String name, Block block) {
+        super(name, block);
     }
 
     public static int getCounterColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {

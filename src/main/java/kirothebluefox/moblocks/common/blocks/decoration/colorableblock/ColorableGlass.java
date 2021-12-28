@@ -1,12 +1,15 @@
 package kirothebluefox.moblocks.common.blocks.decoration.colorableblock;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.blockentities.ColorableBlockTile;
 import kirothebluefox.moblocks.common.customproperties.IColorableBlock;
+import kirothebluefox.moblocks.common.init.ModItems;
 import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableColorPicker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -23,8 +26,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 
 public class ColorableGlass extends StainedGlassBlock implements IColorableBlock, EntityBlock {
-    public ColorableGlass() {
+    public ColorableGlass(String name) {
         super(DyeColor.WHITE, Block.Properties.copy(Blocks.WHITE_STAINED_GLASS));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.decoration_creative_tab)));
     }
 
     public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {

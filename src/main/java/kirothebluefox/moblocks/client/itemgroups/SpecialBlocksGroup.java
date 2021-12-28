@@ -12,7 +12,7 @@ public class SpecialBlocksGroup extends CreativeModeTab {
 
     @Override
     public ItemStack makeIcon() {
-        return new ItemStack(Item.BY_BLOCK.get(ModBlocks.OAK_ARCH));
+        return new ItemStack(Item.BY_BLOCK.get(ModBlocks.OAK_ARCH.get()));
     }
 
     @Override

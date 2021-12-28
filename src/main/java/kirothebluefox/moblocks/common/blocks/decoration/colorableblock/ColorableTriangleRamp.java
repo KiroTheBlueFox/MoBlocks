@@ -21,8 +21,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 
 public class ColorableTriangleRamp extends TriangleRamp implements IColorableBlock, EntityBlock {
-    public ColorableTriangleRamp(Block baseBlock) {
-        super(baseBlock);
+    public ColorableTriangleRamp(String name, Block baseBlock) {
+        super(name, baseBlock);
     }
 
     public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {

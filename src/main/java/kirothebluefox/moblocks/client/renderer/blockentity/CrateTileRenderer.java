@@ -54,85 +54,46 @@ public class CrateTileRenderer implements BlockEntityRenderer<CrateTile> {
                 switch (layer) {
                     case 0:
                         switch (i) {
-                            case 0:
-                                height = 6;
-                                break;
-                            case 1:
-                                height = 3;
-                                break;
-                            case 2:
-                                height = 1.5;
-                                break;
-                            case 3:
-                                height = 0;
-                                break;
+                            case 0 -> height = 6;
+                            case 1 -> height = 3;
+                            case 2 -> height = 1.5;
+                            case 3 -> height = 0;
                         }
                         break;
                     case 1:
-                        switch (i) {
-                            case 0:
-                                height = 0;
-                                break;
-                            case 1:
-                                height = 6;
-                                break;
-                            case 2:
-                                height = 3;
-                                break;
-                            case 3:
-                                height = 1.5;
-                                break;
-                        }
+                        height = switch (i) {
+                            case 0 -> 0;
+                            case 1 -> 6;
+                            case 2 -> 3;
+                            case 3 -> 1.5;
+                            default -> height;
+                        };
                         break;
                     case 2:
-                        switch (i) {
-                            case 0:
-                                height = 1.5;
-                                break;
-                            case 1:
-                                height = 0;
-                                break;
-                            case 2:
-                                height = 6;
-                                break;
-                            case 3:
-                                height = 3;
-                                break;
-                        }
+                        height = switch (i) {
+                            case 0 -> 1.5;
+                            case 1 -> 0;
+                            case 2 -> 6;
+                            case 3 -> 3;
+                            default -> height;
+                        };
                         break;
                     case 3:
-                        switch (i) {
-                            case 0:
-                                height = 3;
-                                break;
-                            case 1:
-                                height = 1.5;
-                                break;
-                            case 2:
-                                height = 0;
-                                break;
-                            case 3:
-                                height = 6;
-                                break;
-                        }
+                        height = switch (i) {
+                            case 0 -> 3;
+                            case 1 -> 1.5;
+                            case 2 -> 0;
+                            case 3 -> 6;
+                            default -> height;
+                        };
                         break;
                 }
                 switch (direction) {
-                    case NORTH:
-                        matrixStackIn.translate(j % 4 + (j % 4 * 0.3333333333), height, j / 4 + (j / 4 * 0.3333333333));
-                        break;
-                    case SOUTH:
-                        matrixStackIn.translate(j % 4 + (j % 4 * 0.3333333333) - 4, height, j / 4 + (j / 4 * 0.3333333333) - 4);
-                        break;
-                    case EAST:
-                        matrixStackIn.translate(j % 4 + (j % 4 * 0.3333333333), height, 5 - (j / 4 + (j / 4 * 0.3333333333)) - 5);
-                        break;
-                    case WEST:
-                        matrixStackIn.translate((j % 4 + (j % 4 * 0.3333333333)) - 4, height, 5 - (j / 4 + (j / 4 * 0.3333333333)) - 1);
-                        break;
-                    default:
-                        matrixStackIn.translate(j % 4 + (j % 4 * 0.3333333333), height, j / 4 + (j / 4 * 0.3333333333));
-                        break;
+                    case NORTH -> matrixStackIn.translate(j % 4 + (j % 4 * 0.3333333333), height, j / 4 + (j / 4 * 0.3333333333));
+                    case SOUTH -> matrixStackIn.translate(j % 4 + (j % 4 * 0.3333333333) - 4, height, j / 4 + (j / 4 * 0.3333333333) - 4);
+                    case EAST -> matrixStackIn.translate(j % 4 + (j % 4 * 0.3333333333), height, 5 - (j / 4 + (j / 4 * 0.3333333333)) - 5);
+                    case WEST -> matrixStackIn.translate((j % 4 + (j % 4 * 0.3333333333)) - 4, height, 5 - (j / 4 + (j / 4 * 0.3333333333)) - 1);
+                    default -> matrixStackIn.translate(j % 4 + (j % 4 * 0.3333333333), height, j / 4 + (j / 4 * 0.3333333333));
                 }
                 Minecraft.getInstance().getItemRenderer().renderStatic(
                         itemstack,
@@ -143,7 +104,9 @@ public class CrateTileRenderer implements BlockEntityRenderer<CrateTile> {
                         bufferIn,
                         (int) tileEntityIn.getBlockPos().asLong()
                 );
+
                 matrixStackIn.popPose();
+
                 if (i == layer &&
                         MoBlocks.config.crates_quantity.get() &&
                         !tileEntityIn.getItem(j).isEmpty() &&
@@ -170,20 +133,12 @@ public class CrateTileRenderer implements BlockEntityRenderer<CrateTile> {
                             break;
                     }
                     switch (direction) {
-                        case NORTH:
-                            matrixStackIn.translate(((j % 4 + (j % 4 * 0.3333333333))) * 0.15 + 0.15, -1.25, (5 - (j / 4 + (j / 4 * 0.3333333333))) * 0.15 - 0.95);
-                            break;
-                        case SOUTH:
-                            matrixStackIn.translate(((j % 4 + (j % 4 * 0.3333333333))) * 0.15 + 0.15, -1.25, (5 - (j / 4 + (j / 4 * 0.3333333333))) * 0.15 - 0.95);
-                            break;
-                        case EAST:
-                            matrixStackIn.translate(((j % 4 + (j % 4 * 0.3333333333))) * 0.15 + 0.15, -1.25, ((j / 4 + (j / 4 * 0.3333333333))) * 0.15 - 0.8);
-                            break;
-                        case WEST:
-                            matrixStackIn.translate(((j % 4 + (j % 4 * 0.3333333333))) * 0.15 + 0.15, -1.25, ((j / 4 + (j / 4 * 0.3333333333))) * 0.15 - 0.8);
-                            break;
-                        default:
-                            break;
+                        case NORTH -> matrixStackIn.translate(((j % 4 + (j % 4 * 0.3333333333))) * 0.15 + 0.15, -1.25, (5 - (j / 4 + (j / 4 * 0.3333333333))) * 0.15 - 0.95);
+                        case SOUTH -> matrixStackIn.translate(((j % 4 + (j % 4 * 0.3333333333))) * 0.15 + 0.15, -1.25, (5 - (j / 4 + (j / 4 * 0.3333333333))) * 0.15 - 0.95);
+                        case EAST -> matrixStackIn.translate(((j % 4 + (j % 4 * 0.3333333333))) * 0.15 + 0.15, -1.25, ((j / 4 + (j / 4 * 0.3333333333))) * 0.15 - 0.8);
+                        case WEST -> matrixStackIn.translate(((j % 4 + (j % 4 * 0.3333333333))) * 0.15 + 0.15, -1.25, ((j / 4 + (j / 4 * 0.3333333333))) * 0.15 - 0.8);
+                        default -> {
+                        }
                     }
                     matrixStackIn.scale(0.0075f, 0.0075f, 0.0075f);
 

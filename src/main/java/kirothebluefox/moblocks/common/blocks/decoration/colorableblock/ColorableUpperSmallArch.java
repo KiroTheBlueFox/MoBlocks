@@ -21,8 +21,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 
 public class ColorableUpperSmallArch extends UpperSmallArch implements IColorableBlock, EntityBlock {
-    public ColorableUpperSmallArch(Block baseBlock) {
-        super(baseBlock);
+    public ColorableUpperSmallArch(String name, Block baseBlock) {
+        super(name, baseBlock);
     }
 
     public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {

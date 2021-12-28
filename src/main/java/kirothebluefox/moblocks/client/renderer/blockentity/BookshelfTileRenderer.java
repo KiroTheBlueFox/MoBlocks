@@ -55,23 +55,21 @@ public class BookshelfTileRenderer implements BlockEntityRenderer<BookshelfTile>
                 if (!itemstack.isEmpty()) {
                     matrixStackIn.translate(0, (layer == 0 ? 0.25 : -0.25), 0);
                     switch (direction) {
-                        case NORTH:
+                        case NORTH -> {
                             matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180F));
                             matrixStackIn.translate(-1 + (stackIndex - 3) * 0.125, 0, -0.75);
-                            break;
-                        case EAST:
+                        }
+                        case EAST -> {
                             matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90F));
                             matrixStackIn.translate(-1 - (stackIndex - 3) * 0.125, 0, 0.25);
-                            break;
-                        case WEST:
+                        }
+                        case WEST -> {
                             matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(270F));
                             matrixStackIn.translate(0 - (stackIndex - 3) * 0.125, 0, -0.75);
-                            break;
-                        case SOUTH:
-                            matrixStackIn.translate(0 + (stackIndex - 3) * 0.125, 0, 0.25);
-                            break;
-                        default:
-                            break;
+                        }
+                        case SOUTH -> matrixStackIn.translate(0 + (stackIndex - 3) * 0.125, 0, 0.25);
+                        default -> {
+                        }
                     }
                     matrixStackIn.scale((float) bookWidth, 1F, 1F);
                     matrixStackIn.translate((1 - bookWidth) / 2, 0, 0);
@@ -107,23 +105,21 @@ public class BookshelfTileRenderer implements BlockEntityRenderer<BookshelfTile>
                 if (!itemstack.isEmpty()) {
                     matrixStackIn.translate(0, (layer == 0 ? 0.25 : -0.25), 0);
                     switch (direction) {
-                        case NORTH:
+                        case NORTH -> {
                             matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180F));
                             matrixStackIn.translate(-1 + (stackIndex - 3) * 0.125, 0, -0.75);
-                            break;
-                        case EAST:
+                        }
+                        case EAST -> {
                             matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90F));
                             matrixStackIn.translate(-1 - (stackIndex - 3) * 0.125, 0, 0.25);
-                            break;
-                        case WEST:
+                        }
+                        case WEST -> {
                             matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(270F));
                             matrixStackIn.translate(0 - (stackIndex - 3) * 0.125, 0, -0.75);
-                            break;
-                        case SOUTH:
-                            matrixStackIn.translate(0 + (stackIndex - 3) * 0.125, 0, 0.25);
-                            break;
-                        default:
-                            break;
+                        }
+                        case SOUTH -> matrixStackIn.translate(0 + (stackIndex - 3) * 0.125, 0, 0.25);
+                        default -> {
+                        }
                     }
                     matrixStackIn.scale((float) bookWidth, 1F, 1F);
                     matrixStackIn.translate((1 - bookWidth) / 2, 0, 0);

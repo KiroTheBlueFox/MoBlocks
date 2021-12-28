@@ -11,8 +11,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import javax.annotation.Nullable;
 
 public class NeonBlock extends ColorableBlock {
-    public NeonBlock(Block block) {
-        super(block);
+    public NeonBlock(String name, Block block) {
+        super(name, block);
     }
 
     @Nullable

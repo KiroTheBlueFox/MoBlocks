@@ -1,6 +1,8 @@
 package kirothebluefox.moblocks.common.blocks.furnitures.drawers.simples;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.blockentities.SimpleDrawerTile;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -10,6 +12,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -49,10 +53,11 @@ public class SimpleDrawer extends Block implements SimpleWaterloggedBlock, Entit
     private static final VoxelShape SHAPE = Shapes.or(foot1, foot2, foot3, foot4, container);
     private final Block baseBlock;
 
-    public SimpleDrawer(Block baseBlock) {
+    public SimpleDrawer(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock));
         this.baseBlock = baseBlock;
         registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)));
     }
 
     private static boolean isBlocked(BlockState stateIn, LevelAccessor worldIn, BlockPos pos) {

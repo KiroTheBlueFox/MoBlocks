@@ -1,6 +1,8 @@
 package kirothebluefox.moblocks.common.blocks.furnitures.lamps;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.blockentities.LampTile;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,6 +15,8 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -46,9 +50,10 @@ public class SmallLamp extends Block implements SimpleWaterloggedBlock, EntityBl
 
     public static final VoxelShape LAMP = Block.box(5, 0, 5, 11, 12, 11);
 
-    public SmallLamp(Properties properties) {
+    public SmallLamp(String name, Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false).setValue(WATERLOGGED, false).setValue(POWERED, false));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)));
     }
 
     @Override

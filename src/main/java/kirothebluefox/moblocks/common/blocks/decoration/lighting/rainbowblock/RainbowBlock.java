@@ -1,11 +1,15 @@
 package kirothebluefox.moblocks.common.blocks.decoration.lighting.rainbowblock;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.blockentities.RainbowBlockTile;
 import kirothebluefox.moblocks.common.customproperties.IColorableBlock;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -20,8 +24,9 @@ import net.minecraftforge.fml.ModList;
 import javax.annotation.Nullable;
 
 public class RainbowBlock extends Block implements IColorableBlock, EntityBlock {
-    public RainbowBlock(Block baseBlock) {
+    public RainbowBlock(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.decoration_creative_tab)));
         if (ModList.get().isLoaded("hypcore")) {
             //ColoredLightManager.registerProvider(this, this::produceColoredLight);
         }

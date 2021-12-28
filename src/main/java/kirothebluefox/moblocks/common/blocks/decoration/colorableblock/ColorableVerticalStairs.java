@@ -21,8 +21,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 
 public class ColorableVerticalStairs extends VerticalStairs implements IColorableBlock, EntityBlock {
-    public ColorableVerticalStairs(Block blockIn) {
-        super(blockIn);
+    public ColorableVerticalStairs(String name, Block blockIn) {
+        super(name, blockIn);
     }
 
     public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {

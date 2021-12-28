@@ -1,6 +1,8 @@
 package kirothebluefox.moblocks.common.blocks.furnitures.shelves;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.blockentities.ShelfTile;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
@@ -12,6 +14,8 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -49,9 +53,10 @@ public class Shelf extends Block implements SimpleWaterloggedBlock, EntityBlock 
     public static final VoxelShape EAST = Block.box(8, 3, 0, 16, 4, 16);
     public static final VoxelShape WEST = Block.box(0, 3, 0, 8, 4, 16);
 
-    public Shelf(Block baseBlock) {
+    public Shelf(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)));
     }
 
     @Override

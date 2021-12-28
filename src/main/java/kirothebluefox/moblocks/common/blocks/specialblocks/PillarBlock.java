@@ -3,10 +3,13 @@ package kirothebluefox.moblocks.common.blocks.specialblocks;
 import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.customproperties.CustomBlockStateProperties;
 import kirothebluefox.moblocks.common.customproperties.PillarSize;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -391,9 +394,10 @@ public class PillarBlock extends Block implements SimpleWaterloggedBlock {
     private static final VoxelShape FULL_BPBW_SHAPE = Shapes.or(BPBWPart1, BPBWPart2, BPBWPart3, BPBWPart4, BPBWPart5, BPBWPart6, BPBWPart7, BPBWPart8, BPBWPart9, BPBWPart10, BPBWPart11, BPBWPart12);
 
 
-    public PillarBlock(Block baseBlock) {
+    public PillarBlock(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock));
         this.registerDefaultState(this.stateDefinition.any().setValue(CONNECTED_UP, false).setValue(CONNECTED_DOWN, false).setValue(SIZE, PillarSize.SMALL).setValue(SIDE, Direction.NORTH).setValue(WATERLOGGED, Boolean.valueOf(false)));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)));
     }
 
     @Override

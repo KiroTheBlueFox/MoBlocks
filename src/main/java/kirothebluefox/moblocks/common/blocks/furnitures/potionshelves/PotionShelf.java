@@ -1,6 +1,8 @@
 package kirothebluefox.moblocks.common.blocks.furnitures.potionshelves;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.blockentities.PotionShelfTile;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
@@ -12,6 +14,8 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -49,9 +53,10 @@ public class PotionShelf extends Block implements SimpleWaterloggedBlock, Entity
     public static final VoxelShape EAST = Block.box(14, 0, 0, 16, 16, 16);
     public static final VoxelShape WEST = Block.box(0, 0, 0, 2, 16, 16);
 
-    public PotionShelf(Block baseBlock) {
+    public PotionShelf(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)));
     }
 
     @Override

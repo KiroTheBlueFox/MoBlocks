@@ -11,8 +11,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ColorableCarpet extends ColorableBlock implements IColorableBlock {
-    public ColorableCarpet() {
-        super(Blocks.WHITE_CARPET);
+    public ColorableCarpet(String name) {
+        super(name, Blocks.WHITE_CARPET);
     }
 
     @Override

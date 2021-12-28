@@ -1,9 +1,13 @@
 package kirothebluefox.moblocks.common.blocks.decoration.lighting.signaltowerlight;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.blockentities.SignalTowerLightTile;
 import kirothebluefox.moblocks.common.customproperties.CustomBlockStateProperties;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -252,7 +256,7 @@ public class SignalTowerLight extends Block implements EntityBlock {
     private final int color2;
     private final int color3;
 
-    public SignalTowerLight(int color1, int color2, int color3) {
+    public SignalTowerLight(String name, int color1, int color2, int color3) {
         super(Block.Properties.of(Material.DECORATION).instabreak());
         this.color1 = color1;
         this.color2 = color2;
@@ -261,6 +265,7 @@ public class SignalTowerLight extends Block implements EntityBlock {
             //ColoredLightManager.registerProvider(this, this::produceColoredLight);
         }
         this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false).setValue(FACING, Direction.UP).setValue(LIGHT, 0));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.decoration_creative_tab)));
     }
 
     @Override

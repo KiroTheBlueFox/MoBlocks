@@ -21,8 +21,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 
 public class ColorablePillar extends PillarBlock implements IColorableBlock, EntityBlock {
-    public ColorablePillar(Block baseBlock) {
-        super(baseBlock);
+    public ColorablePillar(String name, Block baseBlock) {
+        super(name, baseBlock);
     }
 
     public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {

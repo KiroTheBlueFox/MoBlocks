@@ -1,10 +1,14 @@
 package kirothebluefox.moblocks.common.blocks.specialblocks;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.customproperties.CustomBlockStateProperties;
 import kirothebluefox.moblocks.common.customproperties.VerticalSlabType;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -46,9 +50,10 @@ public class VerticalSlab extends HorizontalDirectionalBlock implements SimpleWa
     protected static final VoxelShape FacingWest = Block.box(AllCollisions[3][0], AllCollisions[3][1], AllCollisions[3][2], AllCollisions[3][3], AllCollisions[3][4], AllCollisions[3][5]);
     private static final VoxelShape FULL_FACING_WEST = Shapes.or(FacingWest);
 
-    public VerticalSlab(Block baseBlock) {
+    public VerticalSlab(String name, Block baseBlock) {
         super(Block.Properties.copy(baseBlock));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.valueOf(false)));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)));
     }
 
     @Override

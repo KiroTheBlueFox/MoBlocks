@@ -1,7 +1,9 @@
 package kirothebluefox.moblocks.common.blocks.decoration.lighting.siren;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.blockentities.SirenTile;
 import kirothebluefox.moblocks.common.customproperties.IColorableBlock;
+import kirothebluefox.moblocks.common.init.ModItems;
 import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableColorPicker;
 import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableLightColorPicker;
 import kirothebluefox.moblocks.utils.VoxelShapeUtils;
@@ -10,6 +12,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -38,8 +41,10 @@ public class Siren extends Block implements IColorableBlock, EntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     private final VoxelShape shape = Block.box(5, 0, 5, 11, 8, 11);
 
-    public Siren() {
+    public Siren(String name) {
         super(Block.Properties.of(Material.DECORATION).instabreak());
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.decoration_creative_tab)));
+
         if (ModList.get().isLoaded("hypcore")) {
             //ColoredLightManager.registerProvider(this, this::produceColoredLight);
         }

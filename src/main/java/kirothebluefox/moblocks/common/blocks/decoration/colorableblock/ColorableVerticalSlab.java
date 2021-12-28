@@ -21,8 +21,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 
 public class ColorableVerticalSlab extends VerticalSlab implements IColorableBlock, EntityBlock {
-    public ColorableVerticalSlab(Block blockIn) {
-        super(blockIn);
+    public ColorableVerticalSlab(String name, Block blockIn) {
+        super(name, blockIn);
     }
 
     public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {

@@ -1,7 +1,9 @@
 package kirothebluefox.moblocks.common.blocks.decoration.colorablefurnitures;
 
+import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.common.customproperties.IColorableBlock;
 import kirothebluefox.moblocks.common.blockentities.ColorableBlockTile;
+import kirothebluefox.moblocks.common.init.ModItems;
 import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableColorPicker;
 import kirothebluefox.moblocks.common.blocks.furnitures.SeatSofa;
 import kirothebluefox.moblocks.common.blocks.furnitures.Sofa;
@@ -10,6 +12,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
@@ -24,8 +27,8 @@ import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 
 public class ColorableSofa extends Sofa implements IColorableBlock, EntityBlock {
-    public ColorableSofa(Block baseBlock) {
-        super(baseBlock);
+    public ColorableSofa(String name, Block baseBlock) {
+        super(name, baseBlock);
     }
 
     public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {

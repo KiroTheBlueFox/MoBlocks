@@ -1,5 +1,6 @@
-package kirothebluefox.moblocks.common.blocks.decoration;
+package kirothebluefox.moblocks.common.items;
 
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;

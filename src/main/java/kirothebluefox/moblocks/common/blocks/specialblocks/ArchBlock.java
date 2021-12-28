@@ -1,7 +1,11 @@
 package kirothebluefox.moblocks.common.blocks.specialblocks;
 
+import kirothebluefox.moblocks.MoBlocks;
+import kirothebluefox.moblocks.common.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.StairBlock;
@@ -807,8 +811,9 @@ public class ArchBlock extends StairBlock {
 
 
     @SuppressWarnings("deprecation")
-    public ArchBlock(Block baseBlock) {
+    public ArchBlock(String name, Block baseBlock) {
         super(baseBlock.defaultBlockState(), Block.Properties.copy(baseBlock));
+        ModItems.ITEMS.register(name, () -> new BlockItem(this, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)));
     }
 
     @Override
