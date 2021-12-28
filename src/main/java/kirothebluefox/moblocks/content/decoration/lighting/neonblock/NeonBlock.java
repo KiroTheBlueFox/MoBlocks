@@ -10,18 +10,18 @@ import net.minecraft.world.level.block.state.BlockState;
 import javax.annotation.Nullable;
 
 public class NeonBlock extends ColorableBlock {
-	public NeonBlock(Block block) {
-		super(block);
-	}
+    public NeonBlock(Block block) {
+        super(block);
+    }
 
-	@Nullable
-	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new NeonBlockTile(pos, state);
-	}
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new NeonBlockTile(pos, state);
+    }
 
-	@Override
-	public RenderShape getRenderShape(BlockState state) {
-		return RenderShape.ENTITYBLOCK_ANIMATED;
-	}
+    @Override
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.ENTITYBLOCK_ANIMATED;
+    }
 }

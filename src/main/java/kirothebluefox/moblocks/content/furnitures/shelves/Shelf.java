@@ -40,161 +40,161 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class Shelf extends Block implements SimpleWaterloggedBlock, EntityBlock {
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-	public static final VoxelShape NORTH = Block.box(0,3,0,16,4,8);
-	public static final VoxelShape SOUTH = Block.box(0,3,8,16,4,16);
-	public static final VoxelShape EAST = Block.box(8,3,0,16,4,16);
-	public static final VoxelShape WEST = Block.box(0,3,0,8,4,16);
+    public static final VoxelShape NORTH = Block.box(0, 3, 0, 16, 4, 8);
+    public static final VoxelShape SOUTH = Block.box(0, 3, 8, 16, 4, 16);
+    public static final VoxelShape EAST = Block.box(8, 3, 0, 16, 4, 16);
+    public static final VoxelShape WEST = Block.box(0, 3, 0, 8, 4, 16);
 
-	public Shelf(Block baseBlock) {
-		super(Block.Properties.copy(baseBlock));
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
-	}
+    public Shelf(Block baseBlock) {
+        super(Block.Properties.copy(baseBlock));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
+    }
 
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-		switch (state.getValue(FACING)) {
-		case NORTH:
-			return NORTH;
-		case SOUTH:
-			return SOUTH;
-		case EAST:
-			return EAST;
-		case WEST:
-			return WEST;
-		default:
-			return NORTH;
-		}
-	}
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        switch (state.getValue(FACING)) {
+            case NORTH:
+                return NORTH;
+            case SOUTH:
+                return SOUTH;
+            case EAST:
+                return EAST;
+            case WEST:
+                return WEST;
+            default:
+                return NORTH;
+        }
+    }
 
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(FACING, WATERLOGGED);
-	}
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING, WATERLOGGED);
+    }
 
-	@Nullable
-	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new ShelfTile(pos, state);
-	}
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new ShelfTile(pos, state);
+    }
 
-	@Override
-	public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.shelves.place_item").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.shelves.info_item").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
-		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-	}
+    @Override
+    public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+        tooltip.add(new TranslatableComponent("tooltips.moblocks.shelves.place_item").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+        tooltip.add(new TranslatableComponent("tooltips.moblocks.shelves.info_item").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    }
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-		if (state.getBlock() != newState.getBlock()) {
-			BlockEntity tileentity = worldIn.getBlockEntity(pos);
-     		if (tileentity instanceof ShelfTile) {
-     			((ShelfTile) tileentity).dropItems();
-     		}
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity tileentity = worldIn.getBlockEntity(pos);
+            if (tileentity instanceof ShelfTile) {
+                ((ShelfTile) tileentity).dropItems();
+            }
 
-     		super.onRemove(state, worldIn, pos, newState, isMoving);
-		}
-	}
+            super.onRemove(state, worldIn, pos, newState, isMoving);
+        }
+    }
 
-	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		Direction direction = state.getValue(FACING);
-		int slot;
-		switch (direction) {
-		case NORTH:
-			slot = (int) ((hit.getLocation().x()-pos.getX())*4);
-			break;
-		case SOUTH:
-			slot = (int) (4-(hit.getLocation().x()-pos.getX())*4);
-			break;
-		case EAST:
-			slot = (int) ((hit.getLocation().z()-pos.getZ())*4);
-			break;
-		case WEST:
-			slot = (int) (4-(hit.getLocation().z()-pos.getZ())*4);
-			break;
-		default:
-			slot = 0;
-			break;
-		}
-		BlockEntity tileentity = worldIn.getBlockEntity(pos);
-		if (tileentity instanceof ShelfTile && slot >= 0 && slot <= 3) {
-			ShelfTile shelftileentity = (ShelfTile)tileentity;
-			if (!player.isShiftKeyDown()) {
-				ItemStack itemstack = player.getItemInHand(handIn);
-            	shelftileentity.addItem(itemstack, slot, player, handIn);
-			}
-		}
-		return InteractionResult.SUCCESS;
-	}
+    @Override
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+        Direction direction = state.getValue(FACING);
+        int slot;
+        switch (direction) {
+            case NORTH:
+                slot = (int) ((hit.getLocation().x() - pos.getX()) * 4);
+                break;
+            case SOUTH:
+                slot = (int) (4 - (hit.getLocation().x() - pos.getX()) * 4);
+                break;
+            case EAST:
+                slot = (int) ((hit.getLocation().z() - pos.getZ()) * 4);
+                break;
+            case WEST:
+                slot = (int) (4 - (hit.getLocation().z() - pos.getZ()) * 4);
+                break;
+            default:
+                slot = 0;
+                break;
+        }
+        BlockEntity tileentity = worldIn.getBlockEntity(pos);
+        if (tileentity instanceof ShelfTile && slot >= 0 && slot <= 3) {
+            ShelfTile shelftileentity = (ShelfTile) tileentity;
+            if (!player.isShiftKeyDown()) {
+                ItemStack itemstack = player.getItemInHand(handIn);
+                shelftileentity.addItem(itemstack, slot, player, handIn);
+            }
+        }
+        return InteractionResult.SUCCESS;
+    }
 
-	public RenderShape getRenderShape(BlockState state) {
-		return RenderShape.MODEL;
-	}
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
+    }
 
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		FluidState ifluidstate = context.getLevel().getFluidState(context.getClickedPos());
-		return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(ifluidstate.getType() == Fluids.WATER)).setValue(FACING, context.getHorizontalDirection());
-	}
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        FluidState ifluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(ifluidstate.getType() == Fluids.WATER)).setValue(FACING, context.getHorizontalDirection());
+    }
 
-	public boolean placeLiquid(LevelAccessor worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
-		return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
-	}
+    public boolean placeLiquid(LevelAccessor worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+        return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
+    }
 
-	public boolean canPlaceLiquid(BlockGetter worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
-	   return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
-	}
+    public boolean canPlaceLiquid(BlockGetter worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
+        return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
+    }
 
-	@SuppressWarnings("deprecation")
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.getValue(WATERLOGGED)) {
-			worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
-		}
+    @SuppressWarnings("deprecation")
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+        }
 
-		return facing.getAxis().isHorizontal() ? stateIn : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-	}
+        return facing.getAxis().isHorizontal() ? stateIn : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    }
 
-	public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
-		switch(type) {
-		case LAND:
-			return false;
-		case WATER:
-			return worldIn.getFluidState(pos).is(FluidTags.WATER);
-		case AIR:
-			return false;
-		default:
-			return false;
-		}
-	}
+    public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
+        switch (type) {
+            case LAND:
+                return false;
+            case WATER:
+                return worldIn.getFluidState(pos).is(FluidTags.WATER);
+            case AIR:
+                return false;
+            default:
+                return false;
+        }
+    }
 
-	public ItemStack getItemAtHit(ClientLevel worldIn, BlockState state, Vec3 hit, BlockPos pos) {
-		Direction direction = state.getValue(FACING);
-		int slot;
-		switch (direction) {
-		case NORTH:
-			slot = (int) ((hit.x()-pos.getX())*4);
-			break;
-		case SOUTH:
-			slot = (int) (4-(hit.x()-pos.getX())*4);
-			break;
-		case EAST:
-			slot = (int) ((hit.z()-pos.getZ())*4);
-			break;
-		case WEST:
-			slot = (int) (4-(hit.z()-pos.getZ())*4);
-			break;
-		default:
-			slot = 0;
-			break;
-		}
-		BlockEntity tileentity = worldIn.getBlockEntity(pos);
-		if (tileentity instanceof ShelfTile && slot >= 0 && slot <= 3) {
-			ShelfTile shelftileentity = (ShelfTile)tileentity;
-			return shelftileentity.getItem(slot);
-		}
-		return ItemStack.EMPTY;
-	}
+    public ItemStack getItemAtHit(ClientLevel worldIn, BlockState state, Vec3 hit, BlockPos pos) {
+        Direction direction = state.getValue(FACING);
+        int slot;
+        switch (direction) {
+            case NORTH:
+                slot = (int) ((hit.x() - pos.getX()) * 4);
+                break;
+            case SOUTH:
+                slot = (int) (4 - (hit.x() - pos.getX()) * 4);
+                break;
+            case EAST:
+                slot = (int) ((hit.z() - pos.getZ()) * 4);
+                break;
+            case WEST:
+                slot = (int) (4 - (hit.z() - pos.getZ()) * 4);
+                break;
+            default:
+                slot = 0;
+                break;
+        }
+        BlockEntity tileentity = worldIn.getBlockEntity(pos);
+        if (tileentity instanceof ShelfTile && slot >= 0 && slot <= 3) {
+            ShelfTile shelftileentity = (ShelfTile) tileentity;
+            return shelftileentity.getItem(slot);
+        }
+        return ItemStack.EMPTY;
+    }
 }

@@ -23,21 +23,21 @@ import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder(MoBlocks.MODID)
 public class ModTileEntities {
-	public static final BlockEntityType<LampTile> SMALL_LAMP = null;
-	public static final BlockEntityType<SimpleDrawerTile> SIMPLE_DRAWER = null;
-	public static final BlockEntityType<DoubleDrawerTile> DOUBLE_DRAWER = null;
-	public static final BlockEntityType<ShelfTile> SHELF = null;
-	public static final BlockEntityType<CrateTile> CRATE = null;
-	public static final BlockEntityType<BookshelfTile> SMALL_BOOKSHELF = null;
-	public static final BlockEntityType<PotionShelfTile> POTION_SHELF = null;
-	public static final BlockEntityType<ColorableBlockTile> COLORABLE_BLOCK = null;
-	public static final BlockEntityType<ColorableFlowerPotTile> COLORABLE_FLOWER_POT = null;
-	public static final BlockEntityType<ColorableKitchenCounterTile> COLORABLE_KITCHEN_COUNTER = null;
-	public static final BlockEntityType<ColorableLightBlockTile> COLORABLE_LIGHT_BLOCK = null;
-	public static final BlockEntityType<RainbowBlockTile> RAINBOW_BLOCK = null;
-	public static final BlockEntityType<LavaLampTile> LAVA_LAMP = null;
-	public static final BlockEntityType<SirenTile> SIREN = null;
-	public static final BlockEntityType<SignalTowerLightTile> SIGNAL_TOWER_LIGHT = null;
-	public static final BlockEntityType<EyeballLampTile> EYEBALL_LAMP = null;
-	public static final BlockEntityType<NeonBlockTile> NEON_BLOCK_TILE = null;
+    public static final BlockEntityType<LampTile> SMALL_LAMP = null;
+    public static final BlockEntityType<SimpleDrawerTile> SIMPLE_DRAWER = null;
+    public static final BlockEntityType<DoubleDrawerTile> DOUBLE_DRAWER = null;
+    public static final BlockEntityType<ShelfTile> SHELF = null;
+    public static final BlockEntityType<CrateTile> CRATE = null;
+    public static final BlockEntityType<BookshelfTile> SMALL_BOOKSHELF = null;
+    public static final BlockEntityType<PotionShelfTile> POTION_SHELF = null;
+    public static final BlockEntityType<ColorableBlockTile> COLORABLE_BLOCK = null;
+    public static final BlockEntityType<ColorableFlowerPotTile> COLORABLE_FLOWER_POT = null;
+    public static final BlockEntityType<ColorableKitchenCounterTile> COLORABLE_KITCHEN_COUNTER = null;
+    public static final BlockEntityType<ColorableLightBlockTile> COLORABLE_LIGHT_BLOCK = null;
+    public static final BlockEntityType<RainbowBlockTile> RAINBOW_BLOCK = null;
+    public static final BlockEntityType<LavaLampTile> LAVA_LAMP = null;
+    public static final BlockEntityType<SirenTile> SIREN = null;
+    public static final BlockEntityType<SignalTowerLightTile> SIGNAL_TOWER_LIGHT = null;
+    public static final BlockEntityType<EyeballLampTile> EYEBALL_LAMP = null;
+    public static final BlockEntityType<NeonBlockTile> NEON_BLOCK_TILE = null;
 }

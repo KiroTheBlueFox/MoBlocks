@@ -5,8 +5,8 @@ import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.ItemStack;
 
 public interface IDyeableLightColorPicker extends DyeableLeatherItem {
-	default int getColor(ItemStack stack) {
-		CompoundTag compoundnbt = stack.getTagElement("display");
-		return compoundnbt != null && compoundnbt.contains("color", 99) ? compoundnbt.getInt("color") : 0xFFFFFF;
-	}
+    default int getColor(ItemStack stack) {
+        CompoundTag compoundnbt = stack.getTagElement("display");
+        return compoundnbt != null && compoundnbt.contains("color", 99) ? compoundnbt.getInt("color") : 0xFFFFFF;
+    }
 }

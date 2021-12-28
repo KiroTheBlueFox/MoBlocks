@@ -36,89 +36,89 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.List;
 
 public class Chair extends Block implements SimpleWaterloggedBlock {
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
 
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-		return Block.box(2, 0, 2, 14, 10, 14);
-	}
+    public Chair(Block baseBlock) {
+        super(Block.Properties.copy(baseBlock));
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(ROTATION, 0));
+    }
 
-	public Chair(Block baseBlock) {
-		super(Block.Properties.copy(baseBlock));
-		this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(ROTATION, 0));
-	}
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        return Block.box(2, 0, 2, 14, 10, 14);
+    }
 
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(ROTATION, WATERLOGGED);
-	}
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(ROTATION, WATERLOGGED);
+    }
 
-	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		if (!worldIn.isClientSide()) {
-			if (player.getVehicle() != null) {
-				return InteractionResult.SUCCESS;
-			}
+    @Override
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+        if (!worldIn.isClientSide()) {
+            if (player.getVehicle() != null) {
+                return InteractionResult.SUCCESS;
+            }
 
-			if (player.isShiftKeyDown()) {
-				return InteractionResult.SUCCESS;
-			}
+            if (player.isShiftKeyDown()) {
+                return InteractionResult.SUCCESS;
+            }
 
-			Vec3 vec = new Vec3(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-			double maxDist = 2.0d;
-			if ((vec.x - player.getX()) * (vec.x - player.getX()) +
-					(vec.y - player.getY()) * (vec.y - player.getY()) +
-					(vec.z - player.getZ()) * (vec.z - player.getZ()) > maxDist * maxDist) {
-				player.displayClientMessage(new TranslatableComponent("status_messages.moblocks.seats.too_far", new TranslatableComponent("status_messages.moblocks.seats.chair")), true);
-				return InteractionResult.SUCCESS;
-			}
+            Vec3 vec = new Vec3(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+            double maxDist = 2.0d;
+            if ((vec.x - player.getX()) * (vec.x - player.getX()) +
+                    (vec.y - player.getY()) * (vec.y - player.getY()) +
+                    (vec.z - player.getZ()) * (vec.z - player.getZ()) > maxDist * maxDist) {
+                player.displayClientMessage(new TranslatableComponent("status_messages.moblocks.seats.too_far", new TranslatableComponent("status_messages.moblocks.seats.chair")), true);
+                return InteractionResult.SUCCESS;
+            }
 
-			SeatChair seat = new SeatChair(worldIn, pos);
-			worldIn.addFreshEntity(seat);
-			player.startRiding(seat);
-			return InteractionResult.SUCCESS;
-		}
-		return InteractionResult.SUCCESS;
-	}
+            SeatChair seat = new SeatChair(worldIn, pos);
+            worldIn.addFreshEntity(seat);
+            player.startRiding(seat);
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.SUCCESS;
+    }
 
-	@Override
-	public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.sit_on").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
-		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-	}
+    @Override
+    public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+        tooltip.add(new TranslatableComponent("tooltips.moblocks.sit_on").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    }
 
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		FluidState FluidState = context.getLevel().getFluidState(context.getClickedPos());
-		return this.defaultBlockState().setValue(ROTATION, Integer.valueOf(Mth.floor((double)((context.getRotation()) * 16.0F / 360.0F) + 0.5D) & 15)).setValue(WATERLOGGED, Boolean.valueOf(FluidState.getType() == Fluids.WATER));
-	}
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        FluidState FluidState = context.getLevel().getFluidState(context.getClickedPos());
+        return this.defaultBlockState().setValue(ROTATION, Integer.valueOf(Mth.floor((double) ((context.getRotation()) * 16.0F / 360.0F) + 0.5D) & 15)).setValue(WATERLOGGED, Boolean.valueOf(FluidState.getType() == Fluids.WATER));
+    }
 
-	public boolean placeLiquid(LevelAccessor worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
-		return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
-	}
+    public boolean placeLiquid(LevelAccessor worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+        return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
+    }
 
-	public boolean canPlaceLiquid(BlockGetter worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
-	   return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
-	}
+    public boolean canPlaceLiquid(BlockGetter worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
+        return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
+    }
 
-	@SuppressWarnings("deprecation")
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.getValue(WATERLOGGED)) {
-			worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
-		}
+    @SuppressWarnings("deprecation")
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+        }
 
-		return facing.getAxis().isHorizontal() ? stateIn : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-	}
+        return facing.getAxis().isHorizontal() ? stateIn : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    }
 
-	public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
-		switch(type) {
-		case LAND:
-			return false;
-		case WATER:
-			return worldIn.getFluidState(pos).is(FluidTags.WATER);
-		case AIR:
-			return false;
-		default:
-			return false;
-		}
-	}
+    public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
+        switch (type) {
+            case LAND:
+                return false;
+            case WATER:
+                return worldIn.getFluidState(pos).is(FluidTags.WATER);
+            case AIR:
+                return false;
+            default:
+                return false;
+        }
+    }
 }

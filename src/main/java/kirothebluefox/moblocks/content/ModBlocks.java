@@ -6,44 +6,44 @@ import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder(MoBlocks.MODID)
 public class ModBlocks {
-	/* Special Blocks */
-	
-	/*Archs*/
-	public static final Block OAK_ARCH = null;
-	public static final Block DARK_OAK_ARCH = null;
-	public static final Block BIRCH_ARCH = null;
-	public static final Block JUNGLE_ARCH = null;
-	public static final Block ACACIA_ARCH = null;
-	public static final Block SPRUCE_ARCH = null;
-	public static final Block ANDESITE_ARCH = null;
-	public static final Block BRICK_ARCH = null;
-	public static final Block COBBLESTONE_ARCH = null;
-	public static final Block DARK_PRISMARINE_ARCH = null;
-	public static final Block DIORITE_ARCH = null;
-	public static final Block END_STONE_BRICK_ARCH = null;
-	public static final Block GRANITE_ARCH = null;
-	public static final Block MOSSY_COBBLESTONE_ARCH = null;
-	public static final Block MOSSY_STONE_BRICK_ARCH = null;
-	public static final Block NETHER_BRICK_ARCH = null;
-	public static final Block POLISHED_ANDESITE_ARCH = null;
-	public static final Block POLISHED_GRANITE_ARCH = null;
-	public static final Block POLISHED_DIORITE_ARCH = null;
-	public static final Block PRISMARINE_BRICK_ARCH = null;
-	public static final Block PRISMARINE_ARCH = null;
-	public static final Block PURPUR_ARCH = null;
-	public static final Block QUARTZ_ARCH = null;
-	public static final Block RED_NETHER_BRICK_ARCH = null;
-	public static final Block RED_SANDSTONE_ARCH = null;
-	public static final Block SANDSTONE_ARCH = null;
-	public static final Block SMOOTH_QUARTZ_ARCH = null;
-	public static final Block SMOOTH_RED_SANDSTONE_ARCH = null;
-	public static final Block SMOOTH_SANDSTONE_ARCH = null;
-	public static final Block STONE_BRICK_ARCH = null;
-	public static final Block STONE_ARCH = null;
-	
-	/*Vertical Slabs*/
-	public static final Block OAK_VERTICAL_SLAB = null;
-	public static final Block SPRUCE_VERTICAL_SLAB = null;
+    /* Special Blocks */
+
+    /*Archs*/
+    public static final Block OAK_ARCH = null;
+    public static final Block DARK_OAK_ARCH = null;
+    public static final Block BIRCH_ARCH = null;
+    public static final Block JUNGLE_ARCH = null;
+    public static final Block ACACIA_ARCH = null;
+    public static final Block SPRUCE_ARCH = null;
+    public static final Block ANDESITE_ARCH = null;
+    public static final Block BRICK_ARCH = null;
+    public static final Block COBBLESTONE_ARCH = null;
+    public static final Block DARK_PRISMARINE_ARCH = null;
+    public static final Block DIORITE_ARCH = null;
+    public static final Block END_STONE_BRICK_ARCH = null;
+    public static final Block GRANITE_ARCH = null;
+    public static final Block MOSSY_COBBLESTONE_ARCH = null;
+    public static final Block MOSSY_STONE_BRICK_ARCH = null;
+    public static final Block NETHER_BRICK_ARCH = null;
+    public static final Block POLISHED_ANDESITE_ARCH = null;
+    public static final Block POLISHED_GRANITE_ARCH = null;
+    public static final Block POLISHED_DIORITE_ARCH = null;
+    public static final Block PRISMARINE_BRICK_ARCH = null;
+    public static final Block PRISMARINE_ARCH = null;
+    public static final Block PURPUR_ARCH = null;
+    public static final Block QUARTZ_ARCH = null;
+    public static final Block RED_NETHER_BRICK_ARCH = null;
+    public static final Block RED_SANDSTONE_ARCH = null;
+    public static final Block SANDSTONE_ARCH = null;
+    public static final Block SMOOTH_QUARTZ_ARCH = null;
+    public static final Block SMOOTH_RED_SANDSTONE_ARCH = null;
+    public static final Block SMOOTH_SANDSTONE_ARCH = null;
+    public static final Block STONE_BRICK_ARCH = null;
+    public static final Block STONE_ARCH = null;
+
+    /*Vertical Slabs*/
+    public static final Block OAK_VERTICAL_SLAB = null;
+    public static final Block SPRUCE_VERTICAL_SLAB = null;
     public static final Block BIRCH_VERTICAL_SLAB = null;
     public static final Block JUNGLE_VERTICAL_SLAB = null;
     public static final Block ACACIA_VERTICAL_SLAB = null;
@@ -74,9 +74,9 @@ public class ModBlocks {
     public static final Block POLISHED_ANDESITE_VERTICAL_SLAB = null;
     public static final Block DIORITE_VERTICAL_SLAB = null;
     public static final Block SMOOTH_STONE_VERTICAL_SLAB = null;
-	
-	/*Vertical Stairs*/
-	public static final Block OAK_VERTICAL_STAIRS = null;
+
+    /*Vertical Stairs*/
+    public static final Block OAK_VERTICAL_STAIRS = null;
     public static final Block SPRUCE_VERTICAL_STAIRS = null;
     public static final Block BIRCH_VERTICAL_STAIRS = null;
     public static final Block JUNGLE_VERTICAL_STAIRS = null;
@@ -107,7 +107,7 @@ public class ModBlocks {
     public static final Block RED_NETHER_BRICK_VERTICAL_STAIRS = null;
     public static final Block POLISHED_ANDESITE_VERTICAL_STAIRS = null;
     public static final Block DIORITE_VERTICAL_STAIRS = null;
-    
+
     /*Pillars*/
     public static final Block OAK_PILLAR = null;
     public static final Block SPRUCE_PILLAR = null;
@@ -140,7 +140,7 @@ public class ModBlocks {
     public static final Block RED_NETHER_BRICK_PILLAR = null;
     public static final Block POLISHED_ANDESITE_PILLAR = null;
     public static final Block DIORITE_PILLAR = null;
-    
+
     /*Ramps*/
     public static final Block OAK_RAMP = null;
     public static final Block SPRUCE_RAMP = null;
@@ -173,7 +173,7 @@ public class ModBlocks {
     public static final Block RED_NETHER_BRICK_RAMP = null;
     public static final Block POLISHED_ANDESITE_RAMP = null;
     public static final Block DIORITE_RAMP = null;
-    
+
     /*Inverted Arches*/
     public static final Block OAK_INVERTED_ARCH = null;
     public static final Block SPRUCE_INVERTED_ARCH = null;
@@ -206,7 +206,7 @@ public class ModBlocks {
     public static final Block RED_NETHER_BRICK_INVERTED_ARCH = null;
     public static final Block POLISHED_ANDESITE_INVERTED_ARCH = null;
     public static final Block DIORITE_INVERTED_ARCH = null;
-    
+
     /*Triangle Ramps*/
     public static final Block OAK_TRIANGLE_RAMP = null;
     public static final Block SPRUCE_TRIANGLE_RAMP = null;
@@ -239,7 +239,7 @@ public class ModBlocks {
     public static final Block RED_NETHER_BRICK_TRIANGLE_RAMP = null;
     public static final Block POLISHED_ANDESITE_TRIANGLE_RAMP = null;
     public static final Block DIORITE_TRIANGLE_RAMP = null;
-    
+
     /* Upper Small Arches */
     public static final Block OAK_UPPER_SMALL_ARCH = null;
     public static final Block SPRUCE_UPPER_SMALL_ARCH = null;
@@ -305,7 +305,7 @@ public class ModBlocks {
     public static final Block RED_NETHER_BRICK_LOWER_SMALL_ARCH = null;
     public static final Block POLISHED_ANDESITE_LOWER_SMALL_ARCH = null;
     public static final Block DIORITE_LOWER_SMALL_ARCH = null;
-    
+
     /* Upper Small Inverted Arches */
     public static final Block OAK_UPPER_SMALL_INVERTED_ARCH = null;
     public static final Block SPRUCE_UPPER_SMALL_INVERTED_ARCH = null;
@@ -371,7 +371,7 @@ public class ModBlocks {
     public static final Block RED_NETHER_BRICK_LOWER_SMALL_INVERTED_ARCH = null;
     public static final Block POLISHED_ANDESITE_LOWER_SMALL_INVERTED_ARCH = null;
     public static final Block DIORITE_LOWER_SMALL_INVERTED_ARCH = null;
-    
+
     /* Poles */
     public static final Block OAK_POST = null;
     public static final Block SPRUCE_POST = null;
@@ -404,12 +404,11 @@ public class ModBlocks {
     public static final Block RED_NETHER_BRICK_POST = null;
     public static final Block POLISHED_ANDESITE_POST = null;
     public static final Block DIORITE_POST = null;
-    
 
-    
+
     /*** Decorations ***/
     public static final Block COLORABLE_FLOWER_POT = null;
-    
+
     /* Tall Fences */
     public static final Block OAK_TALL_FENCE = null;
     public static final Block SPRUCE_TALL_FENCE = null;
@@ -420,7 +419,7 @@ public class ModBlocks {
     public static final Block NETHER_BRICK_TALL_FENCE = null;
     public static final Block CRIMSON_TALL_FENCE = null;
     public static final Block WARPED_TALL_FENCE = null;
-    
+
     /* Tall Fences Gates */
     public static final Block OAK_TALL_FENCE_GATE = null;
     public static final Block SPRUCE_TALL_FENCE_GATE = null;
@@ -431,9 +430,8 @@ public class ModBlocks {
     public static final Block NETHER_BRICK_TALL_FENCE_GATE = null;
     public static final Block CRIMSON_TALL_FENCE_GATE = null;
     public static final Block WARPED_TALL_FENCE_GATE = null;
-    
-    
-    
+
+
     /*** Furnitures ***/
     /* Tables */
     public static final Block OAK_TABLE = null;
@@ -445,7 +443,7 @@ public class ModBlocks {
     public static final Block NETHER_BRICK_TABLE = null;
     public static final Block CRIMSON_TABLE = null;
     public static final Block WARPED_TABLE = null;
-    
+
     /* Tables */
     public static final Block OAK_CHAIR = null;
     public static final Block SPRUCE_CHAIR = null;
@@ -492,7 +490,7 @@ public class ModBlocks {
     public static final Block STRIPPED_JUNGLE_WOOD_COFFEE_TABLE = null;
     public static final Block STRIPPED_CRIMSON_STEM_COFFEE_TABLE = null;
     public static final Block STRIPPED_WARPED_STEM_COFFEE_TABLE = null;
-    
+
     /* Sofas */
     public static final Block WHITE_SOFA = null;
     public static final Block ORANGE_SOFA = null;
@@ -510,7 +508,7 @@ public class ModBlocks {
     public static final Block GREEN_SOFA = null;
     public static final Block RED_SOFA = null;
     public static final Block BLACK_SOFA = null;
-    
+
     /* Carpets */
     public static final Block WHITE_CARPET = null;
     public static final Block ORANGE_CARPET = null;
@@ -528,7 +526,7 @@ public class ModBlocks {
     public static final Block GREEN_CARPET = null;
     public static final Block RED_CARPET = null;
     public static final Block BLACK_CARPET = null;
-    
+
     /* Lamps */
     public static final Block OAK_SMALL_LAMP = null;
     public static final Block SPRUCE_SMALL_LAMP = null;
@@ -539,7 +537,7 @@ public class ModBlocks {
     public static final Block NETHER_BRICK_SMALL_LAMP = null;
     public static final Block CRIMSON_SMALL_LAMP = null;
     public static final Block WARPED_SMALL_LAMP = null;
-    
+
     /* Drawers */
     /* Simple Drawers */
     public static final Block OAK_SIMPLE_DRAWER = null;
@@ -551,7 +549,7 @@ public class ModBlocks {
     public static final Block NETHER_BRICK_SIMPLE_DRAWER = null;
     public static final Block CRIMSON_SIMPLE_DRAWER = null;
     public static final Block WARPED_SIMPLE_DRAWER = null;
-    
+
     /* Double Drawers */
     public static final Block OAK_DOUBLE_DRAWER = null;
     public static final Block SPRUCE_DOUBLE_DRAWER = null;
@@ -562,7 +560,7 @@ public class ModBlocks {
     public static final Block NETHER_BRICK_DOUBLE_DRAWER = null;
     public static final Block CRIMSON_DOUBLE_DRAWER = null;
     public static final Block WARPED_DOUBLE_DRAWER = null;
-    
+
     /* Shelves */
     public static final Block OAK_SHELF = null;
     public static final Block SPRUCE_SHELF = null;
@@ -573,7 +571,7 @@ public class ModBlocks {
     public static final Block NETHER_BRICK_SHELF = null;
     public static final Block CRIMSON_SHELF = null;
     public static final Block WARPED_SHELF = null;
-    
+
     /* Crates */
     public static final Block OAK_CRATE = null;
     public static final Block SPRUCE_CRATE = null;
@@ -584,7 +582,7 @@ public class ModBlocks {
     public static final Block NETHER_BRICK_CRATE = null;
     public static final Block CRIMSON_CRATE = null;
     public static final Block WARPED_CRATE = null;
-    
+
     /* Bookshelves */
     public static final Block OAK_BOOKSHELF = null;
     public static final Block SPRUCE_BOOKSHELF = null;
@@ -595,7 +593,7 @@ public class ModBlocks {
     public static final Block NETHER_BRICK_BOOKSHELF = null;
     public static final Block CRIMSON_BOOKSHELF = null;
     public static final Block WARPED_BOOKSHELF = null;
-    
+
     /* Potion Shelves */
     public static final Block OAK_POTION_SHELF = null;
     public static final Block SPRUCE_POTION_SHELF = null;
@@ -606,7 +604,7 @@ public class ModBlocks {
     public static final Block NETHER_BRICK_POTION_SHELF = null;
     public static final Block CRIMSON_POTION_SHELF = null;
     public static final Block WARPED_POTION_SHELF = null;
-    
+
     /* Straight Kitchen Counters */
     public static final Block OAK_STRAIGHT_KITCHEN_COUNTER = null;
     public static final Block SPRUCE_STRAIGHT_KITCHEN_COUNTER = null;
@@ -617,7 +615,7 @@ public class ModBlocks {
     public static final Block CRIMSON_STRAIGHT_KITCHEN_COUNTER = null;
     public static final Block WARPED_STRAIGHT_KITCHEN_COUNTER = null;
     public static final Block COLORABLE_STRAIGHT_KITCHEN_COUNTER = null;
-    
+
     /* Inner Corner Kitchen Counters */
     public static final Block OAK_INNER_CORNER_KITCHEN_COUNTER = null;
     public static final Block SPRUCE_INNER_CORNER_KITCHEN_COUNTER = null;
@@ -628,7 +626,7 @@ public class ModBlocks {
     public static final Block CRIMSON_INNER_CORNER_KITCHEN_COUNTER = null;
     public static final Block WARPED_INNER_CORNER_KITCHEN_COUNTER = null;
     public static final Block COLORABLE_INNER_CORNER_KITCHEN_COUNTER = null;
-    
+
     /* Outer Corner Kitchen Counters */
     public static final Block OAK_OUTER_CORNER_KITCHEN_COUNTER = null;
     public static final Block SPRUCE_OUTER_CORNER_KITCHEN_COUNTER = null;
@@ -639,199 +637,198 @@ public class ModBlocks {
     public static final Block CRIMSON_OUTER_CORNER_KITCHEN_COUNTER = null;
     public static final Block WARPED_OUTER_CORNER_KITCHEN_COUNTER = null;
     public static final Block COLORABLE_OUTER_CORNER_KITCHEN_COUNTER = null;
-    
-    
-    
+
+
     /* Candles */
     public static final Block CANDLE = null;
-    
+
     /* Colorable Blocks */
     public static final Block COLORABLE_WOOL = null;
     public static final Block COLORABLE_PLANKS = null;
     public static final Block COLORABLE_CONCRETE = null;
     public static final Block COLORABLE_BRICKS = null;
-	public static final Block COLORABLE_STONE_BRICKS = null;
-	public static final Block COLORABLE_STONE = null;
-	public static final Block COLORABLE_COBBLESTONE = null;
-	public static final Block COLORABLE_TERRACOTTA = null;
-    
-	public static final Block COLORABLE_CARPET = null;
-	public static final Block COLORABLE_SOFA = null;
-	public static final Block COLORABLE_ROUND_CARPET = null;
-	public static final Block COLORABLE_TABLE = null;
-	public static final Block COLORABLE_CHAIR = null;
-	public static final Block COLORABLE_PLANK_COFFEE_TABLE = null;
-	public static final Block COLORABLE_TERRACOTTA_COFFEE_TABLE = null;
-    
+    public static final Block COLORABLE_STONE_BRICKS = null;
+    public static final Block COLORABLE_STONE = null;
+    public static final Block COLORABLE_COBBLESTONE = null;
+    public static final Block COLORABLE_TERRACOTTA = null;
+
+    public static final Block COLORABLE_CARPET = null;
+    public static final Block COLORABLE_SOFA = null;
+    public static final Block COLORABLE_ROUND_CARPET = null;
+    public static final Block COLORABLE_TABLE = null;
+    public static final Block COLORABLE_CHAIR = null;
+    public static final Block COLORABLE_PLANK_COFFEE_TABLE = null;
+    public static final Block COLORABLE_TERRACOTTA_COFFEE_TABLE = null;
+
     public static final Block COLORABLE_PLANK_SLAB = null;
     public static final Block COLORABLE_BRICK_SLAB = null;
-	public static final Block COLORABLE_STONE_BRICK_SLAB = null;
-	public static final Block COLORABLE_STONE_SLAB = null;
-	public static final Block COLORABLE_COBBLESTONE_SLAB = null;
-    
+    public static final Block COLORABLE_STONE_BRICK_SLAB = null;
+    public static final Block COLORABLE_STONE_SLAB = null;
+    public static final Block COLORABLE_COBBLESTONE_SLAB = null;
+
     public static final Block COLORABLE_PLANK_STAIRS = null;
     public static final Block COLORABLE_BRICK_STAIRS = null;
-	public static final Block COLORABLE_STONE_BRICK_STAIRS = null;
-	public static final Block COLORABLE_STONE_STAIRS = null;
-	public static final Block COLORABLE_COBBLESTONE_STAIRS = null;
-	
-	public static final Block COLORABLE_PLANK_VERTICAL_SLAB = null;
-	public static final Block COLORABLE_BRICK_VERTICAL_SLAB = null;
-	public static final Block COLORABLE_STONE_BRICK_VERTICAL_SLAB = null;
-	public static final Block COLORABLE_STONE_VERTICAL_SLAB = null;
-	public static final Block COLORABLE_COBBLESTONE_VERTICAL_SLAB = null;
-	
-	public static final Block COLORABLE_PLANK_VERTICAL_STAIRS = null;
-	public static final Block COLORABLE_BRICK_VERTICAL_STAIRS = null;
-	public static final Block COLORABLE_STONE_BRICK_VERTICAL_STAIRS = null;
-	public static final Block COLORABLE_STONE_VERTICAL_STAIRS = null;
-	public static final Block COLORABLE_COBBLESTONE_VERTICAL_STAIRS = null;
-	
-	public static final Block COLORABLE_GLASS = null;
-	public static final Block COLORABLE_GLASS_PANE = null;
-	
-	public static final Block COLORABLE_PLANK_POST = null;
-	public static final Block COLORABLE_BRICK_POST = null;
-	public static final Block COLORABLE_STONE_BRICK_POST = null;
-	public static final Block COLORABLE_STONE_POST = null;
-	public static final Block COLORABLE_COBBLESTONE_POST = null;
-	
-	public static final Block COLORABLE_PLANK_PILLAR = null;
-	public static final Block COLORABLE_BRICK_PILLAR = null;
-	public static final Block COLORABLE_STONE_BRICK_PILLAR = null;
-	public static final Block COLORABLE_STONE_PILLAR = null;
-	public static final Block COLORABLE_COBBLESTONE_PILLAR = null;
-	
-	public static final Block COLORABLE_PLANK_UPPER_SMALL_ARCH = null;
-	public static final Block COLORABLE_BRICK_UPPER_SMALL_ARCH = null;
-	public static final Block COLORABLE_STONE_BRICK_UPPER_SMALL_ARCH = null;
-	public static final Block COLORABLE_STONE_UPPER_SMALL_ARCH = null;
-	public static final Block COLORABLE_COBBLESTONE_UPPER_SMALL_ARCH = null;
-	
-	public static final Block COLORABLE_PLANK_LOWER_SMALL_ARCH = null;
-	public static final Block COLORABLE_BRICK_LOWER_SMALL_ARCH = null;
-	public static final Block COLORABLE_STONE_BRICK_LOWER_SMALL_ARCH = null;
-	public static final Block COLORABLE_STONE_LOWER_SMALL_ARCH = null;
-	public static final Block COLORABLE_COBBLESTONE_LOWER_SMALL_ARCH = null;
-	
-	public static final Block COLORABLE_PLANK_UPPER_SMALL_INVERTED_ARCH = null;
-	public static final Block COLORABLE_BRICK_UPPER_SMALL_INVERTED_ARCH = null;
-	public static final Block COLORABLE_STONE_BRICK_UPPER_SMALL_INVERTED_ARCH = null;
-	public static final Block COLORABLE_STONE_UPPER_SMALL_INVERTED_ARCH = null;
-	public static final Block COLORABLE_COBBLESTONE_UPPER_SMALL_INVERTED_ARCH = null;
-	
-	public static final Block COLORABLE_PLANK_LOWER_SMALL_INVERTED_ARCH = null;
-	public static final Block COLORABLE_BRICK_LOWER_SMALL_INVERTED_ARCH = null;
-	public static final Block COLORABLE_STONE_BRICK_LOWER_SMALL_INVERTED_ARCH = null;
-	public static final Block COLORABLE_STONE_LOWER_SMALL_INVERTED_ARCH = null;
-	public static final Block COLORABLE_COBBLESTONE_LOWER_SMALL_INVERTED_ARCH = null;
+    public static final Block COLORABLE_STONE_BRICK_STAIRS = null;
+    public static final Block COLORABLE_STONE_STAIRS = null;
+    public static final Block COLORABLE_COBBLESTONE_STAIRS = null;
 
-	public static final Block COLORABLE_PLANK_RAMP = null;
-	public static final Block COLORABLE_BRICK_RAMP = null;
-	public static final Block COLORABLE_STONE_BRICK_RAMP = null;
-	public static final Block COLORABLE_STONE_RAMP = null;
-	public static final Block COLORABLE_COBBLESTONE_RAMP = null;
-	
-	public static final Block COLORABLE_PLANK_TRIANGLE_RAMP = null;
-	public static final Block COLORABLE_BRICK_TRIANGLE_RAMP = null;
-	public static final Block COLORABLE_STONE_BRICK_TRIANGLE_RAMP = null;
-	public static final Block COLORABLE_STONE_TRIANGLE_RAMP = null;
-	public static final Block COLORABLE_COBBLESTONE_TRIANGLE_RAMP = null;
-	
-	public static final Block COLORABLE_PLANK_ARCH = null;
-	public static final Block COLORABLE_BRICK_ARCH = null;
-	public static final Block COLORABLE_STONE_BRICK_ARCH = null;
-	public static final Block COLORABLE_STONE_ARCH = null;
-	public static final Block COLORABLE_COBBLESTONE_ARCH = null;
-	
-	public static final Block COLORABLE_PLANK_INVERTED_ARCH = null;
-	public static final Block COLORABLE_BRICK_INVERTED_ARCH = null;
-	public static final Block COLORABLE_STONE_BRICK_INVERTED_ARCH = null;
-	public static final Block COLORABLE_STONE_INVERTED_ARCH = null;
-	public static final Block COLORABLE_COBBLESTONE_INVERTED_ARCH = null;
-	
-	public static final Block NEON_BLOCK = null;
-	public static final Block GLOWING_NEON_BLOCK = null;
-	public static final Block RAINBOW_BLOCK = null;
-	public static final Block LAVA_LAMP = null;
-	public static final Block SIREN = null;
-	public static final Block SIGNAL_TOWER_LIGHT = null;
-	public static final Block EYEBALL_LAMP = null;
-	public static final Block INK_BLOCK = null;
-	
-	
-	
-	/* 1.16 */
-	
-	public static final Block CRIMSON_VERTICAL_SLAB = null;
-	public static final Block WARPED_VERTICAL_SLAB = null;
-	public static final Block BLACKSTONE_VERTICAL_SLAB = null;
-	public static final Block POLISHED_BLACKSTONE_VERTICAL_SLAB = null;
-	public static final Block POLISHED_BLACKSTONE_BRICK_VERTICAL_SLAB = null;
-	
-	public static final Block CRIMSON_VERTICAL_STAIRS = null;
-	public static final Block WARPED_VERTICAL_STAIRS = null;
-	public static final Block BLACKSTONE_VERTICAL_STAIRS = null;
-	public static final Block POLISHED_BLACKSTONE_VERTICAL_STAIRS = null;
-	public static final Block POLISHED_BLACKSTONE_BRICK_VERTICAL_STAIRS = null;
-	
-	public static final Block CRIMSON_POST = null;
-	public static final Block WARPED_POST = null;
-	public static final Block BLACKSTONE_POST = null;
-	public static final Block POLISHED_BLACKSTONE_POST = null;
-	public static final Block POLISHED_BLACKSTONE_BRICK_POST = null;
-	
-	public static final Block CRIMSON_PILLAR = null;
-	public static final Block WARPED_PILLAR = null;
-	public static final Block BLACKSTONE_PILLAR = null;
-	public static final Block POLISHED_BLACKSTONE_PILLAR = null;
-	public static final Block POLISHED_BLACKSTONE_BRICK_PILLAR = null;
-	
-	public static final Block CRIMSON_UPPER_SMALL_ARCH = null;
-	public static final Block WARPED_UPPER_SMALL_ARCH = null;
-	public static final Block BLACKSTONE_UPPER_SMALL_ARCH = null;
-	public static final Block POLISHED_BLACKSTONE_UPPER_SMALL_ARCH = null;
-	public static final Block POLISHED_BLACKSTONE_BRICK_UPPER_SMALL_ARCH = null;
-	
-	public static final Block CRIMSON_LOWER_SMALL_ARCH = null;
-	public static final Block WARPED_LOWER_SMALL_ARCH = null;
-	public static final Block BLACKSTONE_LOWER_SMALL_ARCH = null;
-	public static final Block POLISHED_BLACKSTONE_LOWER_SMALL_ARCH = null;
-	public static final Block POLISHED_BLACKSTONE_BRICK_LOWER_SMALL_ARCH = null;
-	
-	public static final Block CRIMSON_UPPER_SMALL_INVERTED_ARCH = null;
-	public static final Block WARPED_UPPER_SMALL_INVERTED_ARCH = null;
-	public static final Block BLACKSTONE_UPPER_SMALL_INVERTED_ARCH = null;
-	public static final Block POLISHED_BLACKSTONE_UPPER_SMALL_INVERTED_ARCH = null;
-	public static final Block POLISHED_BLACKSTONE_BRICK_UPPER_SMALL_INVERTED_ARCH = null;
-	
-	public static final Block CRIMSON_LOWER_SMALL_INVERTED_ARCH = null;
-	public static final Block WARPED_LOWER_SMALL_INVERTED_ARCH = null;
-	public static final Block BLACKSTONE_LOWER_SMALL_INVERTED_ARCH = null;
-	public static final Block POLISHED_BLACKSTONE_LOWER_SMALL_INVERTED_ARCH = null;
-	public static final Block POLISHED_BLACKSTONE_BRICK_LOWER_SMALL_INVERTED_ARCH = null;
+    public static final Block COLORABLE_PLANK_VERTICAL_SLAB = null;
+    public static final Block COLORABLE_BRICK_VERTICAL_SLAB = null;
+    public static final Block COLORABLE_STONE_BRICK_VERTICAL_SLAB = null;
+    public static final Block COLORABLE_STONE_VERTICAL_SLAB = null;
+    public static final Block COLORABLE_COBBLESTONE_VERTICAL_SLAB = null;
 
-	public static final Block CRIMSON_RAMP = null;
-	public static final Block WARPED_RAMP = null;
-	public static final Block BLACKSTONE_RAMP = null;
-	public static final Block POLISHED_BLACKSTONE_RAMP = null;
-	public static final Block POLISHED_BLACKSTONE_BRICK_RAMP = null;
-	
-	public static final Block CRIMSON_TRIANGLE_RAMP = null;
-	public static final Block WARPED_TRIANGLE_RAMP = null;
-	public static final Block BLACKSTONE_TRIANGLE_RAMP = null;
-	public static final Block POLISHED_BLACKSTONE_TRIANGLE_RAMP = null;
-	public static final Block POLISHED_BLACKSTONE_BRICK_TRIANGLE_RAMP = null;
-	
-	public static final Block CRIMSON_ARCH = null;
-	public static final Block WARPED_ARCH = null;
-	public static final Block BLACKSTONE_ARCH = null;
-	public static final Block POLISHED_BLACKSTONE_ARCH = null;
-	public static final Block POLISHED_BLACKSTONE_BRICK_ARCH = null;
-	
-	public static final Block CRIMSON_INVERTED_ARCH = null;
-	public static final Block WARPED_INVERTED_ARCH = null;
-	public static final Block BLACKSTONE_INVERTED_ARCH = null;
-	public static final Block POLISHED_BLACKSTONE_INVERTED_ARCH = null;
-	public static final Block POLISHED_BLACKSTONE_BRICK_INVERTED_ARCH = null;
+    public static final Block COLORABLE_PLANK_VERTICAL_STAIRS = null;
+    public static final Block COLORABLE_BRICK_VERTICAL_STAIRS = null;
+    public static final Block COLORABLE_STONE_BRICK_VERTICAL_STAIRS = null;
+    public static final Block COLORABLE_STONE_VERTICAL_STAIRS = null;
+    public static final Block COLORABLE_COBBLESTONE_VERTICAL_STAIRS = null;
+
+    public static final Block COLORABLE_GLASS = null;
+    public static final Block COLORABLE_GLASS_PANE = null;
+
+    public static final Block COLORABLE_PLANK_POST = null;
+    public static final Block COLORABLE_BRICK_POST = null;
+    public static final Block COLORABLE_STONE_BRICK_POST = null;
+    public static final Block COLORABLE_STONE_POST = null;
+    public static final Block COLORABLE_COBBLESTONE_POST = null;
+
+    public static final Block COLORABLE_PLANK_PILLAR = null;
+    public static final Block COLORABLE_BRICK_PILLAR = null;
+    public static final Block COLORABLE_STONE_BRICK_PILLAR = null;
+    public static final Block COLORABLE_STONE_PILLAR = null;
+    public static final Block COLORABLE_COBBLESTONE_PILLAR = null;
+
+    public static final Block COLORABLE_PLANK_UPPER_SMALL_ARCH = null;
+    public static final Block COLORABLE_BRICK_UPPER_SMALL_ARCH = null;
+    public static final Block COLORABLE_STONE_BRICK_UPPER_SMALL_ARCH = null;
+    public static final Block COLORABLE_STONE_UPPER_SMALL_ARCH = null;
+    public static final Block COLORABLE_COBBLESTONE_UPPER_SMALL_ARCH = null;
+
+    public static final Block COLORABLE_PLANK_LOWER_SMALL_ARCH = null;
+    public static final Block COLORABLE_BRICK_LOWER_SMALL_ARCH = null;
+    public static final Block COLORABLE_STONE_BRICK_LOWER_SMALL_ARCH = null;
+    public static final Block COLORABLE_STONE_LOWER_SMALL_ARCH = null;
+    public static final Block COLORABLE_COBBLESTONE_LOWER_SMALL_ARCH = null;
+
+    public static final Block COLORABLE_PLANK_UPPER_SMALL_INVERTED_ARCH = null;
+    public static final Block COLORABLE_BRICK_UPPER_SMALL_INVERTED_ARCH = null;
+    public static final Block COLORABLE_STONE_BRICK_UPPER_SMALL_INVERTED_ARCH = null;
+    public static final Block COLORABLE_STONE_UPPER_SMALL_INVERTED_ARCH = null;
+    public static final Block COLORABLE_COBBLESTONE_UPPER_SMALL_INVERTED_ARCH = null;
+
+    public static final Block COLORABLE_PLANK_LOWER_SMALL_INVERTED_ARCH = null;
+    public static final Block COLORABLE_BRICK_LOWER_SMALL_INVERTED_ARCH = null;
+    public static final Block COLORABLE_STONE_BRICK_LOWER_SMALL_INVERTED_ARCH = null;
+    public static final Block COLORABLE_STONE_LOWER_SMALL_INVERTED_ARCH = null;
+    public static final Block COLORABLE_COBBLESTONE_LOWER_SMALL_INVERTED_ARCH = null;
+
+    public static final Block COLORABLE_PLANK_RAMP = null;
+    public static final Block COLORABLE_BRICK_RAMP = null;
+    public static final Block COLORABLE_STONE_BRICK_RAMP = null;
+    public static final Block COLORABLE_STONE_RAMP = null;
+    public static final Block COLORABLE_COBBLESTONE_RAMP = null;
+
+    public static final Block COLORABLE_PLANK_TRIANGLE_RAMP = null;
+    public static final Block COLORABLE_BRICK_TRIANGLE_RAMP = null;
+    public static final Block COLORABLE_STONE_BRICK_TRIANGLE_RAMP = null;
+    public static final Block COLORABLE_STONE_TRIANGLE_RAMP = null;
+    public static final Block COLORABLE_COBBLESTONE_TRIANGLE_RAMP = null;
+
+    public static final Block COLORABLE_PLANK_ARCH = null;
+    public static final Block COLORABLE_BRICK_ARCH = null;
+    public static final Block COLORABLE_STONE_BRICK_ARCH = null;
+    public static final Block COLORABLE_STONE_ARCH = null;
+    public static final Block COLORABLE_COBBLESTONE_ARCH = null;
+
+    public static final Block COLORABLE_PLANK_INVERTED_ARCH = null;
+    public static final Block COLORABLE_BRICK_INVERTED_ARCH = null;
+    public static final Block COLORABLE_STONE_BRICK_INVERTED_ARCH = null;
+    public static final Block COLORABLE_STONE_INVERTED_ARCH = null;
+    public static final Block COLORABLE_COBBLESTONE_INVERTED_ARCH = null;
+
+    public static final Block NEON_BLOCK = null;
+    public static final Block GLOWING_NEON_BLOCK = null;
+    public static final Block RAINBOW_BLOCK = null;
+    public static final Block LAVA_LAMP = null;
+    public static final Block SIREN = null;
+    public static final Block SIGNAL_TOWER_LIGHT = null;
+    public static final Block EYEBALL_LAMP = null;
+    public static final Block INK_BLOCK = null;
+
+
+
+    /* 1.16 */
+
+    public static final Block CRIMSON_VERTICAL_SLAB = null;
+    public static final Block WARPED_VERTICAL_SLAB = null;
+    public static final Block BLACKSTONE_VERTICAL_SLAB = null;
+    public static final Block POLISHED_BLACKSTONE_VERTICAL_SLAB = null;
+    public static final Block POLISHED_BLACKSTONE_BRICK_VERTICAL_SLAB = null;
+
+    public static final Block CRIMSON_VERTICAL_STAIRS = null;
+    public static final Block WARPED_VERTICAL_STAIRS = null;
+    public static final Block BLACKSTONE_VERTICAL_STAIRS = null;
+    public static final Block POLISHED_BLACKSTONE_VERTICAL_STAIRS = null;
+    public static final Block POLISHED_BLACKSTONE_BRICK_VERTICAL_STAIRS = null;
+
+    public static final Block CRIMSON_POST = null;
+    public static final Block WARPED_POST = null;
+    public static final Block BLACKSTONE_POST = null;
+    public static final Block POLISHED_BLACKSTONE_POST = null;
+    public static final Block POLISHED_BLACKSTONE_BRICK_POST = null;
+
+    public static final Block CRIMSON_PILLAR = null;
+    public static final Block WARPED_PILLAR = null;
+    public static final Block BLACKSTONE_PILLAR = null;
+    public static final Block POLISHED_BLACKSTONE_PILLAR = null;
+    public static final Block POLISHED_BLACKSTONE_BRICK_PILLAR = null;
+
+    public static final Block CRIMSON_UPPER_SMALL_ARCH = null;
+    public static final Block WARPED_UPPER_SMALL_ARCH = null;
+    public static final Block BLACKSTONE_UPPER_SMALL_ARCH = null;
+    public static final Block POLISHED_BLACKSTONE_UPPER_SMALL_ARCH = null;
+    public static final Block POLISHED_BLACKSTONE_BRICK_UPPER_SMALL_ARCH = null;
+
+    public static final Block CRIMSON_LOWER_SMALL_ARCH = null;
+    public static final Block WARPED_LOWER_SMALL_ARCH = null;
+    public static final Block BLACKSTONE_LOWER_SMALL_ARCH = null;
+    public static final Block POLISHED_BLACKSTONE_LOWER_SMALL_ARCH = null;
+    public static final Block POLISHED_BLACKSTONE_BRICK_LOWER_SMALL_ARCH = null;
+
+    public static final Block CRIMSON_UPPER_SMALL_INVERTED_ARCH = null;
+    public static final Block WARPED_UPPER_SMALL_INVERTED_ARCH = null;
+    public static final Block BLACKSTONE_UPPER_SMALL_INVERTED_ARCH = null;
+    public static final Block POLISHED_BLACKSTONE_UPPER_SMALL_INVERTED_ARCH = null;
+    public static final Block POLISHED_BLACKSTONE_BRICK_UPPER_SMALL_INVERTED_ARCH = null;
+
+    public static final Block CRIMSON_LOWER_SMALL_INVERTED_ARCH = null;
+    public static final Block WARPED_LOWER_SMALL_INVERTED_ARCH = null;
+    public static final Block BLACKSTONE_LOWER_SMALL_INVERTED_ARCH = null;
+    public static final Block POLISHED_BLACKSTONE_LOWER_SMALL_INVERTED_ARCH = null;
+    public static final Block POLISHED_BLACKSTONE_BRICK_LOWER_SMALL_INVERTED_ARCH = null;
+
+    public static final Block CRIMSON_RAMP = null;
+    public static final Block WARPED_RAMP = null;
+    public static final Block BLACKSTONE_RAMP = null;
+    public static final Block POLISHED_BLACKSTONE_RAMP = null;
+    public static final Block POLISHED_BLACKSTONE_BRICK_RAMP = null;
+
+    public static final Block CRIMSON_TRIANGLE_RAMP = null;
+    public static final Block WARPED_TRIANGLE_RAMP = null;
+    public static final Block BLACKSTONE_TRIANGLE_RAMP = null;
+    public static final Block POLISHED_BLACKSTONE_TRIANGLE_RAMP = null;
+    public static final Block POLISHED_BLACKSTONE_BRICK_TRIANGLE_RAMP = null;
+
+    public static final Block CRIMSON_ARCH = null;
+    public static final Block WARPED_ARCH = null;
+    public static final Block BLACKSTONE_ARCH = null;
+    public static final Block POLISHED_BLACKSTONE_ARCH = null;
+    public static final Block POLISHED_BLACKSTONE_BRICK_ARCH = null;
+
+    public static final Block CRIMSON_INVERTED_ARCH = null;
+    public static final Block WARPED_INVERTED_ARCH = null;
+    public static final Block BLACKSTONE_INVERTED_ARCH = null;
+    public static final Block POLISHED_BLACKSTONE_INVERTED_ARCH = null;
+    public static final Block POLISHED_BLACKSTONE_BRICK_INVERTED_ARCH = null;
 }

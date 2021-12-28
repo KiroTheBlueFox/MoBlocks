@@ -3,26 +3,26 @@ package kirothebluefox.moblocks.content.customproperties;
 import net.minecraft.util.StringRepresentable;
 
 public enum MultipleWest implements StringRepresentable {
-	FALSE("false"),
-	TRUE("true"),
-	LONG("long");
+    FALSE("false"),
+    TRUE("true"),
+    LONG("long");
 
-	private final String name;
+    private final String name;
 
-	private MultipleWest(String name) {
-	    this.name = name;
-	}
+    MultipleWest(String name) {
+        this.name = name;
+    }
 
-	public String toString() {
-		return this.name;
-	}
+    public String toString() {
+        return this.name;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	@Override
-	public String getSerializedName() {
-		return getName();
-	}
+    @Override
+    public String getSerializedName() {
+        return getName();
+    }
 }

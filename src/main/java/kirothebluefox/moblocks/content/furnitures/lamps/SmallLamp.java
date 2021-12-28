@@ -38,128 +38,126 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 public class SmallLamp extends Block implements SimpleWaterloggedBlock, EntityBlock {
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	public static final BooleanProperty LIT = BlockStateProperties.LIT;
-	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-	public static final VoxelShape LAMP = Block.box(5,0,5,11,12,11);
+    public static final VoxelShape LAMP = Block.box(5, 0, 5, 11, 12, 11);
 
-	public SmallLamp(Properties properties) {
-		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false).setValue(WATERLOGGED, false).setValue(POWERED, false));
-	}
+    public SmallLamp(Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false).setValue(WATERLOGGED, false).setValue(POWERED, false));
+    }
 
-	@Override
-	public int getLightEmission(BlockState state, BlockGetter world, BlockPos pos) {
-		return (state.getValue(LIT)) ? 8 : 0;
-	}
+    @Override
+    public int getLightEmission(BlockState state, BlockGetter world, BlockPos pos) {
+        return (state.getValue(LIT)) ? 8 : 0;
+    }
 
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-		return LAMP;
-	}
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        return LAMP;
+    }
 
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(LIT, POWERED, WATERLOGGED);
-	}
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(LIT, POWERED, WATERLOGGED);
+    }
 
-	@Nullable
-	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new LampTile(pos, state);
-	}
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new LampTile(pos, state);
+    }
 
-	@Override
-	public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.lamps.turn_on").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
-		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-	}
+    @Override
+    public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+        tooltip.add(new TranslatableComponent("tooltips.moblocks.lamps.turn_on").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    }
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-		if (state.getBlock() != newState.getBlock()) {
-			BlockEntity tileentity = worldIn.getBlockEntity(pos);
-     		if (tileentity instanceof LampTile) {
-     			((LampTile) tileentity).dropItem();
-     		}
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity tileentity = worldIn.getBlockEntity(pos);
+            if (tileentity instanceof LampTile) {
+                ((LampTile) tileentity).dropItem();
+            }
 
-     		super.onRemove(state, worldIn, pos, newState, isMoving);
-		}
-	}
+            super.onRemove(state, worldIn, pos, newState, isMoving);
+        }
+    }
 
-	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		if (player.isShiftKeyDown()) {
-			if (state.getValue(LIT)) {
-				worldIn.playSound((Player)null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.5f);
-			} else {
-				worldIn.playSound((Player)null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6f);
-			}
-			worldIn.setBlockAndUpdate(pos, state.setValue(LIT, !state.getValue(LIT)));
-		} else {
-			BlockEntity tileentity = worldIn.getBlockEntity(pos);
-			if (tileentity instanceof LampTile) {
-				LampTile lamptileentity = (LampTile)tileentity;
-				if (lamptileentity.getItem().isEmpty()) {
-					ItemStack itemstack = player.getItemInHand(handIn);
-	            	lamptileentity.addItem(player.isCreative() ? itemstack.copy() : itemstack);
-				} else {
-					if (player.getItemInHand(handIn).isEmpty()) {
-						lamptileentity.dropItem(player, handIn);
-					}
-				}
-			}
-		}
-		return InteractionResult.SUCCESS;
-	}
+    @Override
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+        if (player.isShiftKeyDown()) {
+            if (state.getValue(LIT)) {
+                worldIn.playSound(null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.5f);
+            } else {
+                worldIn.playSound(null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6f);
+            }
+            worldIn.setBlockAndUpdate(pos, state.setValue(LIT, !state.getValue(LIT)));
+        } else {
+            BlockEntity tileentity = worldIn.getBlockEntity(pos);
+            if (tileentity instanceof LampTile) {
+                LampTile lamptileentity = (LampTile) tileentity;
+                if (lamptileentity.getItem().isEmpty()) {
+                    ItemStack itemstack = player.getItemInHand(handIn);
+                    lamptileentity.addItem(player.isCreative() ? itemstack.copy() : itemstack);
+                } else {
+                    if (player.getItemInHand(handIn).isEmpty()) {
+                        lamptileentity.dropItem(player, handIn);
+                    }
+                }
+            }
+        }
+        return InteractionResult.SUCCESS;
+    }
 
-	public RenderShape getRenderShape(BlockState state) {
-		return RenderShape.MODEL;
-	}
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
+    }
 
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		FluidState ifluidstate = context.getLevel().getFluidState(context.getClickedPos());
-		return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(ifluidstate.getType() == Fluids.WATER)).setValue(LIT, Boolean.valueOf(context.getLevel().hasNeighborSignal(context.getClickedPos())));
-	}
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        FluidState ifluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(ifluidstate.getType() == Fluids.WATER)).setValue(LIT, Boolean.valueOf(context.getLevel().hasNeighborSignal(context.getClickedPos())));
+    }
 
-	public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-		boolean flag = worldIn.hasNeighborSignal(pos);
-		if (blockIn != this && flag != state.getValue(POWERED)) {
-			worldIn.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)).setValue(LIT, Boolean.valueOf(flag)), 2);
-		}
-	}
+    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+        boolean flag = worldIn.hasNeighborSignal(pos);
+        if (blockIn != this && flag != state.getValue(POWERED)) {
+            worldIn.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)).setValue(LIT, Boolean.valueOf(flag)), 2);
+        }
+    }
 
-	public boolean placeLiquid(LevelAccessor worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
-		return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
-	}
+    public boolean placeLiquid(LevelAccessor worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+        return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
+    }
 
-	public boolean canPlaceLiquid(BlockGetter worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
-	   return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
-	}
+    public boolean canPlaceLiquid(BlockGetter worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
+        return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
+    }
 
-	@SuppressWarnings("deprecation")
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.getValue(WATERLOGGED)) {
-			worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
-		}
+    @SuppressWarnings("deprecation")
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+        }
 
-		return facing.getAxis().isHorizontal() ? stateIn : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-	}
+        return facing.getAxis().isHorizontal() ? stateIn : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    }
 
-	public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
-		switch(type) {
-		case LAND:
-			return false;
-		case WATER:
-			return worldIn.getFluidState(pos).is(FluidTags.WATER);
-		case AIR:
-			return false;
-		default:
-			return false;
-		}
-	}
+    public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
+        switch (type) {
+            case LAND:
+                return false;
+            case WATER:
+                return worldIn.getFluidState(pos).is(FluidTags.WATER);
+            case AIR:
+                return false;
+            default:
+                return false;
+        }
+    }
 }

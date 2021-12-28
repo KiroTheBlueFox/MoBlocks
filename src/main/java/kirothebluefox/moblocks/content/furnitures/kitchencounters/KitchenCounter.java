@@ -24,71 +24,71 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public abstract class KitchenCounter extends ColorableBlock implements SimpleWaterloggedBlock {
-	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	protected VoxelShape SHAPE = Shapes.empty();
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    protected VoxelShape SHAPE = Shapes.empty();
 
-	public KitchenCounter(Block block) {
-		super(block);
-		registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
-	}
+    public KitchenCounter(Block block) {
+        super(block);
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+    }
 
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-		VoxelShapeUtils.Angle angle = VoxelShapeUtils.Angle.Angle0;
-		switch (state.getValue(FACING)) {
-		case NORTH:
-			angle = VoxelShapeUtils.Angle.Angle180;
-			break;
-		case WEST:
-			angle = VoxelShapeUtils.Angle.Angle90;
-			break;
-		case EAST:
-			angle = VoxelShapeUtils.Angle.Angle270;
-			break;
-		default:
-			break;
-		}
-		return VoxelShapeUtils.rotateYAngle(SHAPE, angle);
-	}
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        VoxelShapeUtils.Angle angle = VoxelShapeUtils.Angle.Angle0;
+        switch (state.getValue(FACING)) {
+            case NORTH:
+                angle = VoxelShapeUtils.Angle.Angle180;
+                break;
+            case WEST:
+                angle = VoxelShapeUtils.Angle.Angle90;
+                break;
+            case EAST:
+                angle = VoxelShapeUtils.Angle.Angle270;
+                break;
+            default:
+                break;
+        }
+        return VoxelShapeUtils.rotateYAngle(SHAPE, angle);
+    }
 
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(FACING, WATERLOGGED);
-	}
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING, WATERLOGGED);
+    }
 
-	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		FluidState ifluidstate = context.getLevel().getFluidState(context.getClickedPos());
-		return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(ifluidstate.getType() == Fluids.WATER)).setValue(FACING, context.getHorizontalDirection());
-	}
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        FluidState ifluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(ifluidstate.getType() == Fluids.WATER)).setValue(FACING, context.getHorizontalDirection());
+    }
 
-	public boolean placeLiquid(LevelAccessor worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
-		return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
-	}
+    public boolean placeLiquid(LevelAccessor worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+        return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
+    }
 
-	public boolean canPlaceLiquid(BlockGetter worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
-	   return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
-	}
+    public boolean canPlaceLiquid(BlockGetter worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
+        return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
+    }
 
-	@SuppressWarnings("deprecation")
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.getValue(WATERLOGGED)) {
-			worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
-		}
+    @SuppressWarnings("deprecation")
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+        }
 
-		return facing.getAxis().isHorizontal() ? stateIn : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-	}
+        return facing.getAxis().isHorizontal() ? stateIn : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    }
 
-	public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
-		switch(type) {
-		case LAND:
-			return false;
-		case WATER:
-			return worldIn.getFluidState(pos).is(FluidTags.WATER);
-		case AIR:
-			return false;
-		default:
-			return false;
-		}
-	}
+    public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
+        switch (type) {
+            case LAND:
+                return false;
+            case WATER:
+                return worldIn.getFluidState(pos).is(FluidTags.WATER);
+            case AIR:
+                return false;
+            default:
+                return false;
+        }
+    }
 }

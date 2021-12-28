@@ -8,11 +8,11 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
 public class MoBlocksPacketHandler {
-     static SimpleChannel INSTANCE;
+    static SimpleChannel INSTANCE;
     private static int ID = 0;
 
     @SuppressWarnings("unused")
-	private static int nextID() {
+    private static int nextID() {
         return ID++;
     }
 

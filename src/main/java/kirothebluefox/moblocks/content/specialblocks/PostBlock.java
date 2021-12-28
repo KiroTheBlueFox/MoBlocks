@@ -22,59 +22,59 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
 public class PostBlock extends Block implements SimpleWaterloggedBlock {
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-	protected static final VoxelShape Shape = Block.box(5,0,5,11,16,11);
+    protected static final VoxelShape Shape = Block.box(5, 0, 5, 11, 16, 11);
 
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-		return Shape;
-	}
+    public PostBlock(Block baseBlock) {
+        super(Block.Properties.copy(baseBlock));
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
+    }
 
-	public PostBlock(Block baseBlock) {
-		super(Block.Properties.copy(baseBlock));
-		this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
-	}
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        return Shape;
+    }
 
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(WATERLOGGED);
-	}
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(WATERLOGGED);
+    }
 
 
-	@Nullable
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		BlockPos blockpos = context.getClickedPos();
-		FluidState FluidState = context.getLevel().getFluidState(blockpos);
-	    BlockState blockstate = this.defaultBlockState();
+    @Nullable
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockPos blockpos = context.getClickedPos();
+        FluidState FluidState = context.getLevel().getFluidState(blockpos);
+        BlockState blockstate = this.defaultBlockState();
         return blockstate.setValue(WATERLOGGED, Boolean.valueOf(FluidState.getType() == Fluids.WATER));
-	}
+    }
 
-	@SuppressWarnings("deprecation")
-	public FluidState getFluidState(BlockState state) {
-		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
-	}
+    @SuppressWarnings("deprecation")
+    public FluidState getFluidState(BlockState state) {
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+    }
 
-	public boolean placeLiquid(LevelAccessor worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
-		return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
-	}
+    public boolean placeLiquid(LevelAccessor worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+        return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
+    }
 
-	public boolean canPlaceLiquid(BlockGetter worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
-	   return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
-	}
+    public boolean canPlaceLiquid(BlockGetter worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
+        return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
+    }
 
-	public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
-		switch(type) {
-		case LAND:
-			return false;
-		case WATER:
-			return worldIn.getFluidState(pos).is(FluidTags.WATER);
-		case AIR:
-			return false;
-		default:
-			return false;
-		}
-	}
+    public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
+        switch (type) {
+            case LAND:
+                return false;
+            case WATER:
+                return worldIn.getFluidState(pos).is(FluidTags.WATER);
+            case AIR:
+                return false;
+            default:
+                return false;
+        }
+    }
 
-	public RenderShape getRenderShape(BlockState state) {
-		return RenderShape.MODEL;
-	}
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
+    }
 }

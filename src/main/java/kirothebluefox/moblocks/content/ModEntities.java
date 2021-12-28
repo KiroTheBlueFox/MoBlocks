@@ -8,7 +8,7 @@ import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder(MoBlocks.MODID)
 public class ModEntities {
-	/* Furnitures */
-	public static final EntityType<SeatChair> SEAT_CHAIR = null;
-	public static final EntityType<SeatSofa> SEAT_SOFA = null;
+    /* Furnitures */
+    public static final EntityType<SeatChair> SEAT_CHAIR = null;
+    public static final EntityType<SeatSofa> SEAT_SOFA = null;
 }

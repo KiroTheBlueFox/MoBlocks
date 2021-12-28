@@ -15,28 +15,26 @@ import net.minecraftforge.fml.ModList;
 
 import java.util.List;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class CustomLightColorPicker extends Item implements IDyeableLightColorPicker {
-	public CustomLightColorPicker(Properties properties) {
-		super(properties);
-		if (ModList.get().isLoaded("hypcore")) {
-			//ColoredLightManager.registerProvider(this, this::produceColoredLight);
-		}
-	}
+    public CustomLightColorPicker(Properties properties) {
+        super(properties);
+        if (ModList.get().isLoaded("hypcore")) {
+            //ColoredLightManager.registerProvider(this, this::produceColoredLight);
+        }
+    }
 
-	@Override
-	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.custom_color_picker.change_color").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.custom_color_picker.color_blocks").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.custom_color_picker.pick_color").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
-		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-	}
+    @Override
+    public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+        tooltip.add(new TranslatableComponent("tooltips.moblocks.custom_color_picker.change_color").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+        tooltip.add(new TranslatableComponent("tooltips.moblocks.custom_color_picker.color_blocks").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+        tooltip.add(new TranslatableComponent("tooltips.moblocks.custom_color_picker.pick_color").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    }
 
-	@Override
-	public boolean doesSneakBypassUse(ItemStack stack, LevelReader world, BlockPos pos, Player player) {
-		return true;
-	}
+    @Override
+    public boolean doesSneakBypassUse(ItemStack stack, LevelReader world, BlockPos pos, Player player) {
+        return true;
+    }
 
     /*public Light produceColoredLight(Entity entity, ItemStack itemStack) {
 		int color = getColor(itemStack);

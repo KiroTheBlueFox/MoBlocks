@@ -29,114 +29,114 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class DoubleDrawerTile extends BlockEntity implements MenuProvider {
-	public static final String INV_KEY = "inventory";
-    private IItemHandlerModifiable items = createItemHandler();
-    private LazyOptional<IItemHandler> handler = LazyOptional.of(() -> items);
+    public static final String INV_KEY = "inventory";
+    private final IItemHandlerModifiable items = createItemHandler();
+    private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> items);
     private boolean isOpened;
-	private long animationTime;
+    private long animationTime;
 
-	public DoubleDrawerTile(BlockPos pos, BlockState state) {
-		super(ModTileEntities.DOUBLE_DRAWER, pos, state);
-		this.isOpened = false;
-	}
+    public DoubleDrawerTile(BlockPos pos, BlockState state) {
+        super(ModTileEntities.DOUBLE_DRAWER, pos, state);
+        this.isOpened = false;
+    }
 
-	public boolean getIsOpened() {
-		return this.isOpened;
-	}
+    public boolean getIsOpened() {
+        return this.isOpened;
+    }
 
-	public boolean isOpened() {
-		int i = 0;
-		for(Player playerentity : this.level.getEntitiesOfClass(Player.class, new AABB((double)((float)this.worldPosition.getX() - 5.0F), (double)((float)this.worldPosition.getY() - 5.0F), (double)((float)this.worldPosition.getZ() - 5.0F), (double)((float)(this.worldPosition.getX() + 1) + 5.0F), (double)((float)(this.worldPosition.getY() + 1) + 5.0F), (double)((float)(this.worldPosition.getZ() + 1) + 5.0F)))) {
-			if (playerentity.containerMenu instanceof DoubleDrawerContainer) {
-				IItemHandler inventory = ((DoubleDrawerContainer)playerentity.containerMenu).getBlockInventory();
-				if (inventory == this.items) {
-					++i;
-				}
-			}
-		}
-		if (i == 0) {
-			if (this.isOpened) {
-				this.notifyBlock();
-				getLevel().playLocalSound(getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(), SoundEvents.WOODEN_TRAPDOOR_OPEN, SoundSource.BLOCKS, 1, 0.1f, true);
-				this.animationTime = System.currentTimeMillis();
-			}
-			return false;
-		} else {
-			if (!this.isOpened) {
-				this.notifyBlock();
-				getLevel().playLocalSound(getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundSource.BLOCKS, 1, 0.1f, true);
-				this.animationTime = System.currentTimeMillis();
-			}
-			return true;
-		}
-	}
+    public boolean isOpened() {
+        int i = 0;
+        for (Player playerentity : this.level.getEntitiesOfClass(Player.class, new AABB((float) this.worldPosition.getX() - 5.0F, (float) this.worldPosition.getY() - 5.0F, (float) this.worldPosition.getZ() - 5.0F, (float) (this.worldPosition.getX() + 1) + 5.0F, (float) (this.worldPosition.getY() + 1) + 5.0F, (float) (this.worldPosition.getZ() + 1) + 5.0F))) {
+            if (playerentity.containerMenu instanceof DoubleDrawerContainer) {
+                IItemHandler inventory = ((DoubleDrawerContainer) playerentity.containerMenu).getBlockInventory();
+                if (inventory == this.items) {
+                    ++i;
+                }
+            }
+        }
+        if (i == 0) {
+            if (this.isOpened) {
+                this.notifyBlock();
+                getLevel().playLocalSound(getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(), SoundEvents.WOODEN_TRAPDOOR_OPEN, SoundSource.BLOCKS, 1, 0.1f, true);
+                this.animationTime = System.currentTimeMillis();
+            }
+            return false;
+        } else {
+            if (!this.isOpened) {
+                this.notifyBlock();
+                getLevel().playLocalSound(getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundSource.BLOCKS, 1, 0.1f, true);
+                this.animationTime = System.currentTimeMillis();
+            }
+            return true;
+        }
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public void load(CompoundTag compound) {
-	    CompoundTag inventory = compound.getCompound(INV_KEY);
-	    handler.ifPresent(h -> ((INBTSerializable<CompoundTag>)h).deserializeNBT(inventory));
-		super.load(compound);
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public void load(CompoundTag compound) {
+        CompoundTag inventory = compound.getCompound(INV_KEY);
+        handler.ifPresent(h -> ((INBTSerializable<CompoundTag>) h).deserializeNBT(inventory));
+        super.load(compound);
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public void saveAdditional(CompoundTag compound) {
-	    handler.ifPresent(h -> {
-	    	CompoundTag inventory = ((INBTSerializable<CompoundTag>)h).serializeNBT();
-	    	compound.put(INV_KEY, inventory);
-	    });
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public void saveAdditional(CompoundTag compound) {
+        handler.ifPresent(h -> {
+            CompoundTag inventory = ((INBTSerializable<CompoundTag>) h).serializeNBT();
+            compound.put(INV_KEY, inventory);
+        });
+    }
 
-	private IItemHandlerModifiable createItemHandler() {
-		return new ItemStackHandler(32);
-	}
+    private IItemHandlerModifiable createItemHandler() {
+        return new ItemStackHandler(32);
+    }
 
-	public IItemHandlerModifiable getItems() {
-		return this.items;
-	}
+    public IItemHandlerModifiable getItems() {
+        return this.items;
+    }
 
-	public boolean dropItems() {
-		boolean isEmpty = true;
-		for (int i = 0; i < this.items.getSlots(); i++) {
-			if (this.items.getStackInSlot(i) != ItemStack.EMPTY) {
-				ItemStackUtils.ejectItemStack(this.getLevel(), this.getBlockPos(), this.items.getStackInSlot(i));
-				isEmpty = false;
-			}
-		}
-		this.notifyBlock();
-		return isEmpty ? false : true;
-	}
+    public boolean dropItems() {
+        boolean isEmpty = true;
+        for (int i = 0; i < this.items.getSlots(); i++) {
+            if (this.items.getStackInSlot(i) != ItemStack.EMPTY) {
+                ItemStackUtils.ejectItemStack(this.getLevel(), this.getBlockPos(), this.items.getStackInSlot(i));
+                isEmpty = false;
+            }
+        }
+        this.notifyBlock();
+        return !isEmpty;
+    }
 
-	private void notifyBlock() {
-		this.setChanged();
-		this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
-	}
+    private void notifyBlock() {
+        this.setChanged();
+        this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
+    }
 
-	@Nonnull
-	@Override
-	public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-		if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-			return handler.cast();
-		}
-		return super.getCapability(cap, side);
-	}
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return handler.cast();
+        }
+        return super.getCapability(cap, side);
+    }
 
-	@Override
-	public AbstractContainerMenu createMenu(int id, Inventory playerInv, Player player) {
-		return new DoubleDrawerContainer(id, worldPosition, playerInv);
-	}
+    @Override
+    public AbstractContainerMenu createMenu(int id, Inventory playerInv, Player player) {
+        return new DoubleDrawerContainer(id, worldPosition, playerInv);
+    }
 
-	@Override
-	public Component getDisplayName() {
-		return new TranslatableComponent("container.moblocks.double_drawer.name");
-	}
+    @Override
+    public Component getDisplayName() {
+        return new TranslatableComponent("container.moblocks.double_drawer.name");
+    }
 
-	public long getAnimationTime() {
-		return this.animationTime;
-	}
+    public long getAnimationTime() {
+        return this.animationTime;
+    }
 
-	public void tick() {
-		this.isOpened = isOpened();
-	}
+    public void tick() {
+        this.isOpened = isOpened();
+    }
 }

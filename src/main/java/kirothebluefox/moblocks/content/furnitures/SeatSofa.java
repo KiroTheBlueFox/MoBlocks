@@ -13,57 +13,53 @@ import java.util.List;
 
 
 public class SeatSofa extends Entity {
-	public SeatSofa(Level worldIn, BlockPos pos) {
-		this(ModEntities.SEAT_SOFA, worldIn);
-		setPos(pos.getX() + 0.5d, pos.getY() + 0.2d, pos.getZ() + 0.5d);
-	}
+    public SeatSofa(Level worldIn, BlockPos pos) {
+        this(ModEntities.SEAT_SOFA, worldIn);
+        setPos(pos.getX() + 0.5d, pos.getY() + 0.2d, pos.getZ() + 0.5d);
+    }
 
-	public SeatSofa(EntityType<SeatSofa> type, Level worldIn) {
-		super(ModEntities.SEAT_SOFA, worldIn);
-	}
+    public SeatSofa(EntityType<SeatSofa> type, Level worldIn) {
+        super(ModEntities.SEAT_SOFA, worldIn);
+    }
 
-	public void tick() {
-		super.tick();
-		BlockPos pos = blockPosition();
-		if (!(getCommandSenderWorld().getBlockState(pos).getBlock() instanceof Sofa)) {
-			remove(RemovalReason.KILLED);
-		} else {
-			List<Entity> passengers = getPassengers();
-			if (passengers.isEmpty()) {
-				remove(RemovalReason.KILLED);
-			} else {
-				for (Entity entity : passengers) {
-					if (entity.isShiftKeyDown()) {
-						remove(RemovalReason.KILLED);
-					}
-				}
-			}
-		}
-	}
+    public void tick() {
+        super.tick();
+        BlockPos pos = blockPosition();
+        if (!(getCommandSenderWorld().getBlockState(pos).getBlock() instanceof Sofa)) {
+            remove(RemovalReason.KILLED);
+        } else {
+            List<Entity> passengers = getPassengers();
+            if (passengers.isEmpty()) {
+                remove(RemovalReason.KILLED);
+            } else {
+                for (Entity entity : passengers) {
+                    if (entity.isShiftKeyDown()) {
+                        remove(RemovalReason.KILLED);
+                    }
+                }
+            }
+        }
+    }
 
-	@Override
-	protected boolean canRide(Entity entityIn) {
-		if (entityIn.getType() == EntityType.PLAYER) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    @Override
+    protected boolean canRide(Entity entityIn) {
+        return entityIn.getType() == EntityType.PLAYER;
+    }
 
-	@Override
-	protected void defineSynchedData() {
-	}
+    @Override
+    protected void defineSynchedData() {
+    }
 
-	@Override
-	protected void readAdditionalSaveData(CompoundTag compound) {
-	}
+    @Override
+    protected void readAdditionalSaveData(CompoundTag compound) {
+    }
 
-	@Override
-	protected void addAdditionalSaveData(CompoundTag compound) {
-	}
+    @Override
+    protected void addAdditionalSaveData(CompoundTag compound) {
+    }
 
-	@Override
-	public Packet<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
-	}
+    @Override
+    public Packet<?> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
 }

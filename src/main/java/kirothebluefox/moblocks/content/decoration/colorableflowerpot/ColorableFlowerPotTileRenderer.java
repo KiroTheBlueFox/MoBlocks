@@ -21,46 +21,46 @@ import net.minecraftforge.client.model.data.EmptyModelData;
 
 public class ColorableFlowerPotTileRenderer implements BlockEntityRenderer<ColorableFlowerPotTile> {
 
-	public ColorableFlowerPotTileRenderer(BlockEntityRendererProvider.Context context) {
+    public ColorableFlowerPotTileRenderer(BlockEntityRendererProvider.Context context) {
 
-	}
+    }
 
-	public static void register() {
-		BlockEntityRenderers.register(ModTileEntities.COLORABLE_FLOWER_POT, ColorableFlowerPotTileRenderer::new);
-	}
+    public static void register() {
+        BlockEntityRenderers.register(ModTileEntities.COLORABLE_FLOWER_POT, ColorableFlowerPotTileRenderer::new);
+    }
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public void render(ColorableFlowerPotTile tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-		ItemStack itemstack = tileEntityIn.getItem();
-		Item item = itemstack.getItem();
+    @SuppressWarnings("deprecation")
+    @Override
+    public void render(ColorableFlowerPotTile tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
+        ItemStack itemstack = tileEntityIn.getItem();
+        Item item = itemstack.getItem();
 
-		if (!itemstack.isEmpty()) {
-			if (item instanceof BlockItem) {
-				matrixStackIn.pushPose();
-	    		matrixStackIn.translate(0, 0.25, 0);
+        if (!itemstack.isEmpty()) {
+            if (item instanceof BlockItem) {
+                matrixStackIn.pushPose();
+                matrixStackIn.translate(0, 0.25, 0);
 
-				BlockState blockstate = ((BlockItem) item).getBlock().defaultBlockState();
-				RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-				net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
-				BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
-				Level world = tileEntityIn.getLevel();
-				ModelBlockRenderer renderer = new ModelBlockRenderer(BlockColors.createDefault());
-				renderer.renderModel(
-						matrixStackIn.last(),
-						bufferIn.getBuffer(renderType),
-						blockstate,
-						blockDispatcher.getBlockModel(blockstate),
-						0.0f,
-						0.0f,
-						0.0f,
-						combinedLightIn,
-						combinedOverlayIn,
-						EmptyModelData.INSTANCE
-				);
+                BlockState blockstate = ((BlockItem) item).getBlock().defaultBlockState();
+                RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
+                net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
+                BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
+                Level world = tileEntityIn.getLevel();
+                ModelBlockRenderer renderer = new ModelBlockRenderer(BlockColors.createDefault());
+                renderer.renderModel(
+                        matrixStackIn.last(),
+                        bufferIn.getBuffer(renderType),
+                        blockstate,
+                        blockDispatcher.getBlockModel(blockstate),
+                        0.0f,
+                        0.0f,
+                        0.0f,
+                        combinedLightIn,
+                        combinedOverlayIn,
+                        EmptyModelData.INSTANCE
+                );
 
-	    		matrixStackIn.popPose();
-			}
-		}
-	}
+                matrixStackIn.popPose();
+            }
+        }
+    }
 }

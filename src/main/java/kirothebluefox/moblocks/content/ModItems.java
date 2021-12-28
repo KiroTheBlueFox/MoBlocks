@@ -42,7 +42,7 @@ public class ModItems {
     public static final Item GREEN_CYLINDER_SHADE = null;
     public static final Item RED_CYLINDER_SHADE = null;
     public static final Item BLACK_CYLINDER_SHADE = null;
-    
+
     /* Cube */
     public static final Item WHITE_CUBE_SHADE = null;
     public static final Item ORANGE_CUBE_SHADE = null;
@@ -60,7 +60,7 @@ public class ModItems {
     public static final Item GREEN_CUBE_SHADE = null;
     public static final Item RED_CUBE_SHADE = null;
     public static final Item BLACK_CUBE_SHADE = null;
-    
+
     /* Cone */
     public static final Item WHITE_CONE_SHADE = null;
     public static final Item ORANGE_CONE_SHADE = null;
@@ -78,7 +78,7 @@ public class ModItems {
     public static final Item GREEN_CONE_SHADE = null;
     public static final Item RED_CONE_SHADE = null;
     public static final Item BLACK_CONE_SHADE = null;
-    
+
     /* Tube Cube */
     public static final Item WHITE_TUBE_CUBE_SHADE = null;
     public static final Item ORANGE_TUBE_CUBE_SHADE = null;
@@ -96,7 +96,7 @@ public class ModItems {
     public static final Item GREEN_TUBE_CUBE_SHADE = null;
     public static final Item RED_TUBE_CUBE_SHADE = null;
     public static final Item BLACK_TUBE_CUBE_SHADE = null;
-    
+
     /* Tube Losange */
     public static final Item WHITE_TUBE_LOZENGE_SHADE = null;
     public static final Item ORANGE_TUBE_LOZENGE_SHADE = null;
@@ -114,7 +114,7 @@ public class ModItems {
     public static final Item GREEN_TUBE_LOZENGE_SHADE = null;
     public static final Item RED_TUBE_LOZENGE_SHADE = null;
     public static final Item BLACK_TUBE_LOZENGE_SHADE = null;
-    
+
     /* Pyramid */
     public static final Item WHITE_PYRAMID_SHADE = null;
     public static final Item ORANGE_PYRAMID_SHADE = null;
@@ -132,7 +132,7 @@ public class ModItems {
     public static final Item GREEN_PYRAMID_SHADE = null;
     public static final Item RED_PYRAMID_SHADE = null;
     public static final Item BLACK_PYRAMID_SHADE = null;
-    
+
     /* Sphere */
     public static final Item WHITE_SPHERE_SHADE = null;
     public static final Item ORANGE_SPHERE_SHADE = null;
@@ -150,7 +150,7 @@ public class ModItems {
     public static final Item GREEN_SPHERE_SHADE = null;
     public static final Item RED_SPHERE_SHADE = null;
     public static final Item BLACK_SPHERE_SHADE = null;
-    
+
     /* Tube Cuboid */
     public static final Item WHITE_TUBE_CUBOID_SHADE = null;
     public static final Item ORANGE_TUBE_CUBOID_SHADE = null;
@@ -168,9 +168,9 @@ public class ModItems {
     public static final Item GREEN_TUBE_CUBOID_SHADE = null;
     public static final Item RED_TUBE_CUBOID_SHADE = null;
     public static final Item BLACK_TUBE_CUBOID_SHADE = null;
-    
+
     /* Others */
     public static final Item CUSTOM_COLOR_PICKER = null;
     public static final Item CUSTOM_LIGHT_COLOR_PICKER = null;
-	public static final Item BLOCK_COLORER = null;
+    public static final Item BLOCK_COLORER = null;
 }

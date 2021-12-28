@@ -14,22 +14,22 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class SmallLampTileRenderer implements BlockEntityRenderer<LampTile> {
-	public SmallLampTileRenderer(BlockEntityRendererProvider.Context context) {
+    public SmallLampTileRenderer(BlockEntityRendererProvider.Context context) {
 
-	}
+    }
 
-	@Override
-	public void render(LampTile tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-		ItemStack itemstack = tileEntityIn.getItem();
-		if (!itemstack.isEmpty()) {
-			matrixStackIn.pushPose();
+    public static void register() {
+        BlockEntityRenderers.register(ModTileEntities.SMALL_LAMP, SmallLampTileRenderer::new);
+    }
+
+    @Override
+    public void render(LampTile tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
+        ItemStack itemstack = tileEntityIn.getItem();
+        if (!itemstack.isEmpty()) {
+            matrixStackIn.pushPose();
             matrixStackIn.translate(0.5, 0.5, 0.5);
-	        Minecraft.getInstance().getItemRenderer().renderStatic(itemstack, ItemTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn, (int) tileEntityIn.getBlockPos().asLong());
-	        matrixStackIn.popPose();
-		}
-	}
-
-	public static void register() {
-		BlockEntityRenderers.register(ModTileEntities.SMALL_LAMP, SmallLampTileRenderer::new);
-	}
+            Minecraft.getInstance().getItemRenderer().renderStatic(itemstack, ItemTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn, (int) tileEntityIn.getBlockPos().asLong());
+            matrixStackIn.popPose();
+        }
+    }
 }

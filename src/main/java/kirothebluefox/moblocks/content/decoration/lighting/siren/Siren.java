@@ -33,135 +33,135 @@ import net.minecraftforge.fml.ModList;
 import javax.annotation.Nullable;
 
 public class Siren extends Block implements IColorableBlock, EntityBlock {
-	private final VoxelShape shape = Block.box(5, 0, 5, 11, 8, 11);
-	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-	public static final DirectionProperty FACING = BlockStateProperties.FACING;
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    public static final DirectionProperty FACING = BlockStateProperties.FACING;
+    private final VoxelShape shape = Block.box(5, 0, 5, 11, 8, 11);
 
-	public Siren() {
-		super(Block.Properties.of(Material.DECORATION).instabreak());
-		if (ModList.get().isLoaded("hypcore")) {
-			//ColoredLightManager.registerProvider(this, this::produceColoredLight);
-		}
-		this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false).setValue(FACING, Direction.UP));
-	}
+    public Siren() {
+        super(Block.Properties.of(Material.DECORATION).instabreak());
+        if (ModList.get().isLoaded("hypcore")) {
+            //ColoredLightManager.registerProvider(this, this::produceColoredLight);
+        }
+        this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false).setValue(FACING, Direction.UP));
+    }
 
-	@Override
-	public int getLightEmission(BlockState state, BlockGetter world, BlockPos pos) {
-		if (state.getValue(POWERED))
-			if (ModList.get().isLoaded("hypcore"))
-				return 1;
-			else
-				return 15;
-		return 0;
-	}
+    public static int getColor(BlockGetter blockReader, BlockPos pos) {
+        BlockEntity tileEntity = blockReader.getBlockEntity(pos);
+        if (tileEntity instanceof SirenTile) {
+            SirenTile rainbowBlockTile = (SirenTile) tileEntity;
+            return rainbowBlockTile.getColor();
+        }
+        return 0xFFFFFF;
+    }
 
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-		switch (state.getValue(FACING)) {
-		case UP:
-			return shape;
-		case DOWN:
-			return VoxelShapeUtils.mirrorY(shape);
-		case EAST:
-			return VoxelShapeUtils.switchXY(shape);
-		case WEST:
-			return VoxelShapeUtils.rotateYAngle(VoxelShapeUtils.switchXY(shape), VoxelShapeUtils.Angle.Angle180);
-		case SOUTH:
-			return VoxelShapeUtils.rotateY(VoxelShapeUtils.switchXY(shape));
-		case NORTH:
-			return VoxelShapeUtils.rotateYAngle(VoxelShapeUtils.switchXY(shape), VoxelShapeUtils.Angle.Angle270);
-		}
-		return shape;
-	}
+    public static int getMaxColor(BlockGetter blockReader, BlockPos pos) {
+        BlockEntity tileEntity = blockReader.getBlockEntity(pos);
+        if (tileEntity instanceof SirenTile) {
+            SirenTile rainbowBlockTile = (SirenTile) tileEntity;
+            return rainbowBlockTile.getMaxColor();
+        }
+        return 0xFFFFFF;
+    }
 
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(POWERED, FACING);
-	}
+    @Override
+    public int getLightEmission(BlockState state, BlockGetter world, BlockPos pos) {
+        if (state.getValue(POWERED))
+            if (ModList.get().isLoaded("hypcore"))
+                return 1;
+            else
+                return 15;
+        return 0;
+    }
 
-	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		ItemStack itemstack = player.getItemInHand(handIn);
-		if (itemstack.isEmpty() || state.getValue(POWERED)) {
-			return InteractionResult.SUCCESS;
-		} else {
-			Item item = itemstack.getItem();
-			if (item instanceof IDyeableColorPicker) {
-				IDyeableColorPicker colorpicker = (IDyeableColorPicker)item;
-				BlockEntity tileentity = worldIn.getBlockEntity(pos);
-				if (tileentity instanceof SirenTile) {
-					SirenTile sirenTile = (SirenTile)tileentity;
-					sirenTile.setMaxColor(colorpicker.getColor(itemstack));
-					sirenTile.setColor(colorpicker.getColor(itemstack));
-					return InteractionResult.SUCCESS;
-				} else {
-					return InteractionResult.FAIL;
-				}
-			} else if (item instanceof IDyeableLightColorPicker) {
-				IDyeableLightColorPicker colorpicker = (IDyeableLightColorPicker)item;
-				BlockEntity tileentity = worldIn.getBlockEntity(pos);
-				if (tileentity instanceof SirenTile) {
-					SirenTile sirenTile = (SirenTile)tileentity;
-					sirenTile.setMaxColor(colorpicker.getColor(itemstack));
-					sirenTile.setColor(colorpicker.getColor(itemstack));
-					return InteractionResult.SUCCESS;
-				} else {
-					return InteractionResult.FAIL;
-				}
-			} else {
-				return InteractionResult.FAIL;
-			}
-		}
-	}
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        switch (state.getValue(FACING)) {
+            case UP:
+                return shape;
+            case DOWN:
+                return VoxelShapeUtils.mirrorY(shape);
+            case EAST:
+                return VoxelShapeUtils.switchXY(shape);
+            case WEST:
+                return VoxelShapeUtils.rotateYAngle(VoxelShapeUtils.switchXY(shape), VoxelShapeUtils.Angle.Angle180);
+            case SOUTH:
+                return VoxelShapeUtils.rotateY(VoxelShapeUtils.switchXY(shape));
+            case NORTH:
+                return VoxelShapeUtils.rotateYAngle(VoxelShapeUtils.switchXY(shape), VoxelShapeUtils.Angle.Angle270);
+        }
+        return shape;
+    }
 
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return this.defaultBlockState().setValue(POWERED, Boolean.valueOf(context.getLevel().hasNeighborSignal(context.getClickedPos()))).setValue(FACING, context.getClickedFace());
-	}
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(POWERED, FACING);
+    }
 
-	public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-		boolean flag = worldIn.hasNeighborSignal(pos);
-		if (blockIn != this && flag != state.getValue(POWERED)) {
-			worldIn.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)), 2);
-		}
-	}
+    @Override
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+        ItemStack itemstack = player.getItemInHand(handIn);
+        if (itemstack.isEmpty() || state.getValue(POWERED)) {
+            return InteractionResult.SUCCESS;
+        } else {
+            Item item = itemstack.getItem();
+            if (item instanceof IDyeableColorPicker) {
+                IDyeableColorPicker colorpicker = (IDyeableColorPicker) item;
+                BlockEntity tileentity = worldIn.getBlockEntity(pos);
+                if (tileentity instanceof SirenTile) {
+                    SirenTile sirenTile = (SirenTile) tileentity;
+                    sirenTile.setMaxColor(colorpicker.getColor(itemstack));
+                    sirenTile.setColor(colorpicker.getColor(itemstack));
+                    return InteractionResult.SUCCESS;
+                } else {
+                    return InteractionResult.FAIL;
+                }
+            } else if (item instanceof IDyeableLightColorPicker) {
+                IDyeableLightColorPicker colorpicker = (IDyeableLightColorPicker) item;
+                BlockEntity tileentity = worldIn.getBlockEntity(pos);
+                if (tileentity instanceof SirenTile) {
+                    SirenTile sirenTile = (SirenTile) tileentity;
+                    sirenTile.setMaxColor(colorpicker.getColor(itemstack));
+                    sirenTile.setColor(colorpicker.getColor(itemstack));
+                    return InteractionResult.SUCCESS;
+                } else {
+                    return InteractionResult.FAIL;
+                }
+            } else {
+                return InteractionResult.FAIL;
+            }
+        }
+    }
 
-	@Nullable
-	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new SirenTile(pos, state);
-	}
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return this.defaultBlockState().setValue(POWERED, Boolean.valueOf(context.getLevel().hasNeighborSignal(context.getClickedPos()))).setValue(FACING, context.getClickedFace());
+    }
 
-	@Nullable
-	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_153212_, BlockState p_153213_, BlockEntityType<T> p_153214_) {
-		return (level1, blockPos, blockState, t) -> {
-			if (t instanceof SirenTile tile) {
-				if (!level1.isClientSide()) {
-					tile.tick();
-				}
-			}
-		};
-	}
+    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+        boolean flag = worldIn.hasNeighborSignal(pos);
+        if (blockIn != this && flag != state.getValue(POWERED)) {
+            worldIn.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)), 2);
+        }
+    }
 
 	/*public Light produceColoredLight(BlockPos pos, BlockState state) {
 		int color = getColor(Minecraft.getInstance().world, pos);
 		return Light.builder().pos(pos).color(color, false).radius(state.get(POWERED) ? 14 : 0).build();
 	}*/
 
-	public static int getColor(BlockGetter blockReader, BlockPos pos) {
-		BlockEntity tileEntity = blockReader.getBlockEntity(pos);
-		if (tileEntity instanceof SirenTile) {
-			SirenTile rainbowBlockTile = (SirenTile) tileEntity;
-			return rainbowBlockTile.getColor();
-		}
-		return 0xFFFFFF;
-	}
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new SirenTile(pos, state);
+    }
 
-	public static int getMaxColor(BlockGetter blockReader, BlockPos pos) {
-		BlockEntity tileEntity = blockReader.getBlockEntity(pos);
-		if (tileEntity instanceof SirenTile) {
-			SirenTile rainbowBlockTile = (SirenTile) tileEntity;
-			return rainbowBlockTile.getMaxColor();
-		}
-		return 0xFFFFFF;
-	}
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_153212_, BlockState p_153213_, BlockEntityType<T> p_153214_) {
+        return (level1, blockPos, blockState, t) -> {
+            if (t instanceof SirenTile tile) {
+                if (!level1.isClientSide()) {
+                    tile.tick();
+                }
+            }
+        };
+    }
 }

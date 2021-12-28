@@ -11,12 +11,12 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ColorableCarpet extends ColorableBlock implements IColorableBlock {
-	public ColorableCarpet() {
-		super(Blocks.WHITE_CARPET);
-	}
+    public ColorableCarpet() {
+        super(Blocks.WHITE_CARPET);
+    }
 
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-		return Block.box(0, 0, 0, 16, 1, 16);
-	}
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        return Block.box(0, 0, 0, 16, 1, 16);
+    }
 }

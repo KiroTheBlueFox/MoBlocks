@@ -10,20 +10,20 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fml.ModList;
 
 public class GlowingNeonBlock extends NeonBlock {
-	public GlowingNeonBlock(Block block) {
-		super(block);
-		if (ModList.get().isLoaded("hypcore")) {
-			//ColoredLightManager.registerProvider(this, this::produceColoredLight);
-		}
-	}
+    public GlowingNeonBlock(Block block) {
+        super(block);
+        if (ModList.get().isLoaded("hypcore")) {
+            //ColoredLightManager.registerProvider(this, this::produceColoredLight);
+        }
+    }
 
-	@Override
-	public int getLightEmission(BlockState state, BlockGetter world, BlockPos pos) {
-		if (ModList.get().isLoaded("hypcore")) {
-			return 0;
-		}
-		return 15;
-	}
+    @Override
+    public int getLightEmission(BlockState state, BlockGetter world, BlockPos pos) {
+        if (ModList.get().isLoaded("hypcore")) {
+            return 0;
+        }
+        return 15;
+    }
 
 	/*public Light produceColoredLight(BlockPos pos, BlockState state) {
 		int color = getColor(Minecraft.getInstance().world, pos);

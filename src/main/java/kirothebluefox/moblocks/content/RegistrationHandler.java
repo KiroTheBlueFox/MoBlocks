@@ -67,47 +67,47 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-@EventBusSubscriber(modid = MoBlocks.MODID, bus=Bus.MOD)
+@EventBusSubscriber(modid = MoBlocks.MODID, bus = Bus.MOD)
 public class RegistrationHandler {
-	@SubscribeEvent
-	public static void onRegisterBlocks(RegistryEvent.Register<Block> block) {
-		/* Special Blocks */
-		/*Arches*/
-		block.getRegistry().register(new ArchBlock(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.JUNGLE_PLANKS).setRegistryName(MoBlocks.MODID, "jungle_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.ACACIA_PLANKS).setRegistryName(MoBlocks.MODID, "acacia_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.DARK_OAK_PLANKS).setRegistryName(MoBlocks.MODID, "dark_oak_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.COBBLESTONE).setRegistryName(MoBlocks.MODID, "cobblestone_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.ANDESITE).setRegistryName(MoBlocks.MODID, "andesite_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.BRICKS).setRegistryName(MoBlocks.MODID, "brick_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.DARK_PRISMARINE).setRegistryName(MoBlocks.MODID, "dark_prismarine_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.DIORITE).setRegistryName(MoBlocks.MODID, "diorite_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.END_STONE_BRICKS).setRegistryName(MoBlocks.MODID, "end_stone_brick_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.GRANITE).setRegistryName(MoBlocks.MODID, "granite_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.MOSSY_COBBLESTONE).setRegistryName(MoBlocks.MODID, "mossy_cobblestone_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.MOSSY_STONE_BRICKS).setRegistryName(MoBlocks.MODID, "mossy_stone_brick_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.NETHER_BRICKS).setRegistryName(MoBlocks.MODID, "nether_brick_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.POLISHED_ANDESITE).setRegistryName(MoBlocks.MODID, "polished_andesite_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.POLISHED_GRANITE).setRegistryName(MoBlocks.MODID, "polished_granite_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.POLISHED_DIORITE).setRegistryName(MoBlocks.MODID, "polished_diorite_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.PRISMARINE_BRICKS).setRegistryName(MoBlocks.MODID, "prismarine_brick_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.PRISMARINE).setRegistryName(MoBlocks.MODID, "prismarine_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.PURPUR_BLOCK).setRegistryName(MoBlocks.MODID, "purpur_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.QUARTZ_BLOCK).setRegistryName(MoBlocks.MODID, "quartz_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.RED_NETHER_BRICKS).setRegistryName(MoBlocks.MODID, "red_nether_brick_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.RED_SANDSTONE).setRegistryName(MoBlocks.MODID, "red_sandstone_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.SANDSTONE).setRegistryName(MoBlocks.MODID, "sandstone_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.SMOOTH_QUARTZ).setRegistryName(MoBlocks.MODID, "smooth_quartz_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.SMOOTH_RED_SANDSTONE).setRegistryName(MoBlocks.MODID, "smooth_red_sandstone_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.SMOOTH_SANDSTONE).setRegistryName(MoBlocks.MODID, "smooth_sandstone_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.STONE_BRICKS).setRegistryName(MoBlocks.MODID, "stone_brick_arch"));
-		block.getRegistry().register(new ArchBlock(Blocks.STONE).setRegistryName(MoBlocks.MODID, "stone_arch"));
+    @SubscribeEvent
+    public static void onRegisterBlocks(RegistryEvent.Register<Block> block) {
+        /* Special Blocks */
+        /*Arches*/
+        block.getRegistry().register(new ArchBlock(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.JUNGLE_PLANKS).setRegistryName(MoBlocks.MODID, "jungle_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.ACACIA_PLANKS).setRegistryName(MoBlocks.MODID, "acacia_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.DARK_OAK_PLANKS).setRegistryName(MoBlocks.MODID, "dark_oak_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.COBBLESTONE).setRegistryName(MoBlocks.MODID, "cobblestone_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.ANDESITE).setRegistryName(MoBlocks.MODID, "andesite_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.BRICKS).setRegistryName(MoBlocks.MODID, "brick_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.DARK_PRISMARINE).setRegistryName(MoBlocks.MODID, "dark_prismarine_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.DIORITE).setRegistryName(MoBlocks.MODID, "diorite_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.END_STONE_BRICKS).setRegistryName(MoBlocks.MODID, "end_stone_brick_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.GRANITE).setRegistryName(MoBlocks.MODID, "granite_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.MOSSY_COBBLESTONE).setRegistryName(MoBlocks.MODID, "mossy_cobblestone_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.MOSSY_STONE_BRICKS).setRegistryName(MoBlocks.MODID, "mossy_stone_brick_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.NETHER_BRICKS).setRegistryName(MoBlocks.MODID, "nether_brick_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.POLISHED_ANDESITE).setRegistryName(MoBlocks.MODID, "polished_andesite_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.POLISHED_GRANITE).setRegistryName(MoBlocks.MODID, "polished_granite_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.POLISHED_DIORITE).setRegistryName(MoBlocks.MODID, "polished_diorite_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.PRISMARINE_BRICKS).setRegistryName(MoBlocks.MODID, "prismarine_brick_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.PRISMARINE).setRegistryName(MoBlocks.MODID, "prismarine_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.PURPUR_BLOCK).setRegistryName(MoBlocks.MODID, "purpur_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.QUARTZ_BLOCK).setRegistryName(MoBlocks.MODID, "quartz_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.RED_NETHER_BRICKS).setRegistryName(MoBlocks.MODID, "red_nether_brick_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.RED_SANDSTONE).setRegistryName(MoBlocks.MODID, "red_sandstone_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.SANDSTONE).setRegistryName(MoBlocks.MODID, "sandstone_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.SMOOTH_QUARTZ).setRegistryName(MoBlocks.MODID, "smooth_quartz_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.SMOOTH_RED_SANDSTONE).setRegistryName(MoBlocks.MODID, "smooth_red_sandstone_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.SMOOTH_SANDSTONE).setRegistryName(MoBlocks.MODID, "smooth_sandstone_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.STONE_BRICKS).setRegistryName(MoBlocks.MODID, "stone_brick_arch"));
+        block.getRegistry().register(new ArchBlock(Blocks.STONE).setRegistryName(MoBlocks.MODID, "stone_arch"));
 
-		/*Vertical Slabs*/
-		block.getRegistry().register(new VerticalSlab(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_vertical_slab"));
-		block.getRegistry().register(new VerticalSlab(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_vertical_slab"));
+        /*Vertical Slabs*/
+        block.getRegistry().register(new VerticalSlab(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_vertical_slab"));
+        block.getRegistry().register(new VerticalSlab(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_vertical_slab"));
         block.getRegistry().register(new VerticalSlab(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_vertical_slab"));
         block.getRegistry().register(new VerticalSlab(Blocks.JUNGLE_PLANKS).setRegistryName(MoBlocks.MODID, "jungle_vertical_slab"));
         block.getRegistry().register(new VerticalSlab(Blocks.ACACIA_PLANKS).setRegistryName(MoBlocks.MODID, "acacia_vertical_slab"));
@@ -139,8 +139,8 @@ public class RegistrationHandler {
         block.getRegistry().register(new VerticalSlab(Blocks.DIORITE).setRegistryName(MoBlocks.MODID, "diorite_vertical_slab"));
         block.getRegistry().register(new VerticalSlab(Blocks.SMOOTH_STONE).setRegistryName(MoBlocks.MODID, "smooth_stone_vertical_slab"));
 
-		/*Vertical Stairs*/
-		block.getRegistry().register(new VerticalStairs(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_vertical_stairs"));
+        /*Vertical Stairs*/
+        block.getRegistry().register(new VerticalStairs(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_vertical_stairs"));
         block.getRegistry().register(new VerticalStairs(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_vertical_stairs"));
         block.getRegistry().register(new VerticalStairs(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_vertical_stairs"));
         block.getRegistry().register(new VerticalStairs(Blocks.JUNGLE_PLANKS).setRegistryName(MoBlocks.MODID, "jungle_vertical_stairs"));
@@ -173,7 +173,7 @@ public class RegistrationHandler {
         block.getRegistry().register(new VerticalStairs(Blocks.DIORITE).setRegistryName(MoBlocks.MODID, "diorite_vertical_stairs"));
 
 
-		/*Pillars*/
+        /*Pillars*/
         block.getRegistry().register(new PillarBlock(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_pillar"));
         block.getRegistry().register(new PillarBlock(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_pillar"));
         block.getRegistry().register(new PillarBlock(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_pillar"));
@@ -206,7 +206,7 @@ public class RegistrationHandler {
         block.getRegistry().register(new PillarBlock(Blocks.POLISHED_ANDESITE).setRegistryName(MoBlocks.MODID, "polished_andesite_pillar"));
         block.getRegistry().register(new PillarBlock(Blocks.DIORITE).setRegistryName(MoBlocks.MODID, "diorite_pillar"));
 
-		/*Ramps*/
+        /*Ramps*/
         block.getRegistry().register(new RampBlock(Blocks.OAK_PLANKS, Blocks.OAK_PLANKS.defaultBlockState()).setRegistryName(MoBlocks.MODID, "oak_ramp"));
         block.getRegistry().register(new RampBlock(Blocks.SPRUCE_PLANKS, Blocks.SPRUCE_PLANKS.defaultBlockState()).setRegistryName(MoBlocks.MODID, "spruce_ramp"));
         block.getRegistry().register(new RampBlock(Blocks.BIRCH_PLANKS, Blocks.BIRCH_PLANKS.defaultBlockState()).setRegistryName(MoBlocks.MODID, "birch_ramp"));
@@ -239,7 +239,7 @@ public class RegistrationHandler {
         block.getRegistry().register(new RampBlock(Blocks.POLISHED_ANDESITE, Blocks.POLISHED_ANDESITE.defaultBlockState()).setRegistryName(MoBlocks.MODID, "polished_andesite_ramp"));
         block.getRegistry().register(new RampBlock(Blocks.DIORITE, Blocks.DIORITE.defaultBlockState()).setRegistryName(MoBlocks.MODID, "diorite_ramp"));
 
-		/*Inverted Arches*/
+        /*Inverted Arches*/
         block.getRegistry().register(new InvertedArchBlock(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_inverted_arch"));
         block.getRegistry().register(new InvertedArchBlock(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_inverted_arch"));
         block.getRegistry().register(new InvertedArchBlock(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_inverted_arch"));
@@ -272,7 +272,7 @@ public class RegistrationHandler {
         block.getRegistry().register(new InvertedArchBlock(Blocks.POLISHED_ANDESITE).setRegistryName(MoBlocks.MODID, "polished_andesite_inverted_arch"));
         block.getRegistry().register(new InvertedArchBlock(Blocks.DIORITE).setRegistryName(MoBlocks.MODID, "diorite_inverted_arch"));
 
-		/*Triangle Ramps*/
+        /*Triangle Ramps*/
         block.getRegistry().register(new TriangleRamp(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_triangle_ramp"));
         block.getRegistry().register(new TriangleRamp(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_triangle_ramp"));
         block.getRegistry().register(new TriangleRamp(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_triangle_ramp"));
@@ -305,7 +305,7 @@ public class RegistrationHandler {
         block.getRegistry().register(new TriangleRamp(Blocks.POLISHED_ANDESITE).setRegistryName(MoBlocks.MODID, "polished_andesite_triangle_ramp"));
         block.getRegistry().register(new TriangleRamp(Blocks.DIORITE).setRegistryName(MoBlocks.MODID, "diorite_triangle_ramp"));
 
-		/* Upper Small Arches */
+        /* Upper Small Arches */
         block.getRegistry().register(new UpperSmallArch(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_upper_small_arch"));
         block.getRegistry().register(new UpperSmallArch(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_upper_small_arch"));
         block.getRegistry().register(new UpperSmallArch(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_upper_small_arch"));
@@ -338,7 +338,7 @@ public class RegistrationHandler {
         block.getRegistry().register(new UpperSmallArch(Blocks.POLISHED_ANDESITE).setRegistryName(MoBlocks.MODID, "polished_andesite_upper_small_arch"));
         block.getRegistry().register(new UpperSmallArch(Blocks.DIORITE).setRegistryName(MoBlocks.MODID, "diorite_upper_small_arch"));
 
-		/* Lower Small Arches */
+        /* Lower Small Arches */
         block.getRegistry().register(new LowerSmallArch(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_lower_small_arch"));
         block.getRegistry().register(new LowerSmallArch(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_lower_small_arch"));
         block.getRegistry().register(new LowerSmallArch(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_lower_small_arch"));
@@ -371,7 +371,7 @@ public class RegistrationHandler {
         block.getRegistry().register(new LowerSmallArch(Blocks.POLISHED_ANDESITE).setRegistryName(MoBlocks.MODID, "polished_andesite_lower_small_arch"));
         block.getRegistry().register(new LowerSmallArch(Blocks.DIORITE).setRegistryName(MoBlocks.MODID, "diorite_lower_small_arch"));
 
-		/* Upper Small Inverted Arches */
+        /* Upper Small Inverted Arches */
         block.getRegistry().register(new UpperSmallInvertedArch(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_upper_small_inverted_arch"));
         block.getRegistry().register(new UpperSmallInvertedArch(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_upper_small_inverted_arch"));
         block.getRegistry().register(new UpperSmallInvertedArch(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_upper_small_inverted_arch"));
@@ -404,7 +404,7 @@ public class RegistrationHandler {
         block.getRegistry().register(new UpperSmallInvertedArch(Blocks.POLISHED_ANDESITE).setRegistryName(MoBlocks.MODID, "polished_andesite_upper_small_inverted_arch"));
         block.getRegistry().register(new UpperSmallInvertedArch(Blocks.DIORITE).setRegistryName(MoBlocks.MODID, "diorite_upper_small_inverted_arch"));
 
-		/* Lower Small Inverted Arches */
+        /* Lower Small Inverted Arches */
         block.getRegistry().register(new LowerSmallInvertedArch(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_lower_small_inverted_arch"));
         block.getRegistry().register(new LowerSmallInvertedArch(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_lower_small_inverted_arch"));
         block.getRegistry().register(new LowerSmallInvertedArch(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_lower_small_inverted_arch"));
@@ -437,7 +437,7 @@ public class RegistrationHandler {
         block.getRegistry().register(new LowerSmallInvertedArch(Blocks.POLISHED_ANDESITE).setRegistryName(MoBlocks.MODID, "polished_andesite_lower_small_inverted_arch"));
         block.getRegistry().register(new LowerSmallInvertedArch(Blocks.DIORITE).setRegistryName(MoBlocks.MODID, "diorite_lower_small_inverted_arch"));
 
-		/* Posts */
+        /* Posts */
         block.getRegistry().register(new PostBlock(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_post"));
         block.getRegistry().register(new PostBlock(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_post"));
         block.getRegistry().register(new PostBlock(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_post"));
@@ -470,11 +470,11 @@ public class RegistrationHandler {
         block.getRegistry().register(new PostBlock(Blocks.POLISHED_ANDESITE).setRegistryName(MoBlocks.MODID, "polished_andesite_post"));
         block.getRegistry().register(new PostBlock(Blocks.DIORITE).setRegistryName(MoBlocks.MODID, "diorite_post"));
 
-		/*** Decoration ***/
-		/* Dyeable Flower Pot */
+        /*** Decoration ***/
+        /* Dyeable Flower Pot */
         block.getRegistry().register(new ColorableFlowerPot(Block.Properties.of(Material.DECORATION).strength(0)).setRegistryName("colorable_flower_pot"));
 
-		/* Tall Fences */
+        /* Tall Fences */
         block.getRegistry().register(new TallFence(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_tall_fence"));
         block.getRegistry().register(new TallFence(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_tall_fence"));
         block.getRegistry().register(new TallFence(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_tall_fence"));
@@ -485,7 +485,7 @@ public class RegistrationHandler {
         block.getRegistry().register(new TallFence(Blocks.CRIMSON_PLANKS).setRegistryName(MoBlocks.MODID, "crimson_tall_fence"));
         block.getRegistry().register(new TallFence(Blocks.WARPED_PLANKS).setRegistryName(MoBlocks.MODID, "warped_tall_fence"));
 
-		/* Tall Fence Gates */
+        /* Tall Fence Gates */
         block.getRegistry().register(new TallFenceGate(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_tall_fence_gate"));
         block.getRegistry().register(new TallFenceGate(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_tall_fence_gate"));
         block.getRegistry().register(new TallFenceGate(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_tall_fence_gate"));
@@ -497,8 +497,8 @@ public class RegistrationHandler {
         block.getRegistry().register(new TallFenceGate(Blocks.WARPED_PLANKS).setRegistryName(MoBlocks.MODID, "warped_tall_fence_gate"));
 
 
-		/*** Furnitures ***/
-		/* Tables */
+        /*** Furnitures ***/
+        /* Tables */
         block.getRegistry().register(new Table(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_table"));
         block.getRegistry().register(new Table(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_table"));
         block.getRegistry().register(new Table(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_table"));
@@ -509,7 +509,7 @@ public class RegistrationHandler {
         block.getRegistry().register(new Table(Blocks.CRIMSON_PLANKS).setRegistryName(MoBlocks.MODID, "crimson_table"));
         block.getRegistry().register(new Table(Blocks.WARPED_PLANKS).setRegistryName(MoBlocks.MODID, "warped_table"));
 
-		/* Chairs */
+        /* Chairs */
         block.getRegistry().register(new Chair(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_chair"));
         block.getRegistry().register(new Chair(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_chair"));
         block.getRegistry().register(new Chair(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_chair"));
@@ -520,7 +520,7 @@ public class RegistrationHandler {
         block.getRegistry().register(new Chair(Blocks.CRIMSON_PLANKS).setRegistryName(MoBlocks.MODID, "crimson_chair"));
         block.getRegistry().register(new Chair(Blocks.WARPED_PLANKS).setRegistryName(MoBlocks.MODID, "warped_chair"));
 
-		/* Coffee Tables */
+        /* Coffee Tables */
         block.getRegistry().register(new CoffeeTable(Blocks.OAK_PLANKS).setRegistryName(MoBlocks.MODID, "oak_coffee_table"));
         block.getRegistry().register(new CoffeeTable(Blocks.SPRUCE_PLANKS).setRegistryName(MoBlocks.MODID, "spruce_coffee_table"));
         block.getRegistry().register(new CoffeeTable(Blocks.BIRCH_PLANKS).setRegistryName(MoBlocks.MODID, "birch_coffee_table"));
@@ -885,45 +885,46 @@ public class RegistrationHandler {
         block.getRegistry().register(new PillarBlock(Blocks.POLISHED_BLACKSTONE_BRICKS).setRegistryName(MoBlocks.MODID, "polished_blackstone_brick_pillar"));
         block.getRegistry().register(new TriangleRamp(Blocks.POLISHED_BLACKSTONE_BRICKS).setRegistryName(MoBlocks.MODID, "polished_blackstone_brick_triangle_ramp"));
         block.getRegistry().register(new RampBlock(Blocks.POLISHED_BLACKSTONE_BRICKS, Blocks.POLISHED_BLACKSTONE_BRICKS.defaultBlockState()).setRegistryName(MoBlocks.MODID, "polished_blackstone_brick_ramp"));
-	}
-	@SubscribeEvent
-	public static void onRegisterItems(RegistryEvent.Register<Item> item) {
-		/* Arches*/
-		item.getRegistry().register(new BlockItem(ModBlocks.OAK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.ACACIA_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "acacia_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.DARK_OAK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "dark_oak_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.ANDESITE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "andesite_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "brick_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.COBBLESTONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "cobblestone_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.DARK_PRISMARINE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "dark_prismarine_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.DIORITE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "diorite_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.END_STONE_BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "end_stone_brick_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.GRANITE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "granite_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.MOSSY_COBBLESTONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "mossy_cobblestone_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.MOSSY_STONE_BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "mossy_stone_brick_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.NETHER_BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "nether_brick_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.POLISHED_ANDESITE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "polished_andesite_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.POLISHED_GRANITE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "polished_granite_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.POLISHED_DIORITE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "polished_diorite_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.PRISMARINE_BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "prismarine_brick_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.PRISMARINE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "prismarine_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.PURPUR_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "purpur_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.QUARTZ_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "quartz_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.RED_NETHER_BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "red_nether_brick_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.RED_SANDSTONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "red_sandstone_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.SANDSTONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "sandstone_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_QUARTZ_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "smooth_quartz_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_RED_SANDSTONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "smooth_red_sandstone_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_SANDSTONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "smooth_sandstone_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.STONE_BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "stone_brick_arch"));
-		item.getRegistry().register(new BlockItem(ModBlocks.STONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "stone_arch"));
+    }
 
-		/* Vertical Slab*/
-		item.getRegistry().register(new BlockItem(ModBlocks.OAK_VERTICAL_SLAB, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_vertical_slab"));
-		item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_VERTICAL_SLAB, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_vertical_slab"));
+    @SubscribeEvent
+    public static void onRegisterItems(RegistryEvent.Register<Item> item) {
+        /* Arches*/
+        item.getRegistry().register(new BlockItem(ModBlocks.OAK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.ACACIA_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "acacia_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.DARK_OAK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "dark_oak_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.ANDESITE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "andesite_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "brick_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.COBBLESTONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "cobblestone_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.DARK_PRISMARINE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "dark_prismarine_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.DIORITE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "diorite_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.END_STONE_BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "end_stone_brick_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.GRANITE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "granite_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.MOSSY_COBBLESTONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "mossy_cobblestone_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.MOSSY_STONE_BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "mossy_stone_brick_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.NETHER_BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "nether_brick_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.POLISHED_ANDESITE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "polished_andesite_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.POLISHED_GRANITE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "polished_granite_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.POLISHED_DIORITE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "polished_diorite_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.PRISMARINE_BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "prismarine_brick_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.PRISMARINE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "prismarine_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.PURPUR_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "purpur_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.QUARTZ_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "quartz_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.RED_NETHER_BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "red_nether_brick_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.RED_SANDSTONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "red_sandstone_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SANDSTONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "sandstone_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_QUARTZ_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "smooth_quartz_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_RED_SANDSTONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "smooth_red_sandstone_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_SANDSTONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "smooth_sandstone_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.STONE_BRICK_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "stone_brick_arch"));
+        item.getRegistry().register(new BlockItem(ModBlocks.STONE_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "stone_arch"));
+
+        /* Vertical Slab*/
+        item.getRegistry().register(new BlockItem(ModBlocks.OAK_VERTICAL_SLAB, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_vertical_slab"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_VERTICAL_SLAB, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_vertical_slab"));
         item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_VERTICAL_SLAB, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_vertical_slab"));
         item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_VERTICAL_SLAB, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_vertical_slab"));
         item.getRegistry().register(new BlockItem(ModBlocks.ACACIA_VERTICAL_SLAB, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "acacia_vertical_slab"));
@@ -955,8 +956,8 @@ public class RegistrationHandler {
         item.getRegistry().register(new BlockItem(ModBlocks.DIORITE_VERTICAL_SLAB, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "diorite_vertical_slab"));
         item.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_STONE_VERTICAL_SLAB, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "smooth_stone_vertical_slab"));
 
-		/* Vertical Stairs*/
-		item.getRegistry().register(new BlockItem(ModBlocks.OAK_VERTICAL_STAIRS, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_vertical_stairs"));
+        /* Vertical Stairs*/
+        item.getRegistry().register(new BlockItem(ModBlocks.OAK_VERTICAL_STAIRS, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_vertical_stairs"));
         item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_VERTICAL_STAIRS, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_vertical_stairs"));
         item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_VERTICAL_STAIRS, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_vertical_stairs"));
         item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_VERTICAL_STAIRS, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_vertical_stairs"));
@@ -988,7 +989,7 @@ public class RegistrationHandler {
         item.getRegistry().register(new BlockItem(ModBlocks.POLISHED_ANDESITE_VERTICAL_STAIRS, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "polished_andesite_vertical_stairs"));
         item.getRegistry().register(new BlockItem(ModBlocks.DIORITE_VERTICAL_STAIRS, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "diorite_vertical_stairs"));
 
-		/* Pillars*/
+        /* Pillars*/
         item.getRegistry().register(new BlockItem(ModBlocks.OAK_PILLAR, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_pillar"));
         item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_PILLAR, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_pillar"));
         item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_PILLAR, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_pillar"));
@@ -1021,7 +1022,7 @@ public class RegistrationHandler {
         item.getRegistry().register(new BlockItem(ModBlocks.POLISHED_ANDESITE_PILLAR, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "polished_andesite_pillar"));
         item.getRegistry().register(new BlockItem(ModBlocks.DIORITE_PILLAR, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "diorite_pillar"));
 
-		/* Ramps*/
+        /* Ramps*/
         item.getRegistry().register(new BlockItem(ModBlocks.OAK_RAMP, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_ramp"));
         item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_RAMP, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_ramp"));
         item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_RAMP, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_ramp"));
@@ -1054,7 +1055,7 @@ public class RegistrationHandler {
         item.getRegistry().register(new BlockItem(ModBlocks.POLISHED_ANDESITE_RAMP, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "polished_andesite_ramp"));
         item.getRegistry().register(new BlockItem(ModBlocks.DIORITE_RAMP, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "diorite_ramp"));
 
-		/* Inverted Arches*/
+        /* Inverted Arches*/
         item.getRegistry().register(new BlockItem(ModBlocks.OAK_INVERTED_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_inverted_arch"));
         item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_INVERTED_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_inverted_arch"));
         item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_INVERTED_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_inverted_arch"));
@@ -1087,7 +1088,7 @@ public class RegistrationHandler {
         item.getRegistry().register(new BlockItem(ModBlocks.POLISHED_ANDESITE_INVERTED_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "polished_andesite_inverted_arch"));
         item.getRegistry().register(new BlockItem(ModBlocks.DIORITE_INVERTED_ARCH, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "diorite_inverted_arch"));
 
-		/* Triangle Ramps*/
+        /* Triangle Ramps*/
         item.getRegistry().register(new BlockItem(ModBlocks.OAK_TRIANGLE_RAMP, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_triangle_ramp"));
         item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_TRIANGLE_RAMP, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_triangle_ramp"));
         item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_TRIANGLE_RAMP, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_triangle_ramp"));
@@ -1289,20 +1290,20 @@ public class RegistrationHandler {
         /*** Decoration ***/
         item.getRegistry().register(new BlockItem(ModBlocks.COLORABLE_FLOWER_POT, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "colorable_flower_pot"));
 
-		/* Tall Fence */
-		item.getRegistry().register(new BlockItem(ModBlocks.OAK_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_tall_fence"));
-		item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_tall_fence"));
-		item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_tall_fence"));
-		item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_tall_fence"));
-		item.getRegistry().register(new BlockItem(ModBlocks.ACACIA_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "acacia_tall_fence"));
-		item.getRegistry().register(new BlockItem(ModBlocks.DARK_OAK_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "dark_oak_tall_fence"));
-		item.getRegistry().register(new BlockItem(ModBlocks.NETHER_BRICK_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "nether_brick_tall_fence"));
-		item.getRegistry().register(new BlockItem(ModBlocks.CRIMSON_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "crimson_tall_fence"));
-		item.getRegistry().register(new BlockItem(ModBlocks.WARPED_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "warped_tall_fence"));
+        /* Tall Fence */
+        item.getRegistry().register(new BlockItem(ModBlocks.OAK_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_tall_fence"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_tall_fence"));
+        item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_tall_fence"));
+        item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_tall_fence"));
+        item.getRegistry().register(new BlockItem(ModBlocks.ACACIA_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "acacia_tall_fence"));
+        item.getRegistry().register(new BlockItem(ModBlocks.DARK_OAK_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "dark_oak_tall_fence"));
+        item.getRegistry().register(new BlockItem(ModBlocks.NETHER_BRICK_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "nether_brick_tall_fence"));
+        item.getRegistry().register(new BlockItem(ModBlocks.CRIMSON_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "crimson_tall_fence"));
+        item.getRegistry().register(new BlockItem(ModBlocks.WARPED_TALL_FENCE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "warped_tall_fence"));
 
-		/* Tall Fence */
-		item.getRegistry().register(new BlockItem(ModBlocks.OAK_TALL_FENCE_GATE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_tall_fence_gate"));
-		item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_TALL_FENCE_GATE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_tall_fence_gate"));
+        /* Tall Fence */
+        item.getRegistry().register(new BlockItem(ModBlocks.OAK_TALL_FENCE_GATE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_tall_fence_gate"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_TALL_FENCE_GATE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_tall_fence_gate"));
         item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_TALL_FENCE_GATE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_tall_fence_gate"));
         item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_TALL_FENCE_GATE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_tall_fence_gate"));
         item.getRegistry().register(new BlockItem(ModBlocks.ACACIA_TALL_FENCE_GATE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "acacia_tall_fence_gate"));
@@ -1311,10 +1312,10 @@ public class RegistrationHandler {
         item.getRegistry().register(new BlockItem(ModBlocks.CRIMSON_TALL_FENCE_GATE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "crimson_tall_fence_gate"));
         item.getRegistry().register(new BlockItem(ModBlocks.WARPED_TALL_FENCE_GATE, new Item.Properties().tab(MoBlocks.decoration_creative_tab)).setRegistryName(MoBlocks.MODID, "warped_tall_fence_gate"));
 
-		/*** Furnitures ***/
-		/* Tables */
-		item.getRegistry().register(new BlockItem(ModBlocks.OAK_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_table"));
-		item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_table"));
+        /*** Furnitures ***/
+        /* Tables */
+        item.getRegistry().register(new BlockItem(ModBlocks.OAK_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_table"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_table"));
         item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_table"));
         item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_table"));
         item.getRegistry().register(new BlockItem(ModBlocks.ACACIA_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "acacia_table"));
@@ -1323,9 +1324,9 @@ public class RegistrationHandler {
         item.getRegistry().register(new BlockItem(ModBlocks.CRIMSON_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "crimson_table"));
         item.getRegistry().register(new BlockItem(ModBlocks.WARPED_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "warped_table"));
 
-		/* Chairs */
-		item.getRegistry().register(new BlockItem(ModBlocks.OAK_CHAIR, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_chair"));
-		item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_CHAIR, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_chair"));
+        /* Chairs */
+        item.getRegistry().register(new BlockItem(ModBlocks.OAK_CHAIR, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_chair"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_CHAIR, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_chair"));
         item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_CHAIR, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_chair"));
         item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_CHAIR, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_chair"));
         item.getRegistry().register(new BlockItem(ModBlocks.ACACIA_CHAIR, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "acacia_chair"));
@@ -1334,9 +1335,9 @@ public class RegistrationHandler {
         item.getRegistry().register(new BlockItem(ModBlocks.CRIMSON_CHAIR, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "crimson_chair"));
         item.getRegistry().register(new BlockItem(ModBlocks.WARPED_CHAIR, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "warped_chair"));
 
-		/* Coffee Tables */
-		item.getRegistry().register(new BlockItem(ModBlocks.OAK_COFFEE_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_coffee_table"));
-		item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_COFFEE_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_coffee_table"));
+        /* Coffee Tables */
+        item.getRegistry().register(new BlockItem(ModBlocks.OAK_COFFEE_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "oak_coffee_table"));
+        item.getRegistry().register(new BlockItem(ModBlocks.SPRUCE_COFFEE_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "spruce_coffee_table"));
         item.getRegistry().register(new BlockItem(ModBlocks.BIRCH_COFFEE_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "birch_coffee_table"));
         item.getRegistry().register(new BlockItem(ModBlocks.JUNGLE_COFFEE_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "jungle_coffee_table"));
         item.getRegistry().register(new BlockItem(ModBlocks.ACACIA_COFFEE_TABLE, new Item.Properties().tab(MoBlocks.furnitures_creative_tab)).setRegistryName(MoBlocks.MODID, "acacia_coffee_table"));
@@ -1877,128 +1878,133 @@ public class RegistrationHandler {
         item.getRegistry().register(new BlockItem(ModBlocks.BLACKSTONE_VERTICAL_STAIRS, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "blackstone_vertical_stairs"));
         item.getRegistry().register(new BlockItem(ModBlocks.POLISHED_BLACKSTONE_VERTICAL_STAIRS, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "polished_blackstone_vertical_stairs"));
         item.getRegistry().register(new BlockItem(ModBlocks.POLISHED_BLACKSTONE_BRICK_VERTICAL_STAIRS, new Item.Properties().tab(MoBlocks.special_blocks_creative_tab)).setRegistryName(MoBlocks.MODID, "polished_blackstone_brick_vertical_stairs"));
-	}
-	@SubscribeEvent
-	public static void onRegisterTileEntity(RegistryEvent.Register<BlockEntityType<?>> TE) {
-		TE.getRegistry().register(BlockEntityType.Builder.of(LampTile::new, ModBlocks.OAK_SMALL_LAMP, ModBlocks.SPRUCE_SMALL_LAMP, ModBlocks.BIRCH_SMALL_LAMP, ModBlocks.JUNGLE_SMALL_LAMP, ModBlocks.ACACIA_SMALL_LAMP, ModBlocks.DARK_OAK_SMALL_LAMP, ModBlocks.NETHER_BRICK_SMALL_LAMP, ModBlocks.CRIMSON_SMALL_LAMP, ModBlocks.WARPED_SMALL_LAMP).build(null).setRegistryName(MoBlocks.MODID, "small_lamp"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(SimpleDrawerTile::new, ModBlocks.OAK_SIMPLE_DRAWER, ModBlocks.SPRUCE_SIMPLE_DRAWER, ModBlocks.BIRCH_SIMPLE_DRAWER, ModBlocks.JUNGLE_SIMPLE_DRAWER, ModBlocks.ACACIA_SIMPLE_DRAWER, ModBlocks.DARK_OAK_SIMPLE_DRAWER, ModBlocks.NETHER_BRICK_SIMPLE_DRAWER, ModBlocks.CRIMSON_SIMPLE_DRAWER, ModBlocks.WARPED_SIMPLE_DRAWER).build(null).setRegistryName(MoBlocks.MODID, "simple_drawer"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(DoubleDrawerTile::new, ModBlocks.OAK_DOUBLE_DRAWER, ModBlocks.SPRUCE_DOUBLE_DRAWER, ModBlocks.BIRCH_DOUBLE_DRAWER, ModBlocks.JUNGLE_DOUBLE_DRAWER, ModBlocks.ACACIA_DOUBLE_DRAWER, ModBlocks.DARK_OAK_DOUBLE_DRAWER, ModBlocks.NETHER_BRICK_DOUBLE_DRAWER, ModBlocks.CRIMSON_DOUBLE_DRAWER, ModBlocks.WARPED_DOUBLE_DRAWER).build(null).setRegistryName(MoBlocks.MODID, "double_drawer"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(ShelfTile::new, ModBlocks.OAK_SHELF, ModBlocks.SPRUCE_SHELF, ModBlocks.BIRCH_SHELF, ModBlocks.JUNGLE_SHELF, ModBlocks.ACACIA_SHELF, ModBlocks.DARK_OAK_SHELF, ModBlocks.NETHER_BRICK_SHELF, ModBlocks.CRIMSON_SHELF, ModBlocks.WARPED_SHELF).build(null).setRegistryName(MoBlocks.MODID, "shelf"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(CrateTile::new, ModBlocks.OAK_CRATE, ModBlocks.SPRUCE_CRATE, ModBlocks.BIRCH_CRATE, ModBlocks.JUNGLE_CRATE, ModBlocks.ACACIA_CRATE, ModBlocks.DARK_OAK_CRATE, ModBlocks.NETHER_BRICK_CRATE, ModBlocks.CRIMSON_CRATE, ModBlocks.WARPED_CRATE).build(null).setRegistryName(MoBlocks.MODID, "crate"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(BookshelfTile::new, ModBlocks.OAK_BOOKSHELF, ModBlocks.SPRUCE_BOOKSHELF, ModBlocks.BIRCH_BOOKSHELF, ModBlocks.JUNGLE_BOOKSHELF, ModBlocks.ACACIA_BOOKSHELF, ModBlocks.DARK_OAK_BOOKSHELF, ModBlocks.NETHER_BRICK_BOOKSHELF, ModBlocks.CRIMSON_BOOKSHELF, ModBlocks.WARPED_BOOKSHELF).build(null).setRegistryName(MoBlocks.MODID, "small_bookshelf"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(PotionShelfTile::new, ModBlocks.OAK_POTION_SHELF, ModBlocks.SPRUCE_POTION_SHELF, ModBlocks.BIRCH_POTION_SHELF, ModBlocks.JUNGLE_POTION_SHELF, ModBlocks.ACACIA_POTION_SHELF, ModBlocks.DARK_OAK_POTION_SHELF, ModBlocks.NETHER_BRICK_POTION_SHELF, ModBlocks.CRIMSON_POTION_SHELF, ModBlocks.WARPED_POTION_SHELF).build(null).setRegistryName(MoBlocks.MODID, "potion_shelf"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(ColorableFlowerPotTile::new, ModBlocks.COLORABLE_FLOWER_POT).build(null).setRegistryName(MoBlocks.MODID, "colorable_flower_pot"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(ColorableLightBlockTile::new, ModBlocks.CANDLE).build(null).setRegistryName(MoBlocks.MODID, "colorable_light_block"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(RainbowBlockTile::new, ModBlocks.RAINBOW_BLOCK).build(null).setRegistryName(MoBlocks.MODID, "rainbow_block"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(LavaLampTile::new, ModBlocks.LAVA_LAMP).build(null).setRegistryName(MoBlocks.MODID, "lava_lamp"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(SirenTile::new, ModBlocks.SIREN).build(null).setRegistryName(MoBlocks.MODID, "siren"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(SignalTowerLightTile::new, ModBlocks.SIGNAL_TOWER_LIGHT).build(null).setRegistryName(MoBlocks.MODID, "signal_tower_light"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(EyeballLampTile::new, ModBlocks.EYEBALL_LAMP).build(null).setRegistryName(MoBlocks.MODID, "eyeball_lamp"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(ColorableBlockTile::new,
-				ModBlocks.COLORABLE_WOOL, ModBlocks.COLORABLE_PLANKS,
-				ModBlocks.COLORABLE_CONCRETE, ModBlocks.COLORABLE_BRICKS,
-				ModBlocks.COLORABLE_TERRACOTTA, ModBlocks.COLORABLE_STONE_BRICKS,
-				ModBlocks.COLORABLE_STONE, ModBlocks.COLORABLE_COBBLESTONE,
+    }
 
-				ModBlocks.COLORABLE_CARPET, ModBlocks.COLORABLE_ROUND_CARPET,
-				ModBlocks.COLORABLE_SOFA, ModBlocks.COLORABLE_TABLE, ModBlocks.COLORABLE_CHAIR,
-				ModBlocks.COLORABLE_PLANK_COFFEE_TABLE, ModBlocks.COLORABLE_TERRACOTTA_COFFEE_TABLE,
+    @SubscribeEvent
+    public static void onRegisterTileEntity(RegistryEvent.Register<BlockEntityType<?>> TE) {
+        TE.getRegistry().register(BlockEntityType.Builder.of(LampTile::new, ModBlocks.OAK_SMALL_LAMP, ModBlocks.SPRUCE_SMALL_LAMP, ModBlocks.BIRCH_SMALL_LAMP, ModBlocks.JUNGLE_SMALL_LAMP, ModBlocks.ACACIA_SMALL_LAMP, ModBlocks.DARK_OAK_SMALL_LAMP, ModBlocks.NETHER_BRICK_SMALL_LAMP, ModBlocks.CRIMSON_SMALL_LAMP, ModBlocks.WARPED_SMALL_LAMP).build(null).setRegistryName(MoBlocks.MODID, "small_lamp"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(SimpleDrawerTile::new, ModBlocks.OAK_SIMPLE_DRAWER, ModBlocks.SPRUCE_SIMPLE_DRAWER, ModBlocks.BIRCH_SIMPLE_DRAWER, ModBlocks.JUNGLE_SIMPLE_DRAWER, ModBlocks.ACACIA_SIMPLE_DRAWER, ModBlocks.DARK_OAK_SIMPLE_DRAWER, ModBlocks.NETHER_BRICK_SIMPLE_DRAWER, ModBlocks.CRIMSON_SIMPLE_DRAWER, ModBlocks.WARPED_SIMPLE_DRAWER).build(null).setRegistryName(MoBlocks.MODID, "simple_drawer"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(DoubleDrawerTile::new, ModBlocks.OAK_DOUBLE_DRAWER, ModBlocks.SPRUCE_DOUBLE_DRAWER, ModBlocks.BIRCH_DOUBLE_DRAWER, ModBlocks.JUNGLE_DOUBLE_DRAWER, ModBlocks.ACACIA_DOUBLE_DRAWER, ModBlocks.DARK_OAK_DOUBLE_DRAWER, ModBlocks.NETHER_BRICK_DOUBLE_DRAWER, ModBlocks.CRIMSON_DOUBLE_DRAWER, ModBlocks.WARPED_DOUBLE_DRAWER).build(null).setRegistryName(MoBlocks.MODID, "double_drawer"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(ShelfTile::new, ModBlocks.OAK_SHELF, ModBlocks.SPRUCE_SHELF, ModBlocks.BIRCH_SHELF, ModBlocks.JUNGLE_SHELF, ModBlocks.ACACIA_SHELF, ModBlocks.DARK_OAK_SHELF, ModBlocks.NETHER_BRICK_SHELF, ModBlocks.CRIMSON_SHELF, ModBlocks.WARPED_SHELF).build(null).setRegistryName(MoBlocks.MODID, "shelf"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(CrateTile::new, ModBlocks.OAK_CRATE, ModBlocks.SPRUCE_CRATE, ModBlocks.BIRCH_CRATE, ModBlocks.JUNGLE_CRATE, ModBlocks.ACACIA_CRATE, ModBlocks.DARK_OAK_CRATE, ModBlocks.NETHER_BRICK_CRATE, ModBlocks.CRIMSON_CRATE, ModBlocks.WARPED_CRATE).build(null).setRegistryName(MoBlocks.MODID, "crate"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(BookshelfTile::new, ModBlocks.OAK_BOOKSHELF, ModBlocks.SPRUCE_BOOKSHELF, ModBlocks.BIRCH_BOOKSHELF, ModBlocks.JUNGLE_BOOKSHELF, ModBlocks.ACACIA_BOOKSHELF, ModBlocks.DARK_OAK_BOOKSHELF, ModBlocks.NETHER_BRICK_BOOKSHELF, ModBlocks.CRIMSON_BOOKSHELF, ModBlocks.WARPED_BOOKSHELF).build(null).setRegistryName(MoBlocks.MODID, "small_bookshelf"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(PotionShelfTile::new, ModBlocks.OAK_POTION_SHELF, ModBlocks.SPRUCE_POTION_SHELF, ModBlocks.BIRCH_POTION_SHELF, ModBlocks.JUNGLE_POTION_SHELF, ModBlocks.ACACIA_POTION_SHELF, ModBlocks.DARK_OAK_POTION_SHELF, ModBlocks.NETHER_BRICK_POTION_SHELF, ModBlocks.CRIMSON_POTION_SHELF, ModBlocks.WARPED_POTION_SHELF).build(null).setRegistryName(MoBlocks.MODID, "potion_shelf"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(ColorableFlowerPotTile::new, ModBlocks.COLORABLE_FLOWER_POT).build(null).setRegistryName(MoBlocks.MODID, "colorable_flower_pot"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(ColorableLightBlockTile::new, ModBlocks.CANDLE).build(null).setRegistryName(MoBlocks.MODID, "colorable_light_block"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(RainbowBlockTile::new, ModBlocks.RAINBOW_BLOCK).build(null).setRegistryName(MoBlocks.MODID, "rainbow_block"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(LavaLampTile::new, ModBlocks.LAVA_LAMP).build(null).setRegistryName(MoBlocks.MODID, "lava_lamp"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(SirenTile::new, ModBlocks.SIREN).build(null).setRegistryName(MoBlocks.MODID, "siren"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(SignalTowerLightTile::new, ModBlocks.SIGNAL_TOWER_LIGHT).build(null).setRegistryName(MoBlocks.MODID, "signal_tower_light"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(EyeballLampTile::new, ModBlocks.EYEBALL_LAMP).build(null).setRegistryName(MoBlocks.MODID, "eyeball_lamp"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(ColorableBlockTile::new,
+                        ModBlocks.COLORABLE_WOOL, ModBlocks.COLORABLE_PLANKS,
+                        ModBlocks.COLORABLE_CONCRETE, ModBlocks.COLORABLE_BRICKS,
+                        ModBlocks.COLORABLE_TERRACOTTA, ModBlocks.COLORABLE_STONE_BRICKS,
+                        ModBlocks.COLORABLE_STONE, ModBlocks.COLORABLE_COBBLESTONE,
 
-				ModBlocks.COLORABLE_PLANK_SLAB, ModBlocks.COLORABLE_BRICK_SLAB,
-				ModBlocks.COLORABLE_STONE_BRICK_SLAB, ModBlocks.COLORABLE_STONE_SLAB,
-				ModBlocks.COLORABLE_COBBLESTONE_SLAB,
+                        ModBlocks.COLORABLE_CARPET, ModBlocks.COLORABLE_ROUND_CARPET,
+                        ModBlocks.COLORABLE_SOFA, ModBlocks.COLORABLE_TABLE, ModBlocks.COLORABLE_CHAIR,
+                        ModBlocks.COLORABLE_PLANK_COFFEE_TABLE, ModBlocks.COLORABLE_TERRACOTTA_COFFEE_TABLE,
 
-				ModBlocks.COLORABLE_PLANK_STAIRS, ModBlocks.COLORABLE_BRICK_STAIRS,
-				ModBlocks.COLORABLE_STONE_BRICK_STAIRS, ModBlocks.COLORABLE_STONE_STAIRS,
-				ModBlocks.COLORABLE_COBBLESTONE_STAIRS,
+                        ModBlocks.COLORABLE_PLANK_SLAB, ModBlocks.COLORABLE_BRICK_SLAB,
+                        ModBlocks.COLORABLE_STONE_BRICK_SLAB, ModBlocks.COLORABLE_STONE_SLAB,
+                        ModBlocks.COLORABLE_COBBLESTONE_SLAB,
 
-				ModBlocks.COLORABLE_PLANK_VERTICAL_SLAB, ModBlocks.COLORABLE_BRICK_VERTICAL_SLAB,
-				ModBlocks.COLORABLE_STONE_BRICK_VERTICAL_SLAB, ModBlocks.COLORABLE_STONE_VERTICAL_SLAB,
-				ModBlocks.COLORABLE_COBBLESTONE_VERTICAL_SLAB,
+                        ModBlocks.COLORABLE_PLANK_STAIRS, ModBlocks.COLORABLE_BRICK_STAIRS,
+                        ModBlocks.COLORABLE_STONE_BRICK_STAIRS, ModBlocks.COLORABLE_STONE_STAIRS,
+                        ModBlocks.COLORABLE_COBBLESTONE_STAIRS,
 
-				ModBlocks.COLORABLE_PLANK_VERTICAL_STAIRS, ModBlocks.COLORABLE_BRICK_VERTICAL_STAIRS,
-				ModBlocks.COLORABLE_STONE_BRICK_VERTICAL_STAIRS, ModBlocks.COLORABLE_STONE_VERTICAL_STAIRS,
-				ModBlocks.COLORABLE_COBBLESTONE_VERTICAL_STAIRS,
+                        ModBlocks.COLORABLE_PLANK_VERTICAL_SLAB, ModBlocks.COLORABLE_BRICK_VERTICAL_SLAB,
+                        ModBlocks.COLORABLE_STONE_BRICK_VERTICAL_SLAB, ModBlocks.COLORABLE_STONE_VERTICAL_SLAB,
+                        ModBlocks.COLORABLE_COBBLESTONE_VERTICAL_SLAB,
 
-				ModBlocks.COLORABLE_GLASS, ModBlocks.COLORABLE_GLASS_PANE,
+                        ModBlocks.COLORABLE_PLANK_VERTICAL_STAIRS, ModBlocks.COLORABLE_BRICK_VERTICAL_STAIRS,
+                        ModBlocks.COLORABLE_STONE_BRICK_VERTICAL_STAIRS, ModBlocks.COLORABLE_STONE_VERTICAL_STAIRS,
+                        ModBlocks.COLORABLE_COBBLESTONE_VERTICAL_STAIRS,
 
-				ModBlocks.COLORABLE_PLANK_ARCH, ModBlocks.COLORABLE_PLANK_INVERTED_ARCH,
-				ModBlocks.COLORABLE_PLANK_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_PLANK_LOWER_SMALL_INVERTED_ARCH,
-				ModBlocks.COLORABLE_PLANK_PILLAR, ModBlocks.COLORABLE_PLANK_POST, ModBlocks.COLORABLE_PLANK_RAMP,
-				ModBlocks.COLORABLE_PLANK_TRIANGLE_RAMP, ModBlocks.COLORABLE_PLANK_UPPER_SMALL_ARCH,
-				ModBlocks.COLORABLE_PLANK_UPPER_SMALL_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_GLASS, ModBlocks.COLORABLE_GLASS_PANE,
 
-				ModBlocks.COLORABLE_BRICK_ARCH, ModBlocks.COLORABLE_BRICK_INVERTED_ARCH,
-				ModBlocks.COLORABLE_BRICK_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_BRICK_LOWER_SMALL_INVERTED_ARCH,
-				ModBlocks.COLORABLE_BRICK_PILLAR, ModBlocks.COLORABLE_BRICK_POST, ModBlocks.COLORABLE_BRICK_RAMP,
-				ModBlocks.COLORABLE_BRICK_TRIANGLE_RAMP, ModBlocks.COLORABLE_BRICK_UPPER_SMALL_ARCH,
-				ModBlocks.COLORABLE_BRICK_UPPER_SMALL_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_PLANK_ARCH, ModBlocks.COLORABLE_PLANK_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_PLANK_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_PLANK_LOWER_SMALL_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_PLANK_PILLAR, ModBlocks.COLORABLE_PLANK_POST, ModBlocks.COLORABLE_PLANK_RAMP,
+                        ModBlocks.COLORABLE_PLANK_TRIANGLE_RAMP, ModBlocks.COLORABLE_PLANK_UPPER_SMALL_ARCH,
+                        ModBlocks.COLORABLE_PLANK_UPPER_SMALL_INVERTED_ARCH,
 
-				ModBlocks.COLORABLE_STONE_BRICK_ARCH, ModBlocks.COLORABLE_STONE_BRICK_INVERTED_ARCH,
-				ModBlocks.COLORABLE_STONE_BRICK_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_STONE_BRICK_LOWER_SMALL_INVERTED_ARCH,
-				ModBlocks.COLORABLE_STONE_BRICK_PILLAR, ModBlocks.COLORABLE_STONE_BRICK_POST, ModBlocks.COLORABLE_STONE_BRICK_RAMP,
-				ModBlocks.COLORABLE_STONE_BRICK_TRIANGLE_RAMP, ModBlocks.COLORABLE_STONE_BRICK_UPPER_SMALL_ARCH,
-				ModBlocks.COLORABLE_STONE_BRICK_UPPER_SMALL_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_BRICK_ARCH, ModBlocks.COLORABLE_BRICK_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_BRICK_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_BRICK_LOWER_SMALL_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_BRICK_PILLAR, ModBlocks.COLORABLE_BRICK_POST, ModBlocks.COLORABLE_BRICK_RAMP,
+                        ModBlocks.COLORABLE_BRICK_TRIANGLE_RAMP, ModBlocks.COLORABLE_BRICK_UPPER_SMALL_ARCH,
+                        ModBlocks.COLORABLE_BRICK_UPPER_SMALL_INVERTED_ARCH,
 
-				ModBlocks.COLORABLE_STONE_ARCH, ModBlocks.COLORABLE_STONE_INVERTED_ARCH,
-				ModBlocks.COLORABLE_STONE_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_STONE_LOWER_SMALL_INVERTED_ARCH,
-				ModBlocks.COLORABLE_STONE_PILLAR, ModBlocks.COLORABLE_STONE_POST, ModBlocks.COLORABLE_STONE_RAMP,
-				ModBlocks.COLORABLE_STONE_TRIANGLE_RAMP, ModBlocks.COLORABLE_STONE_UPPER_SMALL_ARCH,
-				ModBlocks.COLORABLE_STONE_UPPER_SMALL_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_STONE_BRICK_ARCH, ModBlocks.COLORABLE_STONE_BRICK_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_STONE_BRICK_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_STONE_BRICK_LOWER_SMALL_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_STONE_BRICK_PILLAR, ModBlocks.COLORABLE_STONE_BRICK_POST, ModBlocks.COLORABLE_STONE_BRICK_RAMP,
+                        ModBlocks.COLORABLE_STONE_BRICK_TRIANGLE_RAMP, ModBlocks.COLORABLE_STONE_BRICK_UPPER_SMALL_ARCH,
+                        ModBlocks.COLORABLE_STONE_BRICK_UPPER_SMALL_INVERTED_ARCH,
 
-				ModBlocks.COLORABLE_COBBLESTONE_ARCH, ModBlocks.COLORABLE_COBBLESTONE_INVERTED_ARCH,
-				ModBlocks.COLORABLE_COBBLESTONE_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_COBBLESTONE_LOWER_SMALL_INVERTED_ARCH,
-				ModBlocks.COLORABLE_COBBLESTONE_PILLAR, ModBlocks.COLORABLE_COBBLESTONE_POST, ModBlocks.COLORABLE_COBBLESTONE_RAMP,
-				ModBlocks.COLORABLE_COBBLESTONE_TRIANGLE_RAMP, ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_ARCH,
-				ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_STONE_ARCH, ModBlocks.COLORABLE_STONE_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_STONE_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_STONE_LOWER_SMALL_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_STONE_PILLAR, ModBlocks.COLORABLE_STONE_POST, ModBlocks.COLORABLE_STONE_RAMP,
+                        ModBlocks.COLORABLE_STONE_TRIANGLE_RAMP, ModBlocks.COLORABLE_STONE_UPPER_SMALL_ARCH,
+                        ModBlocks.COLORABLE_STONE_UPPER_SMALL_INVERTED_ARCH,
 
-				ModBlocks.OAK_STRAIGHT_KITCHEN_COUNTER, ModBlocks.BIRCH_STRAIGHT_KITCHEN_COUNTER,
-				ModBlocks.SPRUCE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.JUNGLE_STRAIGHT_KITCHEN_COUNTER,
-				ModBlocks.ACACIA_STRAIGHT_KITCHEN_COUNTER, ModBlocks.DARK_OAK_STRAIGHT_KITCHEN_COUNTER,
-				ModBlocks.WARPED_STRAIGHT_KITCHEN_COUNTER, ModBlocks.CRIMSON_STRAIGHT_KITCHEN_COUNTER,
+                        ModBlocks.COLORABLE_COBBLESTONE_ARCH, ModBlocks.COLORABLE_COBBLESTONE_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_COBBLESTONE_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_COBBLESTONE_LOWER_SMALL_INVERTED_ARCH,
+                        ModBlocks.COLORABLE_COBBLESTONE_PILLAR, ModBlocks.COLORABLE_COBBLESTONE_POST, ModBlocks.COLORABLE_COBBLESTONE_RAMP,
+                        ModBlocks.COLORABLE_COBBLESTONE_TRIANGLE_RAMP, ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_ARCH,
+                        ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_INVERTED_ARCH,
 
-				ModBlocks.OAK_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_INNER_CORNER_KITCHEN_COUNTER,
-				ModBlocks.SPRUCE_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_INNER_CORNER_KITCHEN_COUNTER,
-				ModBlocks.ACACIA_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_INNER_CORNER_KITCHEN_COUNTER,
-				ModBlocks.WARPED_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_INNER_CORNER_KITCHEN_COUNTER,
+                        ModBlocks.OAK_STRAIGHT_KITCHEN_COUNTER, ModBlocks.BIRCH_STRAIGHT_KITCHEN_COUNTER,
+                        ModBlocks.SPRUCE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.JUNGLE_STRAIGHT_KITCHEN_COUNTER,
+                        ModBlocks.ACACIA_STRAIGHT_KITCHEN_COUNTER, ModBlocks.DARK_OAK_STRAIGHT_KITCHEN_COUNTER,
+                        ModBlocks.WARPED_STRAIGHT_KITCHEN_COUNTER, ModBlocks.CRIMSON_STRAIGHT_KITCHEN_COUNTER,
 
-				ModBlocks.OAK_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_OUTER_CORNER_KITCHEN_COUNTER,
-				ModBlocks.SPRUCE_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_OUTER_CORNER_KITCHEN_COUNTER,
-				ModBlocks.ACACIA_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_OUTER_CORNER_KITCHEN_COUNTER,
-				ModBlocks.WARPED_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_OUTER_CORNER_KITCHEN_COUNTER,
+                        ModBlocks.OAK_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_INNER_CORNER_KITCHEN_COUNTER,
+                        ModBlocks.SPRUCE_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_INNER_CORNER_KITCHEN_COUNTER,
+                        ModBlocks.ACACIA_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_INNER_CORNER_KITCHEN_COUNTER,
+                        ModBlocks.WARPED_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_INNER_CORNER_KITCHEN_COUNTER,
 
-				ModBlocks.INK_BLOCK)
-				.build(null).setRegistryName(MoBlocks.MODID, "colorable_block"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(ColorableKitchenCounterTile::new,
-				ModBlocks.COLORABLE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.COLORABLE_INNER_CORNER_KITCHEN_COUNTER,
-				ModBlocks.COLORABLE_OUTER_CORNER_KITCHEN_COUNTER).build(null).setRegistryName(MoBlocks.MODID, "colorable_kitchen_counter"));
-		TE.getRegistry().register(BlockEntityType.Builder.of(NeonBlockTile::new,
-				ModBlocks.NEON_BLOCK, ModBlocks.GLOWING_NEON_BLOCK).build(null).setRegistryName(MoBlocks.MODID, "neon_block_tile"));
-	}
-	@SubscribeEvent
-	public static void onRegisterContainer(RegistryEvent.Register<MenuType<?>> container) {
-		container.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-			BlockPos pos = data.readBlockPos();
-			return new SimpleDrawerContainer(windowId, pos, inv);
-		}).setRegistryName(MoBlocks.MODID, "simple_drawer_container"));
-		container.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-			BlockPos pos = data.readBlockPos();
-			return new DoubleDrawerContainer(windowId, pos, inv);
-		}).setRegistryName(MoBlocks.MODID, "double_drawer_container"));
-	}
-	@SubscribeEvent
-	public static void onRegisterEntity(RegistryEvent.Register<EntityType<?>> entity) {
-		entity.getRegistry().register(EntityType.Builder.<SeatChair>of(SeatChair::new,MobCategory.MISC).fireImmune().noSummon().sized(0.0F, 0.0F).build("seat_chair").setRegistryName(MoBlocks.MODID, "seat_chair"));
-		entity.getRegistry().register(EntityType.Builder.<SeatSofa>of(SeatSofa::new,MobCategory.MISC).fireImmune().noSummon().sized(0.0F, 0.0F).build("seat_sofa").setRegistryName(MoBlocks.MODID, "seat_sofa"));
-	}
-	@SubscribeEvent
-	public static void onRegisterParticleTypes(RegistryEvent.Register<ParticleType<?>> particles) {
-		particles.getRegistry().register(ModParticles.DRIPPING_INK.setRegistryName(MoBlocks.MODID, "dripping_ink"));
-		particles.getRegistry().register(ModParticles.FALLING_INK.setRegistryName(MoBlocks.MODID, "falling_ink"));
-		particles.getRegistry().register(ModParticles.LANDING_INK.setRegistryName(MoBlocks.MODID, "landing_ink"));
-	}
-	@SubscribeEvent
-	public static void init(FMLCommonSetupEvent event) {
+                        ModBlocks.OAK_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_OUTER_CORNER_KITCHEN_COUNTER,
+                        ModBlocks.SPRUCE_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_OUTER_CORNER_KITCHEN_COUNTER,
+                        ModBlocks.ACACIA_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_OUTER_CORNER_KITCHEN_COUNTER,
+                        ModBlocks.WARPED_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_OUTER_CORNER_KITCHEN_COUNTER,
+
+                        ModBlocks.INK_BLOCK)
+                .build(null).setRegistryName(MoBlocks.MODID, "colorable_block"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(ColorableKitchenCounterTile::new,
+                ModBlocks.COLORABLE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.COLORABLE_INNER_CORNER_KITCHEN_COUNTER,
+                ModBlocks.COLORABLE_OUTER_CORNER_KITCHEN_COUNTER).build(null).setRegistryName(MoBlocks.MODID, "colorable_kitchen_counter"));
+        TE.getRegistry().register(BlockEntityType.Builder.of(NeonBlockTile::new,
+                ModBlocks.NEON_BLOCK, ModBlocks.GLOWING_NEON_BLOCK).build(null).setRegistryName(MoBlocks.MODID, "neon_block_tile"));
+    }
+
+    @SubscribeEvent
+    public static void onRegisterContainer(RegistryEvent.Register<MenuType<?>> container) {
+        container.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
+            BlockPos pos = data.readBlockPos();
+            return new SimpleDrawerContainer(windowId, pos, inv);
+        }).setRegistryName(MoBlocks.MODID, "simple_drawer_container"));
+        container.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
+            BlockPos pos = data.readBlockPos();
+            return new DoubleDrawerContainer(windowId, pos, inv);
+        }).setRegistryName(MoBlocks.MODID, "double_drawer_container"));
+    }
+
+    @SubscribeEvent
+    public static void onRegisterEntity(RegistryEvent.Register<EntityType<?>> entity) {
+        entity.getRegistry().register(EntityType.Builder.<SeatChair>of(SeatChair::new, MobCategory.MISC).fireImmune().noSummon().sized(0.0F, 0.0F).build("seat_chair").setRegistryName(MoBlocks.MODID, "seat_chair"));
+        entity.getRegistry().register(EntityType.Builder.<SeatSofa>of(SeatSofa::new, MobCategory.MISC).fireImmune().noSummon().sized(0.0F, 0.0F).build("seat_sofa").setRegistryName(MoBlocks.MODID, "seat_sofa"));
+    }
+
+    @SubscribeEvent
+    public static void onRegisterParticleTypes(RegistryEvent.Register<ParticleType<?>> particles) {
+        particles.getRegistry().register(ModParticles.DRIPPING_INK.setRegistryName(MoBlocks.MODID, "dripping_ink"));
+        particles.getRegistry().register(ModParticles.FALLING_INK.setRegistryName(MoBlocks.MODID, "falling_ink"));
+        particles.getRegistry().register(ModParticles.LANDING_INK.setRegistryName(MoBlocks.MODID, "landing_ink"));
+    }
+
+    @SubscribeEvent
+    public static void init(FMLCommonSetupEvent event) {
         MoBlocksPacketHandler.registerMessages();
-	}
+    }
 }

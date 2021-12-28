@@ -29,126 +29,127 @@ import java.util.List;
 @SuppressWarnings("deprecation")
 @OnlyIn(Dist.CLIENT)
 public class BookshelfTileRenderer implements BlockEntityRenderer<BookshelfTile> {
-	public BookshelfTileRenderer(BlockEntityRendererProvider.Context context) {}
+    public BookshelfTileRenderer(BlockEntityRendererProvider.Context context) {
+    }
 
-	@Override
-	public void render(BookshelfTile tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-		Direction direction = tileEntityIn.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
-		List<BakedModel> bookCoverModels = new ArrayList<BakedModel>();
-		List<BakedModel> bookPagesModels = new ArrayList<BakedModel>();
-		double bookWidth = 0.95;
-		for (int i = 0; i < tileEntityIn.getNumberOfLayers()*7+tileEntityIn.getStacksPerLayers(); i++) {
-			bookCoverModels.add(Minecraft.getInstance().getModelManager().getModel(allCustomModels.BOOK_COVER_MODEL.getLocation()));
-			bookPagesModels.add(Minecraft.getInstance().getModelManager().getModel(allCustomModels.BOOK_PAGES_MODEL.getLocation()));
-		}
+    public static void register() {
+        BlockEntityRenderers.register(ModTileEntities.SMALL_BOOKSHELF, BookshelfTileRenderer::new);
+    }
 
-		for (int layer = 0; layer < tileEntityIn.getNumberOfLayers(); layer++) {
-			for (int stackIndex = 0; stackIndex < tileEntityIn.getStacksPerLayers(); stackIndex++) {
-				ItemStack itemstack = tileEntityIn.getItem(layer, stackIndex);
-				matrixStackIn.pushPose();
-				if (!itemstack.isEmpty()) {
-					matrixStackIn.translate(0, (layer == 0 ? 0.25 : -0.25), 0);
-			        switch (direction) {
-			        case NORTH:
-			        	matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180F));
-			            matrixStackIn.translate(-1+(stackIndex-3)*0.125, 0, -0.75);
-			        	break;
-			        case EAST:
-			        	matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90F));
-			            matrixStackIn.translate(-1-(stackIndex-3)*0.125, 0, 0.25);
-			        	break;
-			        case WEST:
-			        	matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(270F));
-			            matrixStackIn.translate(0-(stackIndex-3)*0.125, 0, -0.75);
-			        	break;
-			        case SOUTH:
-			            matrixStackIn.translate(0+(stackIndex-3)*0.125, 0, 0.25);
-			        	break;
-					default:
-						break;
-			        }
-			        matrixStackIn.scale((float) bookWidth, 1F, 1F);
-		            matrixStackIn.translate((1-bookWidth)/2, 0, 0);
+    @Override
+    public void render(BookshelfTile tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
+        Direction direction = tileEntityIn.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+        List<BakedModel> bookCoverModels = new ArrayList<BakedModel>();
+        List<BakedModel> bookPagesModels = new ArrayList<BakedModel>();
+        double bookWidth = 0.95;
+        for (int i = 0; i < tileEntityIn.getNumberOfLayers() * 7 + tileEntityIn.getStacksPerLayers(); i++) {
+            bookCoverModels.add(Minecraft.getInstance().getModelManager().getModel(allCustomModels.BOOK_COVER_MODEL.getLocation()));
+            bookPagesModels.add(Minecraft.getInstance().getModelManager().getModel(allCustomModels.BOOK_PAGES_MODEL.getLocation()));
+        }
 
-		            BlockState blockstate = tileEntityIn.getBlockState();
-		            BakedModel model = bookCoverModels.get(layer*7+stackIndex);
-		            RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-					net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
-					BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
-					Level world = tileEntityIn.getLevel();
-					ModelBlockRenderer blockModelRenderer = blockDispatcher.getModelRenderer();
-					blockModelRenderer.renderModel(
-							matrixStackIn.last(),
-							bufferIn.getBuffer(renderType),
-							blockstate,
-							model,
-							0.0f,
-							0.0f,
-							0.0f,
-							combinedLightIn,
-							combinedOverlayIn,
-							EmptyModelData.INSTANCE
-					);
-				}
-				matrixStackIn.popPose();
-			}
-		}
+        for (int layer = 0; layer < tileEntityIn.getNumberOfLayers(); layer++) {
+            for (int stackIndex = 0; stackIndex < tileEntityIn.getStacksPerLayers(); stackIndex++) {
+                ItemStack itemstack = tileEntityIn.getItem(layer, stackIndex);
+                matrixStackIn.pushPose();
+                if (!itemstack.isEmpty()) {
+                    matrixStackIn.translate(0, (layer == 0 ? 0.25 : -0.25), 0);
+                    switch (direction) {
+                        case NORTH:
+                            matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180F));
+                            matrixStackIn.translate(-1 + (stackIndex - 3) * 0.125, 0, -0.75);
+                            break;
+                        case EAST:
+                            matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90F));
+                            matrixStackIn.translate(-1 - (stackIndex - 3) * 0.125, 0, 0.25);
+                            break;
+                        case WEST:
+                            matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(270F));
+                            matrixStackIn.translate(0 - (stackIndex - 3) * 0.125, 0, -0.75);
+                            break;
+                        case SOUTH:
+                            matrixStackIn.translate(0 + (stackIndex - 3) * 0.125, 0, 0.25);
+                            break;
+                        default:
+                            break;
+                    }
+                    matrixStackIn.scale((float) bookWidth, 1F, 1F);
+                    matrixStackIn.translate((1 - bookWidth) / 2, 0, 0);
 
-		for (int layer = 0; layer < tileEntityIn.getNumberOfLayers(); layer++) {
-			for (int stackIndex = 0; stackIndex < tileEntityIn.getStacksPerLayers(); stackIndex++) {
-				ItemStack itemstack = tileEntityIn.getItem(layer, stackIndex);
-				matrixStackIn.pushPose();
-				if (!itemstack.isEmpty()) {
-					matrixStackIn.translate(0, (layer == 0 ? 0.25 : -0.25), 0);
-			        switch (direction) {
-			        case NORTH:
-			        	matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180F));
-			            matrixStackIn.translate(-1+(stackIndex-3)*0.125, 0, -0.75);
-			        	break;
-			        case EAST:
-			        	matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90F));
-			            matrixStackIn.translate(-1-(stackIndex-3)*0.125, 0, 0.25);
-			        	break;
-			        case WEST:
-			        	matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(270F));
-			            matrixStackIn.translate(0-(stackIndex-3)*0.125, 0, -0.75);
-			        	break;
-			        case SOUTH:
-			            matrixStackIn.translate(0+(stackIndex-3)*0.125, 0, 0.25);
-			        	break;
-					default:
-						break;
-			        }
-			        matrixStackIn.scale((float) bookWidth, 1F, 1F);
-		            matrixStackIn.translate((1-bookWidth)/2, 0, 0);
+                    BlockState blockstate = tileEntityIn.getBlockState();
+                    BakedModel model = bookCoverModels.get(layer * 7 + stackIndex);
+                    RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
+                    net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
+                    BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
+                    Level world = tileEntityIn.getLevel();
+                    ModelBlockRenderer blockModelRenderer = blockDispatcher.getModelRenderer();
+                    blockModelRenderer.renderModel(
+                            matrixStackIn.last(),
+                            bufferIn.getBuffer(renderType),
+                            blockstate,
+                            model,
+                            0.0f,
+                            0.0f,
+                            0.0f,
+                            combinedLightIn,
+                            combinedOverlayIn,
+                            EmptyModelData.INSTANCE
+                    );
+                }
+                matrixStackIn.popPose();
+            }
+        }
 
-					BlockState blockstate = tileEntityIn.getBlockState();
-		            BakedModel model = bookPagesModels.get(layer*7+stackIndex);
-					RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-					net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
-					BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
-					Level world = tileEntityIn.getLevel();
-					ModelBlockRenderer blockModelRenderer = blockDispatcher.getModelRenderer();
-					blockModelRenderer.renderModel(
-							matrixStackIn.last(),
-							bufferIn.getBuffer(renderType),
-							blockstate,
-							model,
-							0.0f,
-							0.0f,
-							0.0f,
-							combinedLightIn,
-							combinedOverlayIn,
-							EmptyModelData.INSTANCE
-					);
-				}
+        for (int layer = 0; layer < tileEntityIn.getNumberOfLayers(); layer++) {
+            for (int stackIndex = 0; stackIndex < tileEntityIn.getStacksPerLayers(); stackIndex++) {
+                ItemStack itemstack = tileEntityIn.getItem(layer, stackIndex);
+                matrixStackIn.pushPose();
+                if (!itemstack.isEmpty()) {
+                    matrixStackIn.translate(0, (layer == 0 ? 0.25 : -0.25), 0);
+                    switch (direction) {
+                        case NORTH:
+                            matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180F));
+                            matrixStackIn.translate(-1 + (stackIndex - 3) * 0.125, 0, -0.75);
+                            break;
+                        case EAST:
+                            matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90F));
+                            matrixStackIn.translate(-1 - (stackIndex - 3) * 0.125, 0, 0.25);
+                            break;
+                        case WEST:
+                            matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(270F));
+                            matrixStackIn.translate(0 - (stackIndex - 3) * 0.125, 0, -0.75);
+                            break;
+                        case SOUTH:
+                            matrixStackIn.translate(0 + (stackIndex - 3) * 0.125, 0, 0.25);
+                            break;
+                        default:
+                            break;
+                    }
+                    matrixStackIn.scale((float) bookWidth, 1F, 1F);
+                    matrixStackIn.translate((1 - bookWidth) / 2, 0, 0);
 
-				matrixStackIn.popPose();
-			}
-		}
-	}
+                    BlockState blockstate = tileEntityIn.getBlockState();
+                    BakedModel model = bookPagesModels.get(layer * 7 + stackIndex);
+                    RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
+                    net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
+                    BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
+                    Level world = tileEntityIn.getLevel();
+                    ModelBlockRenderer blockModelRenderer = blockDispatcher.getModelRenderer();
+                    blockModelRenderer.renderModel(
+                            matrixStackIn.last(),
+                            bufferIn.getBuffer(renderType),
+                            blockstate,
+                            model,
+                            0.0f,
+                            0.0f,
+                            0.0f,
+                            combinedLightIn,
+                            combinedOverlayIn,
+                            EmptyModelData.INSTANCE
+                    );
+                }
 
-	public static void register() {
-		BlockEntityRenderers.register(ModTileEntities.SMALL_BOOKSHELF, BookshelfTileRenderer::new);
-	}
+                matrixStackIn.popPose();
+            }
+        }
+    }
 }
