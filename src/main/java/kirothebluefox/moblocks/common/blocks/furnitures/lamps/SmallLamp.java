@@ -1,5 +1,6 @@
 package kirothebluefox.moblocks.common.blocks.furnitures.lamps;
 
+import kirothebluefox.moblocks.common.blockentities.LampTile;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

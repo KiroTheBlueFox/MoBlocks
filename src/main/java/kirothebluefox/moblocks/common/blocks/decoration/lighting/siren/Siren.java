@@ -1,8 +1,9 @@
 package kirothebluefox.moblocks.common.blocks.decoration.lighting.siren;
 
+import kirothebluefox.moblocks.common.blockentities.SirenTile;
 import kirothebluefox.moblocks.common.customproperties.IColorableBlock;
-import kirothebluefox.moblocks.common.blocks.decoration.customcolorpicker.IDyeableColorPicker;
-import kirothebluefox.moblocks.common.blocks.decoration.customcolorpicker.IDyeableLightColorPicker;
+import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableColorPicker;
+import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableLightColorPicker;
 import kirothebluefox.moblocks.utils.VoxelShapeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

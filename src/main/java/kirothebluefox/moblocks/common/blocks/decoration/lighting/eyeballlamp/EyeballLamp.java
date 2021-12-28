@@ -1,5 +1,6 @@
 package kirothebluefox.moblocks.common.blocks.decoration.lighting.eyeballlamp;
 
+import kirothebluefox.moblocks.common.blockentities.EyeballLampTile;
 import kirothebluefox.moblocks.common.blocks.decoration.colorableblock.ColorableBlock;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;

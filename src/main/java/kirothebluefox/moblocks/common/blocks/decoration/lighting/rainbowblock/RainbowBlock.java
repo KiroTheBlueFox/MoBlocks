@@ -1,5 +1,6 @@
 package kirothebluefox.moblocks.common.blocks.decoration.lighting.rainbowblock;
 
+import kirothebluefox.moblocks.common.blockentities.RainbowBlockTile;
 import kirothebluefox.moblocks.common.customproperties.IColorableBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;

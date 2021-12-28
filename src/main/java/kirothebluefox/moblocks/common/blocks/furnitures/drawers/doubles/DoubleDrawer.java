@@ -1,5 +1,6 @@
 package kirothebluefox.moblocks.common.blocks.furnitures.drawers.doubles;
 
+import kirothebluefox.moblocks.common.blockentities.DoubleDrawerTile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.TranslatableComponent;

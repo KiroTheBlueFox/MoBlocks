@@ -1,5 +1,6 @@
 package kirothebluefox.moblocks.common.blocks.decoration.lighting.neonblock;
 
+import kirothebluefox.moblocks.common.blockentities.NeonBlockTile;
 import kirothebluefox.moblocks.common.blocks.decoration.colorableblock.ColorableBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;

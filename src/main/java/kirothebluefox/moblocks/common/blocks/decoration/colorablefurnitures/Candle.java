@@ -1,9 +1,9 @@
 package kirothebluefox.moblocks.common.blocks.decoration.colorablefurnitures;
 
 import kirothebluefox.moblocks.common.customproperties.IColorableBlock;
-import kirothebluefox.moblocks.common.blocks.decoration.colorableblock.ColorableLightBlockTile;
-import kirothebluefox.moblocks.common.blocks.decoration.customcolorpicker.IDyeableColorPicker;
-import kirothebluefox.moblocks.common.blocks.decoration.customcolorpicker.IDyeableLightColorPicker;
+import kirothebluefox.moblocks.common.blockentities.ColorableLightBlockTile;
+import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableColorPicker;
+import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableLightColorPicker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;

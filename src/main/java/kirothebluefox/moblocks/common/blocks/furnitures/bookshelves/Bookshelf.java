@@ -1,5 +1,6 @@
 package kirothebluefox.moblocks.common.blocks.furnitures.bookshelves;
 
+import kirothebluefox.moblocks.common.blockentities.BookshelfTile;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;

@@ -1,5 +1,6 @@
 package kirothebluefox.moblocks.common.blocks.decoration.lighting.signaltowerlight;
 
+import kirothebluefox.moblocks.common.blockentities.SignalTowerLightTile;
 import kirothebluefox.moblocks.common.customproperties.CustomBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

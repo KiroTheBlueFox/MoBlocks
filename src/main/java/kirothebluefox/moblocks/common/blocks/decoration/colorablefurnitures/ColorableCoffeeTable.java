@@ -1,8 +1,8 @@
 package kirothebluefox.moblocks.common.blocks.decoration.colorablefurnitures;
 
 import kirothebluefox.moblocks.common.customproperties.IColorableBlock;
-import kirothebluefox.moblocks.common.blocks.decoration.colorableblock.ColorableBlockTile;
-import kirothebluefox.moblocks.common.blocks.decoration.customcolorpicker.IDyeableColorPicker;
+import kirothebluefox.moblocks.common.blockentities.ColorableBlockTile;
+import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableColorPicker;
 import kirothebluefox.moblocks.common.blocks.furnitures.CoffeeTable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;

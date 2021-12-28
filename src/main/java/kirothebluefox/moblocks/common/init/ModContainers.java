@@ -1,8 +1,8 @@
 package kirothebluefox.moblocks.common.init;
 
 import kirothebluefox.moblocks.MoBlocks;
-import kirothebluefox.moblocks.common.blocks.furnitures.drawers.doubles.DoubleDrawerContainer;
-import kirothebluefox.moblocks.common.blocks.furnitures.drawers.simples.SimpleDrawerContainer;
+import kirothebluefox.moblocks.common.gui.DoubleDrawerContainer;
+import kirothebluefox.moblocks.common.gui.SimpleDrawerContainer;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.registries.ObjectHolder;
 

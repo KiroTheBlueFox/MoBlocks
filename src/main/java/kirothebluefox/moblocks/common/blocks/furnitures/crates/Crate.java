@@ -1,5 +1,6 @@
 package kirothebluefox.moblocks.common.blocks.furnitures.crates;
 
+import kirothebluefox.moblocks.common.blockentities.CrateTile;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

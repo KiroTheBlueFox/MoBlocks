@@ -1,8 +1,9 @@
 package kirothebluefox.moblocks.common.blocks.decoration.lighting.lavalamp;
 
+import kirothebluefox.moblocks.common.blockentities.LavaLampTile;
 import kirothebluefox.moblocks.common.customproperties.IColorableBlock;
-import kirothebluefox.moblocks.common.blocks.decoration.customcolorpicker.IDyeableColorPicker;
-import kirothebluefox.moblocks.common.blocks.decoration.customcolorpicker.IDyeableLightColorPicker;
+import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableColorPicker;
+import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableLightColorPicker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;

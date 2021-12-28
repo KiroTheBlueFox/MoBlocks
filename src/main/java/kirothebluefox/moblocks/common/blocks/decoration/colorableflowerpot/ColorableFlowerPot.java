@@ -1,7 +1,8 @@
 package kirothebluefox.moblocks.common.blocks.decoration.colorableflowerpot;
 
+import kirothebluefox.moblocks.common.blockentities.ColorableFlowerPotTile;
 import kirothebluefox.moblocks.common.customproperties.IColorableBlock;
-import kirothebluefox.moblocks.common.blocks.decoration.customcolorpicker.IDyeableColorPicker;
+import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableColorPicker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;

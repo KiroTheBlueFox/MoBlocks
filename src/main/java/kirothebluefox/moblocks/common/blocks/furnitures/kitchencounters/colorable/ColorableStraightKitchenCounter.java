@@ -1,6 +1,7 @@
 package kirothebluefox.moblocks.common.blocks.furnitures.kitchencounters.colorable;
 
-import kirothebluefox.moblocks.common.blocks.decoration.customcolorpicker.IDyeableColorPicker;
+import kirothebluefox.moblocks.common.blockentities.ColorableKitchenCounterTile;
+import kirothebluefox.moblocks.common.items.customcolorpicker.IDyeableColorPicker;
 import kirothebluefox.moblocks.common.blocks.furnitures.kitchencounters.StraightKitchenCounter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
