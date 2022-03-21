@@ -38,7 +38,7 @@ public class TallFence extends CrossCollisionBlock {
 
 	public boolean connectsTo(BlockState p_220111_1_, boolean p_220111_2_, Direction p_220111_3_) {
 		Block block = p_220111_1_.getBlock();
-		boolean flag = (p_220111_1_.is(BlockTags.getAllTags().getTag(new ResourceLocation(MoBlocks.MODID,"tall_fences"))) || p_220111_1_.is(BlockTags.getAllTags().getTag(new ResourceLocation(MoBlocks.MODID,"tall_fence_gates")))) && p_220111_1_.getMaterial() == this.material;
+		boolean flag = (p_220111_1_.m_60620_(BlockTags.m_13115_().m_13404_(new ResourceLocation(MoBlocks.MODID,"tall_fences"))) || p_220111_1_.m_60620_(BlockTags.m_13115_().m_13404_(new ResourceLocation(MoBlocks.MODID,"tall_fence_gates")))) && p_220111_1_.getMaterial() == this.material;
 		boolean flag1 = block instanceof FenceGateBlock && FenceGateBlock.connectsToDirection(p_220111_1_, p_220111_3_);
 		return !isExceptionForConnection(p_220111_1_) && p_220111_2_ || flag || flag1;
 	}

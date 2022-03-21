@@ -84,7 +84,7 @@ public abstract class KitchenCounter extends ColorableBlock implements SimpleWat
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).is(FluidTags.WATER);
+			return worldIn.getFluidState(pos).m_76153_(FluidTags.WATER);
 		case AIR:
 			return false;
 		default:

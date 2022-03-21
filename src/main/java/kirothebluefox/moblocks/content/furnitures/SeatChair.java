@@ -12,6 +12,8 @@ import java.util.List;
 
 import net.minecraftforge.network.NetworkHooks;
 
+import net.minecraft.world.entity.Entity.RemovalReason;
+
 public class SeatChair extends Entity {
 	public SeatChair(Level worldIn, BlockPos pos) {
 		this(ModEntities.SEAT_CHAIR, worldIn);

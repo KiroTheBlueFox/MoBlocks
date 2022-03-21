@@ -9,7 +9,7 @@ import net.minecraft.tags.TagCollection;
 import net.minecraft.world.level.block.Block;
 
 public class CustomBlockTags {
-	private static StaticTagHelper<Block> collection = StaticTags.create(Registry.BLOCK_REGISTRY, "tags/blocks"); /*StaticTags.create(new ResourceLocation(MoBlocks.MODID, "block"), TagContainer::getBlocks);*/
+	private static StaticTagHelper<Block> collection = StaticTags.m_144351_(Registry.BLOCK_REGISTRY, "tags/blocks"); /*StaticTags.create(new ResourceLocation(MoBlocks.MODID, "block"), TagContainer::getBlocks);*/
 
 	public static final Tag.Named<Block> VERTICAL_SLABS = makeWrapperTag("vertical_slabs");
 	public static final Tag.Named<Block> VERTICAL_STAIRS = makeWrapperTag("vertical_stairs");
@@ -43,7 +43,7 @@ public class CustomBlockTags {
 	public static final Tag.Named<Block> KITCHEN_COUNTERS = makeWrapperTag("kitchen_counters");
 
 	public static Tag.Named<Block> makeWrapperTag(String id) {
-		return collection.bind(id);
+		return collection.m_13244_(id);
    	}
 
 	public static net.minecraftforge.common.Tags.IOptionalNamedTag<Block> createOptional(ResourceLocation name) {
@@ -55,10 +55,10 @@ public class CustomBlockTags {
 	}
 
 	public static TagCollection<Block> getCollection() {
-		return collection.getAllTags();
+		return collection.m_13246_();
 	}
 
 	public static TagCollection<Block> getAllTags() {
-		return collection.getAllTags();
+		return collection.m_13246_();
 	}
 }

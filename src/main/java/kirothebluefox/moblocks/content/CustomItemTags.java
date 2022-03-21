@@ -9,14 +9,14 @@ import net.minecraft.tags.TagCollection;
 import net.minecraft.world.item.Item;
 
 public class CustomItemTags {
-	   protected static final StaticTagHelper<Item> collection = StaticTags.create(Registry.ITEM_REGISTRY, "tags/items");
+	   protected static final StaticTagHelper<Item> collection = StaticTags.m_144351_(Registry.ITEM_REGISTRY, "tags/items");
 
 	public static final Tag.Named<Item> LAMP_SHADES = makeWrapperTag("lamp_shades");
 	public static final Tag.Named<Item> BOOK_ITEMS = makeWrapperTag("book_items");
 	public static final Tag.Named<Item> POTION_ITEMS = makeWrapperTag("potion_items");
 
 	   public static Tag.Named<Item> makeWrapperTag(String id) {
-	      return collection.bind(id);
+	      return collection.m_13244_(id);
 	   }
 
 	   public static net.minecraftforge.common.Tags.IOptionalNamedTag<Item> createOptional(ResourceLocation name) {
@@ -28,10 +28,10 @@ public class CustomItemTags {
 	   }
 
 	   public static TagCollection<Item> getCollection() {
-	      return collection.getAllTags();
+	      return collection.m_13246_();
 	   }
 
 	   public static TagCollection<Item> getAllTags() {
-	      return collection.getAllTags();
+	      return collection.m_13246_();
 	   }
 }
