@@ -42,20 +42,16 @@ public class ClientForgeRegistration {
 				ClientLevel worldIn = Minecraft.getInstance().level;
 				BlockState state = worldIn.getBlockState(pos);
 				Block block = state.getBlock();
-				if (block.getTags().contains(new ResourceLocation(MoBlocks.MODID, "no_gui_container_blocks"))) {
+				if (state.getTags().anyMatch(blockTagKey -> blockTagKey.location().equals(new ResourceLocation(MoBlocks.MODID, "no_gui_container_blocks")))) {
 					Vec3 hit = raytrace.getLocation();
 					ItemStack item = ItemStack.EMPTY;
-					if (block instanceof PotionShelf) {
-						PotionShelf potionShelf = (PotionShelf) block;
+					if (block instanceof PotionShelf potionShelf) {
 						item = potionShelf.getItemAtHit(worldIn, state, hit, pos);
-					} else if (block instanceof Crate) {
-						Crate crate = (Crate) block;
+					} else if (block instanceof Crate crate) {
 						item = crate.getItemAtHit(worldIn, state, hit, pos);
-					} else if (block instanceof Shelf) {
-						Shelf shelf = (Shelf) block;
+					} else if (block instanceof Shelf shelf) {
 						item = shelf.getItemAtHit(worldIn, state, hit, pos);
-					} else if (block instanceof Bookshelf) {
-						Bookshelf bookshelf = (Bookshelf) block;
+					} else if (block instanceof Bookshelf bookshelf) {
 						item = bookshelf.getItemAtHit(worldIn, state, hit, pos);
 					}
 					if (!item.isEmpty()) {
@@ -64,16 +60,13 @@ public class ClientForgeRegistration {
 								height = Minecraft.getInstance().getWindow().getGuiScaledHeight(),
 								posx = (int) (width/2),
 								posy = (int) (height/2);
-						//preItemHoverText(item);
+
 					    List<Component> tooltip = item.getTooltipLines(Minecraft.getInstance().player, Minecraft.getInstance().options.advancedItemTooltips ? TooltipFlag.Default.ADVANCED : TooltipFlag.Default.NORMAL);
-						// MatrixStack, List<ITextComponent>, int, int, int, int, int, FontRenderer
-					    // net.minecraftforge.fml.client.gui.GuiUtils.drawHoveringText(matrixStack, tooltip, posx, posy, width, height, -1, font);
 						List<FormattedCharSequence> tooltipReordering = new ArrayList<>();
 						tooltip.forEach((textcomponent) -> {
 							tooltipReordering.add(FormattedCharSequence.forward(textcomponent.getString(), textcomponent.getStyle()));
 						});
 					    kirothebluefox.moblocks.utils.GuiUtils.renderToolTip(matrixStack, tooltipReordering, posx, posy, font);
-					    //postItemToolTip();
 					}
 				}
 			}

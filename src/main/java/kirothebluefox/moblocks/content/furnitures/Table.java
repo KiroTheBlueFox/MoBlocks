@@ -1,10 +1,9 @@
 package kirothebluefox.moblocks.content.furnitures;
 
-import kirothebluefox.moblocks.MoBlocks;
+import kirothebluefox.moblocks.content.CustomBlockTags;
 import kirothebluefox.moblocks.content.customproperties.CustomBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -115,8 +114,8 @@ public class Table extends Block implements SimpleWaterloggedBlock {
 		default:
 			return false;
 		}
-	    Block block = worldIn.getBlockState(blockToTest).getBlock();
-	    return block.getTags().contains(new ResourceLocation(MoBlocks.MODID, "tables"));
+		BlockState block = worldIn.getBlockState(blockToTest);
+		return block.getTags().anyMatch(tag -> tag.equals(CustomBlockTags.TABLES));
 	}
 
 	public BlockState forEachDirections(BlockState stateIn, LevelAccessor worldIn, BlockPos currentPos) {
@@ -159,7 +158,7 @@ public class Table extends Block implements SimpleWaterloggedBlock {
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).m_76153_(FluidTags.WATER);
+			return worldIn.getFluidState(pos).is(FluidTags.WATER);
 		case AIR:
 			return false;
 		default:

@@ -134,7 +134,7 @@ public class UpperSmallInvertedArch extends HorizontalDirectionalBlock implement
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).m_76153_(FluidTags.WATER);
+			return worldIn.getFluidState(pos).is(FluidTags.WATER);
 		case AIR:
 			return false;
 		default:

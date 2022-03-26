@@ -1,6 +1,5 @@
 package kirothebluefox.moblocks.content.furnitures.shelves;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import kirothebluefox.moblocks.MoBlocks;
@@ -13,12 +12,13 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.FormattedText;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.lwjgl.opengl.GL11;
 
 @OnlyIn(Dist.CLIENT)
 public class ShelfTileRenderer implements BlockEntityRenderer<ShelfTile> {
@@ -139,7 +139,8 @@ public class ShelfTileRenderer implements BlockEntityRenderer<ShelfTile> {
 		}
 		if (MoBlocks.config.shelves_quantity.get()) {
 			for (int i = 0; i < 4; i++) {
-				if (!tileEntityIn.getItem(i).isEmpty() && tileEntityIn.getBlockPos().m_123306_(Minecraft.getInstance().player.position(), 5)) {
+				Player player = Minecraft.getInstance().player;
+				if (!tileEntityIn.getItem(i).isEmpty() && tileEntityIn.getBlockPos().closerThan(new Vec3i(player.getX(), player.getY(), player.getZ()), 5)) {
 					matrixStackIn.pushPose();
 	                Font fontrenderer = Minecraft.getInstance().font;
 	                matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(180F));

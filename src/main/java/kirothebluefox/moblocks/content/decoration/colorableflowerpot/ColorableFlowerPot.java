@@ -3,7 +3,7 @@ package kirothebluefox.moblocks.content.decoration.colorableflowerpot;
 import kirothebluefox.moblocks.content.customproperties.IColorableBlock;
 import kirothebluefox.moblocks.content.decoration.customcolorpicker.IDyeableColorPicker;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -59,10 +59,9 @@ public class ColorableFlowerPot extends Block implements IColorableBlock, Entity
 				} else {
 					return InteractionResult.FAIL;
 				}
-			} else if (item.getTags().contains(new ResourceLocation("minecraft:small_flowers"))) {
+			} else if (itemstack.getTags().anyMatch(tag -> tag.equals(ItemTags.SMALL_FLOWERS))) {
 				BlockEntity tileentity = worldIn.getBlockEntity(pos);
-				if (tileentity instanceof ColorableFlowerPotTile) {
-					ColorableFlowerPotTile colorableflowerpotentity = (ColorableFlowerPotTile)tileentity;
+				if (tileentity instanceof ColorableFlowerPotTile colorableflowerpotentity) {
 					if (!player.isShiftKeyDown()) colorableflowerpotentity.addItem(player.isCreative() ? itemstack.copy() : itemstack);
 					else colorableflowerpotentity.dropItem();
 				}
@@ -75,8 +74,7 @@ public class ColorableFlowerPot extends Block implements IColorableBlock, Entity
 
 	public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {
 		BlockEntity tileEntity = blockReader.getBlockEntity(pos);
-		if (tileEntity instanceof ColorableFlowerPotTile) {
-			ColorableFlowerPotTile colorableflowerpotentity = (ColorableFlowerPotTile) tileEntity;
+		if (tileEntity instanceof ColorableFlowerPotTile colorableflowerpotentity) {
 			return colorableflowerpotentity.getColor();
 		}
 		return 0xFFFFFF;

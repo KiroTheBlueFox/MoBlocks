@@ -1,13 +1,12 @@
 package kirothebluefox.moblocks.content.furnitures.lamps;
 
-import kirothebluefox.moblocks.MoBlocks;
+import kirothebluefox.moblocks.content.CustomItemTags;
 import kirothebluefox.moblocks.content.ModTileEntities;
 import kirothebluefox.moblocks.utils.ItemStackUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -64,7 +63,7 @@ public class LampTile extends BlockEntity {
     }
 
 	public boolean addItem(ItemStack itemstack) {
-        if (itemstack.getItem().getTags().contains(new ResourceLocation(MoBlocks.MODID, "lamp_shades"))) {
+        if (itemstack.is(CustomItemTags.LAMP_SHADES)) {
     		this.stack = itemstack.split(1);
     		this.notifyBlock();
     		return true;

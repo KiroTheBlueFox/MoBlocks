@@ -12,7 +12,9 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.FormattedText;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
@@ -138,10 +140,11 @@ public class CrateTileRenderer implements BlockEntityRenderer<CrateTile> {
 						(int)tileEntityIn.getBlockPos().asLong()
 				);
 				matrixStackIn.popPose();
+				Player player = Minecraft.getInstance().player;
 	            if (i == layer &&
 	            		MoBlocks.config.crates_quantity.get() &&
 	            		!tileEntityIn.getItem(j).isEmpty() &&
-	            		tileEntityIn.getBlockPos().m_123306_(Minecraft.getInstance().player.position(), 5)) {
+	            		tileEntityIn.getBlockPos().closerThan(new Vec3i(player.getX(), player.getY(), player.getZ()), 5)) {
 					matrixStackIn.pushPose();
 
 					matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(180F));

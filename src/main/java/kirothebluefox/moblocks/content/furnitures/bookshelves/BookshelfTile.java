@@ -1,13 +1,12 @@
 package kirothebluefox.moblocks.content.furnitures.bookshelves;
 
-import kirothebluefox.moblocks.MoBlocks;
+import kirothebluefox.moblocks.content.CustomItemTags;
 import kirothebluefox.moblocks.content.ModTileEntities;
 import kirothebluefox.moblocks.utils.ItemStackUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -92,7 +91,7 @@ public class BookshelfTile extends BlockEntity {
     }
 
 	public boolean addItem(ItemStack itemstack, int layer, int pos, Player player, InteractionHand hand) {
-		if (inventory[layer][pos].isEmpty() && itemstack.getItem().getTags().contains(new ResourceLocation(MoBlocks.MODID, "book_items"))) {
+		if (inventory[layer][pos].isEmpty() && itemstack.getTags().anyMatch(tag -> tag.equals(CustomItemTags.BOOK_ITEMS))) {
 			inventory[layer][pos] = itemstack.split(1);
 		} else {
 			dropItem(player, hand, layer, pos);

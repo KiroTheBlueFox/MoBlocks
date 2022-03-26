@@ -36,7 +36,7 @@ public class EyeballLampTileRenderer implements BlockEntityRenderer<EyeballLampT
 			double distance = -1;
 			Entity nearest = null;
 			for (Entity entity : nearEntities) {
-				double distanceFromEntity = tileEntityIn.getBlockPos().m_123299_(entity.getX(), entity.getY(), entity.getZ(), true);
+				double distanceFromEntity = tileEntityIn.getBlockPos().distToCenterSqr(entity.getX(), entity.getY(), entity.getZ());
 				if (distance < 0 || distanceFromEntity < distance) {
 					distance = distanceFromEntity;
 					nearest = entity;

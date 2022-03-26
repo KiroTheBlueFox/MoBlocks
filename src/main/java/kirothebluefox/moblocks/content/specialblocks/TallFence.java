@@ -1,10 +1,8 @@
 package kirothebluefox.moblocks.content.specialblocks;
 
-import kirothebluefox.moblocks.MoBlocks;
+import kirothebluefox.moblocks.content.CustomBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -38,7 +36,7 @@ public class TallFence extends CrossCollisionBlock {
 
 	public boolean connectsTo(BlockState p_220111_1_, boolean p_220111_2_, Direction p_220111_3_) {
 		Block block = p_220111_1_.getBlock();
-		boolean flag = (p_220111_1_.m_60620_(BlockTags.m_13115_().m_13404_(new ResourceLocation(MoBlocks.MODID,"tall_fences"))) || p_220111_1_.m_60620_(BlockTags.m_13115_().m_13404_(new ResourceLocation(MoBlocks.MODID,"tall_fence_gates")))) && p_220111_1_.getMaterial() == this.material;
+		boolean flag = (p_220111_1_.is(CustomBlockTags.TALL_FENCES) || p_220111_1_.is(CustomBlockTags.TALL_FENCE_GATES)) && p_220111_1_.getMaterial() == this.material;
 		boolean flag1 = block instanceof FenceGateBlock && FenceGateBlock.connectsToDirection(p_220111_1_, p_220111_3_);
 		return !isExceptionForConnection(p_220111_1_) && p_220111_2_ || flag || flag1;
 	}

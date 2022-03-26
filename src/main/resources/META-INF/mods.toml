@@ -1,11 +1,11 @@
 modLoader="javafml" #mandatory
-loaderVersion="[39,)"
+loaderVersion="[40,)"
 license="MIT"
 issueTrackerURL="https://github.com/KiroTheBlueFox/MoBlocks/issues"
 
 [[mods]]
 modId="moblocks"
-version="1.0"
+version="${file.jarVersion}"
 displayName="Mo'Blocks"
 #updateJSONURL="" #optional
 displayURL="https://www.curseforge.com/minecraft/mc-mods/moblocks"
@@ -19,13 +19,13 @@ Mo'Blocks is a simple mod that adds random decorative and useful blocks.
 [[dependencies.moblocks]]
     modId="forge"
     mandatory=true
-    versionRange="[39,)"
+    versionRange="[40,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.moblocks]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18,1.19)"
+    versionRange="[1.18.2,1.19)"
     ordering="NONE"
     side="BOTH"

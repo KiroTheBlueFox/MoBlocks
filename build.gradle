@@ -15,7 +15,7 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.10.2b'
+version = '0.10.3b'
 group = 'kirothebluefox.moblocks'
 archivesBaseName = 'moblocks'
 
@@ -81,7 +81,7 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.8'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.0.24'
 
 	//implementation 'net.hypherionmc:HyperLightingCore-1.16.3:1.0.3:api'
 	//runtimeOnly 'net.hypherionmc:HyperLightingCore-1.16.3:1.0.3'

@@ -12,8 +12,6 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class ShadeItem extends Item {
 	private String shape;
 	private Color color;
