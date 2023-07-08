@@ -1,6 +1,5 @@
 package kirothebluefox.moblocks.content;
 
-import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableBlockTile;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableLightBlockTile;
 import kirothebluefox.moblocks.content.decoration.colorableflowerpot.ColorableFlowerPotTile;
@@ -19,9 +18,7 @@ import kirothebluefox.moblocks.content.furnitures.lamps.LampTile;
 import kirothebluefox.moblocks.content.furnitures.potionshelves.PotionShelfTile;
 import kirothebluefox.moblocks.content.furnitures.shelves.ShelfTile;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(MoBlocks.MODID)
 public class ModTileEntities {
 	public static final BlockEntityType<LampTile> SMALL_LAMP = null;
 	public static final BlockEntityType<SimpleDrawerTile> SIMPLE_DRAWER = null;

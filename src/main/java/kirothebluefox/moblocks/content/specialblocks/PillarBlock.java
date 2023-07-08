@@ -27,6 +27,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
+import java.util.stream.Collectors;
 
 public class PillarBlock extends Block implements SimpleWaterloggedBlock {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -513,52 +514,52 @@ public class PillarBlock extends Block implements SimpleWaterloggedBlock {
 	private BlockState getState(BlockState blockstate, LevelAccessor worldIn, BlockPos blockpos) {
 	    BlockPos blockposnorth = blockpos.north();
 	    Block blocknorth = worldIn.getBlockState(blockposnorth).getBlock();
-	    Boolean northbool = blocknorth.getTags().contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
+	    Boolean northbool = blocknorth.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
 	    BlockState blockstatenorth = worldIn.getBlockState(blockposnorth);
 
 	    BlockPos blockposeast = blockpos.east();
 	    Block blockeast = worldIn.getBlockState(blockposeast).getBlock();
-	    Boolean eastbool = blockeast.getTags().contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
+	    Boolean eastbool = blockeast.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
 	    BlockState blockstateeast = worldIn.getBlockState(blockposeast);
 
 	    BlockPos blockpossouth = blockpos.south();
 	    Block blocksouth = worldIn.getBlockState(blockpossouth).getBlock();
-	    Boolean southbool = blocksouth.getTags().contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
+	    Boolean southbool = blocksouth.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
 	    BlockState blockstatesouth = worldIn.getBlockState(blockpossouth);
 
 	    BlockPos blockposwest = blockpos.west();
 	    Block blockwest = worldIn.getBlockState(blockposwest).getBlock();
-	    Boolean westbool = blockwest.getTags().contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
+	    Boolean westbool = blockwest.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
 	    BlockState blockstatewest = worldIn.getBlockState(blockposwest);
 
 	    BlockPos blockposdown = blockpos.below();
 	    Block blockdown = worldIn.getBlockState(blockposdown).getBlock();
-	    Boolean downbool = blockdown.getTags().contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
+	    Boolean downbool = blockdown.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
 	    BlockState blockstatedown = worldIn.getBlockState(blockposdown);
 
 	    BlockPos blockposup = blockpos.above();
 	    Block blockup = worldIn.getBlockState(blockposup).getBlock();
-	    Boolean upbool = blockup.getTags().contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
+	    Boolean upbool = blockup.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
 	    BlockState blockstateup = worldIn.getBlockState(blockposup);
 
 	    BlockPos blockposnorthwest = blockpos.north().west();
 	    Block blocknorthwest = worldIn.getBlockState(blockposnorthwest).getBlock();
-	    Boolean northwestbool = blocknorthwest.getTags().contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
+	    Boolean northwestbool = blocknorthwest.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
 	    BlockState blockstatenorthwest = worldIn.getBlockState(blockposnorthwest);
 
 	    BlockPos blockposnortheast = blockpos.north().east();
 	    Block blocknortheast = worldIn.getBlockState(blockposnortheast).getBlock();
-	    Boolean northeastbool = blocknortheast.getTags().contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
+	    Boolean northeastbool = blocknortheast.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
 	    BlockState blockstatenortheast = worldIn.getBlockState(blockposnortheast);
 
 	    BlockPos blockpossoutheast = blockpos.south().east();
 	    Block blocksoutheast = worldIn.getBlockState(blockpossoutheast).getBlock();
-	    Boolean southeastbool = blocksoutheast.getTags().contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
+	    Boolean southeastbool = blocksoutheast.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
 	    BlockState blockstatesoutheast = worldIn.getBlockState(blockpossoutheast);
 
 	    BlockPos blockpossouthwest = blockpos.south().west();
 	    Block blocksouthwest = worldIn.getBlockState(blockpossouthwest).getBlock();
-	    Boolean southwestbool = blocksouthwest.getTags().contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
+	    Boolean southwestbool = blocksouthwest.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "pillars"));
 	    BlockState blockstatesouthwest = worldIn.getBlockState(blockpossouthwest);
 
 	    if (upbool && downbool) {
@@ -673,7 +674,7 @@ public class PillarBlock extends Block implements SimpleWaterloggedBlock {
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).m_76153_(FluidTags.WATER);
+			return worldIn.getFluidState(pos).getValue(WATERLOGGED);
 		case AIR:
 			return false;
 		default:

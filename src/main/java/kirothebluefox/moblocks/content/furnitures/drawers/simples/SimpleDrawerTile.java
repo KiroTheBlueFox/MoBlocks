@@ -6,7 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.MenuProvider;
@@ -129,7 +128,7 @@ public class SimpleDrawerTile extends BlockEntity implements MenuProvider {
 
 	@Override
 	public Component getDisplayName() {
-		return new TranslatableComponent("container.moblocks.simple_drawer.name");
+		return Component.translatable("container.moblocks.simple_drawer.name");
 	}
 
 	public long getAnimationTime() {

@@ -32,9 +32,9 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ColorHandlerEvent;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
-import net.minecraftforge.client.model.ForgeModelBakery;
+import net.minecraftforge.client.event.ModelEvent;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -121,19 +121,6 @@ public class ClientRegistration {
 
 		MenuScreens.register(ModContainers.SIMPLE_DRAWER_CONTAINER, SimpleDrawerContainerScreen::new);
 		MenuScreens.register(ModContainers.DOUBLE_DRAWER_CONTAINER, DoubleDrawerContainerScreen::new);
-		ForgeModelBakery.addSpecialModel(allCustomModels.OAK_DRAWER_MODEL.getLocation());
-		ForgeModelBakery.addSpecialModel(allCustomModels.SPRUCE_DRAWER_MODEL.getLocation());
-		ForgeModelBakery.addSpecialModel(allCustomModels.BIRCH_DRAWER_MODEL.getLocation());
-		ForgeModelBakery.addSpecialModel(allCustomModels.JUNGLE_DRAWER_MODEL.getLocation());
-		ForgeModelBakery.addSpecialModel(allCustomModels.ACACIA_DRAWER_MODEL.getLocation());
-		ForgeModelBakery.addSpecialModel(allCustomModels.DARK_OAK_DRAWER_MODEL.getLocation());
-		ForgeModelBakery.addSpecialModel(allCustomModels.NETHER_BRICK_DRAWER_MODEL.getLocation());
-		ForgeModelBakery.addSpecialModel(allCustomModels.CRIMSON_DRAWER_MODEL.getLocation());
-		ForgeModelBakery.addSpecialModel(allCustomModels.WARPED_DRAWER_MODEL.getLocation());
-		ForgeModelBakery.addSpecialModel(allCustomModels.BOOK_COVER_MODEL.getLocation());
-		ForgeModelBakery.addSpecialModel(allCustomModels.BOOK_PAGES_MODEL.getLocation());
-		ForgeModelBakery.addSpecialModel(allCustomModels.EYEBALL_LAMP.getLocation());
-		ForgeModelBakery.addSpecialModel(allCustomModels.NEON_BLOCK.getLocation());
 
 		cutoutBlocks.forEach((block) -> {
 			ItemBlockRenderTypes.setRenderLayer(block, RenderType.cutoutMipped());
@@ -146,15 +133,33 @@ public class ClientRegistration {
 		EntityRenderers.register(ModEntities.SEAT_CHAIR, InvisibleEntityRenderer::new);
 		EntityRenderers.register(ModEntities.SEAT_SOFA, InvisibleEntityRenderer::new);
 	}
+
 	@SubscribeEvent
-	public static void onRegisterParticleFactories(ParticleFactoryRegisterEvent event) {
+	public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
+		event.register(allCustomModels.OAK_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.SPRUCE_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.BIRCH_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.JUNGLE_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.ACACIA_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.DARK_OAK_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.NETHER_BRICK_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.CRIMSON_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.WARPED_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.BOOK_COVER_MODEL.getLocation());
+		event.register(allCustomModels.BOOK_PAGES_MODEL.getLocation());
+		event.register(allCustomModels.EYEBALL_LAMP.getLocation());
+		event.register(allCustomModels.NEON_BLOCK.getLocation());
+	}
+
+	@SubscribeEvent
+	public static void onRegisterParticleFactories(RegisterParticleProvidersEvent event) {
 		ParticleEngine particles = Minecraft.getInstance().particleEngine;
 		particles.register(ModParticles.DRIPPING_INK, InkDripParticle.DrippingInkFactory::new);
 		particles.register(ModParticles.FALLING_INK, InkDripParticle.FallingInkFactory::new);
 		particles.register(ModParticles.LANDING_INK, InkDripParticle.LandingInkFactory::new);
 	}
 	@SubscribeEvent
-	public static void onRegisterBlockColors(ColorHandlerEvent.Block color) {
+	public static void onRegisterBlockColors(RegisterColorHandlersEvent.Block color) {
 		color.getBlockColors().register((p_210225_0_, p_210225_1_, p_210225_2_, p_210225_3_) -> {
 			return ColorableFlowerPot.getColor(p_210225_0_, p_210225_1_, p_210225_2_);
 		}, ModBlocks.COLORABLE_FLOWER_POT);
@@ -254,7 +259,7 @@ public class ClientRegistration {
 				ModBlocks.COLORABLE_OUTER_CORNER_KITCHEN_COUNTER);
 	}
 	@SubscribeEvent
-	public static void onRegisterItemColors(ColorHandlerEvent.Item color) {
+	public static void onRegisterItemColors(RegisterColorHandlersEvent.Item color) {
 		color.getItemColors().register((itemStack, p_210239_1_) -> {
 			return (p_210239_1_ > 0 || itemStack.getTag() == null) ? -1 : ((DyeableLeatherItem)itemStack.getItem()).getColor(itemStack);
 		}, ModItems.CUSTOM_COLOR_PICKER, ModItems.CUSTOM_LIGHT_COLOR_PICKER);

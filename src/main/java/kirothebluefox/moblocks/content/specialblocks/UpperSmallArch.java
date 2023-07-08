@@ -134,7 +134,7 @@ public class UpperSmallArch extends HorizontalDirectionalBlock implements Simple
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).m_76153_(FluidTags.WATER);
+			return worldIn.getFluidState(pos).getValue(WATERLOGGED);
 		case AIR:
 			return false;
 		default:

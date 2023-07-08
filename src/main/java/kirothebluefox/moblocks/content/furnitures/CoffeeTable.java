@@ -25,6 +25,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CoffeeTable extends Block implements SimpleWaterloggedBlock {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -116,7 +117,7 @@ public class CoffeeTable extends Block implements SimpleWaterloggedBlock {
 			return false;
 		}
 	    Block block = worldIn.getBlockState(blockToTest).getBlock();
-	    return block.getTags().contains(new ResourceLocation(MoBlocks.MODID, "coffee_tables"));
+	    return block.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "coffee_tables"));
 	}
 
 	public BlockState forEachDirections(BlockState stateIn, LevelAccessor worldIn, BlockPos currentPos) {
@@ -159,7 +160,7 @@ public class CoffeeTable extends Block implements SimpleWaterloggedBlock {
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).m_76153_(FluidTags.WATER);
+			return worldIn.getFluidState(pos).getValue(WATERLOGGED);
 		case AIR:
 			return false;
 		default:

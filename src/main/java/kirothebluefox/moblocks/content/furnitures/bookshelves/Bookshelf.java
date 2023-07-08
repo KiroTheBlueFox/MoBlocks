@@ -6,7 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -81,7 +80,7 @@ public class Bookshelf extends Block implements SimpleWaterloggedBlock, EntityBl
 
 	@Override
 	public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.shelves.place_item").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+		tooltip.add(Component.translatable("tooltips.moblocks.shelves.place_item").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
 	}
 
 	@SuppressWarnings("deprecation")
@@ -224,7 +223,7 @@ public class Bookshelf extends Block implements SimpleWaterloggedBlock, EntityBl
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).m_76153_(FluidTags.WATER);
+			return worldIn.getFluidState(pos).getValue(WATERLOGGED);
 		case AIR:
 			return false;
 		default:

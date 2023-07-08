@@ -152,7 +152,7 @@ public class VerticalSlab extends HorizontalDirectionalBlock implements SimpleWa
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).m_76153_(FluidTags.WATER);
+			return worldIn.getFluidState(pos).getValue(WATERLOGGED);
 		case AIR:
 			return false;
 		default:

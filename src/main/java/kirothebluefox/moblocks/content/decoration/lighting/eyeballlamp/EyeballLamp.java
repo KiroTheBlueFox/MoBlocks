@@ -5,8 +5,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -110,8 +108,8 @@ public class EyeballLamp extends ColorableBlock implements EntityBlock {
 
 	@Override
 	public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.reference_to").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)).append(new TextComponent("AsianHalfSquat").setStyle(Style.EMPTY.withColor(ChatFormatting.BLUE))));
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.eyeball_lamp.follow_player").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+		tooltip.add(Component.translatable("tooltips.moblocks.reference_to").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)).append(Component.literal("AsianHalfSquat").setStyle(Style.EMPTY.withColor(ChatFormatting.BLUE))));
+		tooltip.add(Component.translatable("tooltips.moblocks.eyeball_lamp.follow_player").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
 

@@ -22,6 +22,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
+import java.util.stream.Collectors;
 
 public class ColorableFlowerPot extends Block implements IColorableBlock, EntityBlock {
 	protected static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D);
@@ -42,28 +43,30 @@ public class ColorableFlowerPot extends Block implements IColorableBlock, Entity
 		if (itemstack.isEmpty()) {
 			BlockEntity tileentity = worldIn.getBlockEntity(pos);
 			if (tileentity instanceof ColorableFlowerPotTile) {
-				ColorableFlowerPotTile colorableflowerpotentity = (ColorableFlowerPotTile)tileentity;
+				ColorableFlowerPotTile colorableflowerpotentity = (ColorableFlowerPotTile) tileentity;
 				colorableflowerpotentity.dropItem(player, handIn);
 			}
 			return InteractionResult.SUCCESS;
 		} else {
 			Item item = itemstack.getItem();
 			if (item instanceof IDyeableColorPicker) {
-				IDyeableColorPicker colorpicker = (IDyeableColorPicker)item;
+				IDyeableColorPicker colorpicker = (IDyeableColorPicker) item;
 				BlockEntity tileentity = worldIn.getBlockEntity(pos);
 				if (tileentity instanceof ColorableFlowerPotTile) {
-					ColorableFlowerPotTile colorableflowerpotentity = (ColorableFlowerPotTile)tileentity;
-					if (player.isShiftKeyDown()) colorpicker.setColor(itemstack, colorableflowerpotentity.getColor());
+					ColorableFlowerPotTile colorableflowerpotentity = (ColorableFlowerPotTile) tileentity;
+					if (player.isShiftKeyDown())
+						colorpicker.setColor(itemstack, colorableflowerpotentity.getColor());
 					else colorableflowerpotentity.setColor(colorpicker.getColor(itemstack));
 					return InteractionResult.SUCCESS;
 				} else {
 					return InteractionResult.FAIL;
 				}
-			} else if (item.getTags().contains(new ResourceLocation("minecraft:small_flowers"))) {
+			} else if (itemstack.getTags().collect(Collectors.toList()).contains(new ResourceLocation("minecraft:small_flowers"))) {
 				BlockEntity tileentity = worldIn.getBlockEntity(pos);
 				if (tileentity instanceof ColorableFlowerPotTile) {
-					ColorableFlowerPotTile colorableflowerpotentity = (ColorableFlowerPotTile)tileentity;
-					if (!player.isShiftKeyDown()) colorableflowerpotentity.addItem(player.isCreative() ? itemstack.copy() : itemstack);
+					ColorableFlowerPotTile colorableflowerpotentity = (ColorableFlowerPotTile) tileentity;
+					if (!player.isShiftKeyDown())
+						colorableflowerpotentity.addItem(player.isCreative() ? itemstack.copy() : itemstack);
 					else colorableflowerpotentity.dropItem();
 				}
 				return InteractionResult.SUCCESS;

@@ -1,5 +1,6 @@
 package kirothebluefox.moblocks.content;
 
+/*
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.StaticTagHelper;
@@ -9,7 +10,7 @@ import net.minecraft.tags.TagCollection;
 import net.minecraft.world.level.block.Block;
 
 public class CustomBlockTags {
-	private static StaticTagHelper<Block> collection = StaticTags.m_144351_(Registry.BLOCK_REGISTRY, "tags/blocks"); /*StaticTags.create(new ResourceLocation(MoBlocks.MODID, "block"), TagContainer::getBlocks);*/
+	private static StaticTagHelper<Block> collection = StaticTags.m_144351_(Registry.BLOCK_REGISTRY, "tags/blocks"); /*StaticTags.create(new ResourceLocation(MoBlocks.MODID, "block"), TagContainer::getBlocks);
 
 	public static final Tag.Named<Block> VERTICAL_SLABS = makeWrapperTag("vertical_slabs");
 	public static final Tag.Named<Block> VERTICAL_STAIRS = makeWrapperTag("vertical_stairs");
@@ -61,4 +62,4 @@ public class CustomBlockTags {
 	public static TagCollection<Block> getAllTags() {
 		return collection.m_13246_();
 	}
-}
+}*/

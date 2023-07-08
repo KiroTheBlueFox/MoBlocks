@@ -21,7 +21,6 @@ public class NeonBlockTileRenderer implements BlockEntityRenderer<NeonBlockTile>
 		matrixStackIn.pushPose();
 
 		RenderType renderType = RenderType.solid();
-		net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
 		BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
 		BakedModel model = Minecraft.getInstance().getModelManager().getModel(allCustomModels.NEON_BLOCK.getLocation());
 
@@ -34,8 +33,7 @@ public class NeonBlockTileRenderer implements BlockEntityRenderer<NeonBlockTile>
 				((tileEntityIn.getColor()&0xFF00)>>8)/255f,
 				(tileEntityIn.getColor()&0xFF)/255f,
 				0x00F000F0,
-				OverlayTexture.NO_OVERLAY,
-				net.minecraftforge.client.model.data.EmptyModelData.INSTANCE);
+				OverlayTexture.NO_OVERLAY);
 
 		matrixStackIn.popPose();
 	}

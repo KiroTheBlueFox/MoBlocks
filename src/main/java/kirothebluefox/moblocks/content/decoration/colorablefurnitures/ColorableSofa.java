@@ -6,7 +6,7 @@ import kirothebluefox.moblocks.content.decoration.customcolorpicker.IDyeableColo
 import kirothebluefox.moblocks.content.furnitures.SeatSofa;
 import kirothebluefox.moblocks.content.furnitures.Sofa;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -68,7 +68,7 @@ public class ColorableSofa extends Sofa implements IColorableBlock, EntityBlock 
 					if ((vec.x - player.getX()) * (vec.x - player.getX()) +
 							(vec.y - player.getY()) * (vec.y - player.getY()) +
 							(vec.z - player.getZ()) * (vec.z - player.getZ()) > maxDist * maxDist) {
-						player.displayClientMessage(new TranslatableComponent("status_messages.moblocks.seats.too_far", new TranslatableComponent("status_messages.moblocks.seats.sofa")), true);
+						player.displayClientMessage(Component.translatable("status_messages.moblocks.seats.too_far", Component.translatable("status_messages.moblocks.seats.sofa")), true);
 						return InteractionResult.SUCCESS;
 					}
 

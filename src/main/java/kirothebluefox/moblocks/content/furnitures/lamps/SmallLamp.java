@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
@@ -74,7 +73,7 @@ public class SmallLamp extends Block implements SimpleWaterloggedBlock, EntityBl
 
 	@Override
 	public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.lamps.turn_on").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+		tooltip.add(Component.translatable("tooltips.moblocks.lamps.turn_on").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
 
@@ -155,7 +154,7 @@ public class SmallLamp extends Block implements SimpleWaterloggedBlock, EntityBl
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).m_76153_(FluidTags.WATER);
+			return worldIn.getFluidState(pos).getValue(WATERLOGGED);
 		case AIR:
 			return false;
 		default:

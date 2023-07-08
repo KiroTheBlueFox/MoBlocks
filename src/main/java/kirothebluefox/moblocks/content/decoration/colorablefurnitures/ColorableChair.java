@@ -6,7 +6,7 @@ import kirothebluefox.moblocks.content.decoration.customcolorpicker.IDyeableColo
 import kirothebluefox.moblocks.content.furnitures.Chair;
 import kirothebluefox.moblocks.content.furnitures.SeatChair;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -48,7 +48,7 @@ public class ColorableChair extends Chair implements IColorableBlock, EntityBloc
 				if ((vec.x - player.getX()) * (vec.x - player.getX()) +
 						(vec.y - player.getY()) * (vec.y - player.getY()) +
 						(vec.z - player.getZ()) * (vec.z - player.getZ()) > maxDist * maxDist) {
-					player.displayClientMessage(new TranslatableComponent("status_messages.moblocks.seats.too_far", new TranslatableComponent("status_messages.moblocks.seats.chair")), true);
+					player.displayClientMessage(Component.translatable("status_messages.moblocks.seats.too_far", Component.translatable("status_messages.moblocks.seats.chair")), true);
 					return InteractionResult.SUCCESS;
 				}
 
@@ -84,7 +84,7 @@ public class ColorableChair extends Chair implements IColorableBlock, EntityBloc
 					if ((vec.x - player.getX()) * (vec.x - player.getX()) +
 							(vec.y - player.getY()) * (vec.y - player.getY()) +
 							(vec.z - player.getZ()) * (vec.z - player.getZ()) > maxDist * maxDist) {
-						player.displayClientMessage(new TranslatableComponent("status_messages.moblocks.seats.too_far", new TranslatableComponent("status_messages.moblocks.seats.chair")), true);
+						player.displayClientMessage(Component.translatable("status_messages.moblocks.seats.too_far", Component.translatable("status_messages.moblocks.seats.chair")), true);
 						return InteractionResult.SUCCESS;
 					}
 

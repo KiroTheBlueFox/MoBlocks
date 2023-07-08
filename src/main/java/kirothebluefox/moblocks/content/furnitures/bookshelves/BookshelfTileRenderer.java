@@ -21,7 +21,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.model.data.EmptyModelData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,8 +71,7 @@ public class BookshelfTileRenderer implements BlockEntityRenderer<BookshelfTile>
 
 		            BlockState blockstate = tileEntityIn.getBlockState();
 		            BakedModel model = bookCoverModels.get(layer*7+stackIndex);
-		            RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-					net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
+		            RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate);
 					BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
 					Level world = tileEntityIn.getLevel();
 					ModelBlockRenderer blockModelRenderer = blockDispatcher.getModelRenderer();
@@ -86,8 +84,7 @@ public class BookshelfTileRenderer implements BlockEntityRenderer<BookshelfTile>
 							0.0f,
 							0.0f,
 							combinedLightIn,
-							combinedOverlayIn,
-							EmptyModelData.INSTANCE
+							combinedOverlayIn
 					);
 				}
 				matrixStackIn.popPose();
@@ -125,7 +122,6 @@ public class BookshelfTileRenderer implements BlockEntityRenderer<BookshelfTile>
 					BlockState blockstate = tileEntityIn.getBlockState();
 		            BakedModel model = bookPagesModels.get(layer*7+stackIndex);
 					RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-					net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
 					BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
 					Level world = tileEntityIn.getLevel();
 					ModelBlockRenderer blockModelRenderer = blockDispatcher.getModelRenderer();
@@ -138,8 +134,7 @@ public class BookshelfTileRenderer implements BlockEntityRenderer<BookshelfTile>
 							0.0f,
 							0.0f,
 							combinedLightIn,
-							combinedOverlayIn,
-							EmptyModelData.INSTANCE
+							combinedOverlayIn
 					);
 				}
 

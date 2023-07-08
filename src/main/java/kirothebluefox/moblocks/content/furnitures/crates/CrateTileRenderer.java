@@ -141,7 +141,7 @@ public class CrateTileRenderer implements BlockEntityRenderer<CrateTile> {
 	            if (i == layer &&
 	            		MoBlocks.config.crates_quantity.get() &&
 	            		!tileEntityIn.getItem(j).isEmpty() &&
-	            		tileEntityIn.getBlockPos().m_123306_(Minecraft.getInstance().player.position(), 5)) {
+	            		tileEntityIn.getBlockPos().closerToCenterThan(Minecraft.getInstance().player.position(), 5)) {
 					matrixStackIn.pushPose();
 
 					matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(180F));

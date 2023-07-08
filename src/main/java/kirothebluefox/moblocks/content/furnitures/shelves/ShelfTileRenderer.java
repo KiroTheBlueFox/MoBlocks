@@ -139,7 +139,7 @@ public class ShelfTileRenderer implements BlockEntityRenderer<ShelfTile> {
 		}
 		if (MoBlocks.config.shelves_quantity.get()) {
 			for (int i = 0; i < 4; i++) {
-				if (!tileEntityIn.getItem(i).isEmpty() && tileEntityIn.getBlockPos().m_123306_(Minecraft.getInstance().player.position(), 5)) {
+				if (!tileEntityIn.getItem(i).isEmpty() && tileEntityIn.getBlockPos().closerToCenterThan(Minecraft.getInstance().player.position(), 5)) {
 					matrixStackIn.pushPose();
 	                Font fontrenderer = Minecraft.getInstance().font;
 	                matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(180F));

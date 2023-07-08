@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -345,8 +344,8 @@ public class Sofa extends Block implements SimpleWaterloggedBlock {
 
 	@Override
 	public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.sit_on").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.sofa.toggle_armrests").setStyle(Style.EMPTY.withColor(ChatFormatting.BLUE)));
+		tooltip.add(Component.translatable("tooltips.moblocks.sit_on").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+		tooltip.add(Component.translatable("tooltips.moblocks.sofa.toggle_armrests").setStyle(Style.EMPTY.withColor(ChatFormatting.BLUE)));
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
 
@@ -365,7 +364,7 @@ public class Sofa extends Block implements SimpleWaterloggedBlock {
 				if ((vec.x - player.getX()) * (vec.x - player.getX()) +
 						(vec.y - player.getY()) * (vec.y - player.getY()) +
 						(vec.z - player.getZ()) * (vec.z - player.getZ()) > maxDist * maxDist) {
-					player.displayClientMessage(new TranslatableComponent("status_messages.moblocks.seats.too_far", new TranslatableComponent("status_messages.moblocks.seats.sofa")), true);
+					player.displayClientMessage(Component.translatable("status_messages.moblocks.seats.too_far", Component.translatable("status_messages.moblocks.seats.sofa")), true);
 					return InteractionResult.SUCCESS;
 				}
 

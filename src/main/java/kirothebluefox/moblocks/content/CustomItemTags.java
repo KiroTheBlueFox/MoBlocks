@@ -1,5 +1,5 @@
 package kirothebluefox.moblocks.content;
-
+/*
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.StaticTagHelper;
@@ -34,4 +34,4 @@ public class CustomItemTags {
 	   public static TagCollection<Item> getAllTags() {
 	      return collection.m_13246_();
 	   }
-}
+}*/

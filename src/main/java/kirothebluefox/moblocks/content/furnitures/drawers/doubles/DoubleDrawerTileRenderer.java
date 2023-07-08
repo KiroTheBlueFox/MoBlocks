@@ -18,7 +18,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.model.data.EmptyModelData;
 
 public class DoubleDrawerTileRenderer implements BlockEntityRenderer<DoubleDrawerTile> {
 	public DoubleDrawerTileRenderer(BlockEntityRendererProvider.Context context) {}
@@ -91,8 +90,7 @@ public class DoubleDrawerTileRenderer implements BlockEntityRenderer<DoubleDrawe
 		matrixStackIn.pushPose();
 
 		BlockState blockstate = tileEntityIn.getBlockState();
-		RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-		net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
+		RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate);
 		BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
 		Level world = tileEntityIn.getLevel();
 
@@ -124,8 +122,7 @@ public class DoubleDrawerTileRenderer implements BlockEntityRenderer<DoubleDrawe
 				0.0f,
 				0.0f,
 				combinedLightIn,
-				combinedOverlayIn,
-				EmptyModelData.INSTANCE
+				combinedOverlayIn
 		);
 
         matrixStackIn.popPose();
@@ -161,8 +158,7 @@ public class DoubleDrawerTileRenderer implements BlockEntityRenderer<DoubleDrawe
 				0.0f,
 				0.0f,
 				combinedLightIn,
-				combinedOverlayIn,
-				EmptyModelData.INSTANCE
+				combinedOverlayIn
 		);
 
         matrixStackIn.popPose();

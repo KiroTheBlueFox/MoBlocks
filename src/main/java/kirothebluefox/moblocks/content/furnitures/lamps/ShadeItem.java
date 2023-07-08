@@ -3,7 +3,6 @@ package kirothebluefox.moblocks.content.furnitures.lamps;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -39,9 +38,9 @@ public class ShadeItem extends Item {
 
 	@Override
 	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.shades.color", new TranslatableComponent("item.moblocks.shades.colors."+this.color.getName()).setStyle(Style.EMPTY.withColor(this.color.getColor()))).setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.shades.shape", new TranslatableComponent("item.moblocks.shades.shapes."+this.shape)).setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.shades.place").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+		tooltip.add(Component.translatable("tooltips.moblocks.shades.color", Component.translatable("item.moblocks.shades.colors."+this.color.getName()).setStyle(Style.EMPTY.withColor(this.color.getColor()))).setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+		tooltip.add(Component.translatable("tooltips.moblocks.shades.shape", Component.translatable("item.moblocks.shades.shapes."+this.shape)).setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+		tooltip.add(Component.translatable("tooltips.moblocks.shades.place").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
 

@@ -18,7 +18,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.model.data.EmptyModelData;
 
 public class SimpleDrawerTileRenderer implements BlockEntityRenderer<SimpleDrawerTile> {
 	public SimpleDrawerTileRenderer(BlockEntityRendererProvider.Context context) {
@@ -74,7 +73,6 @@ public class SimpleDrawerTileRenderer implements BlockEntityRenderer<SimpleDrawe
 
 		BlockState blockstate = tileEntityIn.getBlockState();
 		RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-		net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
 		BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
 		Level world = tileEntityIn.getLevel();
 
@@ -107,8 +105,7 @@ public class SimpleDrawerTileRenderer implements BlockEntityRenderer<SimpleDrawe
 				0.0f,
 				0.0f,
 				combinedLightIn,
-				combinedOverlayIn,
-				EmptyModelData.INSTANCE
+				combinedOverlayIn
 		);
 
         matrixStackIn.popPose();

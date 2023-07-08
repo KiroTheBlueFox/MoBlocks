@@ -17,7 +17,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.model.data.EmptyModelData;
+import net.minecraftforge.client.model.data.ModelData;
 
 public class ColorableFlowerPotTileRenderer implements BlockEntityRenderer<ColorableFlowerPotTile> {
 
@@ -41,8 +41,7 @@ public class ColorableFlowerPotTileRenderer implements BlockEntityRenderer<Color
 	    		matrixStackIn.translate(0, 0.25, 0);
 
 				BlockState blockstate = ((BlockItem) item).getBlock().defaultBlockState();
-				RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-				net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
+				RenderType renderType = ItemBlockRenderTypes.getMovingBlockRenderType(blockstate);
 				BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
 				Level world = tileEntityIn.getLevel();
 				ModelBlockRenderer renderer = new ModelBlockRenderer(BlockColors.createDefault());
@@ -55,8 +54,7 @@ public class ColorableFlowerPotTileRenderer implements BlockEntityRenderer<Color
 						0.0f,
 						0.0f,
 						combinedLightIn,
-						combinedOverlayIn,
-						EmptyModelData.INSTANCE
+						combinedOverlayIn
 				);
 
 	    		matrixStackIn.popPose();

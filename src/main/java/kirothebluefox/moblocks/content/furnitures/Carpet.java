@@ -25,6 +25,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Carpet extends Block implements SimpleWaterloggedBlock {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -116,7 +117,7 @@ public class Carpet extends Block implements SimpleWaterloggedBlock {
 			return false;
 		}
 	    Block block = worldIn.getBlockState(blockToTest).getBlock();
-	    return block.getTags().contains(new ResourceLocation(MoBlocks.MODID, "carpets"));
+	    return block.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "carpets"));
 	}
 
 	public BlockState forEachDirections(BlockState stateIn, LevelAccessor worldIn, BlockPos currentPos) {

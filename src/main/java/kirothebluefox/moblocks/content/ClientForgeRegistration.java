@@ -21,20 +21,21 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @EventBusSubscriber(modid = MoBlocks.MODID, value = Dist.CLIENT, bus=Bus.FORGE)
 public class ClientForgeRegistration {
 	@SubscribeEvent
-	public static void renderGameOverlayEvent(RenderGameOverlayEvent.Post event) {
-		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL && MoBlocks.config.tooltip_rendering.get()) {
-			PoseStack matrixStack = event.getMatrixStack();
+	public static void renderGameOverlayEvent(RenderGuiOverlayEvent.Post event) {
+		if (MoBlocks.config.tooltip_rendering.get()) {
+			PoseStack matrixStack = event.getPoseStack();
 			HitResult raytraceResult = Minecraft.getInstance().hitResult;
 			if (raytraceResult.getType() == HitResult.Type.BLOCK) {
 				BlockHitResult raytrace = (BlockHitResult) raytraceResult;
@@ -42,7 +43,7 @@ public class ClientForgeRegistration {
 				ClientLevel worldIn = Minecraft.getInstance().level;
 				BlockState state = worldIn.getBlockState(pos);
 				Block block = state.getBlock();
-				if (block.getTags().contains(new ResourceLocation(MoBlocks.MODID, "no_gui_container_blocks"))) {
+				if (block.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "no_gui_container_blocks"))) {
 					Vec3 hit = raytrace.getLocation();
 					ItemStack item = ItemStack.EMPTY;
 					if (block instanceof PotionShelf) {

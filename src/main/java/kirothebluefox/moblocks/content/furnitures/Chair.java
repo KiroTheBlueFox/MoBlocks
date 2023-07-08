@@ -69,7 +69,7 @@ public class Chair extends Block implements SimpleWaterloggedBlock {
 			if ((vec.x - player.getX()) * (vec.x - player.getX()) +
 					(vec.y - player.getY()) * (vec.y - player.getY()) +
 					(vec.z - player.getZ()) * (vec.z - player.getZ()) > maxDist * maxDist) {
-				player.displayClientMessage(new TranslatableComponent("status_messages.moblocks.seats.too_far", new TranslatableComponent("status_messages.moblocks.seats.chair")), true);
+				player.displayClientMessage(Component.translatable("status_messages.moblocks.seats.too_far", Component.translatable("status_messages.moblocks.seats.chair")), true);
 				return InteractionResult.SUCCESS;
 			}
 
@@ -83,7 +83,7 @@ public class Chair extends Block implements SimpleWaterloggedBlock {
 
 	@Override
 	public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.sit_on").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+		tooltip.add(Component.translatable("tooltips.moblocks.sit_on").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
 
@@ -114,7 +114,7 @@ public class Chair extends Block implements SimpleWaterloggedBlock {
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).m_76153_(FluidTags.WATER);
+			return worldIn.getFluidState(pos).getValue(WATERLOGGED);
 		case AIR:
 			return false;
 		default:

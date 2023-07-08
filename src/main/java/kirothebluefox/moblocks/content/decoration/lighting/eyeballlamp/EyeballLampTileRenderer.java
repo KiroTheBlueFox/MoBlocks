@@ -5,6 +5,7 @@ import com.mojang.math.Vector3f;
 import kirothebluefox.moblocks.content.ModTileEntities;
 import kirothebluefox.moblocks.content.allCustomModels;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
@@ -13,6 +14,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
@@ -36,7 +38,7 @@ public class EyeballLampTileRenderer implements BlockEntityRenderer<EyeballLampT
 			double distance = -1;
 			Entity nearest = null;
 			for (Entity entity : nearEntities) {
-				double distanceFromEntity = tileEntityIn.getBlockPos().m_123299_(entity.getX(), entity.getY(), entity.getZ(), true);
+				double distanceFromEntity = tileEntityIn.getBlockPos().distToCenterSqr(entity.getX(), entity.getY(), entity.getZ());
 				if (distance < 0 || distanceFromEntity < distance) {
 					distance = distanceFromEntity;
 					nearest = entity;
@@ -60,8 +62,7 @@ public class EyeballLampTileRenderer implements BlockEntityRenderer<EyeballLampT
     	matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(verticalAngle));
 		matrixStackIn.translate(-0.5f, -0.5f, -0.5f);
 
-		RenderType renderType = RenderType.cutoutMipped(); // RenderTypeLookup.getMovingBlockRenderType(blockstate); // RenderTypeLookup.getRenderType
-		net.minecraftforge.client.ForgeHooksClient.setRenderType(renderType);
+		RenderType renderType = RenderType.cutoutMipped();
 		BlockRenderDispatcher blockDispatcher = Minecraft.getInstance().getBlockRenderer();
 		BakedModel model = Minecraft.getInstance().getModelManager().getModel(allCustomModels.EYEBALL_LAMP.getLocation());
 
@@ -74,8 +75,7 @@ public class EyeballLampTileRenderer implements BlockEntityRenderer<EyeballLampT
 				((tileEntityIn.getColor()&0xFF00)>>8)/255f,
 				(tileEntityIn.getColor()&0xFF)/255f,
 				0x00F000F0,
-				OverlayTexture.NO_OVERLAY,
-				net.minecraftforge.client.model.data.EmptyModelData.INSTANCE);
+				OverlayTexture.NO_OVERLAY);
 
 		matrixStackIn.popPose();
 	}

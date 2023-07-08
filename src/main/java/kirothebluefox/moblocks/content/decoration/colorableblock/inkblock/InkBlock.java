@@ -7,8 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
@@ -19,7 +18,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
-import java.util.Random;
 
 public class InkBlock extends ColorableBlock {
 	private static final String IDEA_BY = "Mysticpasta1";
@@ -30,18 +28,18 @@ public class InkBlock extends ColorableBlock {
 
 	@Override
 	public void appendHoverText(ItemStack stack, BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		tooltip.add(new TranslatableComponent("tooltips.moblocks.idea_and_texture_by").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY))
-				.append(new TextComponent(" "+InkBlock.IDEA_BY).setStyle(Style.EMPTY.withColor(ChatFormatting.BLUE))));
+		tooltip.add(Component.literal("tooltips.moblocks.idea_and_texture_by").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY))
+				.append(Component.literal(" "+InkBlock.IDEA_BY).setStyle(Style.EMPTY.withColor(ChatFormatting.BLUE))));
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
 
 	/**
 	 * Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that
-	 * this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless
+	 * this method is unrelated to randomTick and renderTicking thing, and will always be called regardless
 	 * of whether the block can receive random update ticks
 	 */
 	@OnlyIn(Dist.CLIENT)
-	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
 		Direction direction = Direction.getRandom(rand);
 		if (direction != Direction.UP) {
 			BlockPos blockpos = pos.relative(direction);

@@ -2,7 +2,7 @@ package kirothebluefox.moblocks.content.furnitures.drawers.simples;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
@@ -91,14 +91,14 @@ public class SimpleDrawer extends Block implements SimpleWaterloggedBlock, Entit
 		if (!worldIn.isClientSide && handIn.equals(InteractionHand.MAIN_HAND)) {
 			worldIn.sendBlockUpdated(pos, state, state, 2);
 			if (isBlocked(state, worldIn, pos)) {
-				player.displayClientMessage(new TranslatableComponent("status_messages.moblocks.drawers.is_blocked"), true);
+				player.displayClientMessage(Component.translatable("status_messages.moblocks.drawers.is_blocked"), true);
 			} else {
 				BlockEntity tileEntity = worldIn.getBlockEntity(pos);
 				if (tileEntity instanceof SimpleDrawerTile) {
 					if (((SimpleDrawerTile)tileEntity).isOpened()) {
-						player.displayClientMessage(new TranslatableComponent("status_messages.moblocks.drawers.already_in_use"), true);
+						player.displayClientMessage(Component.translatable("status_messages.moblocks.drawers.already_in_use"), true);
 					} else {
-						NetworkHooks.openGui((ServerPlayer) player, (MenuProvider) tileEntity, tileEntity.getBlockPos());
+						NetworkHooks.openScreen((ServerPlayer) player, (MenuProvider) tileEntity, tileEntity.getBlockPos());
 					}
 				}
 			}
@@ -155,7 +155,7 @@ public class SimpleDrawer extends Block implements SimpleWaterloggedBlock, Entit
 		case LAND:
 			return false;
 		case WATER:
-			return worldIn.getFluidState(pos).m_76153_(FluidTags.WATER);
+			return worldIn.getFluidState(pos).getValue(WATERLOGGED);
 		case AIR:
 			return false;
 		default:

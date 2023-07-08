@@ -14,6 +14,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.stream.Collectors;
+
 public class LampTile extends BlockEntity {
 	public static final String INV_KEY = "inventory";
     public ItemStack stack = ItemStack.EMPTY;
@@ -64,7 +66,7 @@ public class LampTile extends BlockEntity {
     }
 
 	public boolean addItem(ItemStack itemstack) {
-        if (itemstack.getItem().getTags().contains(new ResourceLocation(MoBlocks.MODID, "lamp_shades"))) {
+        if (itemstack.getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "lamp_shades"))) {
     		this.stack = itemstack.split(1);
     		this.notifyBlock();
     		return true;

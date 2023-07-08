@@ -14,6 +14,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.stream.Collectors;
+
 public class PotionShelfTile extends BlockEntity {
 	private int layers = 3, stacksPerLayer = 3;
 	public String[][] KEYS = new String[layers][stacksPerLayer];
@@ -75,7 +77,7 @@ public class PotionShelfTile extends BlockEntity {
     }
 
 	public boolean addItem(ItemStack itemstack, int layer, int pos, Player player, InteractionHand hand) {
-		if (inventory[layer][pos].isEmpty() && itemstack.getItem().getTags().contains(new ResourceLocation(MoBlocks.MODID, "potion_items"))) {
+		if (inventory[layer][pos].isEmpty() && itemstack.getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "potion_items"))) {
 			inventory[layer][pos] = itemstack.split(1);
 		} else {
 			dropItem(player, hand, layer, pos);
