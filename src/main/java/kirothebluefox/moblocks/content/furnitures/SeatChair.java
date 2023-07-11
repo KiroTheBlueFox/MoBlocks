@@ -1,47 +1,50 @@
 package kirothebluefox.moblocks.content.furnitures;
 
+import kirothebluefox.moblocks.content.ModEntities;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.Level;
+
 import java.util.List;
 
-import kirothebluefox.moblocks.content.ModEntities;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
+
+import net.minecraft.world.entity.Entity.RemovalReason;
 
 public class SeatChair extends Entity {
-	public SeatChair(World worldIn, BlockPos pos) {
+	public SeatChair(Level worldIn, BlockPos pos) {
 		this(ModEntities.SEAT_CHAIR, worldIn);
-		setPosition(pos.getX() + 0.5d, pos.getY() + 0.4d, pos.getZ() + 0.5d);
+		setPos(pos.getX() + 0.5d, pos.getY() + 0.4d, pos.getZ() + 0.5d);
 	}
-	
-	public SeatChair(EntityType<SeatChair> type, World worldIn) {
+
+	public SeatChair(EntityType<SeatChair> type, Level worldIn) {
 		super(ModEntities.SEAT_CHAIR, worldIn);
 	}
 
 	public void tick() {
 		super.tick();
-		BlockPos pos = getPosition();
-		if (!(getEntityWorld().getBlockState(pos).getBlock() instanceof Chair)) {
-			remove();
+		BlockPos pos = blockPosition();
+		if (!(getCommandSenderWorld().getBlockState(pos).getBlock() instanceof Chair)) {
+			remove(RemovalReason.KILLED);
 		} else {
 			List<Entity> passengers = getPassengers();
 			if (passengers.isEmpty()) {
-				remove();
+				remove(RemovalReason.KILLED);
 			} else {
 				for (Entity entity : passengers) {
-					if (entity.isSneaking()) {
-						remove();
+					if (entity.isShiftKeyDown()) {
+						remove(RemovalReason.KILLED);
 					}
 				}
 			}
 		}
 	}
-	
+
 	@Override
-	protected boolean canBeRidden(Entity entityIn) {
+	protected boolean canRide(Entity entityIn) {
 		if (entityIn.getType() == EntityType.PLAYER) {
 			return true;
 		} else {
@@ -50,19 +53,19 @@ public class SeatChair extends Entity {
 	}
 
 	@Override
-	protected void registerData() {
+	protected void defineSynchedData() {
 	}
 
 	@Override
-	protected void readAdditional(CompoundNBT compound) {
+	protected void readAdditionalSaveData(CompoundTag compound) {
 	}
 
 	@Override
-	protected void writeAdditional(CompoundNBT compound) {
+	protected void addAdditionalSaveData(CompoundTag compound) {
 	}
 
 	@Override
-	public IPacket<?> createSpawnPacket() {
+	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 }

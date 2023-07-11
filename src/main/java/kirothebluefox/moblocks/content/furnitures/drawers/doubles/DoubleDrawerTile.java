@@ -1,25 +1,21 @@
 package kirothebluefox.moblocks.content.furnitures.drawers.doubles;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import kirothebluefox.moblocks.content.ModTileEntities;
 import kirothebluefox.moblocks.utils.ItemStackUtils;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
@@ -28,27 +24,30 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class DoubleDrawerTile extends TileEntity implements INamedContainerProvider, ITickableTileEntity {
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+public class DoubleDrawerTile extends BlockEntity implements MenuProvider {
 	public static final String INV_KEY = "inventory";
     private IItemHandlerModifiable items = createItemHandler();
     private LazyOptional<IItemHandler> handler = LazyOptional.of(() -> items);
     private boolean isOpened;
 	private long animationTime;
-	
-	public DoubleDrawerTile() {
-		super(ModTileEntities.DOUBLE_DRAWER);
+
+	public DoubleDrawerTile(BlockPos pos, BlockState state) {
+		super(ModTileEntities.DOUBLE_DRAWER, pos, state);
 		this.isOpened = false;
 	}
-	
+
 	public boolean getIsOpened() {
 		return this.isOpened;
 	}
-	
+
 	public boolean isOpened() {
 		int i = 0;
-		for(PlayerEntity playerentity : this.world.getEntitiesWithinAABB(PlayerEntity.class, new AxisAlignedBB((double)((float)this.pos.getX() - 5.0F), (double)((float)this.pos.getY() - 5.0F), (double)((float)this.pos.getZ() - 5.0F), (double)((float)(this.pos.getX() + 1) + 5.0F), (double)((float)(this.pos.getY() + 1) + 5.0F), (double)((float)(this.pos.getZ() + 1) + 5.0F)))) {
-			if (playerentity.openContainer instanceof DoubleDrawerContainer) {
-				IItemHandler inventory = ((DoubleDrawerContainer)playerentity.openContainer).getBlockInventory();
+		for(Player playerentity : this.level.getEntitiesOfClass(Player.class, new AABB((double)((float)this.worldPosition.getX() - 5.0F), (double)((float)this.worldPosition.getY() - 5.0F), (double)((float)this.worldPosition.getZ() - 5.0F), (double)((float)(this.worldPosition.getX() + 1) + 5.0F), (double)((float)(this.worldPosition.getY() + 1) + 5.0F), (double)((float)(this.worldPosition.getZ() + 1) + 5.0F)))) {
+			if (playerentity.containerMenu instanceof DoubleDrawerContainer) {
+				IItemHandler inventory = ((DoubleDrawerContainer)playerentity.containerMenu).getBlockInventory();
 				if (inventory == this.items) {
 					++i;
 				}
@@ -57,51 +56,50 @@ public class DoubleDrawerTile extends TileEntity implements INamedContainerProvi
 		if (i == 0) {
 			if (this.isOpened) {
 				this.notifyBlock();
-				getWorld().playSound(getPos().getX(), getPos().getY(), getPos().getZ(), SoundEvents.BLOCK_WOODEN_TRAPDOOR_OPEN, SoundCategory.BLOCKS, 1, 0.1f, true);
+				getLevel().playLocalSound(getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(), SoundEvents.WOODEN_TRAPDOOR_OPEN, SoundSource.BLOCKS, 1, 0.1f, true);
 				this.animationTime = System.currentTimeMillis();
 			}
 			return false;
 		} else {
 			if (!this.isOpened) {
 				this.notifyBlock();
-				getWorld().playSound(getPos().getX(), getPos().getY(), getPos().getZ(), SoundEvents.BLOCK_WOODEN_TRAPDOOR_CLOSE, SoundCategory.BLOCKS, 1, 0.1f, true);
+				getLevel().playLocalSound(getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundSource.BLOCKS, 1, 0.1f, true);
 				this.animationTime = System.currentTimeMillis();
 			}
 			return true;
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public void read(BlockState blockstate, CompoundNBT compound) {
-	    CompoundNBT inventory = compound.getCompound(INV_KEY);
-	    handler.ifPresent(h -> ((INBTSerializable<CompoundNBT>)h).deserializeNBT(inventory));
-		super.read(blockstate, compound);
+	public void load(CompoundTag compound) {
+	    CompoundTag inventory = compound.getCompound(INV_KEY);
+	    handler.ifPresent(h -> ((INBTSerializable<CompoundTag>)h).deserializeNBT(inventory));
+		super.load(compound);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public CompoundNBT write(CompoundNBT compound) {
+	public void saveAdditional(CompoundTag compound) {
 	    handler.ifPresent(h -> {
-	    	CompoundNBT inventory = ((INBTSerializable<CompoundNBT>)h).serializeNBT();
+	    	CompoundTag inventory = ((INBTSerializable<CompoundTag>)h).serializeNBT();
 	    	compound.put(INV_KEY, inventory);
 	    });
-	    return super.write(compound);
 	}
-	
+
 	private IItemHandlerModifiable createItemHandler() {
 		return new ItemStackHandler(32);
 	}
-	
+
 	public IItemHandlerModifiable getItems() {
 		return this.items;
 	}
-	
+
 	public boolean dropItems() {
 		boolean isEmpty = true;
 		for (int i = 0; i < this.items.getSlots(); i++) {
 			if (this.items.getStackInSlot(i) != ItemStack.EMPTY) {
-				ItemStackUtils.ejectItemStack(this.getWorld(), this.getPos(), this.items.getStackInSlot(i));
+				ItemStackUtils.ejectItemStack(this.getLevel(), this.getBlockPos(), this.items.getStackInSlot(i));
 				isEmpty = false;
 			}
 		}
@@ -110,10 +108,10 @@ public class DoubleDrawerTile extends TileEntity implements INamedContainerProvi
 	}
 
 	private void notifyBlock() {
-		this.markDirty();
-		this.getWorld().notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);
+		this.setChanged();
+		this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
 	}
-	
+
 	@Nonnull
 	@Override
 	public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
@@ -124,23 +122,20 @@ public class DoubleDrawerTile extends TileEntity implements INamedContainerProvi
 	}
 
 	@Override
-	public Container createMenu(int id, PlayerInventory playerInv, PlayerEntity player) {
-		return new DoubleDrawerContainer(id, pos, playerInv);
+	public AbstractContainerMenu createMenu(int id, Inventory playerInv, Player player) {
+		return new DoubleDrawerContainer(id, worldPosition, playerInv);
 	}
 
 	@Override
-	public ITextComponent getDisplayName() {
-		return new TranslationTextComponent("container.moblocks.double_drawer.name");
+	public Component getDisplayName() {
+		return Component.translatable("container.moblocks.double_drawer.name");
 	}
-	
+
 	public long getAnimationTime() {
 		return this.animationTime;
 	}
-	
-	@Override
+
 	public void tick() {
-		if (world.isRemote()) {
-			this.isOpened = isOpened();
-		}
+		this.isOpened = isOpened();
 	}
 }

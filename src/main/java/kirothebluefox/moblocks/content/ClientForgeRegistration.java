@@ -1,50 +1,50 @@
 package kirothebluefox.moblocks.content;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.mojang.blaze3d.matrix.MatrixStack;
-
+import com.mojang.blaze3d.vertex.PoseStack;
 import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.content.furnitures.bookshelves.Bookshelf;
 import kirothebluefox.moblocks.content.furnitures.crates.Crate;
 import kirothebluefox.moblocks.content.furnitures.potionshelves.PotionShelf;
 import kirothebluefox.moblocks.content.furnitures.shelves.Shelf;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IReorderingProcessor;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @EventBusSubscriber(modid = MoBlocks.MODID, value = Dist.CLIENT, bus=Bus.FORGE)
 public class ClientForgeRegistration {
 	@SubscribeEvent
-	public static void renderGameOverlayEvent(RenderGameOverlayEvent.Post event) {
-		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL && MoBlocks.config.tooltip_rendering.get()) {
-			MatrixStack matrixStack = event.getMatrixStack();
-			RayTraceResult raytraceResult = Minecraft.getInstance().objectMouseOver;
-			if (raytraceResult.getType() == RayTraceResult.Type.BLOCK) {
-				BlockRayTraceResult raytrace = (BlockRayTraceResult) raytraceResult;
-				BlockPos pos = raytrace.getPos();
-				ClientWorld worldIn = Minecraft.getInstance().world;
+	public static void renderGameOverlayEvent(RenderGuiOverlayEvent.Post event) {
+		if (MoBlocks.config.tooltip_rendering.get()) {
+			PoseStack matrixStack = event.getPoseStack();
+			HitResult raytraceResult = Minecraft.getInstance().hitResult;
+			if (raytraceResult.getType() == HitResult.Type.BLOCK) {
+				BlockHitResult raytrace = (BlockHitResult) raytraceResult;
+				BlockPos pos = raytrace.getBlockPos();
+				ClientLevel worldIn = Minecraft.getInstance().level;
 				BlockState state = worldIn.getBlockState(pos);
 				Block block = state.getBlock();
-				if (block.getTags().contains(new ResourceLocation(MoBlocks.MODID, "no_gui_container_blocks"))) {
-					Vector3d hit = raytrace.getHitVec();
+				if (block.defaultBlockState().getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "no_gui_container_blocks"))) {
+					Vec3 hit = raytrace.getLocation();
 					ItemStack item = ItemStack.EMPTY;
 					if (block instanceof PotionShelf) {
 						PotionShelf potionShelf = (PotionShelf) block;
@@ -60,21 +60,21 @@ public class ClientForgeRegistration {
 						item = bookshelf.getItemAtHit(worldIn, state, hit, pos);
 					}
 					if (!item.isEmpty()) {
-						FontRenderer font = Minecraft.getInstance().fontRenderer;
-						int width = Minecraft.getInstance().getMainWindow().getScaledWidth(),
-								height = Minecraft.getInstance().getMainWindow().getScaledHeight(),
+						Font font = Minecraft.getInstance().font;
+						int width = Minecraft.getInstance().getWindow().getGuiScaledWidth(),
+								height = Minecraft.getInstance().getWindow().getGuiScaledHeight(),
 								posx = (int) (width/2),
 								posy = (int) (height/2);
-						net.minecraftforge.fml.client.gui.GuiUtils.preItemToolTip(item);
-					    List<ITextComponent> tooltip = item.getTooltip(Minecraft.getInstance().player, Minecraft.getInstance().gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL);
+						//preItemHoverText(item);
+					    List<Component> tooltip = item.getTooltipLines(Minecraft.getInstance().player, Minecraft.getInstance().options.advancedItemTooltips ? TooltipFlag.Default.ADVANCED : TooltipFlag.Default.NORMAL);
 						// MatrixStack, List<ITextComponent>, int, int, int, int, int, FontRenderer
 					    // net.minecraftforge.fml.client.gui.GuiUtils.drawHoveringText(matrixStack, tooltip, posx, posy, width, height, -1, font);
-						List<IReorderingProcessor> tooltipReordering = new ArrayList<>();
+						List<FormattedCharSequence> tooltipReordering = new ArrayList<>();
 						tooltip.forEach((textcomponent) -> {
-							tooltipReordering.add(IReorderingProcessor.fromString(textcomponent.getString(), textcomponent.getStyle()));
+							tooltipReordering.add(FormattedCharSequence.forward(textcomponent.getString(), textcomponent.getStyle()));
 						});
 					    kirothebluefox.moblocks.utils.GuiUtils.renderToolTip(matrixStack, tooltipReordering, posx, posy, font);
-					    net.minecraftforge.fml.client.gui.GuiUtils.postItemToolTip();
+					    //postItemToolTip();
 					}
 				}
 			}

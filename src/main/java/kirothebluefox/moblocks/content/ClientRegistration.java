@@ -1,8 +1,5 @@
 package kirothebluefox.moblocks.content;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableBlock;
 import kirothebluefox.moblocks.content.decoration.colorableblock.inkblock.InkDripParticle;
@@ -25,29 +22,33 @@ import kirothebluefox.moblocks.content.furnitures.lamps.SmallLampTileRenderer;
 import kirothebluefox.moblocks.content.furnitures.potionshelves.PotionShelfTileRenderer;
 import kirothebluefox.moblocks.content.furnitures.shelves.ShelfTileRenderer;
 import kirothebluefox.moblocks.utils.InvisibleEntityRenderer;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.client.particle.ParticleManager;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.particle.ParticleEngine;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.item.IDyeableArmorItem;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.item.DyeableLeatherItem;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ColorHandlerEvent;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
-import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.event.ModelEvent;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @EventBusSubscriber(modid = MoBlocks.MODID, value = Dist.CLIENT, bus=Bus.MOD)
 public class ClientRegistration {
 	@SubscribeEvent
 	public static void init(FMLClientSetupEvent event) {
-		EntityRendererManager entityRendererManager = Minecraft.getInstance().getRenderManager();
-		
+		EntityRenderDispatcher entityRendererManager = Minecraft.getInstance().getEntityRenderDispatcher();
+
 		ColorableFlowerPotTileRenderer.register();
 		BookshelfTileRenderer.register();
 		CrateTileRenderer.register();
@@ -58,7 +59,7 @@ public class ClientRegistration {
 		PotionShelfTileRenderer.register();
 		EyeballLampTileRenderer.register();
 		NeonBlockTileRenderer.register();
-		
+
 		List<Block> cutoutBlocks = new ArrayList<Block>();
 		cutoutBlocks.add(ModBlocks.OAK_COFFEE_TABLE);
 		cutoutBlocks.add(ModBlocks.SPRUCE_COFFEE_TABLE);
@@ -96,13 +97,13 @@ public class ClientRegistration {
 		cutoutBlocks.add(ModBlocks.STRIPPED_CRIMSON_STEM_COFFEE_TABLE);
 		cutoutBlocks.add(ModBlocks.STRIPPED_WARPED_STEM_COFFEE_TABLE);
 		cutoutBlocks.add(ModBlocks.EYEBALL_LAMP);
-		
-		
-		
+
+
+
 		List<Block> translucentBlocks = new ArrayList<Block>();
 		translucentBlocks.add(ModBlocks.COLORABLE_GLASS);
 		translucentBlocks.add(ModBlocks.COLORABLE_GLASS_PANE);
-		
+
 		translucentBlocks.add(ModBlocks.OAK_SMALL_LAMP);
 		translucentBlocks.add(ModBlocks.BIRCH_SMALL_LAMP);
 		translucentBlocks.add(ModBlocks.SPRUCE_SMALL_LAMP);
@@ -112,50 +113,53 @@ public class ClientRegistration {
 		translucentBlocks.add(ModBlocks.NETHER_BRICK_SMALL_LAMP);
 		translucentBlocks.add(ModBlocks.CRIMSON_SMALL_LAMP);
 		translucentBlocks.add(ModBlocks.WARPED_SMALL_LAMP);
-		
+
 		translucentBlocks.add(ModBlocks.LAVA_LAMP);
 		translucentBlocks.add(ModBlocks.SIREN);
-		
-		
-		
-		ScreenManager.registerFactory(ModContainers.SIMPLE_DRAWER_CONTAINER, SimpleDrawerContainerScreen::new);
-		ScreenManager.registerFactory(ModContainers.DOUBLE_DRAWER_CONTAINER, DoubleDrawerContainerScreen::new);
-		ModelLoader.addSpecialModel(allCustomModels.OAK_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.SPRUCE_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.BIRCH_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.JUNGLE_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.ACACIA_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.DARK_OAK_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.NETHER_BRICK_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.CRIMSON_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.WARPED_DRAWER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.BOOK_COVER_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.BOOK_PAGES_MODEL.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.EYEBALL_LAMP.getLocation());
-		ModelLoader.addSpecialModel(allCustomModels.NEON_BLOCK.getLocation());
-		
+
+
+
+		MenuScreens.register(ModContainers.SIMPLE_DRAWER_CONTAINER, SimpleDrawerContainerScreen::new);
+		MenuScreens.register(ModContainers.DOUBLE_DRAWER_CONTAINER, DoubleDrawerContainerScreen::new);
+
 		cutoutBlocks.forEach((block) -> {
-			RenderTypeLookup.setRenderLayer(block, RenderType.getCutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(block, RenderType.cutoutMipped());
 		});
-		
+
 		translucentBlocks.forEach((block) -> {
-			RenderTypeLookup.setRenderLayer(block, RenderType.getTranslucent());
+			ItemBlockRenderTypes.setRenderLayer(block, RenderType.translucent());
 		});
-		
-		
-		
-		entityRendererManager.register(ModEntities.SEAT_CHAIR, new InvisibleEntityRenderer());
-		entityRendererManager.register(ModEntities.SEAT_SOFA, new InvisibleEntityRenderer());
+
+		EntityRenderers.register(ModEntities.SEAT_CHAIR, InvisibleEntityRenderer::new);
+		EntityRenderers.register(ModEntities.SEAT_SOFA, InvisibleEntityRenderer::new);
+	}
+
+	@SubscribeEvent
+	public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
+		event.register(allCustomModels.OAK_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.SPRUCE_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.BIRCH_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.JUNGLE_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.ACACIA_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.DARK_OAK_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.NETHER_BRICK_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.CRIMSON_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.WARPED_DRAWER_MODEL.getLocation());
+		event.register(allCustomModels.BOOK_COVER_MODEL.getLocation());
+		event.register(allCustomModels.BOOK_PAGES_MODEL.getLocation());
+		event.register(allCustomModels.EYEBALL_LAMP.getLocation());
+		event.register(allCustomModels.NEON_BLOCK.getLocation());
+	}
+
+	@SubscribeEvent
+	public static void onRegisterParticleFactories(RegisterParticleProvidersEvent event) {
+		ParticleEngine particles = Minecraft.getInstance().particleEngine;
+		particles.register(ModParticles.DRIPPING_INK, InkDripParticle.DrippingInkFactory::new);
+		particles.register(ModParticles.FALLING_INK, InkDripParticle.FallingInkFactory::new);
+		particles.register(ModParticles.LANDING_INK, InkDripParticle.LandingInkFactory::new);
 	}
 	@SubscribeEvent
-	public static void onRegisterParticleFactories(ParticleFactoryRegisterEvent event) {
-		ParticleManager particles = Minecraft.getInstance().particles;
-		particles.registerFactory(ModParticles.DRIPPING_INK, InkDripParticle.DrippingInkFactory::new);
-		particles.registerFactory(ModParticles.FALLING_INK, InkDripParticle.FallingInkFactory::new);
-		particles.registerFactory(ModParticles.LANDING_INK, InkDripParticle.LandingInkFactory::new);
-	}
-	@SubscribeEvent
-	public static void onRegisterBlockColors(ColorHandlerEvent.Block color) {
+	public static void onRegisterBlockColors(RegisterColorHandlersEvent.Block color) {
 		color.getBlockColors().register((p_210225_0_, p_210225_1_, p_210225_2_, p_210225_3_) -> {
 			return ColorableFlowerPot.getColor(p_210225_0_, p_210225_1_, p_210225_2_);
 		}, ModBlocks.COLORABLE_FLOWER_POT);
@@ -180,68 +184,68 @@ public class ClientRegistration {
 				ModBlocks.COLORABLE_GLASS, ModBlocks.COLORABLE_GLASS_PANE,
 				ModBlocks.COLORABLE_SOFA, ModBlocks.COLORABLE_TABLE, ModBlocks.COLORABLE_CHAIR,
 				ModBlocks.COLORABLE_PLANK_COFFEE_TABLE, ModBlocks.COLORABLE_TERRACOTTA_COFFEE_TABLE,
-				
+
 				ModBlocks.COLORABLE_PLANK_SLAB, ModBlocks.COLORABLE_BRICK_SLAB,
 				ModBlocks.COLORABLE_STONE_BRICK_SLAB, ModBlocks.COLORABLE_STONE_SLAB,
 				ModBlocks.COLORABLE_COBBLESTONE_SLAB,
-				
+
 				ModBlocks.COLORABLE_PLANK_STAIRS, ModBlocks.COLORABLE_BRICK_STAIRS,
 				ModBlocks.COLORABLE_STONE_BRICK_STAIRS, ModBlocks.COLORABLE_STONE_STAIRS,
 				ModBlocks.COLORABLE_COBBLESTONE_STAIRS,
-				
+
 				ModBlocks.COLORABLE_PLANK_VERTICAL_SLAB, ModBlocks.COLORABLE_BRICK_VERTICAL_SLAB,
 				ModBlocks.COLORABLE_STONE_BRICK_VERTICAL_SLAB, ModBlocks.COLORABLE_STONE_VERTICAL_SLAB,
 				ModBlocks.COLORABLE_COBBLESTONE_VERTICAL_SLAB,
-				
+
 				ModBlocks.COLORABLE_PLANK_VERTICAL_STAIRS, ModBlocks.COLORABLE_BRICK_VERTICAL_STAIRS,
 				ModBlocks.COLORABLE_STONE_BRICK_VERTICAL_STAIRS, ModBlocks.COLORABLE_STONE_VERTICAL_STAIRS,
 				ModBlocks.COLORABLE_COBBLESTONE_VERTICAL_STAIRS,
-				
+
 				ModBlocks.COLORABLE_PLANK_ARCH, ModBlocks.COLORABLE_PLANK_INVERTED_ARCH,
 				ModBlocks.COLORABLE_PLANK_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_PLANK_LOWER_SMALL_INVERTED_ARCH,
 				ModBlocks.COLORABLE_PLANK_PILLAR, ModBlocks.COLORABLE_PLANK_POST, ModBlocks.COLORABLE_PLANK_RAMP,
 				ModBlocks.COLORABLE_PLANK_TRIANGLE_RAMP, ModBlocks.COLORABLE_PLANK_UPPER_SMALL_ARCH,
 				ModBlocks.COLORABLE_PLANK_UPPER_SMALL_INVERTED_ARCH,
-				
+
 				ModBlocks.COLORABLE_BRICK_ARCH, ModBlocks.COLORABLE_BRICK_INVERTED_ARCH,
 				ModBlocks.COLORABLE_BRICK_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_BRICK_LOWER_SMALL_INVERTED_ARCH,
 				ModBlocks.COLORABLE_BRICK_PILLAR, ModBlocks.COLORABLE_BRICK_POST, ModBlocks.COLORABLE_BRICK_RAMP,
 				ModBlocks.COLORABLE_BRICK_TRIANGLE_RAMP, ModBlocks.COLORABLE_BRICK_UPPER_SMALL_ARCH,
 				ModBlocks.COLORABLE_BRICK_UPPER_SMALL_INVERTED_ARCH,
-				
+
 				ModBlocks.COLORABLE_STONE_BRICK_ARCH, ModBlocks.COLORABLE_STONE_BRICK_INVERTED_ARCH,
 				ModBlocks.COLORABLE_STONE_BRICK_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_STONE_BRICK_LOWER_SMALL_INVERTED_ARCH,
 				ModBlocks.COLORABLE_STONE_BRICK_PILLAR, ModBlocks.COLORABLE_STONE_BRICK_POST, ModBlocks.COLORABLE_STONE_BRICK_RAMP,
 				ModBlocks.COLORABLE_STONE_BRICK_TRIANGLE_RAMP, ModBlocks.COLORABLE_STONE_BRICK_UPPER_SMALL_ARCH,
 				ModBlocks.COLORABLE_STONE_BRICK_UPPER_SMALL_INVERTED_ARCH,
-				
+
 				ModBlocks.COLORABLE_STONE_ARCH, ModBlocks.COLORABLE_STONE_INVERTED_ARCH,
 				ModBlocks.COLORABLE_STONE_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_STONE_LOWER_SMALL_INVERTED_ARCH,
 				ModBlocks.COLORABLE_STONE_PILLAR, ModBlocks.COLORABLE_STONE_POST, ModBlocks.COLORABLE_STONE_RAMP,
 				ModBlocks.COLORABLE_STONE_TRIANGLE_RAMP, ModBlocks.COLORABLE_STONE_UPPER_SMALL_ARCH,
 				ModBlocks.COLORABLE_STONE_UPPER_SMALL_INVERTED_ARCH,
-				
+
 				ModBlocks.COLORABLE_COBBLESTONE_ARCH, ModBlocks.COLORABLE_COBBLESTONE_INVERTED_ARCH,
 				ModBlocks.COLORABLE_COBBLESTONE_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_COBBLESTONE_LOWER_SMALL_INVERTED_ARCH,
 				ModBlocks.COLORABLE_COBBLESTONE_PILLAR, ModBlocks.COLORABLE_COBBLESTONE_POST, ModBlocks.COLORABLE_COBBLESTONE_RAMP,
 				ModBlocks.COLORABLE_COBBLESTONE_TRIANGLE_RAMP, ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_ARCH,
 				ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_INVERTED_ARCH,
 
-				ModBlocks.OAK_STRAIGHT_KITCHEN_COUNTER, ModBlocks.BIRCH_STRAIGHT_KITCHEN_COUNTER, 
-				ModBlocks.SPRUCE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.JUNGLE_STRAIGHT_KITCHEN_COUNTER, 
-				ModBlocks.ACACIA_STRAIGHT_KITCHEN_COUNTER, ModBlocks.DARK_OAK_STRAIGHT_KITCHEN_COUNTER, 
+				ModBlocks.OAK_STRAIGHT_KITCHEN_COUNTER, ModBlocks.BIRCH_STRAIGHT_KITCHEN_COUNTER,
+				ModBlocks.SPRUCE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.JUNGLE_STRAIGHT_KITCHEN_COUNTER,
+				ModBlocks.ACACIA_STRAIGHT_KITCHEN_COUNTER, ModBlocks.DARK_OAK_STRAIGHT_KITCHEN_COUNTER,
 				ModBlocks.WARPED_STRAIGHT_KITCHEN_COUNTER, ModBlocks.CRIMSON_STRAIGHT_KITCHEN_COUNTER,
 
-				ModBlocks.OAK_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_INNER_CORNER_KITCHEN_COUNTER, 
-				ModBlocks.SPRUCE_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_INNER_CORNER_KITCHEN_COUNTER, 
-				ModBlocks.ACACIA_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_INNER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.OAK_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_INNER_CORNER_KITCHEN_COUNTER,
+				ModBlocks.SPRUCE_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_INNER_CORNER_KITCHEN_COUNTER,
+				ModBlocks.ACACIA_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_INNER_CORNER_KITCHEN_COUNTER,
 				ModBlocks.WARPED_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_INNER_CORNER_KITCHEN_COUNTER,
 
-				ModBlocks.OAK_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_OUTER_CORNER_KITCHEN_COUNTER, 
-				ModBlocks.SPRUCE_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_OUTER_CORNER_KITCHEN_COUNTER, 
-				ModBlocks.ACACIA_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_OUTER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.OAK_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_OUTER_CORNER_KITCHEN_COUNTER,
+				ModBlocks.SPRUCE_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_OUTER_CORNER_KITCHEN_COUNTER,
+				ModBlocks.ACACIA_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_OUTER_CORNER_KITCHEN_COUNTER,
 				ModBlocks.WARPED_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_OUTER_CORNER_KITCHEN_COUNTER,
-				
+
 				ModBlocks.EYEBALL_LAMP, ModBlocks.NEON_BLOCK, ModBlocks.GLOWING_NEON_BLOCK,
 				ModBlocks.INK_BLOCK);
 		color.getBlockColors().register((p_210231_0_, p_210231_1_, p_210231_2_, p_210231_3_) -> {
@@ -255,9 +259,9 @@ public class ClientRegistration {
 				ModBlocks.COLORABLE_OUTER_CORNER_KITCHEN_COUNTER);
 	}
 	@SubscribeEvent
-	public static void onRegisterItemColors(ColorHandlerEvent.Item color) {
+	public static void onRegisterItemColors(RegisterColorHandlersEvent.Item color) {
 		color.getItemColors().register((itemStack, p_210239_1_) -> {
-			return (p_210239_1_ > 0 || itemStack.getTag() == null) ? -1 : ((IDyeableArmorItem)itemStack.getItem()).getColor(itemStack);
+			return (p_210239_1_ > 0 || itemStack.getTag() == null) ? -1 : ((DyeableLeatherItem)itemStack.getItem()).getColor(itemStack);
 		}, ModItems.CUSTOM_COLOR_PICKER, ModItems.CUSTOM_LIGHT_COLOR_PICKER);
 		color.getItemColors().register((itemStack, p_210239_1_) -> {
 			return (p_210239_1_ > 0 || itemStack.getTag() == null) ? -1 : itemStack.getTag().getCompound("BlockEntityTag").getInt("max_color");
@@ -268,76 +272,76 @@ public class ClientRegistration {
 				ModBlocks.COLORABLE_CONCRETE, ModBlocks.COLORABLE_BRICKS,
 				ModBlocks.COLORABLE_TERRACOTTA, ModBlocks.COLORABLE_STONE_BRICKS,
 				ModBlocks.COLORABLE_STONE, ModBlocks.COLORABLE_COBBLESTONE,
-				
+
 				ModBlocks.COLORABLE_CARPET, ModBlocks.COLORABLE_ROUND_CARPET,
 				ModBlocks.COLORABLE_SOFA, ModBlocks.COLORABLE_TABLE, ModBlocks.COLORABLE_CHAIR,
 				ModBlocks.COLORABLE_PLANK_COFFEE_TABLE, ModBlocks.COLORABLE_TERRACOTTA_COFFEE_TABLE,
-				
+
 				ModBlocks.COLORABLE_PLANK_SLAB, ModBlocks.COLORABLE_BRICK_SLAB,
 				ModBlocks.COLORABLE_STONE_BRICK_SLAB, ModBlocks.COLORABLE_STONE_SLAB,
 				ModBlocks.COLORABLE_COBBLESTONE_SLAB,
-				
+
 				ModBlocks.COLORABLE_PLANK_STAIRS, ModBlocks.COLORABLE_BRICK_STAIRS,
 				ModBlocks.COLORABLE_STONE_BRICK_STAIRS, ModBlocks.COLORABLE_STONE_STAIRS,
 				ModBlocks.COLORABLE_COBBLESTONE_STAIRS,
-				
+
 				ModBlocks.COLORABLE_PLANK_VERTICAL_SLAB, ModBlocks.COLORABLE_BRICK_VERTICAL_SLAB,
 				ModBlocks.COLORABLE_STONE_BRICK_VERTICAL_SLAB, ModBlocks.COLORABLE_STONE_VERTICAL_SLAB,
 				ModBlocks.COLORABLE_COBBLESTONE_VERTICAL_SLAB,
-				
+
 				ModBlocks.COLORABLE_PLANK_VERTICAL_STAIRS, ModBlocks.COLORABLE_BRICK_VERTICAL_STAIRS,
 				ModBlocks.COLORABLE_STONE_BRICK_VERTICAL_STAIRS, ModBlocks.COLORABLE_STONE_VERTICAL_STAIRS,
 				ModBlocks.COLORABLE_COBBLESTONE_VERTICAL_STAIRS,
-				
+
 				ModBlocks.COLORABLE_GLASS, ModBlocks.COLORABLE_GLASS_PANE,
-				
+
 				ModBlocks.COLORABLE_PLANK_ARCH, ModBlocks.COLORABLE_PLANK_INVERTED_ARCH,
 				ModBlocks.COLORABLE_PLANK_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_PLANK_LOWER_SMALL_INVERTED_ARCH,
 				ModBlocks.COLORABLE_PLANK_PILLAR, ModBlocks.COLORABLE_PLANK_POST, ModBlocks.COLORABLE_PLANK_RAMP,
 				ModBlocks.COLORABLE_PLANK_TRIANGLE_RAMP, ModBlocks.COLORABLE_PLANK_UPPER_SMALL_ARCH,
 				ModBlocks.COLORABLE_PLANK_UPPER_SMALL_INVERTED_ARCH,
-				
+
 				ModBlocks.COLORABLE_BRICK_ARCH, ModBlocks.COLORABLE_BRICK_INVERTED_ARCH,
 				ModBlocks.COLORABLE_BRICK_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_BRICK_LOWER_SMALL_INVERTED_ARCH,
 				ModBlocks.COLORABLE_BRICK_PILLAR, ModBlocks.COLORABLE_BRICK_POST, ModBlocks.COLORABLE_BRICK_RAMP,
 				ModBlocks.COLORABLE_BRICK_TRIANGLE_RAMP, ModBlocks.COLORABLE_BRICK_UPPER_SMALL_ARCH,
 				ModBlocks.COLORABLE_BRICK_UPPER_SMALL_INVERTED_ARCH,
-				
+
 				ModBlocks.COLORABLE_STONE_BRICK_ARCH, ModBlocks.COLORABLE_STONE_BRICK_INVERTED_ARCH,
 				ModBlocks.COLORABLE_STONE_BRICK_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_STONE_BRICK_LOWER_SMALL_INVERTED_ARCH,
 				ModBlocks.COLORABLE_STONE_BRICK_PILLAR, ModBlocks.COLORABLE_STONE_BRICK_POST, ModBlocks.COLORABLE_STONE_BRICK_RAMP,
 				ModBlocks.COLORABLE_STONE_BRICK_TRIANGLE_RAMP, ModBlocks.COLORABLE_STONE_BRICK_UPPER_SMALL_ARCH,
 				ModBlocks.COLORABLE_STONE_BRICK_UPPER_SMALL_INVERTED_ARCH,
-				
+
 				ModBlocks.COLORABLE_STONE_ARCH, ModBlocks.COLORABLE_STONE_INVERTED_ARCH,
 				ModBlocks.COLORABLE_STONE_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_STONE_LOWER_SMALL_INVERTED_ARCH,
 				ModBlocks.COLORABLE_STONE_PILLAR, ModBlocks.COLORABLE_STONE_POST, ModBlocks.COLORABLE_STONE_RAMP,
 				ModBlocks.COLORABLE_STONE_TRIANGLE_RAMP, ModBlocks.COLORABLE_STONE_UPPER_SMALL_ARCH,
 				ModBlocks.COLORABLE_STONE_UPPER_SMALL_INVERTED_ARCH,
-				
+
 				ModBlocks.COLORABLE_COBBLESTONE_ARCH, ModBlocks.COLORABLE_COBBLESTONE_INVERTED_ARCH,
 				ModBlocks.COLORABLE_COBBLESTONE_LOWER_SMALL_ARCH, ModBlocks.COLORABLE_COBBLESTONE_LOWER_SMALL_INVERTED_ARCH,
 				ModBlocks.COLORABLE_COBBLESTONE_PILLAR, ModBlocks.COLORABLE_COBBLESTONE_POST, ModBlocks.COLORABLE_COBBLESTONE_RAMP,
 				ModBlocks.COLORABLE_COBBLESTONE_TRIANGLE_RAMP, ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_ARCH,
 				ModBlocks.COLORABLE_COBBLESTONE_UPPER_SMALL_INVERTED_ARCH,
-				
+
 				ModBlocks.COLORABLE_FLOWER_POT,
 
-				ModBlocks.OAK_STRAIGHT_KITCHEN_COUNTER, ModBlocks.BIRCH_STRAIGHT_KITCHEN_COUNTER, 
-				ModBlocks.SPRUCE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.JUNGLE_STRAIGHT_KITCHEN_COUNTER, 
-				ModBlocks.ACACIA_STRAIGHT_KITCHEN_COUNTER, ModBlocks.DARK_OAK_STRAIGHT_KITCHEN_COUNTER, 
+				ModBlocks.OAK_STRAIGHT_KITCHEN_COUNTER, ModBlocks.BIRCH_STRAIGHT_KITCHEN_COUNTER,
+				ModBlocks.SPRUCE_STRAIGHT_KITCHEN_COUNTER, ModBlocks.JUNGLE_STRAIGHT_KITCHEN_COUNTER,
+				ModBlocks.ACACIA_STRAIGHT_KITCHEN_COUNTER, ModBlocks.DARK_OAK_STRAIGHT_KITCHEN_COUNTER,
 				ModBlocks.WARPED_STRAIGHT_KITCHEN_COUNTER, ModBlocks.CRIMSON_STRAIGHT_KITCHEN_COUNTER,
 
-				ModBlocks.OAK_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_INNER_CORNER_KITCHEN_COUNTER, 
-				ModBlocks.SPRUCE_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_INNER_CORNER_KITCHEN_COUNTER, 
-				ModBlocks.ACACIA_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_INNER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.OAK_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_INNER_CORNER_KITCHEN_COUNTER,
+				ModBlocks.SPRUCE_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_INNER_CORNER_KITCHEN_COUNTER,
+				ModBlocks.ACACIA_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_INNER_CORNER_KITCHEN_COUNTER,
 				ModBlocks.WARPED_INNER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_INNER_CORNER_KITCHEN_COUNTER,
 
-				ModBlocks.OAK_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_OUTER_CORNER_KITCHEN_COUNTER, 
-				ModBlocks.SPRUCE_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_OUTER_CORNER_KITCHEN_COUNTER, 
-				ModBlocks.ACACIA_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_OUTER_CORNER_KITCHEN_COUNTER, 
+				ModBlocks.OAK_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.BIRCH_OUTER_CORNER_KITCHEN_COUNTER,
+				ModBlocks.SPRUCE_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.JUNGLE_OUTER_CORNER_KITCHEN_COUNTER,
+				ModBlocks.ACACIA_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.DARK_OAK_OUTER_CORNER_KITCHEN_COUNTER,
 				ModBlocks.WARPED_OUTER_CORNER_KITCHEN_COUNTER, ModBlocks.CRIMSON_OUTER_CORNER_KITCHEN_COUNTER,
-				
+
 				ModBlocks.RAINBOW_BLOCK, ModBlocks.LAVA_LAMP, ModBlocks.EYEBALL_LAMP, ModBlocks.NEON_BLOCK, ModBlocks.GLOWING_NEON_BLOCK,
 				ModBlocks.INK_BLOCK);
 		color.getItemColors().register((itemStack, p_210239_1_) -> {

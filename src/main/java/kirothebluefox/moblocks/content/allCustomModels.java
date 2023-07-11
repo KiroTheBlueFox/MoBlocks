@@ -1,9 +1,9 @@
 package kirothebluefox.moblocks.content;
 
 import kirothebluefox.moblocks.MoBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 public enum allCustomModels {
 	OAK_DRAWER_MODEL(Blocks.OAK_PLANKS, new ResourceLocation(MoBlocks.MODID, "block/furnitures/drawers/simple/oak/drawer")),
@@ -15,10 +15,10 @@ public enum allCustomModels {
 	NETHER_BRICK_DRAWER_MODEL(Blocks.NETHER_BRICKS, new ResourceLocation(MoBlocks.MODID, "block/furnitures/drawers/simple/nether_brick/drawer")),
 	CRIMSON_DRAWER_MODEL(Blocks.CRIMSON_PLANKS, new ResourceLocation(MoBlocks.MODID, "block/furnitures/drawers/simple/crimson/drawer")),
 	WARPED_DRAWER_MODEL(Blocks.WARPED_PLANKS, new ResourceLocation(MoBlocks.MODID, "block/furnitures/drawers/simple/warped/drawer")),
-	
+
 	BOOK_COVER_MODEL(null, new ResourceLocation(MoBlocks.MODID, "block/furnitures/bookshelves/book_cover")),
 	BOOK_PAGES_MODEL(null, new ResourceLocation(MoBlocks.MODID, "block/furnitures/bookshelves/book_pages")),
-	
+
 	OAK_CABINET_KITCHEN_COUNTER_DOOR_MODEL(Blocks.OAK_PLANKS, new ResourceLocation(MoBlocks.MODID, "block/furnitures/kitchen_counters/cabinet/cabinet_doors/oak")),
 	SPRUCE_CABINET_KITCHEN_COUNTER_DOOR_MODEL(Blocks.SPRUCE_PLANKS, new ResourceLocation(MoBlocks.MODID, "block/furnitures/kitchen_counters/cabinet/cabinet_doors/spruce")),
 	BIRCH_CABINET_KITCHEN_COUNTER_DOOR_MODEL(Blocks.BIRCH_PLANKS, new ResourceLocation(MoBlocks.MODID, "block/furnitures/kitchen_counters/cabinet/cabinet_doors/birch")),
@@ -29,19 +29,19 @@ public enum allCustomModels {
 	WARPED_CABINET_KITCHEN_COUNTER_DOOR_MODEL(Blocks.WARPED_PLANKS, new ResourceLocation(MoBlocks.MODID, "block/furnitures/kitchen_counters/cabinet/cabinet_doors/warped")),
 	EYEBALL_LAMP(null, new ResourceLocation(MoBlocks.MODID, "block/decoration/eyeball_lamp")),
 	NEON_BLOCK(Blocks.WHITE_CONCRETE, new ResourceLocation(MoBlocks.MODID, "block/decoration/neon_block"));
-	
+
 	private Block baseBlock;
 	private ResourceLocation location;
-	
+
 	private allCustomModels(Block baseBlock, ResourceLocation location) {
 		this.baseBlock = baseBlock;
 		this.location = location;
 	}
-	
+
 	public ResourceLocation getLocation() {
 		return this.location;
 	}
-	
+
 	public Block getBaseBlock() {
 		return this.baseBlock;
 	}

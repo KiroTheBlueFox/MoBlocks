@@ -3,23 +3,26 @@ package kirothebluefox.moblocks.content.furnitures.potionshelves;
 import kirothebluefox.moblocks.MoBlocks;
 import kirothebluefox.moblocks.content.ModTileEntities;
 import kirothebluefox.moblocks.utils.ItemStackUtils;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class PotionShelfTile extends TileEntity {
+import java.util.stream.Collectors;
+
+public class PotionShelfTile extends BlockEntity {
 	private int layers = 3, stacksPerLayer = 3;
 	public String[][] KEYS = new String[layers][stacksPerLayer];
     public ItemStack[][] inventory = new ItemStack[layers][stacksPerLayer];
 
-	public PotionShelfTile() {
-		super(ModTileEntities.POTION_SHELF);
+	public PotionShelfTile(BlockPos pos, BlockState state) {
+		super(ModTileEntities.POTION_SHELF, pos, state);
 		for (int i = 0; i < this.layers; i++) {
 			for (int j = 0; j < this.stacksPerLayer; j++) {
 				KEYS[i][j] = String.format("item%d_%d",i,j);
@@ -27,37 +30,36 @@ public class PotionShelfTile extends TileEntity {
 			}
 		}
 	}
-	
+
 	@Override
-	public void read(BlockState blockstate, CompoundNBT compound) {
-		super.read(blockstate, compound);
+	public void load(CompoundTag compound) {
+		super.load(compound);
 		for (int i = 0; i < this.layers; i++) {
 			for (int j = 0; j < this.stacksPerLayer; j++) {
-			    CompoundNBT item = compound.getCompound(KEYS[i][j]);
-			    this.inventory[i][j] = ItemStack.read(item);
+			    CompoundTag item = compound.getCompound(KEYS[i][j]);
+			    this.inventory[i][j] = ItemStack.of(item);
 			}
 		}
-	}
-	
-	@Override
-	public CompoundNBT write(CompoundNBT compound) {
-		for (int i = 0; i < this.layers; i++) {
-			for (int j = 0; j < this.stacksPerLayer; j++) {
-			    CompoundNBT inventory = new CompoundNBT();
-			    this.inventory[i][j].write(inventory);
-			    compound.put(KEYS[i][j], inventory);
-			}
-		}
-	    return super.write(compound);
 	}
 
 	@Override
-	public CompoundNBT getUpdateTag() {
-		CompoundNBT tag = super.getUpdateTag();
+	public void saveAdditional(CompoundTag compound) {
 		for (int i = 0; i < this.layers; i++) {
 			for (int j = 0; j < this.stacksPerLayer; j++) {
-			    CompoundNBT inventory = new CompoundNBT();
-			    this.inventory[i][j].write(inventory);
+			    CompoundTag inventory = new CompoundTag();
+			    this.inventory[i][j].save(inventory);
+			    compound.put(KEYS[i][j], inventory);
+			}
+		}
+	}
+
+	@Override
+	public CompoundTag getUpdateTag() {
+		CompoundTag tag = super.getUpdateTag();
+		for (int i = 0; i < this.layers; i++) {
+			for (int j = 0; j < this.stacksPerLayer; j++) {
+			    CompoundTag inventory = new CompoundTag();
+			    this.inventory[i][j].save(inventory);
 				tag.put(KEYS[i][j], inventory);
 			}
 		}
@@ -65,17 +67,17 @@ public class PotionShelfTile extends TileEntity {
 	}
 
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(pos, 0, getUpdateTag());
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet) {
-        handleUpdateTag(getBlockState(), packet.getNbtCompound());
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet) {
+        handleUpdateTag(packet.getTag());
     }
-	
-	public boolean addItem(ItemStack itemstack, int layer, int pos, PlayerEntity player, Hand hand) {
-		if (inventory[layer][pos].isEmpty() && itemstack.getItem().getTags().contains(new ResourceLocation(MoBlocks.MODID, "potion_items"))) {
+
+	public boolean addItem(ItemStack itemstack, int layer, int pos, Player player, InteractionHand hand) {
+		if (inventory[layer][pos].isEmpty() && itemstack.getTags().collect(Collectors.toList()).contains(new ResourceLocation(MoBlocks.MODID, "potion_items"))) {
 			inventory[layer][pos] = itemstack.split(1);
 		} else {
 			dropItem(player, hand, layer, pos);
@@ -87,18 +89,18 @@ public class PotionShelfTile extends TileEntity {
 	public ItemStack getItem(int layer, int pos) {
 		return inventory[layer][pos];
 	}
-	
+
 	public ItemStack[][] getItems() {
 		return this.inventory;
 	}
-	
+
 	private void notifyBlock() {
-		this.markDirty();
-		this.getWorld().notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);
+		this.setChanged();
+		this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
 	}
 
-	public boolean dropItem(PlayerEntity player, Hand handIn, int layer, int pos) {
-		ItemStackUtils.ejectItemStack(this.getWorld(), this.getPos(), this.inventory[layer][pos]);
+	public boolean dropItem(Player player, InteractionHand handIn, int layer, int pos) {
+		ItemStackUtils.ejectItemStack(this.getLevel(), this.getBlockPos(), this.inventory[layer][pos]);
 		this.notifyBlock();
 		this.inventory[layer][pos] = ItemStack.EMPTY;
 		return true;
@@ -109,7 +111,7 @@ public class PotionShelfTile extends TileEntity {
 		for (ItemStack[] layer : inventory) {
 			for (ItemStack stack : layer) {
 				if (!stack.isEmpty()) {
-					ItemStackUtils.ejectItemStack(this.getWorld(), this.getPos(), stack);
+					ItemStackUtils.ejectItemStack(this.getLevel(), this.getBlockPos(), stack);
 					i++;
 				}
 			}

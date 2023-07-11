@@ -1,109 +1,104 @@
 package kirothebluefox.moblocks.content.decoration.colorablefurnitures;
 
-import javax.annotation.Nullable;
-
 import kirothebluefox.moblocks.content.customproperties.IColorableBlock;
 import kirothebluefox.moblocks.content.decoration.colorableblock.ColorableBlockTile;
 import kirothebluefox.moblocks.content.decoration.customcolorpicker.IDyeableColorPicker;
 import kirothebluefox.moblocks.content.furnitures.SeatSofa;
 import kirothebluefox.moblocks.content.furnitures.Sofa;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IBlockDisplayReader;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 
-public class ColorableSofa extends Sofa implements IColorableBlock {
+import javax.annotation.Nullable;
+
+public class ColorableSofa extends Sofa implements IColorableBlock, EntityBlock {
 	public ColorableSofa(Block baseBlock) {
 		super(baseBlock);
 	}
 
-	@Override
-	public boolean hasTileEntity(BlockState state) {
-		return true;
-	}
-	
 	@Nullable
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return new ColorableBlockTile();
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new ColorableBlockTile(pos, state);
 	}
-	
+
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if (!worldIn.isRemote()) {
-			ItemStack itemstack = player.getHeldItem(handIn);
-			if (player.isSneaking()) {
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+		if (!worldIn.isClientSide()) {
+			ItemStack itemstack = player.getItemInHand(handIn);
+			if (player.isShiftKeyDown()) {
 				if (itemstack.isEmpty()) {
-					worldIn.setBlockState(pos, state.with(ARMREST, !state.get(ARMREST)));
+					worldIn.setBlockAndUpdate(pos, state.setValue(ARMREST, !state.getValue(ARMREST)));
 				} else {
 					Item item = itemstack.getItem();
 					if (item instanceof IDyeableColorPicker) {
 						IDyeableColorPicker colorpicker = (IDyeableColorPicker)item;
-						TileEntity tileentity = worldIn.getTileEntity(pos);
+						BlockEntity tileentity = worldIn.getBlockEntity(pos);
 						if (tileentity instanceof ColorableBlockTile) {
 							ColorableBlockTile colorableblockentity = (ColorableBlockTile)tileentity;
 							colorpicker.setColor(itemstack, colorableblockentity.getColor());
-							return ActionResultType.SUCCESS;
+							return InteractionResult.SUCCESS;
 						} else {
-							return ActionResultType.FAIL;
+							return InteractionResult.FAIL;
 						}
 					} else {
-						return ActionResultType.FAIL;
+						return InteractionResult.FAIL;
 					}
 				}
 			} else {
 				if (itemstack.isEmpty()) {
-					if (player.getRidingEntity() != null) {
-						return ActionResultType.SUCCESS;
+					if (player.getVehicle() != null) {
+						return InteractionResult.SUCCESS;
 					}
-					
-					Vector3d vec = new Vector3d(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+
+					Vec3 vec = new Vec3(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
 					double maxDist = 2.0d;
-					if ((vec.x - player.getPosX()) * (vec.x - player.getPosX()) +
-							(vec.y - player.getPosY()) * (vec.y - player.getPosY()) +
-							(vec.z - player.getPosZ()) * (vec.z - player.getPosZ()) > maxDist * maxDist) {
-						player.sendStatusMessage(new TranslationTextComponent("status_messages.moblocks.seats.too_far", new TranslationTextComponent("status_messages.moblocks.seats.sofa")), true);
-						return ActionResultType.SUCCESS;
+					if ((vec.x - player.getX()) * (vec.x - player.getX()) +
+							(vec.y - player.getY()) * (vec.y - player.getY()) +
+							(vec.z - player.getZ()) * (vec.z - player.getZ()) > maxDist * maxDist) {
+						player.displayClientMessage(Component.translatable("status_messages.moblocks.seats.too_far", Component.translatable("status_messages.moblocks.seats.sofa")), true);
+						return InteractionResult.SUCCESS;
 					}
-					
+
 					SeatSofa seat = new SeatSofa(worldIn, pos);
-					worldIn.addEntity(seat);
+					worldIn.addFreshEntity(seat);
 					player.startRiding(seat);
-					return ActionResultType.SUCCESS;
+					return InteractionResult.SUCCESS;
 				} else {
 					Item item = itemstack.getItem();
 					if (item instanceof IDyeableColorPicker) {
 						IDyeableColorPicker colorpicker = (IDyeableColorPicker)item;
-						TileEntity tileentity = worldIn.getTileEntity(pos);
+						BlockEntity tileentity = worldIn.getBlockEntity(pos);
 						if (tileentity instanceof ColorableBlockTile) {
 							ColorableBlockTile colorableblockentity = (ColorableBlockTile)tileentity;
 							colorableblockentity.setColor(colorpicker.getColor(itemstack));
-							return ActionResultType.SUCCESS;
+							return InteractionResult.SUCCESS;
 						} else {
-							return ActionResultType.FAIL;
+							return InteractionResult.FAIL;
 						}
 					} else {
-						return ActionResultType.FAIL;
+						return InteractionResult.FAIL;
 					}
 				}
 			}
 		}
-		return ActionResultType.SUCCESS;
+		return InteractionResult.SUCCESS;
 	}
 
-	public static int getColor(BlockState blockState, IBlockDisplayReader blockReader, BlockPos pos) {
-		TileEntity tileEntity = blockReader.getTileEntity(pos);
+	public static int getColor(BlockState blockState, BlockAndTintGetter blockReader, BlockPos pos) {
+		BlockEntity tileEntity = blockReader.getBlockEntity(pos);
 		if (tileEntity instanceof ColorableBlockTile) {
 			ColorableBlockTile colorablewoolentity = (ColorableBlockTile) tileEntity;
 			return colorablewoolentity.getColor();

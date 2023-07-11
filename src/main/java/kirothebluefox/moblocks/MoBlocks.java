@@ -6,7 +6,7 @@ import kirothebluefox.moblocks.content.creativetabs.Furnitures;
 import kirothebluefox.moblocks.content.creativetabs.SpecialBlocks;
 import kirothebluefox.moblocks.utils.ConfigHelper;
 import kirothebluefox.moblocks.utils.ConfigHelper.ConfigValueListener;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -17,9 +17,9 @@ public class MoBlocks {
     public static final String MODID = "moblocks";
 	public static ConfigImplementation config;
 	
-    public static final ItemGroup special_blocks_creative_tab = new SpecialBlocks().setNoTitle().setBackgroundImageName("item_search.png");
-    public static final ItemGroup decoration_creative_tab = new Decoration().setNoTitle().setBackgroundImageName("item_search.png");
-    public static final ItemGroup furnitures_creative_tab = new Furnitures().setNoTitle().setBackgroundImageName("item_search.png");
+    public static final CreativeModeTab special_blocks_creative_tab = new SpecialBlocks().hideTitle().setBackgroundSuffix("item_search.png");
+    public static final CreativeModeTab decoration_creative_tab = new Decoration().hideTitle().setBackgroundSuffix("item_search.png");
+    public static final CreativeModeTab furnitures_creative_tab = new Furnitures().hideTitle().setBackgroundSuffix("item_search.png");
     
     public MoBlocks() {
     	config = ConfigHelper.register(ModConfig.Type.CLIENT, ConfigImplementation::new);

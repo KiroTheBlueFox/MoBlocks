@@ -1,84 +1,84 @@
 package kirothebluefox.moblocks.content.decoration.lighting.signaltowerlight;
 
 import kirothebluefox.moblocks.content.ModTileEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class SignalTowerLightTile extends TileEntity {
+public class SignalTowerLightTile extends BlockEntity {
 	public static final String COLOR1_KEY = "color1";
 	public static final String COLOR2_KEY = "color2";
 	public static final String COLOR3_KEY = "color3";
     public int color1 = 0xFFFFFF, color2 = 0xFFFFFF, color3 = 0xFFFFFF;
 
-	public SignalTowerLightTile(int color1, int color2, int color3) {
-		super(ModTileEntities.SIGNAL_TOWER_LIGHT);
+	public SignalTowerLightTile(int color1, int color2, int color3, BlockPos pos, BlockState state) {
+		super(ModTileEntities.SIGNAL_TOWER_LIGHT, pos, state);
 		this.color1 = color1;
 		this.color2 = color2;
 		this.color3 = color3;
 	}
 
-	public SignalTowerLightTile() {
-		super(ModTileEntities.SIGNAL_TOWER_LIGHT);
+	public SignalTowerLightTile(BlockPos pos, BlockState state) {
+		super(ModTileEntities.SIGNAL_TOWER_LIGHT, pos, state);
 	}
-	
+
 	@Override
-	public void read(BlockState blockState, CompoundNBT compound) {
-		super.read(blockState, compound);
+	public void load(CompoundTag compound) {
+		super.load(compound);
 	    this.color1 = compound.getInt(COLOR1_KEY);
 	    this.color2 = compound.getInt(COLOR2_KEY);
 	    this.color3 = compound.getInt(COLOR3_KEY);
 	}
-	
+
 	@Override
-	public CompoundNBT write(CompoundNBT compound) {
+	public void saveAdditional(CompoundTag compound) {
 	    compound.putInt(COLOR1_KEY, this.color1);
 	    compound.putInt(COLOR2_KEY, this.color2);
 	    compound.putInt(COLOR3_KEY, this.color3);
-	    return super.write(compound);
 	}
 
 	@Override
-	public CompoundNBT getUpdateTag() {
-		CompoundNBT tag = super.getUpdateTag();
+	public CompoundTag getUpdateTag() {
+		CompoundTag tag = super.getUpdateTag();
 	    tag.putInt(COLOR1_KEY, this.color1);
 	    tag.putInt(COLOR2_KEY, this.color2);
 	    tag.putInt(COLOR3_KEY, this.color3);
 		return tag;
 	}
-	
+
 	@Override
-	public void handleUpdateTag(BlockState blockstate, CompoundNBT tag) {
-		super.read(blockstate, tag);
+	public void handleUpdateTag(CompoundTag tag) {
+		super.load(tag);
 		setColor1(tag.getInt(COLOR1_KEY));
 		setColor2(tag.getInt(COLOR2_KEY));
 		setColor3(tag.getInt(COLOR3_KEY));
 	}
-	
+
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket()
+    public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new SUpdateTileEntityPacket(pos, 0, getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet)
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet)
     {
-        handleUpdateTag(getBlockState(), packet.getNbtCompound());
+        handleUpdateTag(packet.getTag());
     }
 
 	private void notifyBlock() {
-		this.markDirty();
-		this.getWorld().notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);
+		this.setChanged();
+		this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
 	}
 
 	public void setColor1(int color) {
 		this.color1 = color;
 		notifyBlock();
 	}
-	
+
 	public int getColor1() {
 		return this.color1;
 	}
@@ -87,7 +87,7 @@ public class SignalTowerLightTile extends TileEntity {
 		this.color2 = color;
 		notifyBlock();
 	}
-	
+
 	public int getColor2() {
 		return this.color2;
 	}
@@ -96,7 +96,7 @@ public class SignalTowerLightTile extends TileEntity {
 		this.color3 = color;
 		notifyBlock();
 	}
-	
+
 	public int getColor3() {
 		return this.color3;
 	}

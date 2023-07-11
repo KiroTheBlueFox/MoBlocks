@@ -1,8 +1,8 @@
 package kirothebluefox.moblocks.content.customproperties;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum MultipleNorth implements IStringSerializable {
+public enum MultipleNorth implements StringRepresentable {
 	FALSE("false"),
 	TRUE("true"),
 	LONG("long");
@@ -22,7 +22,7 @@ public enum MultipleNorth implements IStringSerializable {
 	}
 
 	@Override
-	public String getString() {
+	public String getSerializedName() {
 		return getName();
 	}
 }

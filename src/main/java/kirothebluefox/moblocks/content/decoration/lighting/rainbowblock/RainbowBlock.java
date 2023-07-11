@@ -1,51 +1,46 @@
 package kirothebluefox.moblocks.content.decoration.lighting.rainbowblock;
 
-import javax.annotation.Nullable;
-
 import kirothebluefox.moblocks.content.customproperties.IColorableBlock;
-import net.hypherionmc.hypcore.api.ColoredLightManager;
-import net.hypherionmc.hypcore.api.Light;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.fml.ModList;
 
-public class RainbowBlock extends Block implements IColorableBlock {
+import javax.annotation.Nullable;
+
+public class RainbowBlock extends Block implements IColorableBlock, EntityBlock {
 	public RainbowBlock(Block baseBlock) {
-		super(Block.Properties.from(baseBlock));
+		super(Block.Properties.copy(baseBlock));
 		if (ModList.get().isLoaded("hypcore")) {
-			ColoredLightManager.registerProvider(this, this::produceColoredLight);
+			//ColoredLightManager.registerProvider(this, this::produceColoredLight);
 		}
 	}
-	
+
 	@Override
-	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+	public int getLightEmission(BlockState state, BlockGetter world, BlockPos pos) {
 		if (ModList.get().isLoaded("hypcore"))
 			return 1;
 		return 15;
 	}
-	
+
 	@Override
-	public boolean hasTileEntity(BlockState state) {
-		return true;
-	}
-	
-	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if (!worldIn.isRemote && handIn.equals(Hand.MAIN_HAND) && player.getHeldItem(handIn).isEmpty()) {
-			TileEntity tileEntity = worldIn.getTileEntity(pos);
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+		if (!worldIn.isClientSide && handIn.equals(InteractionHand.MAIN_HAND) && player.getItemInHand(handIn).isEmpty()) {
+			BlockEntity tileEntity = worldIn.getBlockEntity(pos);
 			if (tileEntity instanceof RainbowBlockTile) {
 				RainbowBlockTile rainbowBlockTile = (RainbowBlockTile) tileEntity;
 				int speed = rainbowBlockTile.getSpeed();
-				if (player.isSneaking()) {
+				if (player.isShiftKeyDown()) {
 					speed /= 2;
 					if (speed < 1)
 						speed = 128;
@@ -56,25 +51,37 @@ public class RainbowBlock extends Block implements IColorableBlock {
 				}
 				rainbowBlockTile.setSpeed(speed);
 			}
-			return ActionResultType.SUCCESS;
+			return InteractionResult.SUCCESS;
 		} else {
-			return ActionResultType.FAIL;
+			return InteractionResult.FAIL;
 		}
 	}
-	
+
 	@Nullable
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return new RainbowBlockTile();
-	}
-	
-	public Light produceColoredLight(BlockPos pos, BlockState state) {
-		int color = getColor(Minecraft.getInstance().world, pos);
-		return Light.builder().pos(pos).color(color, false).radius(14).build();
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new RainbowBlockTile(pos, state);
 	}
 
-	public static int getColor(IBlockReader blockReader, BlockPos pos) {
-		TileEntity tileEntity = blockReader.getTileEntity(pos);
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_153212_, BlockState p_153213_, BlockEntityType<T> p_153214_) {
+		return (level1, blockPos, blockState, t) -> {
+			if (t instanceof RainbowBlockTile tile) {
+				if (!level1.isClientSide()) {
+					tile.tick();
+				}
+			}
+		};
+	}
+
+	/*public Light produceColoredLight(BlockPos pos, BlockState state) {
+		int color = getColor(Minecraft.getInstance().world, pos);
+		return Light.builder().pos(pos).color(color, false).radius(14).build();
+	}*/
+
+	public static int getColor(BlockGetter blockReader, BlockPos pos) {
+		BlockEntity tileEntity = blockReader.getBlockEntity(pos);
 		if (tileEntity instanceof RainbowBlockTile) {
 			RainbowBlockTile rainbowBlockTile = (RainbowBlockTile) tileEntity;
 			return rainbowBlockTile.getColor();

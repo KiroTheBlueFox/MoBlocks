@@ -2,71 +2,71 @@ package kirothebluefox.moblocks.content.decoration.colorableflowerpot;
 
 import kirothebluefox.moblocks.content.ModTileEntities;
 import kirothebluefox.moblocks.utils.ItemStackUtils;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Hand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class ColorableFlowerPotTile extends TileEntity {
+public class ColorableFlowerPotTile extends BlockEntity {
 	public static final String COLOR_KEY = "color";
     public int color = 0xFFFFFF;
     public static final String ITEM_KEY = "flower";
     public ItemStack item = ItemStack.EMPTY;;
-    
-	public ColorableFlowerPotTile() {
-		super(ModTileEntities.COLORABLE_FLOWER_POT);
-	}
-	
-	@Override
-	public void read(BlockState blockstate, CompoundNBT compound) {
-		super.read(blockstate, compound);
-	    this.color = compound.getInt(COLOR_KEY);
-	    CompoundNBT inventory = compound.getCompound(ITEM_KEY);
-	    this.item = ItemStack.read(inventory);
-	}
-	
-	@Override
-	public CompoundNBT write(CompoundNBT compound) {
-	    compound.putInt(COLOR_KEY, this.color);
-	    CompoundNBT inventory = new CompoundNBT();
-	    this.item.write(inventory);
-	    compound.put(ITEM_KEY, inventory);
-	    return super.write(compound);
-	}
-	
-	@Override
-	public void handleUpdateTag(BlockState blockstate, CompoundNBT tag) {
-		super.read(blockstate, tag);
-		setColor(tag.getInt(COLOR_KEY));
-		if (!tag.getCompound(ITEM_KEY).isEmpty()) this.item = ItemStack.read(tag.getCompound(ITEM_KEY));
+
+	public ColorableFlowerPotTile(BlockPos pos, BlockState state) {
+		super(ModTileEntities.COLORABLE_FLOWER_POT, pos, state);
 	}
 
 	@Override
-	public CompoundNBT getUpdateTag() {
-		CompoundNBT tag = super.getUpdateTag();
+	public void load(CompoundTag compound) {
+		super.load(compound);
+	    this.color = compound.getInt(COLOR_KEY);
+	    CompoundTag inventory = compound.getCompound(ITEM_KEY);
+	    this.item = ItemStack.of(inventory);
+	}
+
+	@Override
+	public void saveAdditional(CompoundTag compound) {
+	    compound.putInt(COLOR_KEY, this.color);
+	    CompoundTag inventory = new CompoundTag();
+	    this.item.save(inventory);
+	    compound.put(ITEM_KEY, inventory);
+	}
+
+	@Override
+	public void handleUpdateTag(CompoundTag tag) {
+		super.load(tag);
+		setColor(tag.getInt(COLOR_KEY));
+		if (!tag.getCompound(ITEM_KEY).isEmpty()) this.item = ItemStack.of(tag.getCompound(ITEM_KEY));
+	}
+
+	@Override
+	public CompoundTag getUpdateTag() {
+		CompoundTag tag = super.getUpdateTag();
 	    tag.putInt(COLOR_KEY, this.color);
-	    CompoundNBT inventory = new CompoundNBT();
-	    this.item.write(inventory);
+	    CompoundTag inventory = new CompoundTag();
+	    this.item.save(inventory);
 		tag.put(ITEM_KEY, inventory);
 		return tag;
 	}
 
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket()
+    public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new SUpdateTileEntityPacket(pos, 0, getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet)
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet)
     {
-        handleUpdateTag(getBlockState(), packet.getNbtCompound());
+        handleUpdateTag(packet.getTag());
     }
-	
+
 	public boolean addItem(ItemStack itemstack) {
         if (this.item.isEmpty()) {
     		this.item = itemstack.split(1);
@@ -77,20 +77,20 @@ public class ColorableFlowerPotTile extends TileEntity {
 	}
 
 	private void notifyBlock() {
-		this.markDirty();
-		this.getWorld().notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);
+		this.setChanged();
+		this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
 	}
 
 	public ItemStack getItem() {
 		return this.item;
 	}
 
-	public boolean dropItem(PlayerEntity player, Hand handIn) {
+	public boolean dropItem(Player player, InteractionHand handIn) {
 		if (!this.item.isEmpty()) {
-			if (player.getActiveItemStack().isEmpty()) {
-				player.setHeldItem(handIn, this.item);
-	        } else if (!player.addItemStackToInventory(this.item)) {
-	        	player.dropItem(this.item, false);
+			if (player.getUseItem().isEmpty()) {
+				player.setItemInHand(handIn, this.item);
+	        } else if (!player.addItem(this.item)) {
+	        	player.drop(this.item, false);
 	        }
 			this.notifyBlock();
 			this.item = ItemStack.EMPTY;
@@ -102,7 +102,7 @@ public class ColorableFlowerPotTile extends TileEntity {
 
 	public boolean dropItem() {
 		if (!this.item.isEmpty()) {
-			ItemStackUtils.ejectItemStack(this.getWorld(), this.getPos(), this.item);
+			ItemStackUtils.ejectItemStack(this.getLevel(), this.getBlockPos(), this.item);
 			return true;
 		} else {
 			return false;
@@ -113,7 +113,7 @@ public class ColorableFlowerPotTile extends TileEntity {
 		this.color = color;
 		notifyBlock();
 	}
-	
+
 	public int getColor() {
 		return this.color;
 	}

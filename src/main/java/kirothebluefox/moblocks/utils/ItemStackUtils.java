@@ -1,22 +1,22 @@
 package kirothebluefox.moblocks.utils;
 
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class ItemStackUtils {
-	public static void ejectItemStack(World world, BlockPos from_pos, ItemStack stack) {
+	public static void ejectItemStack(Level world, BlockPos from_pos, ItemStack stack) {
 		Direction output_dir = Direction.UP;
 		double x,y,z,xVel,yVel,zVel, xOff, yOff, zOff;
 		BlockPos output_pos;
 		if (output_dir != null)
 		{
-			output_pos = from_pos.offset(output_dir);
-			xOff = output_dir.getXOffset();
-			yOff = output_dir.getYOffset();
-			zOff = output_dir.getZOffset();
+			output_pos = from_pos.relative(output_dir);
+			xOff = output_dir.getStepX();
+			yOff = output_dir.getStepY();
+			zOff = output_dir.getStepZ();
 		}
 		else
 		{
@@ -25,7 +25,7 @@ public class ItemStackUtils {
 			yOff = 0D;
 			zOff = 0D;
 		}
-		if (!world.getBlockState(output_pos).isSolid())
+		if (!world.getBlockState(output_pos).canOcclude())
 		{
 			x = from_pos.getX() + 0.5D + xOff*0.75D;
 			y = from_pos.getY() + 0.25D + yOff*0.75D;
@@ -44,8 +44,8 @@ public class ItemStackUtils {
 			zVel = 0D;
 		}
 		ItemEntity itementity = new ItemEntity(world, x, y, z, stack);
-        itementity.setDefaultPickupDelay();
-        itementity.setMotion(xVel,yVel,zVel);
-        world.addEntity(itementity);
+        itementity.setDefaultPickUpDelay();
+        itementity.setDeltaMovement(xVel,yVel,zVel);
+        world.addFreshEntity(itementity);
 	}
 }
